@@ -6,11 +6,11 @@
     <?php $this->load->view("_partials/head.php") ?>
     
     <!-- css -->
-    <link rel="stylesheet" href="assets/css/bootstrap.css">
-    <link rel="stylesheet" href="assets/vendors/simple-datatables/style.css">
-    <link rel="stylesheet" href="assets/vendors/perfect-scrollbar/perfect-scrollbar.css">
-    <link rel="stylesheet" href="assets/vendors/bootstrap-icons/bootstrap-icons.css">
-    <link rel="stylesheet" href="assets/css/app.css">
+    <link rel="stylesheet" href="<?php echo base_url();?>assets/css/bootstrap.css">
+    <link rel="stylesheet" href="<?php echo base_url();?>assets/vendors/simple-datatables/style.css">
+    <link rel="stylesheet" href="<?php echo base_url();?>assets/vendors/perfect-scrollbar/perfect-scrollbar.css">
+    <link rel="stylesheet" href="<?php echo base_url();?>assets/vendors/bootstrap-icons/bootstrap-icons.css">
+    <link rel="stylesheet" href="<?php echo base_url();?>assets/css/app.css">
     <!-- end css -->
 </head>
 
@@ -61,7 +61,12 @@
                                                     <i data-feather="x"></i>
                                                 </button>
                                             </div>
-                                            <form action="<?= site_url('isu/simpan') ?>" method="post">
+                                            <?php if($this->session->flashdata('upload_errors')): ?>
+                                                <div class="alert alert-danger">
+                                                    <strong>Error:</strong> <?= $this->session->flashdata('upload_errors'); ?>
+                                                </div>
+                                            <?php endif; ?>
+                                            <form action="<?= site_url('isu/simpan') ?>" method="post" enctype="multipart/form-data">
                                                 <div class="modal-body">
                                                     <!-- Tambahkan CSS untuk ukuran peta -->
                                                     <style>
@@ -79,32 +84,18 @@
                                                     <input type="hidden" name="longitude" id="longitudeInput" value="-0.09"><br>
                                                     <hr>
                                                     
+                                                    <!-- Input Isu -->
                                                     <div class="form-group">
                                                         <label>Isu</label>
                                                         <input type="text" name="title_isu" placeholder="Isu Perencanaan" class="form-control" required>
                                                     </div>
 
+                                                    <!-- Upload multiple files -->
                                                     <div class="mb-3">
                                                         <label for="formFile" class="form-label">Attach File</label>
-                                                        <input class="form-control" type="file" id="formFileMultiple" multiple>
+                                                        <input class="form-control" type="file" id="formFileMultiple" name="formFileMultiple[]" multiple>
                                                     </div>
 
-                                                    <div class="col-md-12 mb-4">
-                                                        <h6>Basic Choices</h6>
-                                                        <div class="form-group">
-                                                            <select class="choices form-select">
-                                                                <option value="square">Square</option>
-                                                                <option value="rectangle">Rectangle</option>
-                                                                <option value="rombo">Rombo</option>
-                                                                <option value="romboid">Romboid</option>
-                                                                <option value="trapeze">Trapeze</option>
-                                                                <option value="traible">Triangle</option>
-                                                                <option value="polygon">Polygon</option>
-                                                            </select>
-                                                        </div>
-                                                    </div>
-
-                                                    
                                                 </div>
 
                                                 <div class="modal-footer">
@@ -287,15 +278,15 @@
     </div>
     <!-- js -->
     
-    <script src="assets/vendors/perfect-scrollbar/perfect-scrollbar.min.js"></script>
-    <script src="assets/js/bootstrap.bundle.min.js"></script>
-    <script src="assets/vendors/simple-datatables/simple-datatables.js"></script>
+    <script src="<?php echo base_url();?>assets/vendors/perfect-scrollbar/perfect-scrollbar.min.js"></script>
+    <script src="<?php echo base_url();?>assets/js/bootstrap.bundle.min.js"></script>
+    <script src="<?php echo base_url();?>assets/vendors/simple-datatables/simple-datatables.js"></script>
     <script>
         // Simple Datatable
         let table1 = document.querySelector('#table1');
         let dataTable = new simpleDatatables.DataTable(table1);
     </script>
-    <script src="assets/js/main.js"></script>
+    <script src="<?php echo base_url();?>assets/js/main.js"></script>
     <!-- end js -->
 </body>
 

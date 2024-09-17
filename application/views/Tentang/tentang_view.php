@@ -6,10 +6,10 @@
     <?php $this->load->view("_partials/head.php") ?>
     
     <!-- css -->
-    <link rel="stylesheet" href="assets/css/bootstrap.css">
-    <link rel="stylesheet" href="assets/vendors/perfect-scrollbar/perfect-scrollbar.css">
-    <link rel="stylesheet" href="assets/vendors/bootstrap-icons/bootstrap-icons.css">
-    <link rel="stylesheet" href="assets/css/app.css">
+    <link rel="stylesheet" href="<?php echo base_url();?>assets/css/bootstrap.css">
+    <link rel="stylesheet" href="<?php echo base_url();?>assets/vendors/perfect-scrollbar/perfect-scrollbar.css">
+    <link rel="stylesheet" href="<?php echo base_url();?>assets/vendors/bootstrap-icons/bootstrap-icons.css">
+    <link rel="stylesheet" href="<?php echo base_url();?>assets/css/app.css">
     <!-- end css -->
 </head>
 
@@ -64,9 +64,9 @@
         </div>
     </div>
     <!-- js -->
-    <script src="assets/vendors/perfect-scrollbar/perfect-scrollbar.min.js"></script>
-    <script src="assets/js/bootstrap.bundle.min.js"></script>
-    <script src="assets/js/main.js"></script>
+    <script src="<?php echo base_url();?>assets/vendors/perfect-scrollbar/perfect-scrollbar.min.js"></script>
+    <script src="<?php echo base_url();?>assets/js/bootstrap.bundle.min.js"></script>
+    <script src="<?php echo base_url();?>assets/js/main.js"></script>
     <!-- end js -->
 </body>
 
