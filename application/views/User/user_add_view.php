@@ -99,41 +99,6 @@
                                                                 name="alamat_akun" placeholder="Jl. Sawah Lunto" required>
                                                         </div>
                                                     </div>
-                                                    <!-- <div class="col-md-6 col-12">
-                                                        <div class="form-group">
-                                                            <label for="country-floating">RT</label>
-                                                            <input type="text" id="country-floating" class="form-control"
-                                                                name="country-floating" placeholder="RT 003">
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-md-6 col-12">
-                                                        <div class="form-group">
-                                                            <label for="country-floating">RW</label>
-                                                            <input type="text" id="country-floating" class="form-control"
-                                                                name="country-floating" placeholder="RW 010">
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-md-6 col-12">
-                                                        <div class="form-group">
-                                                            <label for="country-floating">Kelurahan</label>
-                                                            <input type="text" id="country-floating" class="form-control"
-                                                                name="country-floating" placeholder="Kelurahan Tebet">
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-md-6 col-12">
-                                                        <div class="form-group">
-                                                            <label for="country-floating">Kecamatan</label>
-                                                            <input type="text" id="country-floating" class="form-control"
-                                                                name="country-floating" placeholder="Kecamtan Gambir">
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-md-6 col-12">
-                                                        <div class="form-group">
-                                                            <label for="country-floating">Wilayah/Kota</label>
-                                                            <input type="text" id="country-floating" class="form-control"
-                                                                name="country-floating" placeholder="Jakarta Selatan">
-                                                        </div>
-                                                    </div> -->
 
                                                     <?php 
                                                         $jenis="";
@@ -158,15 +123,6 @@
                                                         </div>
                                                     </div>
                                                     
-                                                    <!-- <div class="form-group col-12">
-                                                        <div class='form-check'>
-                                                            <div class="checkbox">
-                                                                <input type="checkbox" id="checkbox5"
-                                                                    class='form-check-input' checked>
-                                                                <label for="checkbox5">Akun aktif</label>
-                                                            </div>
-                                                        </div>
-                                                    </div> -->
                                                     <div class="col-12 d-flex justify-content-end">
                                                         <button type="submit"
                                                             class="btn btn-primary me-1 mb-1">Simpan</button>

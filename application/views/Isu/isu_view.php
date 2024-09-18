@@ -34,28 +34,27 @@
                     <div class="page-title">
                         <div class="row">
                             <div class="col-12 col-md-6 order-md-1 order-last">
-                                <h3>Usulan Perencanaan</h3>
+                                <h3>Isu Perencanaan</h3>
                                 <p class="text-subtitle text-muted">Berikut histori data informasi perencanaan lingkungan.</p>
                             </div>
                             <div class="col-12 col-md-6 order-md-2 order-first">
                                 <nav aria-label="breadcrumb" class="breadcrumb-header float-start float-lg-end">
                                     <ol class="breadcrumb">
                                         <li class="breadcrumb-item">
-                                            <button type="button" class="btn btn-primary" data-bs-toggle="modal"
-                                                data-bs-target="#xlarge">
+                                            <button type="button" class="btn btn-outline-success" data-bs-toggle="modal"
+                                            data-bs-target="#exampleModalScrollable">
                                                 + Ajukan Permohonan
                                             </button>
                                         </li>
                                     </ol>
                                 </nav>
                                 <!-- Form Perencanaan Modal -->
-                                <div class="modal fade text-left w-100" id="xlarge" tabindex="-1"
-                                    role="dialog" aria-labelledby="myModalLabel16" aria-hidden="true">
-                                    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-xl"
-                                        role="document">
+                                <div class="modal fade" id="exampleModalScrollable" tabindex="-1" role="dialog"
+                                    aria-labelledby="exampleModalScrollableTitle" aria-hidden="true">
+                                    <div class="modal-dialog modal-dialog-scrollable" role="document">
                                         <div class="modal-content">
                                             <div class="modal-header">
-                                                <h4 class="modal-title" id="myModalLabel16">Form Ajuan Perencanaan</h4>
+                                                <h5 class="modal-title" id="exampleModalScrollableTitle">Form Ajuan Perencanaan</h5>
                                                 <button type="button" class="close" data-bs-dismiss="modal"
                                                     aria-label="Close">
                                                     <i data-feather="x"></i>
@@ -66,8 +65,9 @@
                                                     <strong>Error:</strong> <?= $this->session->flashdata('upload_errors'); ?>
                                                 </div>
                                             <?php endif; ?>
-                                            <form action="<?= site_url('isu/simpan') ?>" method="post" enctype="multipart/form-data">
+                                            
                                                 <div class="modal-body">
+                                                    <form action="<?= site_url('isu/simpan') ?>" method="post" enctype="multipart/form-data">
                                                     <!-- Tambahkan CSS untuk ukuran peta -->
                                                     <style>
                                                         #map1 {
@@ -79,15 +79,141 @@
                                                     <div id="map1"></div>
                                                     
                                                     <label for="latitude">Latitude : <span id="latitudeValue">-6.233246</span></label>
-                                                    <input type="hidden" name="latitude" id="latitudeInput" value="51.505"><br>
+                                                    <input type="hidden" name="latitude" id="latitudeInput" value="-6.233246"><br>
                                                     <label for="longitude">Longitude : <span id="longitudeValue">106.837806</span></label>
-                                                    <input type="hidden" name="longitude" id="longitudeInput" value="-0.09"><br>
+                                                    <input type="hidden" name="longitude" id="longitudeInput" value="106.837806"><br>
                                                     <hr>
-                                                    
+
                                                     <!-- Input Isu -->
+                                                    <?php 
+                                                        $jenis="";
+                                                    if(isset($default['title_isu'])) $jenis=$default['title_isu'];
+                                                    ?>
                                                     <div class="form-group">
-                                                        <label>Isu</label>
-                                                        <input type="text" name="title_isu" placeholder="Isu Perencanaan" class="form-control" required>
+                                                        <label>Isu Lingkungan</label>
+                                                        <!-- <input type="text" name="title_isu" placeholder="Isu Perencanaan" class="form-control" required> -->
+                                                        <select class="choices form-select" name="title_isu">
+                                                            <!-- Pastikan $level_akun ada dan bukan kosong -->
+                                                            <?php if (!empty($level_isu)): ?>
+                                                                <?php foreach ($level_isu as $row): ?>
+                                                                    <option value="<?= htmlspecialchars($row['title_isu'], ENT_QUOTES, 'UTF-8') ?>">
+                                                                        <?= htmlspecialchars($row['title_isu'], ENT_QUOTES, 'UTF-8') ?>
+                                                                    </option>
+                                                                <?php endforeach; ?>
+                                                            <?php else: ?>
+                                                                <option value="">Isu tidak tersedia</option>
+                                                            <?php endif; ?>
+                                                        </select>
+                                                    </div>
+
+                                                    <!-- Input Kategori -->
+                                                    <?php 
+                                                        $jenis="";
+                                                    if(isset($default['title_kategori'])) $jenis=$default['title_kategori'];
+                                                    ?>
+                                                    <div class="form-group">
+                                                        <label>Kategori</label>
+                                                        <!-- <input type="text" name="title_isu" placeholder="Isu Perencanaan" class="form-control" required> -->
+                                                        <select class="choices form-select" name="title_kategori">
+                                                            <!-- Pastikan $level_akun ada dan bukan kosong -->
+                                                            <?php if (!empty($level_kategori)): ?>
+                                                                <?php foreach ($level_kategori as $row): ?>
+                                                                    <option value="<?= htmlspecialchars($row['title_kategori'], ENT_QUOTES, 'UTF-8') ?>">
+                                                                        <?= htmlspecialchars($row['title_kategori'], ENT_QUOTES, 'UTF-8') ?>
+                                                                    </option>
+                                                                <?php endforeach; ?>
+                                                            <?php else: ?>
+                                                                <option value="">Isu tidak tersedia</option>
+                                                            <?php endif; ?>
+                                                        </select>
+                                                    </div>
+
+                                                    <!-- Input Jenis -->
+                                                    <?php 
+                                                        $jenis="";
+                                                    if(isset($default['title_jenis'])) $jenis=$default['title_jenis'];
+                                                    ?>
+                                                    <div class="form-group">
+                                                        <label>Jenis</label>
+                                                        <!-- <input type="text" name="title_isu" placeholder="Isu Perencanaan" class="form-control" required> -->
+                                                        <select class="choices form-select" name="title_jenis">
+                                                            <!-- Pastikan $level_akun ada dan bukan kosong -->
+                                                            <?php if (!empty($level_jenis)): ?>
+                                                                <?php foreach ($level_jenis as $row): ?>
+                                                                    <option value="<?= htmlspecialchars($row['title_jenis'], ENT_QUOTES, 'UTF-8') ?>">
+                                                                        <?= htmlspecialchars($row['title_jenis'], ENT_QUOTES, 'UTF-8') ?>
+                                                                    </option>
+                                                                <?php endforeach; ?>
+                                                            <?php else: ?>
+                                                                <option value="">Isu tidak tersedia</option>
+                                                            <?php endif; ?>
+                                                        </select>
+                                                    </div>
+
+                                                    <!-- Input Pekerjaan -->
+                                                    <?php 
+                                                        $jenis="";
+                                                    if(isset($default['title_pekerjaan'])) $jenis=$default['title_pekerjaan'];
+                                                    ?>
+                                                    <div class="form-group">
+                                                        <label>Pekerjaan</label>
+                                                        <!-- <input type="text" name="title_isu" placeholder="Isu Perencanaan" class="form-control" required> -->
+                                                        <select class="choices form-select" name="title_pekerjaan">
+                                                            <!-- Pastikan $level_akun ada dan bukan kosong -->
+                                                            <?php if (!empty($level_pekerjaan)): ?>
+                                                                <?php foreach ($level_pekerjaan as $row): ?>
+                                                                    <option value="<?= htmlspecialchars($row['title_pekerjaan'], ENT_QUOTES, 'UTF-8') ?>">
+                                                                        <?= htmlspecialchars($row['title_pekerjaan'], ENT_QUOTES, 'UTF-8') ?>
+                                                                    </option>
+                                                                <?php endforeach; ?>
+                                                            <?php else: ?>
+                                                                <option value="">Isu tidak tersedia</option>
+                                                            <?php endif; ?>
+                                                        </select>
+                                                    </div>
+
+                                                    <!-- Input Sumber -->
+                                                    <?php 
+                                                        $jenis="";
+                                                    if(isset($default['title_sumber'])) $jenis=$default['title_sumber'];
+                                                    ?>
+                                                    <div class="form-group">
+                                                        <label>Sumber</label>
+                                                        <!-- <input type="text" name="title_isu" placeholder="Isu Perencanaan" class="form-control" required> -->
+                                                        <select class="choices form-select" name="title_sumber">
+                                                            <!-- Pastikan $level_akun ada dan bukan kosong -->
+                                                            <?php if (!empty($level_sumber)): ?>
+                                                                <?php foreach ($level_sumber as $row): ?>
+                                                                    <option value="<?= htmlspecialchars($row['title_sumber'], ENT_QUOTES, 'UTF-8') ?>">
+                                                                        <?= htmlspecialchars($row['title_sumber'], ENT_QUOTES, 'UTF-8') ?>
+                                                                    </option>
+                                                                <?php endforeach; ?>
+                                                            <?php else: ?>
+                                                                <option value="">Isu tidak tersedia</option>
+                                                            <?php endif; ?>
+                                                        </select>
+                                                    </div>
+
+                                                    <!-- Input Aset Lahan -->
+                                                    <?php 
+                                                        $jenis="";
+                                                    if(isset($default['title_aset_lahan'])) $jenis=$default['title_aset_lahan'];
+                                                    ?>
+                                                    <div class="form-group">
+                                                        <label>Aset Lahan</label>
+                                                        <!-- <input type="text" name="title_isu" placeholder="Isu Perencanaan" class="form-control" required> -->
+                                                        <select class="choices form-select" name="title_aset_lahan">
+                                                            <!-- Pastikan $level_akun ada dan bukan kosong -->
+                                                            <?php if (!empty($level_aset_lahan)): ?>
+                                                                <?php foreach ($level_aset_lahan as $row): ?>
+                                                                    <option value="<?= htmlspecialchars($row['title_aset_lahan'], ENT_QUOTES, 'UTF-8') ?>">
+                                                                        <?= htmlspecialchars($row['title_aset_lahan'], ENT_QUOTES, 'UTF-8') ?>
+                                                                    </option>
+                                                                <?php endforeach; ?>
+                                                            <?php else: ?>
+                                                                <option value="">Isu tidak tersedia</option>
+                                                            <?php endif; ?>
+                                                        </select>
                                                     </div>
 
                                                     <!-- Upload multiple files -->
@@ -104,8 +230,10 @@
                                                         <span class="d-none d-sm-block">Close</span>
                                                     </button>
                                                     <button type="submit" class="btn btn-primary">Simpan</button>
+
+                                                    </form>
                                                 </div>
-                                            </form>
+                                            
 
                                             <script>
                                                 var map1 = L.map('map1').setView([-6.233246, 106.837806], 13);

@@ -132,4 +132,10 @@ class Auth extends CI_Controller {
 		$this->session->sess_destroy();
 		redirect('home');
 	}
+
+	// Profile
+	public function profile()
+	{
+		$this->load->view('Auth/Profile/profile_view');
+	}
 }

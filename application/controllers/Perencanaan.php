@@ -1,28 +1,54 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Isu extends CI_Controller {
+class Perencanaan extends CI_Controller {
 
     public function __construct()
 	{	
 		parent::__construct();
-		$this->load->model("Isu_model");
+		$this->load->model("Perencanaan_model");
 	}
 
-	public function index()
+	public function isu()
 	{
-		$isu = $this->Isu_model->load_isu();
+        // Mengambil data isu dari model
+		$level_isu = $this->Perencanaan_model->level_isu();
+		$data["level_isu"] = $level_isu;
+        $level_kategori = $this->Perencanaan_model->level_kategori();
+		$data["level_kategori"] = $level_kategori;
+        $level_jenis = $this->Perencanaan_model->level_jenis();
+		$data["level_jenis"] = $level_jenis;
+        $level_pekerjaan = $this->Perencanaan_model->level_pekerjaan();
+		$data["level_pekerjaan"] = $level_pekerjaan;
+        $level_sumber = $this->Perencanaan_model->level_sumber();
+		$data["level_sumber"] = $level_sumber;
+        $level_aset_lahan = $this->Perencanaan_model->level_aset_lahan();
+		$data["level_aset_lahan"] = $level_aset_lahan;
+
+		$isu = $this->Perencanaan_model->load_perencanaan();
         $data['isu'] = $isu;
 
         $this->load->view('Isu/isu_view', $data);
 	}
 
 	public function simpan() {
+
         // Ambil data dari form
         $data = array(
             'title_isu' => $this->input->post('title_isu'),
+            'title_kategori' => $this->input->post('title_kategori'),
+            'title_jenis' => $this->input->post('title_jenis'),
+            'title_pekerjaan' => $this->input->post('title_pekerjaan'),
+            // 'detail_pekerjaan' => $this->input->post('detail_pekerjaan'),
+            'title_sumber' => $this->input->post('title_sumber'),
+            'title_aset_lahan' => $this->input->post('title_aset_lahan'),
+            // 'title_kecamatan' => $this->input->post('title_kecamatan'),
+            // 'title_kelurahan' => $this->input->post('title_kelurahan'),
+            // 'title_rw' => $this->input->post('title_rw'),
+            // 'title_rt' => $this->input->post('title_rt'),
             'latitude' => $this->input->post('latitude'),
-            'longitude' => $this->input->post('longitude')
+            'longitude' => $this->input->post('longitude'),
+            // 'title_opd' => $this->input->post('title_opd')
         );
 
         // Upload multiple files
@@ -33,7 +59,7 @@ class Isu extends CI_Controller {
         }
 
         // Simpan ke database
-        $this->Isu_model->simpan_isu($data);
+        $this->Perencanaan_model->simpan_isu($data);
 
         // Redirect ke halaman lain (misalnya halaman utama)
         redirect('isu');

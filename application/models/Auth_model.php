@@ -19,18 +19,6 @@ class Auth_model extends CI_Model
 		$this->db->insert($table, $data);
 	}
 
-	// //cek email dan password
-	// function auth_akun($username, $password)
-	// {
-	// 	$query = $this->db->query("SELECT * FROM tbl_akun WHERE email_akun='$username' LIMIT 1")->row_array();
-
-	// 	if ($query && $query['sandi_akun'] && verify_password($password, $query['sandi_akun'])) {
-	// 		return $query;
-	// 	}
-
-	// 	return false;
-	// }
-
 	public function auth_akun($username, $password)
 	{
 		// Memilih kolom yang dibutuhkan, termasuk 'title_level'

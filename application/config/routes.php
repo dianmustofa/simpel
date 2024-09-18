@@ -57,16 +57,14 @@ $route['home'] = 'home/index';
 
 $route['login'] = 'auth';
 $route['tambah-akun'] = 'auth/user_add';
-
+$route['profile'] = 'auth/profile';
 
 $route['dashboard'] = 'dashboard/index';
 $route['tentang'] = 'dashboard/tentang';
 $route['user'] = 'dashboard/user';
-// $route['usulan'] = 'dashboard/usulan';
-// $route['verifikasi'] = 'dashboard/verifikasi';
 
-$route['isu'] = 'isu/index';
-$route['isu/simpan'] = 'isu/simpan';
+$route['isu'] = 'perencanaan/isu';
+$route['isu/simpan'] = 'perencanaan/simpan';
 
 $route['usulan'] = 'usulan/index';
 

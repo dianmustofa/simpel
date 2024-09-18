@@ -33,7 +33,7 @@ class Home extends CI_Controller {
 		// Konfigurasi pagination
 		$config['base_url'] = base_url('home/index'); // Ganti 'controller' dengan nama controller kamu
 		$config['total_rows'] = $this->Home_model->countAllAjuan($keyword); // Fungsi untuk menghitung semua data
-		$config['per_page'] = 5; // Jumlah data per halaman
+		$config['per_page'] = 8; // Jumlah data per halaman
 		$config['uri_segment'] = 3; // Posisi segment untuk pagination (sesuaikan dengan struktur URL)
 		
 		// Styling pagination

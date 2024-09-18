@@ -85,7 +85,7 @@
                                                 sugar plum sugar plum jelly-o jujubes bonbon dessert carrot cake.
                                             </p>
                                         </div>
-                                        <img class="img-fluid w-100" src="assets/images/samples/banana.jpg"
+                                        <img class="img-fluid w-100" src="<?php echo base_url();?>assets/images/samples/banana.jpg"
                                             alt="Card image cap">
                                     </div>
                                     <div class="card-footer d-flex justify-content-between">
