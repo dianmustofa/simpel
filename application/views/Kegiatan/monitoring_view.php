@@ -69,7 +69,6 @@
                                                 <td><?= $longitude ?></td>
                                                 <td></td>
                                                 <td>
-                                                    <span class="badge bg-primary zoom-to" data-lat="<?= $latitude ?>" data-lng="<?= $longitude ?>" data-title="<?= $titleIsu ?>" style="cursor: pointer;">Zoom to</span>
                                                     <span class="badge bg-info" style="cursor: pointer;">Detail</span>
                                                     <span class="badge bg-secondary" style="cursor: pointer;" data-bs-toggle="modal" data-bs-target="#xlarge">Review</span>
                                                 </td>

@@ -16,10 +16,24 @@ class Perencanaan_model extends CI_Model{
         return $this->db->insert('tbl_perencanaan', $data);
     }
 
+    public  function get_isu_id($id)
+	{
+		$this->db->select('*');
+		$this->db->from('tbl_perencanaan');
+		$this->db->where('id_isu', $id);
+		return $this->db->get();
+	}
 
     public function level_isu() {
         $this->db->select('i.*');
         $this->db->from('tbl_isu i');
+
+        return $this->db->get()->result_array();
+    }
+
+    public function level_status_isu() {
+        $this->db->select('si.*');
+        $this->db->from('tbl_status_isu si');
 
         return $this->db->get()->result_array();
     }

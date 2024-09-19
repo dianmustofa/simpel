@@ -348,6 +348,7 @@
                                     <tbody>
 
                                         <?php foreach ($isu as $row) { 
+                                            $idIsu = $row['id_isu'];
                                             $titleIsu = $row['title_isu'];
                                             $latitude = $row['latitude'];
                                             $longitude = $row['longitude'];
@@ -361,7 +362,9 @@
                                                 <td>
                                                     <span class="badge bg-primary zoom-to" data-lat="<?= $latitude ?>" data-lng="<?= $longitude ?>" data-title="<?= $titleIsu ?>" style="cursor: pointer;">Zoom to</span>
                                                     <span class="badge bg-info" style="cursor: pointer;">Detail</span>
-                                                    <span class="badge bg-secondary" style="cursor: pointer;">Review</span>
+                                                    <a href="<?php echo base_url(); ?>isu/review/<?= $idIsu ?>">
+                                                        <span class="badge bg-secondary" style="cursor: pointer;">Review</span>
+                                                    </a>
                                                 </td>
                                             </tr>
 

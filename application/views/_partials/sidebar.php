@@ -41,7 +41,7 @@
                     </a>
                 </li>
 
-                <li class="sidebar-title">Tabel</li>
+                <!-- <li class="sidebar-title">Tabel</li>
 
                 <li class="sidebar-item  has-sub">
                     <a href="#" class='sidebar-link'>
@@ -53,7 +53,7 @@
                             <a href="<?php echo base_url();?>usulan">Usulan</a>
                         </li>
                     </ul>
-                </li>
+                </li> -->
 
                 <li class="sidebar-title">Informasi</li>
 

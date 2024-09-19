@@ -31,6 +31,16 @@ class Perencanaan extends CI_Controller {
         $this->load->view('Isu/isu_view', $data);
 	}
 
+    public function isu_review($id)
+	{    
+    	$level_status_isu = $this->Perencanaan_model->level_status_isu();
+		$data["level_status_isu"] = $level_status_isu;
+
+        $data['review_isu'] = $this->Perencanaan_model->get_isu_id($id)->row_array();
+
+    	$this->load->view('Isu/isu_review_view', $data);
+	}
+
 	public function simpan() {
 
         // Ambil data dari form

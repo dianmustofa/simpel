@@ -64,6 +64,7 @@ $route['tentang'] = 'dashboard/tentang';
 $route['user'] = 'dashboard/user';
 
 $route['isu'] = 'perencanaan/isu';
+$route['isu/review/(:any)'] = 'perencanaan/isu_review/$1';
 $route['isu/simpan'] = 'perencanaan/simpan';
 
 $route['usulan'] = 'usulan/index';
