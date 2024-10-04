@@ -24,6 +24,8 @@ class Perencanaan extends CI_Controller {
 		$data["level_sumber"] = $level_sumber;
         $level_aset_lahan = $this->Perencanaan_model->level_aset_lahan();
 		$data["level_aset_lahan"] = $level_aset_lahan;
+        $level_instansi = $this->Perencanaan_model->level_instansi();
+		$data["level_instansi"] = $level_instansi;
 
 		$isu = $this->Perencanaan_model->load_perencanaan();
         $data['isu'] = $isu;
@@ -35,11 +37,39 @@ class Perencanaan extends CI_Controller {
 	{    
     	$level_status_isu = $this->Perencanaan_model->level_status_isu();
 		$data["level_status_isu"] = $level_status_isu;
+        $level_instansi = $this->Perencanaan_model->level_instansi();
+		$data["level_instansi"] = $level_instansi;
 
         $data['review_isu'] = $this->Perencanaan_model->get_isu_id($id)->row_array();
 
+        if ($this->input->post('submit')) {
+            // Debug post data
+            var_dump($this->input->post());
+    
+            // Proceed with update
+            $this->Perencanaan_model->update($this->input->post(), $id);
+            redirect("isu");
+        }
+
     	$this->load->view('Isu/isu_review_view', $data);
 	}
+
+    // public function review($id){
+		
+	// 	// $this->load->model("produk_model");
+	// 	// $data['tipe'] = "Edit";
+	// 	$data['review_isu'] = $this->Perencanaan_model->get_isu_id($id)->row_array();
+
+	// 	if(isset($_POST['tombol_submit'])){
+	// 		$this->Perencanaan_model->update($_POST, $id);
+	// 		redirect("isu");
+	// 	}
+
+    //     $level_status_isu = $this->Perencanaan_model->level_status_isu();
+	// 	$data["level_status_isu"] = $level_status_isu;
+
+	// 	$this->load->view("admin/form",$data);
+	// }
 
 	public function simpan() {
 

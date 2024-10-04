@@ -72,6 +72,8 @@
                                 $latitude = $row['latitude'];
                                 $longitude = $row['longitude'];
                                 $statusIsu = $row['status_isu'];
+                                $gambarIsu = $row['gambar'];
+                                $detailPekerjaan = $row['detail_pekerjaan'];
                             ?>
 
                             <div class="col-xl-3 col-md-4 col-sm-12">
@@ -80,12 +82,10 @@
                                         <div class="card-body">
                                             <h4 class="card-title"><?= $titleIsu ?></h4>
                                             <p class="card-text">
-                                                Gummies bonbon apple pie fruitcake icing biscuit apple pie jelly-o sweet
-                                                roll. Toffee
-                                                sugar plum sugar plum jelly-o jujubes bonbon dessert carrot cake.
+                                                <?= $detailPekerjaan ?>
                                             </p>
                                         </div>
-                                        <img class="img-fluid w-100" src="<?php echo base_url();?>assets/images/samples/banana.jpg"
+                                        <img class="img-fluid w-100" src="<?php echo base_url();?>assets/images/samples/<?= $gambarIsu ?>"
                                             alt="Card image cap">
                                     </div>
                                     <div class="card-footer d-flex justify-content-between">
@@ -114,7 +114,6 @@
 
                 </div>
 
-                <?php $this->load->view("_partials/footer.php") ?>
 
             </div>
         </div>

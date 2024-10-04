@@ -114,7 +114,7 @@
                                                     <div class="form-group">
                                                         <label>Kategori</label>
                                                         <!-- <input type="text" name="title_isu" placeholder="Isu Perencanaan" class="form-control" required> -->
-                                                        <select class="choices form-select" name="title_kategori">
+                                                        <select class="choices form-select" name="title_kategori" id="title_kategori">
                                                             <!-- Pastikan $level_akun ada dan bukan kosong -->
                                                             <?php if (!empty($level_kategori)): ?>
                                                                 <?php foreach ($level_kategori as $row): ?>
@@ -126,6 +126,24 @@
                                                                 <option value="">Isu tidak tersedia</option>
                                                             <?php endif; ?>
                                                         </select>
+                                                    </div>
+
+                                                    <script>
+                                                        document.getElementById('title_kategori').addEventListener('change', function() {
+                                                            var selectedValue = this.value;
+                                                            var verificationInput = document.getElementById('verification_input');
+                                                            
+                                                            if (selectedValue === 'Fisik') {
+                                                                verificationInput.style.display = 'block';
+                                                            } else {
+                                                                verificationInput.style.display = 'none';
+                                                            }
+                                                        });
+                                                    </script>
+
+                                                    <div class="form-group" id="verification_input" style="display:none;">
+                                                        <label>Volume Pekerjaan</label>
+                                                        <input type="text" name="title_isu" placeholder="" class="form-control" required>
                                                     </div>
 
                                                     <!-- Input Jenis -->
@@ -149,6 +167,25 @@
                                                             <?php endif; ?>
                                                         </select>
                                                     </div>
+
+                                                    <div class="form-group">
+                                                        <label>Lokasi</label>
+                                                        <input type="text" name="title_isu" placeholder="alamat/nama jalan" class="form-control" required>
+                                                    </div>
+
+                                                    <div class="form-group">
+                                                        <label>Kelurahan</label>
+                                                        <input type="text" name="title_isu" placeholder="Menteng Dalam" class="form-control" required>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label>RW</label>
+                                                        <input type="text" name="title_isu" placeholder="RW 005" class="form-control" required>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label>RT</label>
+                                                        <input type="text" name="title_isu" placeholder="RT 012" class="form-control" required>
+                                                    </div>
+
 
                                                     <!-- Input Pekerjaan -->
                                                     <?php 
@@ -353,6 +390,7 @@
                                             $latitude = $row['latitude'];
                                             $longitude = $row['longitude'];
                                             $statusIsu = $row['status_isu'];
+                                            // $titleOPD = $row['title_opd'];
                                         ?>
                                             <tr>
                                                 <td><?= $titleIsu ?></td>
@@ -361,39 +399,52 @@
                                                 <td><?= $statusIsu ?></td>
                                                 <td>
                                                     <span class="badge bg-primary zoom-to" data-lat="<?= $latitude ?>" data-lng="<?= $longitude ?>" data-title="<?= $titleIsu ?>" style="cursor: pointer;">Zoom to</span>
-                                                    <span class="badge bg-info" style="cursor: pointer;">Detail</span>
+                                                    <!-- <span class="badge bg-info" style="cursor: pointer;">Detail</span> -->
                                                     <a href="<?php echo base_url(); ?>isu/review/<?= $idIsu ?>">
                                                         <span class="badge bg-secondary" style="cursor: pointer;">Review</span>
                                                     </a>
                                                 </td>
                                             </tr>
 
-                                        <?php } ?>
+                                            <script>
+                                                document.addEventListener('DOMContentLoaded', function() {
 
-                                        <script>
-                                            document.addEventListener('DOMContentLoaded', function() {
+                                                    var currentMarker = null; // Simpan referensi marker yang aktif saat ini
 
-                                                // Fungsi untuk zoom ke koordinat
-                                                function zoomTo(lat, lng, titleIsu) {
-                                                    map.setView([lat, lng], 17); // Zoom level 15 sebagai contoh
-                                                    var marker = L.marker([lat, lng]).addTo(map);
-                                                    marker.bindPopup(titleIsu).openPopup();
-                                                }
+                                                    // Fungsi untuk zoom ke koordinat
+                                                    function zoomTo(lat, lng, titleIsu) {
+                                                        map.setView([lat, lng], 17); // Zoom level 17 sebagai contoh
+                                                        
+                                                        // Jika ada marker aktif, hapus marker lama
+                                                        if (currentMarker !== null) {
+                                                            map.removeLayer(currentMarker);
+                                                        }
 
-                                                // Event listener untuk klik pada tombol 'Zoom to'
-                                                document.querySelectorAll('.zoom-to').forEach(function(element) {
-                                                    element.addEventListener('click', function() {
-                                                        var lat = this.getAttribute('data-lat');
-                                                        var lng = this.getAttribute('data-lng');
-                                                        var titleIsu = this.getAttribute('data-title');
-                                                        zoomTo(lat, lng, titleIsu);
+                                                        // Buat marker baru dan simpan referensinya
+                                                        currentMarker = L.marker([lat, lng]).addTo(map);
+                                                        currentMarker.bindPopup(titleIsu).openPopup();
+                                                    }
+
+                                                    // Event listener untuk klik pada tombol 'Zoom to'
+                                                    document.querySelectorAll('.zoom-to').forEach(function(element) {
+                                                        element.addEventListener('click', function() {
+                                                            var lat = parseFloat(this.getAttribute('data-lat'));
+                                                            var lng = parseFloat(this.getAttribute('data-lng'));
+                                                            var titleIsu = this.getAttribute('data-title');
+                                                            zoomTo(lat, lng, titleIsu);
+                                                        });
                                                     });
                                                 });
-                                            });
-                                        </script>
+                                            </script>
+
+                                        <?php } ?>
+
+                                        
 
                                     </tbody>
                                 </table>
+
+                                <span class="btn btn-success" id="exportExcel" style="cursor: pointer;">Export ke Excel</span>
                             </div>
                         </div>
 
@@ -412,10 +463,41 @@
     <script src="<?php echo base_url();?>assets/vendors/perfect-scrollbar/perfect-scrollbar.min.js"></script>
     <script src="<?php echo base_url();?>assets/js/bootstrap.bundle.min.js"></script>
     <script src="<?php echo base_url();?>assets/vendors/simple-datatables/simple-datatables.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.16.9/xlsx.full.min.js"></script>
     <script>
-        // Simple Datatable
-        let table1 = document.querySelector('#table1');
-        let dataTable = new simpleDatatables.DataTable(table1);
+        let dataTable = new simpleDatatables.DataTable('#table1');
+        // Fungsi untuk memilih kolom tertentu dari tabel
+        function getSelectedColumns() {
+            const table = document.getElementById('table1');
+            const rows = table.rows;
+            let selectedData = [];
+
+            // Loop melalui setiap baris tabel
+            for (let i = 0; i < rows.length; i++) {
+                let rowData = [];
+                // Pilih kolom tertentu
+                rowData.push(rows[i].cells[0].innerText); // Kolom Title Isu
+                rowData.push(rows[i].cells[1].innerText); // Kolom Latitude
+                rowData.push(rows[i].cells[2].innerText); // Kolom Longitude
+                rowData.push(rows[i].cells[3].innerText); // Kolom Status Isu
+                selectedData.push(rowData);
+            }
+
+            return selectedData;
+        }
+
+        // Fungsi untuk ekspor data ke Excel
+        document.getElementById('exportExcel').addEventListener('click', function() {
+            const selectedData = getSelectedColumns();
+
+            // Membuat workbook baru
+            let ws = XLSX.utils.aoa_to_sheet(selectedData);
+            let wb = XLSX.utils.book_new();
+            XLSX.utils.book_append_sheet(wb, ws, "Data Terpilih");
+
+            // Simpan file Excel
+            XLSX.writeFile(wb, "selected_columns.xlsx");
+        });
     </script>
     <script src="<?php echo base_url();?>assets/js/main.js"></script>
     <!-- end js -->

@@ -68,5 +68,7 @@ $route['isu/review/(:any)'] = 'perencanaan/isu_review/$1';
 $route['isu/simpan'] = 'perencanaan/simpan';
 
 $route['usulan'] = 'usulan/index';
+$route['usulan/review/(:any)'] = 'usulan/usulan_review/$1';
 
 $route['monitoring'] = 'monitoring/index';
+$route['monitoring/review/(:any)'] = 'monitoring/monitoring_review/$1';

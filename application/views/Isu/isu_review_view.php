@@ -58,7 +58,7 @@
                                     </div>
                                     <div class="card-content">
                                         <div class="card-body">
-                                            <form class="form form-horizontal">
+                                            <form class="form form-horizontal" method="post" enctype="multipart/form-data">
                                                 <div class="form-body">
                                                     <div class="row">
                                                         <div class="col-md-4">
@@ -168,20 +168,42 @@
                                                         </div>
 
                                                         <!-- Input Isu -->
-                                                        <?php 
-                                                            $jenis="";
-                                                        if(isset($default['title_status_isu'])) $jenis=$default['title_status_isu'];
-                                                        ?>
                                                         <div class="col-md-4">
-                                                            <label>Status Review</label>
+                                                            <label>Instansi Tujuan</label>
                                                         </div>
+                                                        <?php 
+                                                            $jenis = isset($review_isu['title_instansi_pelaksana']) ? $review_isu['title_instansi_pelaksana'] : '';
+                                                        ?>
                                                         <div class="col-md-8 form-group">
-                                                            <select class="choices form-select" name="title_status_isu" id="title_status_isu">
+                                                            <select class="choices form-select" name="instansi_pelaksana_usulan">
+                                                                <!-- Pastikan $level_akun ada dan bukan kosong -->
+                                                                <option value="Instansi Belum Dipilih">Instansi belum dipilih</option>
+                                                                <?php if (!empty($level_instansi)): ?>
+                                                                    <?php foreach ($level_instansi as $row): ?>
+                                                                        <option value="<?= htmlspecialchars($row['title_instansi_pelaksana'], ENT_QUOTES, 'UTF-8') ?>" <?php if($row["title_instansi_pelaksana"] == $jenis) echo "selected";?>>
+                                                                            <?= htmlspecialchars($row['title_instansi_pelaksana'], ENT_QUOTES, 'UTF-8') ?>
+                                                                        </option>
+                                                                    <?php endforeach; ?>
+                                                                <?php else: ?>
+                                                                    <option value="">Instansi tidak tersedia</option>
+                                                                <?php endif; ?>
+                                                            </select>
+                                                        </div>
+
+                                                        <!-- Input Isu -->
+                                                        <div class="col-md-4">
+                                                            <label>Status Review Isu</label>
+                                                        </div>
+                                                        <?php 
+                                                            $jenis = isset($review_isu['title_status_isu']) ? $review_isu['title_status_isu'] : '';
+                                                        ?>
+                                                        <div class="col-md-8 form-group">
+                                                            <select class="choices form-select" name="status_isu" id="title_status_isu">
                                                                 <!-- Pastikan $level_akun ada dan bukan kosong -->
                                                                 <option value="Menunggu Verifikasi">Menunggu Verifikasi</option>
                                                                 <?php if (!empty($level_status_isu)): ?>
                                                                     <?php foreach ($level_status_isu as $row): ?>
-                                                                        <option value="<?= htmlspecialchars($row['title_status_isu'], ENT_QUOTES, 'UTF-8') ?>">
+                                                                        <option value="<?= htmlspecialchars($row['title_status_isu'], ENT_QUOTES, 'UTF-8') ?>" <?php if($row["title_status_isu"] == $jenis) echo "selected";?>>
                                                                             <?= htmlspecialchars($row['title_status_isu'], ENT_QUOTES, 'UTF-8') ?>
                                                                         </option>
                                                                     <?php endforeach; ?>

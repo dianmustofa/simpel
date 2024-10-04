@@ -24,7 +24,7 @@ class Dashboard_model extends CI_Model
     public function load_usulan() {
         $this->db->select('p.*');
         $this->db->from('tbl_perencanaan p');
-        $this->db->where('p.status_isu', 'aktif');
+        $this->db->where('p.status_isu', 'Dilanjutkan');
         // $this->db->join('tbl_level_akun la', 'a.id_level_akun=la.id_level');
         // $this->db->group_by('td.promo_id');  // To ensure distinct promos
 
@@ -34,7 +34,7 @@ class Dashboard_model extends CI_Model
     public function load_monitor() {
         $this->db->select('p.*');
         $this->db->from('tbl_perencanaan p');
-        $this->db->where('p.status_usulan', 'aktif');
+        $this->db->where('p.status_usulan', 'Dilaksanakan');
         // $this->db->join('tbl_level_akun la', 'a.id_level_akun=la.id_level');
         // $this->db->group_by('td.promo_id');  // To ensure distinct promos
 

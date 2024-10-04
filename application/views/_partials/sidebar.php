@@ -7,7 +7,7 @@
         <div class="sidebar-header">
             <div class="d-flex justify-content-between">
                 <div class="logo">
-                    <a href="<?php echo base_url();?>"><img src="#" alt="Logo" srcset=""></a>
+                    <a href="<?php echo base_url();?>"><img src="<?php echo base_url();?>assets/images/logo/logo.svg" alt="Logo" srcset="" width="35" height="300"></a>
                 </div>
                 <div class="toggler">
                     <a href="#" class="sidebar-hide d-xl-none d-block"><i class="bi bi-x bi-middle"></i></a>
@@ -41,7 +41,7 @@
                     </a>
                 </li>
 
-                <!-- <li class="sidebar-title">Tabel</li>
+                <li class="sidebar-title">Tabel</li>
 
                 <li class="sidebar-item  has-sub">
                     <a href="#" class='sidebar-link'>
@@ -53,7 +53,7 @@
                             <a href="<?php echo base_url();?>usulan">Usulan</a>
                         </li>
                     </ul>
-                </li> -->
+                </li>
 
                 <li class="sidebar-title">Informasi</li>
 
@@ -121,6 +121,64 @@
                             <span>Tentang Kami</span>
                         </a>
                     </li>
+
+                    <?php elseif ($this->session->userdata('id_level_akun') === '3') : ?>
+
+                        <li class="sidebar-item  ">
+                            <a href="<?php echo base_url();?>" class='sidebar-link'>
+                                <i class="bi bi-house-fill"></i>
+                                <span>Home</span>
+                            </a>
+                        </li>
+
+                        <li class="sidebar-title">Menu</li>
+
+                        <li class="sidebar-item  ">
+                            <a href="<?php echo base_url();?>dashboard" class='sidebar-link'>
+                                <i class="bi bi-grid-fill"></i>
+                                <span>Dashboard</span>
+                            </a>
+                        </li>
+
+                        <li class="sidebar-item">
+                            <a href="<?php echo base_url();?>user" class='sidebar-link'>
+                                <i class="bi bi-person-badge-fill"></i>
+                                <span>User</span>
+                            </a>
+                        </li>
+
+                        <!-- <li class="sidebar-item">
+                            <a href="<?php echo base_url();?>isu" class='sidebar-link'>
+                                <i class="bi bi-stack"></i>
+                                <span>Isu</span>
+                            </a>
+                        </li> -->
+
+                        <li class="sidebar-title">Tabel</li>
+
+                        <li class="sidebar-item  has-sub">
+                            <a href="#" class='sidebar-link'>
+                                <i class="bi bi-collection-fill"></i>
+                                <span>Kegiatan</span>
+                            </a>
+                            <ul class="submenu ">
+                                <li class="submenu-item ">
+                                    <a href="<?php echo base_url();?>usulan">Usulan</a>
+                                </li>
+                                <li class="submenu-item ">
+                                    <a href="<?php echo base_url();?>monitoring">Monitoring</a>
+                                </li>
+                            </ul>
+                        </li>
+
+                        <li class="sidebar-title">Informasi</li>
+
+                        <li class="sidebar-item  ">
+                            <a href="<?php echo base_url();?>tentang" class='sidebar-link'>
+                                <i class="bi bi-grid-fill"></i>
+                                <span>Tentang Kami</span>
+                            </a>
+                        </li>
 
                     <?php else : ?>
 
