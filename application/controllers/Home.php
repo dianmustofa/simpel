@@ -7,6 +7,7 @@ class Home extends CI_Controller {
 	{	
 		parent::__construct();
 		$this->load->model("Home_model");
+		$this->load->model("Perencanaan_model");
 	}
 
 	/**
@@ -76,6 +77,15 @@ class Home extends CI_Controller {
         // $data['ajuan'] = $ajuan;
 
         $this->load->view('home_view', $data);
+	}
+
+
+	public function details($id)
+	{    
+
+        $data['review_isu'] = $this->Perencanaan_model->get_isu_id($id)->row_array();
+
+    	$this->load->view('home_detail_view', $data);
 	}
 
 }

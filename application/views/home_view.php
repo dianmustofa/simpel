@@ -68,6 +68,7 @@
                         <?php if (!empty($ajuan)) { ?>
 
                             <?php foreach ($ajuan as $row) { 
+                                $idIsu = $row['id_isu'];
                                 $titleIsu = $row['title_isu'];
                                 $latitude = $row['latitude'];
                                 $longitude = $row['longitude'];
@@ -90,7 +91,8 @@
                                     </div>
                                     <div class="card-footer d-flex justify-content-between">
                                         <span>Status : <?= $statusIsu ?></span>
-                                        <button class="btn btn-light-primary">Lihat Detail</button>
+                                        
+                                        <a href="<?php echo base_url(); ?>home/details/<?= $idIsu ?>"><button class="btn btn-light-primary">Lihat Detail</button></a>
                                     </div>
                                 </div>
                             </div>

@@ -54,6 +54,7 @@ $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
 
 $route['home'] = 'home/index';
+$route['home/details/(:any)'] = 'home/details/$1';
 
 $route['login'] = 'auth';
 $route['tambah-akun'] = 'auth/user_add';
