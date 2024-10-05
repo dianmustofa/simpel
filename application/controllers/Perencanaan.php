@@ -20,8 +20,6 @@ class Perencanaan extends CI_Controller {
 		$data["level_jenis"] = $level_jenis;
         $level_pekerjaan = $this->Perencanaan_model->level_pekerjaan();
 		$data["level_pekerjaan"] = $level_pekerjaan;
-        $level_sumber = $this->Perencanaan_model->level_sumber();
-		$data["level_sumber"] = $level_sumber;
         $level_aset_lahan = $this->Perencanaan_model->level_aset_lahan();
 		$data["level_aset_lahan"] = $level_aset_lahan;
         $level_instansi = $this->Perencanaan_model->level_instansi();

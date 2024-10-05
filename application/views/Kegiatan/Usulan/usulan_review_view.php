@@ -18,8 +18,19 @@
 
 <body>
     <!-- Tambahkan script Leaflet -->
-    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
-    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+    <!-- <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script> -->
+    <!-- <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" /> -->
+
+    <!-- Leaflet CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <!-- Leaflet JS -->
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
+
+    <!-- Leaflet Geocoder CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.css" />
+    <!-- Leaflet Geocoder JS -->
+    <script src="https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.js"></script>
 
     <div id="app">
         <?php $this->load->view("_partials/sidebar.php") ?>
@@ -185,9 +196,24 @@
                                                         // L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
                                                         //     attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
                                                         // }).addTo(map);
-                                                        L.tileLayer('http://{s}.google.com/vt/lyrs=s&x={x}&y={y}&z={z}',{
-                                                                maxZoom: 20,
-                                                                subdomains:['mt0','mt1','mt2','mt3']
+                                                        // L.tileLayer('http://{s}.google.com/vt/lyrs=s&x={x}&y={y}&z={z}',{
+                                                        //         maxZoom: 20,
+                                                        //         subdomains:['mt0','mt1','mt2','mt3']
+                                                        // }).addTo(map);
+
+                                                        L.tileLayer('http://{s}.google.com/vt/lyrs=y&x={x}&y={y}&z={z}', {
+                                                            maxZoom: 20,
+                                                            subdomains: ['mt0', 'mt1', 'mt2', 'mt3']
+                                                        }).addTo(map);
+
+                                                        L.Control.geocoder({
+                                                            defaultMarkGeocode: false
+                                                        }).on('markgeocode', function(e) {
+                                                            var latlng = e.geocode.center;
+                                                            L.marker(latlng).addTo(map1)
+                                                                .bindPopup(e.geocode.name)
+                                                                .openPopup();
+                                                            map.setView(latlng, 16); // Zoom in ketika lokasi ditemukan
                                                         }).addTo(map);
 
 

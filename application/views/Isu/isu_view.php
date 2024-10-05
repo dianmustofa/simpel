@@ -17,8 +17,19 @@
 <body>
 
     <!-- Tambahkan script Leaflet -->
-    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
-    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+    <!-- <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script> -->
+    <!-- <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" /> -->
+
+    <!-- Leaflet CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <!-- Leaflet JS -->
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
+
+    <!-- Leaflet Geocoder CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.css" />
+    <!-- Leaflet Geocoder JS -->
+    <script src="https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.js"></script>
     
     <div id="app">
 
@@ -67,7 +78,7 @@
                                             <?php endif; ?>
                                             
                                                 <div class="modal-body">
-                                                    <form action="<?= site_url('isu/simpan') ?>" method="post" enctype="multipart/form-data">
+                                                    <form action="<?= site_url('isu/simpan') ?>" method="post" enctype="multipart/form-data" onsubmit="return validateForm()">
                                                     <!-- Tambahkan CSS untuk ukuran peta -->
                                                     <style>
                                                         #map1 {
@@ -78,21 +89,21 @@
                                                     
                                                     <div id="map1"></div>
                                                     
-                                                    <label for="latitude">Latitude : <span id="latitudeValue">-6.233246</span></label>
-                                                    <input type="hidden" name="latitude" id="latitudeInput" value="-6.233246"><br>
-                                                    <label for="longitude">Longitude : <span id="longitudeValue">106.837806</span></label>
-                                                    <input type="hidden" name="longitude" id="longitudeInput" value="106.837806"><br>
+                                                    <label for="latitude">Latitude : <span id="latitudeValue"></span></label>
+                                                    <input type="hidden" name="latitude" id="latitudeInput" required><br>
+                                                    <label for="longitude">Longitude : <span id="longitudeValue"></span></label>
+                                                    <input type="hidden" name="longitude" id="longitudeInput" required><br>
                                                     <hr>
 
-                                                    <!-- Input Isu -->
                                                     <?php 
-                                                        $jenis="";
-                                                    if(isset($default['title_isu'])) $jenis=$default['title_isu'];
+                                                        $jenis = "";
+                                                        if(isset($default['title_isu'])) $jenis = $default['title_isu'];
                                                     ?>
                                                     <div class="form-group">
                                                         <label>Isu Lingkungan</label>
-                                                        <!-- <input type="text" name="title_isu" placeholder="Isu Perencanaan" class="form-control" required> -->
-                                                        <select class="choices form-select" name="title_isu">
+                                                        <select class="choices form-select" name="title_isu" required>
+                                                            <!-- Opsi default yang tidak bisa dipilih -->
+                                                            <option value="" disabled selected>Pilih Isu Lingkungan</option>
                                                             <!-- Pastikan $level_akun ada dan bukan kosong -->
                                                             <?php if (!empty($level_isu)): ?>
                                                                 <?php foreach ($level_isu as $row): ?>
@@ -114,7 +125,9 @@
                                                     <div class="form-group">
                                                         <label>Kategori</label>
                                                         <!-- <input type="text" name="title_isu" placeholder="Isu Perencanaan" class="form-control" required> -->
-                                                        <select class="choices form-select" name="title_kategori" id="title_kategori">
+                                                        <select class="choices form-select" name="title_kategori" id="title_kategori" required>
+                                                            <!-- Opsi default yang tidak bisa dipilih -->
+                                                            <option value="" disabled selected>Pilih Kategori</option>
                                                             <!-- Pastikan $level_akun ada dan bukan kosong -->
                                                             <?php if (!empty($level_kategori)): ?>
                                                                 <?php foreach ($level_kategori as $row): ?>
@@ -131,19 +144,30 @@
                                                     <script>
                                                         document.getElementById('title_kategori').addEventListener('change', function() {
                                                             var selectedValue = this.value;
-                                                            var verificationInput = document.getElementById('verification_input');
-                                                            
+                                                            var volumeInput = document.getElementById('volume_pekerjaan');
+                                                            var jumlahPekerjaInput = document.getElementById('jumlah_pekerja');
+
+                                                            // Menyembunyikan kedua input terlebih dahulu
+                                                            volumeInput.style.display = 'none';
+                                                            jumlahPekerjaInput.style.display = 'none';
+
+                                                            // Menampilkan input sesuai dengan pilihan
                                                             if (selectedValue === 'Fisik') {
-                                                                verificationInput.style.display = 'block';
-                                                            } else {
-                                                                verificationInput.style.display = 'none';
+                                                                volumeInput.style.display = 'block';
+                                                            } else if (selectedValue === 'Non Fisik') {
+                                                                jumlahPekerjaInput.style.display = 'block';
                                                             }
                                                         });
                                                     </script>
 
-                                                    <div class="form-group" id="verification_input" style="display:none;">
+                                                    <div class="form-group" id="volume_pekerjaan" style="display:none;">
                                                         <label>Volume Pekerjaan</label>
-                                                        <input type="text" name="title_isu" placeholder="" class="form-control" required>
+                                                        <input type="text" name="volume_pekerjaan" placeholder="" class="form-control" required>
+                                                    </div>
+
+                                                    <div class="form-group" id="jumlah_pekerja" style="display:none;">
+                                                        <label>Jumlah Pekerja</label>
+                                                        <input type="text" name="jumlah_pekerja" placeholder="" class="form-control" required>
                                                     </div>
 
                                                     <!-- Input Jenis -->
@@ -154,7 +178,9 @@
                                                     <div class="form-group">
                                                         <label>Jenis</label>
                                                         <!-- <input type="text" name="title_isu" placeholder="Isu Perencanaan" class="form-control" required> -->
-                                                        <select class="choices form-select" name="title_jenis">
+                                                        <select class="choices form-select" name="title_jenis" required>
+                                                            <!-- Opsi default yang tidak bisa dipilih -->
+                                                            <option value="" disabled selected>Pilih Jenis</option>
                                                             <!-- Pastikan $level_akun ada dan bukan kosong -->
                                                             <?php if (!empty($level_jenis)): ?>
                                                                 <?php foreach ($level_jenis as $row): ?>
@@ -170,20 +196,20 @@
 
                                                     <div class="form-group">
                                                         <label>Lokasi</label>
-                                                        <input type="text" name="title_isu" placeholder="alamat/nama jalan" class="form-control" required>
+                                                        <input type="text" name="title_isu" placeholder="" class="form-control" required>
                                                     </div>
 
                                                     <div class="form-group">
                                                         <label>Kelurahan</label>
-                                                        <input type="text" name="title_isu" placeholder="Menteng Dalam" class="form-control" required>
+                                                        <input type="text" name="title_isu" placeholder="" class="form-control" required>
                                                     </div>
                                                     <div class="form-group">
                                                         <label>RW</label>
-                                                        <input type="text" name="title_isu" placeholder="RW 005" class="form-control" required>
+                                                        <input type="text" name="title_isu" placeholder="" class="form-control" required>
                                                     </div>
                                                     <div class="form-group">
                                                         <label>RT</label>
-                                                        <input type="text" name="title_isu" placeholder="RT 012" class="form-control" required>
+                                                        <input type="text" name="title_isu" placeholder="" class="form-control" required>
                                                     </div>
 
 
@@ -195,34 +221,14 @@
                                                     <div class="form-group">
                                                         <label>Pekerjaan</label>
                                                         <!-- <input type="text" name="title_isu" placeholder="Isu Perencanaan" class="form-control" required> -->
-                                                        <select class="choices form-select" name="title_pekerjaan">
+                                                        <select class="choices form-select" name="title_pekerjaan" required>
+                                                            <!-- Opsi default yang tidak bisa dipilih -->
+                                                            <option value="" disabled selected>Pilih Pekerjaan</option>
                                                             <!-- Pastikan $level_akun ada dan bukan kosong -->
                                                             <?php if (!empty($level_pekerjaan)): ?>
                                                                 <?php foreach ($level_pekerjaan as $row): ?>
                                                                     <option value="<?= htmlspecialchars($row['title_pekerjaan'], ENT_QUOTES, 'UTF-8') ?>">
                                                                         <?= htmlspecialchars($row['title_pekerjaan'], ENT_QUOTES, 'UTF-8') ?>
-                                                                    </option>
-                                                                <?php endforeach; ?>
-                                                            <?php else: ?>
-                                                                <option value="">Isu tidak tersedia</option>
-                                                            <?php endif; ?>
-                                                        </select>
-                                                    </div>
-
-                                                    <!-- Input Sumber -->
-                                                    <?php 
-                                                        $jenis="";
-                                                    if(isset($default['title_sumber'])) $jenis=$default['title_sumber'];
-                                                    ?>
-                                                    <div class="form-group">
-                                                        <label>Sumber</label>
-                                                        <!-- <input type="text" name="title_isu" placeholder="Isu Perencanaan" class="form-control" required> -->
-                                                        <select class="choices form-select" name="title_sumber">
-                                                            <!-- Pastikan $level_akun ada dan bukan kosong -->
-                                                            <?php if (!empty($level_sumber)): ?>
-                                                                <?php foreach ($level_sumber as $row): ?>
-                                                                    <option value="<?= htmlspecialchars($row['title_sumber'], ENT_QUOTES, 'UTF-8') ?>">
-                                                                        <?= htmlspecialchars($row['title_sumber'], ENT_QUOTES, 'UTF-8') ?>
                                                                     </option>
                                                                 <?php endforeach; ?>
                                                             <?php else: ?>
@@ -239,7 +245,9 @@
                                                     <div class="form-group">
                                                         <label>Aset Lahan</label>
                                                         <!-- <input type="text" name="title_isu" placeholder="Isu Perencanaan" class="form-control" required> -->
-                                                        <select class="choices form-select" name="title_aset_lahan">
+                                                        <select class="choices form-select" name="title_aset_lahan" required>
+                                                            <!-- Opsi default yang tidak bisa dipilih -->
+                                                            <option value="" disabled selected>Pilih Aset Lahan</option>
                                                             <!-- Pastikan $level_akun ada dan bukan kosong -->
                                                             <?php if (!empty($level_aset_lahan)): ?>
                                                                 <?php foreach ($level_aset_lahan as $row): ?>
@@ -255,8 +263,16 @@
 
                                                     <!-- Upload multiple files -->
                                                     <div class="mb-3">
-                                                        <label for="formFile" class="form-label">Attach File</label>
-                                                        <input class="form-control" type="file" id="formFileMultiple" name="formFileMultiple[]" multiple>
+                                                        <label for="formFile" class="form-label">Upload Dokumen</label>
+                                                        <span>(Maksimum Ukuran File : 50mb)</span>
+                                                        <input class="form-control" type="file" id="formFileMultiple" name="formFileMultiple[]" multiple required>
+                                                    </div>
+
+                                                    <!-- Upload Foto -->
+                                                    <div class="mb-3">
+                                                        <label for="formFile" class="form-label">Upload Foto atau Gunakan Kamera</label>
+                                                        <span>(Maksimum Ukuran File: 50MB)</span>
+                                                        <input class="form-control" type="file" id="formFileMultiple" name="formFileMultiple[]" accept="image/*" capture="camera" multiple required>
                                                     </div>
 
                                                 </div>
@@ -279,13 +295,30 @@
                                                 // L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
                                                 //     attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
                                                 // }).addTo(map1);
-                                                L.tileLayer('http://{s}.google.com/vt/lyrs=s&x={x}&y={y}&z={z}',{
-                                                        maxZoom: 20,
-                                                        subdomains:['mt0','mt1','mt2','mt3']
+                                                // L.tileLayer('http://{s}.google.com/vt/lyrs=s&x={x}&y={y}&z={z}',{
+                                                //         maxZoom: 20,
+                                                //         subdomains:['mt0','mt1','mt2','mt3']
+                                                // }).addTo(map1);
+
+                                                L.tileLayer('http://{s}.google.com/vt/lyrs=y&x={x}&y={y}&z={z}', {
+                                                    maxZoom: 20,
+                                                    subdomains: ['mt0', 'mt1', 'mt2', 'mt3']
+                                                }).addTo(map1);
+
+                                                // Menambahkan widget pencarian lokasi
+                                                L.Control.geocoder({
+                                                    defaultMarkGeocode: false
+                                                }).on('markgeocode', function(e) {
+                                                    var latlng = e.geocode.center;
+                                                    L.marker(latlng).addTo(map1)
+                                                        .bindPopup(e.geocode.name)
+                                                        .openPopup();
+                                                    map1.setView(latlng, 16); // Zoom in ketika lokasi ditemukan
                                                 }).addTo(map1);
 
                                                 // Tambahkan marker awal
-                                                var marker = L.marker([-6.233246, 106.837806]).addTo(map1);
+                                                // var marker = L.marker([-6.233246, 106.837806]).addTo(map1);
+                                                var marker = null;
 
                                                 // Event listener untuk menangkap klik pada peta
                                                 map1.on('click', function(e) {
@@ -293,17 +326,38 @@
                                                     var lng = e.latlng.lng;
 
                                                     // Perbarui posisi marker
-                                                    marker.setLatLng([lat, lng]).update();
+                                                    // marker.setLatLng([lat, lng]).update();
 
                                                     // Perbarui popup dengan koordinat baru
-                                                    marker.bindPopup(lat + ', ' + lng).openPopup();
+                                                    // marker.bindPopup(lat + ', ' + lng).openPopup();
+
+                                                    document.getElementById('latitudeInput').value = lat.toFixed(5);
+                                                    document.getElementById('longitudeInput').value = lng.toFixed(5);
 
                                                     // Perbarui nilai latitude dan longitude pada label
                                                     document.getElementById('latitudeValue').innerText = lat.toFixed(5);
                                                     document.getElementById('longitudeValue').innerText = lng.toFixed(5);
 
-                                                    document.getElementById('latitudeInput').value = lat.toFixed(5);
-                                                    document.getElementById('longitudeInput').value = lng.toFixed(5);
+                                                    // Jika marker sudah ada, hapus marker sebelumnya
+                                                    if (marker) {
+                                                        map1.removeLayer(marker);
+                                                    }
+
+                                                    // Tambahkan marker baru pada posisi yang diklik
+                                                    marker = L.marker([lat, lng]).addTo(map1);
+
+                                                    // Validasi form untuk memastikan peta telah diklik
+                                                    function validateForm() {
+                                                        var latValue = document.getElementById('latitudeInput').value;
+                                                        var lngValue = document.getElementById('longitudeInput').value;
+
+                                                        if (!latValue || !lngValue) {
+                                                            alert("Silakan klik pada peta untuk memilih lokasi.");
+                                                            return false; // Mencegah pengiriman form
+                                                        }
+                                                        return true; // Mengizinkan pengiriman form
+                                                    }
+ 
                                                 });
 
                                                 // Re-initialize map when modal is shown
@@ -346,9 +400,24 @@
                         // L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
                         //     attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
                         // }).addTo(map);
-                        L.tileLayer('http://{s}.google.com/vt/lyrs=s&x={x}&y={y}&z={z}',{
-                                maxZoom: 20,
-                                subdomains:['mt0','mt1','mt2','mt3']
+                        // L.tileLayer('http://{s}.google.com/vt/lyrs=s&x={x}&y={y}&z={z}',{
+                        //         maxZoom: 20,
+                        //         subdomains:['mt0','mt1','mt2','mt3']
+                        // }).addTo(map);
+
+                        L.tileLayer('http://{s}.google.com/vt/lyrs=y&x={x}&y={y}&z={z}', {
+                            maxZoom: 20,
+                            subdomains: ['mt0', 'mt1', 'mt2', 'mt3']
+                        }).addTo(map);
+
+                        L.Control.geocoder({
+                            defaultMarkGeocode: false
+                        }).on('markgeocode', function(e) {
+                            var latlng = e.geocode.center;
+                            L.marker(latlng).addTo(map1)
+                                .bindPopup(e.geocode.name)
+                                .openPopup();
+                            map.setView(latlng, 16); // Zoom in ketika lokasi ditemukan
                         }).addTo(map);
 
                         <?php foreach ($isu as $index => $row) { 

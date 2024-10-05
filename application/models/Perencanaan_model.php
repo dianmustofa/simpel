@@ -105,13 +105,6 @@ class Perencanaan_model extends CI_Model{
         return $this->db->get()->result_array();
     }
 
-    public function level_sumber() {
-        $this->db->select('s.*');
-        $this->db->from('tbl_sumber s');
-
-        return $this->db->get()->result_array();
-    }
-
     public function level_aset_lahan() {
         $this->db->select('al.*');
         $this->db->from('tbl_aset_lahan al');
