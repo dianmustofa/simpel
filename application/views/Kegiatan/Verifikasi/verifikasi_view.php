@@ -34,7 +34,7 @@
                     <div class="page-title">
                         <div class="row">
                             <div class="col-12 col-md-6 order-md-1 order-last">
-                                <h3>Usulan Perencanaan</h3>
+                                <h3>Verifikasi Usulan</h3>
                                 <p class="text-subtitle text-muted">Berikut histori data informasi perencanaan lingkungan.</p>
                             </div>
                             <div class="col-12 col-md-6 order-md-2 order-first">
@@ -121,19 +121,17 @@
                                                 <td><?= $longitude ?></td>
                                                 <td>
                                                     <!-- <span class="badge bg-primary zoom-to" data-lat="<?= $latitude ?>" data-lng="<?= $longitude ?>" data-title="<?= $titleIsu ?>" style="cursor: pointer;">Zoom to</span> -->
-                                                    <!-- <span class="badge bg-secondary" style="cursor: pointer;">Review</span> -->
-                                                    <a href="<?php echo base_url(); ?>usulan/review/<?= $idIsu ?>">
-                                                        <!-- <span class="badge bg-secondary" style="cursor: pointer;">Lanjutkan Usulan</span> -->
+                                                    <a href="<?php echo base_url(); ?>verifikasi/detail/<?= $idIsu ?>">
+                                                        <span class="badge bg-secondary" style="cursor: pointer;">Detail</span>
                                                     </a>
 
-                                                    <?php if ($titleOPD != Null) : ?>
-                                                        <span class="badge bg-success" style="cursor: pointer;">Sudah diteruskan ke <?= $titleOPD ?></span>
-                                                    <?php else : ?>
-                                                        <!-- <span class="badge bg-danger" style="cursor: pointer;">Lengkapi Usulan</span> -->
-                                                        <a href="<?php echo base_url(); ?>usulan/review/<?= $idIsu ?>">
-                                                            <span class="badge bg-danger" style="cursor: pointer;">Review Usulan</span>
-                                                        </a>
-                                                    <?php endif; ?>
+                                                    <!-- Tambahkan checkbox Setuju di sini -->
+                                                    <div class="form-check" style="display: inline-block; margin-left: 10px;">
+                                                        <input class="form-check-input" type="checkbox" id="setuju_<?= $idIsu ?>" name="setuju_<?= $idIsu ?>">
+                                                        <label class="form-check-label" for="setuju_<?= $idIsu ?>">
+                                                            Setuju
+                                                        </label>
+                                                    </div>
                                                 </td>
                                             </tr>
 

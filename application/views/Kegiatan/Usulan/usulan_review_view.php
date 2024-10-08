@@ -72,6 +72,8 @@
                                             <form class="form form-horizontal">
                                                 <div class="form-body">
                                                     <div class="row">
+                                                    <?php if ($this->session->userdata('logged_in')) : ?>
+                                                        <?php if ($this->session->userdata('id_level_akun') === '1') : ?>
                                                         <div class="col-md-4">
                                                             <label>Maksud dan Tujuan</label>
                                                         </div>
@@ -145,13 +147,208 @@
                                                             <label for="exampleFormControlTextarea1" class="form-label">Komentar</label>
                                                             <textarea type="text" class="form-control" name="verification_text" id="exampleFormControlTextarea1" rows="3" placeholder="Berikan komentar anda"></textarea>
                                                         </div>
+                                                        <?php elseif ($this->session->userdata('id_level_akun') === '2') : ?>
+
+                                                            <div class="col-md-4">
+                                                                <label>Maksud dan Tujuan</label>
+                                                            </div>
+                                                            <div class="col-md-8 form-group">
+                                                                <textarea type="text" class="form-control" name="fname" value="#"></textarea>
+                                                            </div>
+                                                            <div class="col-md-4">
+                                                                <label>Indikasi Program</label>
+                                                            </div>
+                                                            <div class="col-md-8 form-group">
+                                                                <textarea type="text" class="form-control" name="fname" value="#"></textarea>
+                                                            </div>
+                                                            <div class="col-md-4">
+                                                                <label>Program</label>
+                                                            </div>
+                                                            <div class="col-md-8 form-group">
+                                                                <textarea type="text" class="form-control" name="fname" value="#"></textarea>
+                                                            </div>
+                                                            <div class="col-md-4">
+                                                                <label>Sumber Pendanaan</label>
+                                                            </div>
+                                                            <div class="col-md-8 form-group">
+                                                                <textarea type="text" class="form-control" name="fname" value="#"></textarea>
+                                                            </div>
+                                                            <div class="col-md-4">
+                                                                <label>Instansi Pelaksana</label>
+                                                            </div>
+                                                            <div class="col-md-8 form-group">
+                                                                <textarea type="text" class="form-control" name="fname" value="#"></textarea>
+                                                            </div>
+                                                            <div class="col-md-4">
+                                                                <label>Indikasi Tahun Pelaksanaan</label>
+                                                            </div>
+                                                            <div class="col-md-8 form-group">
+                                                                <textarea type="text" class="form-control" name="fname" value="#"></textarea>
+                                                            </div>
+
+                                                            <div class="col-md-4">
+                                                                <label>Dokumentasi</label>
+                                                            </div>
+                                                            <div class="col-md-8 form-group">
+                                                                <input type="text" id="readonlyInput" readonly="readonly" class="form-control"
+                                                                    name="fname" value="You can't update me :P">
+                                                            </div>
+
+                                                            <!-- Input Isu -->
+                                                            <?php 
+                                                                $jenis="";
+                                                            if(isset($default['title_status_usulan'])) $jenis=$default['title_status_usulan'];
+                                                            ?>
+                                                            <div class="col-md-4">
+                                                                <label>Status Review</label>
+                                                            </div>
+                                                            <div class="col-md-8 form-group">
+                                                                <select class="choices form-select" name="title_status_usulan" id="title_status_usulan">
+                                                                    <!-- Pastikan $level_akun ada dan bukan kosong -->
+                                                                    <option value="Menunggu Verifikasi">Menunggu Verifikasi</option>
+                                                                    <?php if (!empty($level_status_usulan)): ?>
+                                                                        <?php foreach ($level_status_usulan as $row): ?>
+                                                                            <option value="<?= htmlspecialchars($row['title_status_usulan'], ENT_QUOTES, 'UTF-8') ?>">
+                                                                                <?= htmlspecialchars($row['title_status_usulan'], ENT_QUOTES, 'UTF-8') ?>
+                                                                            </option>
+                                                                        <?php endforeach; ?>
+                                                                    <?php else: ?>
+                                                                        <option value="">Isu tidak tersedia</option>
+                                                                    <?php endif; ?>
+                                                                </select>
+                                                            </div>
+
+                                                            <div class="col-md-12 form-group" id="verification_input" style="display:none;">
+                                                                <label for="exampleFormControlTextarea1" class="form-label">Komentar</label>
+                                                                <textarea type="text" class="form-control" name="verification_text" id="exampleFormControlTextarea1" rows="3" placeholder="Berikan komentar anda"></textarea>
+                                                            </div>
+
+                                                            <?php elseif ($this->session->userdata('id_level_akun') === '3') : ?>
+
+                                                                <div class="col-md-4">
+                                                                    <label>Maksud dan Tujuan</label>
+                                                                </div>
+                                                                <div class="col-md-8 form-group">
+                                                                    <textarea type="text" class="form-control" name="fname" value="#" readonly></textarea>
+                                                                </div>
+                                                                <div class="col-md-4">
+                                                                    <label>Indikasi Program</label>
+                                                                </div>
+                                                                <div class="col-md-8 form-group">
+                                                                    <textarea type="text" class="form-control" name="fname" value="#" readonly></textarea>
+                                                                </div>
+                                                                <div class="col-md-4">
+                                                                    <label>Program</label>
+                                                                </div>
+                                                                <div class="col-md-8 form-group">
+                                                                    <textarea type="text" class="form-control" name="fname" value="#" readonly></textarea>
+                                                                </div>
+                                                                <div class="col-md-4">
+                                                                    <label>Sumber Pendanaan</label>
+                                                                </div>
+                                                                <div class="col-md-8 form-group">
+                                                                    <textarea type="text" class="form-control" name="fname" value="#"></textarea>
+                                                                </div>
+                                                                <div class="col-md-4">
+                                                                    <label>Indikasi Tahun Pelaksanaan</label>
+                                                                </div>
+                                                                <div class="col-md-8 form-group">
+                                                                    <textarea type="text" class="form-control" name="fname" value="#"></textarea>
+                                                                </div>
+                                                                <!-- Input Isu -->
+                                                                <?php 
+                                                                    $jenis="";
+                                                                if(isset($default['title_status_usulan'])) $jenis=$default['title_status_usulan'];
+                                                                ?>
+                                                                <div class="col-md-4">
+                                                                    <label>Status Review</label>
+                                                                </div>
+                                                                <div class="col-md-8 form-group">
+                                                                    <select class="choices form-select" name="title_status_usulan" id="title_status_usulan">
+                                                                        <!-- Pastikan $level_akun ada dan bukan kosong -->
+                                                                        <option value="Menunggu Verifikasi">Menunggu Verifikasi</option>
+                                                                        <?php if (!empty($level_status_usulan)): ?>
+                                                                            <?php foreach ($level_status_usulan as $row): ?>
+                                                                                <option value="<?= htmlspecialchars($row['title_status_usulan'], ENT_QUOTES, 'UTF-8') ?>">
+                                                                                    <?= htmlspecialchars($row['title_status_usulan'], ENT_QUOTES, 'UTF-8') ?>
+                                                                                </option>
+                                                                            <?php endforeach; ?>
+                                                                        <?php else: ?>
+                                                                            <option value="">Isu tidak tersedia</option>
+                                                                        <?php endif; ?>
+                                                                    </select>
+                                                                </div>
+
+                                                                <div class="col-md-12 form-group" id="verification_input" style="display:none;">
+                                                                    <label for="exampleFormControlTextarea1" class="form-label">Komentar</label>
+                                                                    <textarea type="text" class="form-control" name="verification_text" id="exampleFormControlTextarea1" rows="3" placeholder="Berikan komentar anda"></textarea>
+                                                                </div>
+
+                                                                <?php elseif ($this->session->userdata('id_level_akun') === '4') : ?>
+
+                                                                    <div class="col-md-4">
+                                                                        <label>Maksud dan Tujuan</label>
+                                                                    </div>
+                                                                    <div class="col-md-8 form-group">
+                                                                        <textarea type="text" class="form-control" name="fname" value="#"></textarea>
+                                                                    </div>
+                                                                    <div class="col-md-4">
+                                                                        <label>Indikasi Program</label>
+                                                                    </div>
+                                                                    <div class="col-md-8 form-group">
+                                                                        <textarea type="text" class="form-control" name="fname" value="#"></textarea>
+                                                                    </div>
+                                                                    <div class="col-md-4">
+                                                                        <label>Program</label>
+                                                                    </div>
+                                                                    <div class="col-md-8 form-group">
+                                                                        <textarea type="text" class="form-control" name="fname" value="#"></textarea>
+                                                                    </div>
+
+                                                                    <!-- Input Isu -->
+                                                                    <div class="col-md-4">
+                                                                        <label>Instansi Pelaksana</label>
+                                                                    </div>
+                                                                    <?php 
+                                                                        $jenis = isset($review_isu['title_instansi_pelaksana']) ? $review_isu['title_instansi_pelaksana'] : '';
+                                                                    ?>
+                                                                    <div class="col-md-8 form-group">
+                                                                        <select class="choices form-select" name="instansi_pelaksana_usulan">
+                                                                            <!-- Pastikan $level_akun ada dan bukan kosong -->
+                                                                            <option value="Instansi Belum Dipilih">Instansi belum dipilih</option>
+                                                                            <?php if (!empty($level_instansi)): ?>
+                                                                                <?php foreach ($level_instansi as $row): ?>
+                                                                                    <option value="<?= htmlspecialchars($row['title_instansi_pelaksana'], ENT_QUOTES, 'UTF-8') ?>" <?php if($row["title_instansi_pelaksana"] == $jenis) echo "selected";?>>
+                                                                                        <?= htmlspecialchars($row['title_instansi_pelaksana'], ENT_QUOTES, 'UTF-8') ?>
+                                                                                    </option>
+                                                                                <?php endforeach; ?>
+                                                                            <?php else: ?>
+                                                                                <option value="">Instansi tidak tersedia</option>
+                                                                            <?php endif; ?>
+                                                                        </select>
+                                                                    </div>
+
+                                                                    <div class="col-md-12 form-group" id="verification_input" style="display:none;">
+                                                                        <label for="exampleFormControlTextarea1" class="form-label">Komentar</label>
+                                                                        <textarea type="text" class="form-control" name="verification_text" id="exampleFormControlTextarea1" rows="3" placeholder="Berikan komentar anda"></textarea>
+                                                                    </div>
+
+                                                                <?php else : ?>
+
+                                                                    <p>Silahkan Login</p>
+
+                                                                    <?php endif; ?>
+
+                                                    <?php else : ?>
+                                                        <p>Silahkan Login</p>
+                                                    <?php endif; ?>
 
                                                         <script>
                                                             document.getElementById('title_status_usulan').addEventListener('change', function() {
                                                                 var selectedValue = this.value;
                                                                 var verificationInput = document.getElementById('verification_input');
                                                                 
-                                                                if (selectedValue === 'Tidak Dapat Dilaksanakan') {
+                                                                if (selectedValue === 'Dilaksanakan bersyarat') {
                                                                     verificationInput.style.display = 'block';
                                                                 } else {
                                                                     verificationInput.style.display = 'none';
@@ -161,7 +358,7 @@
 
                                                         <div class="col-sm-12 d-flex justify-content-end">
                                                             <button type="submit"
-                                                                class="btn btn-primary me-1 mb-1">Submit</button>
+                                                                class="btn btn-primary me-1 mb-1">Simpan</button>
                                                             <button type="reset"
                                                                 class="btn btn-light-secondary me-1 mb-1">Reset</button>
                                                         </div>
@@ -238,7 +435,7 @@
                             <div class="col-12">
                                 <div class="card">
                                     <div class="card-header">
-                                        <h4 class="card-title">Riwayat Review Isu</h4>
+                                        <h4 class="card-title">Detail Isu dari Masayarakat</h4>
                                     </div>
                                     <div class="card-content">
                                         <div class="card-body">

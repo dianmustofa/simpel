@@ -27,7 +27,7 @@
             <div id="main-content">
                 <section id="input-sizing">
                     <div class="card">
-                        <div class="card-body">
+                        <!-- <div class="card-body">
                             <div class="row">
                                 <div class="col-sm-12">
                                     <div class="form-group position-relative has-icon-left">
@@ -40,7 +40,58 @@
                                     </div>
                                 </div>
                             </div>
+                        </div> -->
+
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    <div class="form-group position-relative has-icon-left">
+                                        <form method="get" action="<?= base_url('home') ?>">
+                                            <div class="form-group position-relative has-icon-left">
+                                                <input class="form-control form-control-lg" name="search" type="text" placeholder="Temukan Perencanaan" value="<?= $this->input->get('search'); ?>">
+                                                <div class="form-control-icon">
+                                                    <i class="bi bi-search"></i>
+                                                </div>
+                                            </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row mt-2">
+                                <div class="col-sm-3">
+                                    <!-- Filter Kelurahan -->
+                                    <select class="form-control form-control-lg" name="kelurahan">
+                                        <option value="">Pilih Kelurahan</option>
+                                        <option value="Menteng Dalam" <?= ($this->input->get('kelurahan') == 'Menteng Dalam') ? 'selected' : ''; ?>>Menteng Dalam</option>
+                                        <option value="Gambir" <?= ($this->input->get('kelurahan') == 'Gambir') ? 'selected' : ''; ?>>Gambir</option>
+                                        <!-- Tambahkan opsi kelurahan lainnya -->
+                                    </select>
+                                </div>
+                                <div class="col-sm-3">
+                                    <!-- Filter RW -->
+                                    <select class="form-control form-control-lg" name="rw">
+                                        <option value="">Pilih RW</option>
+                                        <option value="013" <?= ($this->input->get('rw') == '013') ? 'selected' : ''; ?>>RW 013</option>
+                                        <option value="001" <?= ($this->input->get('rw') == '001') ? 'selected' : ''; ?>>RW 001</option>
+                                        <!-- Tambahkan opsi RW lainnya -->
+                                    </select>
+                                </div>
+                                <div class="col-sm-3">
+                                    <!-- Filter RT -->
+                                    <select class="form-control form-control-lg" name="rt">
+                                        <option value="">Pilih RT</option>
+                                        <option value="005" <?= ($this->input->get('rt') == '005') ? 'selected' : ''; ?>>RT 005</option>
+                                        <option value="009" <?= ($this->input->get('rt') == '009') ? 'selected' : ''; ?>>RT 009</option>
+                                        <!-- Tambahkan opsi RT lainnya -->
+                                    </select>
+                                </div>
+                                <div class="col-sm-3">
+                                    <button type="submit" class="btn btn-primary btn-lg w-100">Filter</button>
+                                </div>
+                            </div>
+
+                            </form>
                         </div>
+
                     </div>
                 </section>
 

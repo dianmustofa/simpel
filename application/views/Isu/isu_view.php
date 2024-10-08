@@ -78,7 +78,7 @@
                                             <?php endif; ?>
                                             
                                                 <div class="modal-body">
-                                                    <form action="<?= site_url('isu/simpan') ?>" method="post" enctype="multipart/form-data" onsubmit="return validateForm()">
+                                                    <form action="<?= site_url('isu/simpan') ?>" method="post" enctype="multipart/form-data" id="locationForm" onsubmit="return validateForm()">
                                                     <!-- Tambahkan CSS untuk ukuran peta -->
                                                     <style>
                                                         #map1 {
@@ -86,14 +86,82 @@
                                                             /* width: auto; */
                                                         }
                                                     </style>
-                                                    
+
+                                                    <label>Klik pada peta untuk mendpatkan koordinat</label>
                                                     <div id="map1"></div>
                                                     
                                                     <label for="latitude">Latitude : <span id="latitudeValue"></span></label>
-                                                    <input type="hidden" name="latitude" id="latitudeInput" required><br>
+                                                    <input type="hidden" name="latitude" id="latitudeInput" required readonly><br>
                                                     <label for="longitude">Longitude : <span id="longitudeValue"></span></label>
-                                                    <input type="hidden" name="longitude" id="longitudeInput" required><br>
+                                                    <input type="hidden" name="longitude" id="longitudeInput" required readonly><br>
                                                     <hr>
+
+                                                    <?php 
+                                                        $jenis = "";
+                                                        if(isset($default['title_aspek'])) $jenis = $default['title_aspek'];
+                                                    ?>
+                                                    <div class="form-group">
+                                                        <label>Aspek</label>
+                                                        <select class="choices form-select" name="title_aspek" id="title_kategori" required>
+                                                            <!-- Opsi default yang tidak bisa dipilih -->
+                                                            <option value="" disabled selected>Pilih Aspek</option>
+                                                            <!-- Pastikan $level_akun ada dan bukan kosong -->
+                                                            <?php if (!empty($level_aspek)): ?>
+                                                                <?php foreach ($level_aspek as $row): ?>
+                                                                    <option value="<?= htmlspecialchars($row['title_aspek'], ENT_QUOTES, 'UTF-8') ?>">
+                                                                        <?= htmlspecialchars($row['title_aspek'], ENT_QUOTES, 'UTF-8') ?>
+                                                                    </option>
+                                                                <?php endforeach; ?>
+                                                            <?php else: ?>
+                                                                <option value="">Aspek tidak tersedia</option>
+                                                            <?php endif; ?>
+                                                        </select>
+                                                    </div>
+
+                                                    <script>
+                                                        document.getElementById('title_kategori').addEventListener('change', function() {
+                                                            var selectedValue = this.value;
+                                                            var detailInput = document.getElementById('detail_pekerjaan');
+                                                            var volumeInput = document.getElementById('volume_pekerjaan');
+                                                            var jumlahPekerjaInput = document.getElementById('jumlah_pekerja');
+
+                                                            // Menyembunyikan kedua input terlebih dahulu
+                                                            // volumeInput.style.display = 'none';
+                                                            // jumlahPekerjaInput.style.display = 'none';
+
+                                                            // Menampilkan input sesuai dengan pilihan
+                                                            // if (selectedValue === 'Fisik') {
+                                                            //     detailInput.style.display = 'block';
+                                                            //     volumeInput.style.display = 'block';
+                                                            //     jumlahPekerjaInput.style.display = 'block';
+                                                            // } else {
+                                                            //     verificationInput.style.display = 'none';
+                                                            // }
+                                                            if (selectedValue === 'Fisik') {
+                                                                detailInput.style.display = 'none'; // Sembunyikan input Detail
+                                                                volumeInput.style.display = 'block'; // Tampilkan Volume
+                                                                volumeInput.classList.add('col-md-6'); // Set jadi 50% dari row
+                                                                jumlahPekerjaInput.style.display = 'block'; // Tampilkan Satuan
+                                                                jumlahPekerjaInput.classList.add('col-md-6'); // Set jadi 50% dari row
+                                                            } else if (['Sosial', 'Budaya', 'Ekonomi'].includes(selectedValue)) {
+                                                                detailInput.style.display = 'block'; // Tampilkan Detail
+                                                                detailInput.classList.remove('col-md-6'); // Set Detail jadi 33% dari row
+                                                                detailInput.classList.add('col-md-4'); // Tampilkan dengan proporsi 1/3
+                                                                volumeInput.style.display = 'block'; // Tampilkan Volume
+                                                                volumeInput.classList.remove('col-md-6'); // Ubah kembali Volume menjadi 33%
+                                                                volumeInput.classList.add('col-md-4');
+                                                                jumlahPekerjaInput.style.display = 'block'; // Tampilkan Satuan
+                                                                jumlahPekerjaInput.classList.remove('col-md-6'); // Ubah kembali Satuan menjadi 33%
+                                                                jumlahPekerjaInput.classList.add('col-md-4');
+                                                            } else {
+                                                                // Sembunyikan semua input jika tidak sesuai dengan kategori
+                                                                detailInput.style.display = 'none';
+                                                                volumeInput.style.display = 'none';
+                                                                jumlahPekerjaInput.style.display = 'none';
+                                                            }
+                                                            
+                                                        });
+                                                    </script>
 
                                                     <?php 
                                                         $jenis = "";
@@ -117,70 +185,17 @@
                                                         </select>
                                                     </div>
 
-                                                    <!-- Input Kategori -->
-                                                    <?php 
-                                                        $jenis="";
-                                                    if(isset($default['title_kategori'])) $jenis=$default['title_kategori'];
-                                                    ?>
-                                                    <div class="form-group">
-                                                        <label>Kategori</label>
-                                                        <!-- <input type="text" name="title_isu" placeholder="Isu Perencanaan" class="form-control" required> -->
-                                                        <select class="choices form-select" name="title_kategori" id="title_kategori" required>
-                                                            <!-- Opsi default yang tidak bisa dipilih -->
-                                                            <option value="" disabled selected>Pilih Kategori</option>
-                                                            <!-- Pastikan $level_akun ada dan bukan kosong -->
-                                                            <?php if (!empty($level_kategori)): ?>
-                                                                <?php foreach ($level_kategori as $row): ?>
-                                                                    <option value="<?= htmlspecialchars($row['title_kategori'], ENT_QUOTES, 'UTF-8') ?>">
-                                                                        <?= htmlspecialchars($row['title_kategori'], ENT_QUOTES, 'UTF-8') ?>
-                                                                    </option>
-                                                                <?php endforeach; ?>
-                                                            <?php else: ?>
-                                                                <option value="">Isu tidak tersedia</option>
-                                                            <?php endif; ?>
-                                                        </select>
-                                                    </div>
-
-                                                    <script>
-                                                        document.getElementById('title_kategori').addEventListener('change', function() {
-                                                            var selectedValue = this.value;
-                                                            var volumeInput = document.getElementById('volume_pekerjaan');
-                                                            var jumlahPekerjaInput = document.getElementById('jumlah_pekerja');
-
-                                                            // Menyembunyikan kedua input terlebih dahulu
-                                                            volumeInput.style.display = 'none';
-                                                            jumlahPekerjaInput.style.display = 'none';
-
-                                                            // Menampilkan input sesuai dengan pilihan
-                                                            if (selectedValue === 'Fisik') {
-                                                                volumeInput.style.display = 'block';
-                                                            } else if (selectedValue === 'Non Fisik') {
-                                                                jumlahPekerjaInput.style.display = 'block';
-                                                            }
-                                                        });
-                                                    </script>
-
-                                                    <div class="form-group" id="volume_pekerjaan" style="display:none;">
-                                                        <label>Volume Pekerjaan</label>
-                                                        <input type="text" name="volume_pekerjaan" placeholder="" class="form-control" required>
-                                                    </div>
-
-                                                    <div class="form-group" id="jumlah_pekerja" style="display:none;">
-                                                        <label>Jumlah Pekerja</label>
-                                                        <input type="text" name="jumlah_pekerja" placeholder="" class="form-control" required>
-                                                    </div>
-
                                                     <!-- Input Jenis -->
                                                     <?php 
                                                         $jenis="";
                                                     if(isset($default['title_jenis'])) $jenis=$default['title_jenis'];
                                                     ?>
                                                     <div class="form-group">
-                                                        <label>Jenis</label>
+                                                        <label>Program</label>
                                                         <!-- <input type="text" name="title_isu" placeholder="Isu Perencanaan" class="form-control" required> -->
                                                         <select class="choices form-select" name="title_jenis" required>
                                                             <!-- Opsi default yang tidak bisa dipilih -->
-                                                            <option value="" disabled selected>Pilih Jenis</option>
+                                                            <option value="" disabled selected>Pilih Program</option>
                                                             <!-- Pastikan $level_akun ada dan bukan kosong -->
                                                             <?php if (!empty($level_jenis)): ?>
                                                                 <?php foreach ($level_jenis as $row): ?>
@@ -194,9 +209,30 @@
                                                         </select>
                                                     </div>
 
-                                                    <div class="form-group">
-                                                        <label>Lokasi</label>
-                                                        <input type="text" name="title_isu" placeholder="" class="form-control" required>
+                                                    <div class="row">
+                                                        <!-- Detail (hanya muncul untuk Sosial, Budaya, Ekonomi) -->
+                                                        <div class="col-md-4 col-sm-12" id="detail_pekerjaan" style="display:none;">
+                                                            <div class="form-group">
+                                                                <label>Detail</label>
+                                                                <input type="text" name="detail_pekerjaan" placeholder="" class="form-control" required>
+                                                            </div>
+                                                        </div>
+
+                                                        <!-- Volume (selalu muncul untuk Fisik dan opsi lainnya) -->
+                                                        <div class="col-md-6 col-sm-12" id="volume_pekerjaan" style="display:none;">
+                                                            <div class="form-group">
+                                                                <label>Volume</label>
+                                                                <input type="text" name="volume_pekerjaan" placeholder="" class="form-control" required>
+                                                            </div>
+                                                        </div>
+
+                                                        <!-- Satuan (selalu muncul untuk Fisik dan opsi lainnya) -->
+                                                        <div class="col-md-6 col-sm-12" id="jumlah_pekerja" style="display:none;">
+                                                            <div class="form-group">
+                                                                <label>Satuan</label>
+                                                                <input type="text" name="jumlah_pekerja" placeholder="" class="form-control" required>
+                                                            </div>
+                                                        </div>
                                                     </div>
 
                                                     <div class="form-group">
@@ -212,6 +248,10 @@
                                                         <input type="text" name="title_isu" placeholder="" class="form-control" required>
                                                     </div>
 
+                                                    <div class="form-group">
+                                                        <label>Alamat</label>
+                                                        <input type="text" name="title_isu" placeholder="" class="form-control" required>
+                                                    </div>
 
                                                     <!-- Input Pekerjaan -->
                                                     <?php 
@@ -345,20 +385,21 @@
 
                                                     // Tambahkan marker baru pada posisi yang diklik
                                                     marker = L.marker([lat, lng]).addTo(map1);
-
-                                                    // Validasi form untuk memastikan peta telah diklik
-                                                    function validateForm() {
-                                                        var latValue = document.getElementById('latitudeInput').value;
-                                                        var lngValue = document.getElementById('longitudeInput').value;
-
-                                                        if (!latValue || !lngValue) {
-                                                            alert("Silakan klik pada peta untuk memilih lokasi.");
-                                                            return false; // Mencegah pengiriman form
-                                                        }
-                                                        return true; // Mengizinkan pengiriman form
-                                                    }
  
                                                 });
+
+                                                // Validasi form untuk memastikan peta telah diklik
+                                                function validateForm() {
+                                                    // console.log("Form submitted");
+                                                    var latValue = document.getElementById('latitudeInput').value;
+                                                    var lngValue = document.getElementById('longitudeInput').value;
+
+                                                    if (!latValue || !lngValue) {
+                                                        alert("Silakan klik pada peta untuk memilih lokasi.");
+                                                        return false; // Mencegah pengiriman form
+                                                    }
+                                                    return true; // Mengizinkan pengiriman form
+                                                }
 
                                                 // Re-initialize map when modal is shown
                                                 document.addEventListener('shown.bs.modal', function () {
@@ -459,19 +500,30 @@
                                             $latitude = $row['latitude'];
                                             $longitude = $row['longitude'];
                                             $statusIsu = $row['status_isu'];
-                                            // $titleOPD = $row['title_opd'];
+                                            $statusUsulan = $row['status_usulan'];
                                         ?>
                                             <tr>
                                                 <td><?= $titleIsu ?></td>
                                                 <td><?= $latitude ?></td>
                                                 <td><?= $longitude ?></td>
                                                 <td><?= $statusIsu ?></td>
-                                                <td>
+                                                <td>   
+                                                    <span class="badge bg-danger" style="cursor: pointer;">Hapus</span>
+
                                                     <span class="badge bg-primary zoom-to" data-lat="<?= $latitude ?>" data-lng="<?= $longitude ?>" data-title="<?= $titleIsu ?>" style="cursor: pointer;">Zoom to</span>
-                                                    <!-- <span class="badge bg-info" style="cursor: pointer;">Detail</span> -->
-                                                    <a href="<?php echo base_url(); ?>isu/review/<?= $idIsu ?>">
+                                                    
+                                                    <!-- <a href="<?php echo base_url(); ?>isu/review/<?= $idIsu ?>">
                                                         <span class="badge bg-secondary" style="cursor: pointer;">Review</span>
-                                                    </a>
+                                                    </a> -->
+
+                                                    <?php if ($statusUsulan != Null) : ?>
+                                                        <span class="badge bg-success">Proses <?= $statusUsulan ?></span>
+                                                    <?php else : ?>
+                                                        <span class="badge bg-danger">Perlu perbaikan</span>
+                                                        <!-- <a href="<?php echo base_url(); ?>usulan/review/<?= $idIsu ?>">
+                                                            <span class="badge bg-danger" style="cursor: pointer;">Perlu perbaikan</span>
+                                                        </a> -->
+                                                    <?php endif; ?>
                                                 </td>
                                             </tr>
 

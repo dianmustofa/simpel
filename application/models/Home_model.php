@@ -16,16 +16,47 @@ class Home_model extends CI_Model{
     //     return $this->db->get('tbl_perencanaan')->result_array();
     // }
 
-    // Fungsi untuk mencari ajuan berdasarkan kata kunci
-    public function searchAjuan($keyword) {
-        // $this->db->like('title_isu', $keyword);
-        // Mencari kata kunci di kolom 'title_isu', 'status_isu', dan 'latitude'
+    // // Fungsi untuk mencari ajuan berdasarkan kata kunci
+    // public function searchAjuan($keyword) {
+    //     // $this->db->like('title_isu', $keyword);
+    //     // Mencari kata kunci di kolom 'title_isu', 'status_isu', dan 'latitude'
+    //     $this->db->like('title_isu', $keyword)
+    //              ->or_like('status_isu', $keyword)
+    //              ->or_like('detail_pekerjaan', $keyword)
+    //              ->or_like('latitude', $keyword)
+    //              ->or_like('longitude', $keyword);
+    //     return $this->db->get('tbl_perencanaan')->result_array();
+    // }
+
+    public function searchAjuan($keyword, $kelurahan = null, $rw = null, $rt = null, $limit = null, $start = null) {
         $this->db->like('title_isu', $keyword)
                  ->or_like('status_isu', $keyword)
+                 ->or_like('detail_pekerjaan', $keyword)
                  ->or_like('latitude', $keyword)
                  ->or_like('longitude', $keyword);
+    
+        // Jika ada filter kelurahan
+        if ($kelurahan) {
+            $this->db->where('title_kelurahan', $kelurahan);
+        }
+    
+        // Jika ada filter RW
+        if ($rw) {
+            $this->db->where('title_rw', $rw);
+        }
+    
+        // Jika ada filter RT
+        if ($rt) {
+            $this->db->where('title_rt', $rt);
+        }
+    
+        if ($limit && $start) {
+            $this->db->limit($limit, $start); // Pagination
+        }
+    
         return $this->db->get('tbl_perencanaan')->result_array();
     }
+    
 
 
     public function countAllAjuan($keyword = null)

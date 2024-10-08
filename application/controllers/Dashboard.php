@@ -41,6 +41,11 @@ class Dashboard extends CI_Controller {
 		$this->load->view('Tentang/tentang_view');
 	}
 
+	public function literasi()
+	{
+		$this->load->view('Literasi/literasi_view');
+	}
+
 	public function user()
 	{
 		$akun = $this->Dashboard_model->load_akun();

@@ -63,6 +63,13 @@ class Perencanaan_model extends CI_Model{
 		return $this->db->get();
 	}
 
+    public function level_aspek() {
+        $this->db->select('as.*');
+        $this->db->from('tbl_aspek as');
+
+        return $this->db->get()->result_array();
+    }
+
     public function level_isu() {
         $this->db->select('i.*');
         $this->db->from('tbl_isu i');

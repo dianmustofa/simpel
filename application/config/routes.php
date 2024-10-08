@@ -62,6 +62,7 @@ $route['profile'] = 'auth/profile';
 
 $route['dashboard'] = 'dashboard/index';
 $route['tentang'] = 'dashboard/tentang';
+$route['literasi'] = 'dashboard/literasi';
 $route['user'] = 'dashboard/user';
 
 $route['isu'] = 'perencanaan/isu';
@@ -69,6 +70,8 @@ $route['isu/review/(:any)'] = 'perencanaan/isu_review/$1';
 $route['isu/simpan'] = 'perencanaan/simpan';
 
 $route['usulan'] = 'usulan/index';
+$route['verifikasi-usulan'] = 'usulan/verifikasi';
+$route['verifikasi/detail/(:any)'] = 'usulan/verifikasi_detail/$1';
 $route['usulan/review/(:any)'] = 'usulan/usulan_review/$1';
 
 $route['monitoring'] = 'monitoring/index';

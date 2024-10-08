@@ -41,21 +41,14 @@
                     </a>
                 </li>
 
-                <li class="sidebar-title">Tabel</li>
-
-                <li class="sidebar-item  has-sub">
-                    <a href="#" class='sidebar-link'>
-                        <i class="bi bi-collection-fill"></i>
-                        <span>Kegiatan</span>
-                    </a>
-                    <ul class="submenu ">
-                        <li class="submenu-item ">
-                            <a href="<?php echo base_url();?>usulan">Usulan</a>
-                        </li>
-                    </ul>
-                </li>
-
                 <li class="sidebar-title">Informasi</li>
+
+                <li class="sidebar-item  ">
+                    <a href="<?php echo base_url();?>literasi" class='sidebar-link'>
+                        <i class="bi bi-grid-fill"></i>
+                        <span>Literasi Pengetahuan</span>
+                    </a>
+                </li>
 
                 <li class="sidebar-item  ">
                     <a href="<?php echo base_url();?>tentang" class='sidebar-link'>
@@ -64,7 +57,7 @@
                     </a>
                 </li>
 
-                <?php elseif ($this->session->userdata('id_level_akun') === '2') : ?>
+                <?php elseif (in_array($this->session->userdata('id_level_akun'), [2, 4])) : ?>
 
                     <li class="sidebar-item  ">
                         <a href="<?php echo base_url();?>" class='sidebar-link'>
@@ -108,12 +101,26 @@
                                 <a href="<?php echo base_url();?>usulan">Usulan</a>
                             </li>
                             <li class="submenu-item ">
-                                <a href="<?php echo base_url();?>monitoring">Monitoring</a>
+                                <a href="<?php echo base_url();?>verifikasi-usulan">Verifikasi</a>
                             </li>
                         </ul>
                     </li>
 
+                    <li class="sidebar-item">
+                        <a href="<?php echo base_url();?>monitoring" class='sidebar-link'>
+                            <i class="bi bi-stack"></i>
+                            <span>Monitoring</span>
+                        </a>
+                    </li>
+
                     <li class="sidebar-title">Informasi</li>
+
+                    <li class="sidebar-item  ">
+                        <a href="<?php echo base_url();?>literasi" class='sidebar-link'>
+                            <i class="bi bi-grid-fill"></i>
+                            <span>Literasi Pengetahuan</span>
+                        </a>
+                    </li>
 
                     <li class="sidebar-item  ">
                         <a href="<?php echo base_url();?>tentang" class='sidebar-link'>
@@ -140,20 +147,6 @@
                             </a>
                         </li>
 
-                        <li class="sidebar-item">
-                            <a href="<?php echo base_url();?>user" class='sidebar-link'>
-                                <i class="bi bi-person-badge-fill"></i>
-                                <span>User</span>
-                            </a>
-                        </li>
-
-                        <!-- <li class="sidebar-item">
-                            <a href="<?php echo base_url();?>isu" class='sidebar-link'>
-                                <i class="bi bi-stack"></i>
-                                <span>Isu</span>
-                            </a>
-                        </li> -->
-
                         <li class="sidebar-title">Tabel</li>
 
                         <li class="sidebar-item  has-sub">
@@ -165,13 +158,24 @@
                                 <li class="submenu-item ">
                                     <a href="<?php echo base_url();?>usulan">Usulan</a>
                                 </li>
-                                <li class="submenu-item ">
-                                    <a href="<?php echo base_url();?>monitoring">Monitoring</a>
-                                </li>
                             </ul>
                         </li>
 
+                        <li class="sidebar-item">
+                            <a href="<?php echo base_url();?>monitoring" class='sidebar-link'>
+                                <i class="bi bi-stack"></i>
+                                <span>Monitoring</span>
+                            </a>
+                        </li>
+
                         <li class="sidebar-title">Informasi</li>
+
+                        <li class="sidebar-item  ">
+                            <a href="<?php echo base_url();?>literasi" class='sidebar-link'>
+                                <i class="bi bi-grid-fill"></i>
+                                <span>Literasi Pengetahuan</span>
+                            </a>
+                        </li>
 
                         <li class="sidebar-item  ">
                             <a href="<?php echo base_url();?>tentang" class='sidebar-link'>
@@ -194,6 +198,13 @@
                         <li class="sidebar-title">Informasi</li>
 
                         <li class="sidebar-item  ">
+                            <a href="<?php echo base_url();?>literasi" class='sidebar-link'>
+                                <i class="bi bi-grid-fill"></i>
+                                <span>Literasi Pengetahuan</span>
+                            </a>
+                        </li>
+
+                        <li class="sidebar-item  ">
                             <a href="<?php echo base_url();?>tentang" class='sidebar-link'>
                                 <i class="bi bi-grid-fill"></i>
                                 <span>Tentang Kami</span>
@@ -212,6 +223,13 @@
                 </li>
 
                 <li class="sidebar-title">Informasi</li>
+
+                <li class="sidebar-item  ">
+                    <a href="<?php echo base_url();?>literasi" class='sidebar-link'>
+                        <i class="bi bi-grid-fill"></i>
+                        <span>Literasi Pengetahuan</span>
+                    </a>
+                </li>
 
                 <li class="sidebar-item  ">
                     <a href="<?php echo base_url();?>tentang" class='sidebar-link'>

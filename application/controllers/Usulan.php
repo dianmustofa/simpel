@@ -18,9 +18,34 @@ class Usulan extends CI_Controller {
         $this->load->view('Kegiatan/Usulan/usulan_view', $data);
 	}
 
+	public function verifikasi()
+	{
+		$usulan = $this->Usulan_model->load_usulan();
+        $data['usulan'] = $usulan;
+
+        $this->load->view('Kegiatan/Verifikasi/verifikasi_view', $data);
+	}
+
+	public function verifikasi_detail($id)
+	{
+		// $usulan = $this->Usulan_model->load_usulan();
+        // $data['usulan'] = $usulan;
+
+		$level_status_isu = $this->Perencanaan_model->level_status_isu();
+		$data["level_status_isu"] = $level_status_isu;
+		$level_status_usulan = $this->Perencanaan_model->level_status_usulan();
+		$data["level_status_usulan"] = $level_status_usulan;
+
+        $data['review_isu'] = $this->Perencanaan_model->get_isu_id($id)->row_array();
+
+        $this->load->view('Kegiatan/Verifikasi/verifikasi_detail_view', $data);
+	}
+
 	public function usulan_review($id)
 	{    
-    	$level_status_usulan = $this->Perencanaan_model->level_status_usulan();
+    	$level_instansi = $this->Perencanaan_model->level_instansi();
+		$data["level_instansi"] = $level_instansi;
+		$level_status_usulan = $this->Perencanaan_model->level_status_usulan();
 		$data["level_status_usulan"] = $level_status_usulan;
 
         $data['review_isu'] = $this->Perencanaan_model->get_isu_id($id)->row_array();

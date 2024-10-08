@@ -11,7 +11,9 @@ class Perencanaan extends CI_Controller {
 
 	public function isu()
 	{
-        // Mengambil data isu dari model
+        // Mengambil data option select dari model
+        $level_aspek = $this->Perencanaan_model->level_aspek();
+		$data["level_aspek"] = $level_aspek;
 		$level_isu = $this->Perencanaan_model->level_isu();
 		$data["level_isu"] = $level_isu;
         $level_kategori = $this->Perencanaan_model->level_kategori();
