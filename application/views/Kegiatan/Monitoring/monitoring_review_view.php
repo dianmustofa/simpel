@@ -69,7 +69,7 @@
                                     </div>
                                     <div class="card-content">
                                         <div class="card-body">
-                                            <form class="form form-horizontal">
+                                            <form class="form form-horizontal" action="<?= site_url('monitoring-simpan/'.$review_isu['id_isu']) ?>" method="post" enctype="multipart/form-data">
                                                 <div class="form-body">
                                                     <div class="row">
                                                         <!-- Input Isu -->
@@ -81,7 +81,7 @@
                                                             <label>Status Monitoring</label>
                                                         </div>
                                                         <div class="col-md-8 form-group">
-                                                            <select class="choices form-select" name="title_status_isu" id="title_status_isu">
+                                                            <select class="choices form-select" name="status_monitoring" id="title_status_isu">
                                                                 <!-- Pastikan $level_akun ada dan bukan kosong -->
                                                                 <option value="Menunggu Verifikasi">Menunggu Verifikasi</option>
                                                                 <?php if (!empty($level_status_usulan)): ?>
@@ -101,24 +101,24 @@
                                                             <label>Tanggal Realisasi Monitoring</label>
                                                         </div>
                                                         <div class="col-md-8 form-group verification-input" style="display:none;">
-                                                            <input type="text" class="form-control" name="fname" value="">
+                                                            <input type="date" class="form-control" name="tanggal_realisasi_monitoring" value="">
                                                         </div>
                                                         <div class="col-md-4 verification-input" style="display:none;">
                                                             <label>Realisasi Monitoring</label>
                                                         </div>
                                                         <div class="col-md-8 form-group verification-input" style="display:none;">
-                                                            <input type="text" class="form-control" name="fname" value="">
+                                                            <input type="text" class="form-control" name="realisasi_monitoring" value="">
                                                         </div>
                                                         <div class="col-md-4 verification-input" style="display:none;">
                                                             <label>Keterangan Monitoring</label>
                                                         </div>
                                                         <div class="col-md-8 form-group verification-input" style="display:none;">
-                                                            <input type="text" class="form-control" name="fname" value="">
+                                                            <input type="text" class="form-control" name="keterangan_monitoring" value="">
                                                         </div>
 
                                                         <div class="col-md-12 form-group comment-input" style="display:none;">
                                                             <label for="exampleFormControlTextarea1" class="form-label">Komentar</label>
-                                                            <textarea type="text" class="form-control" name="verification_text" id="exampleFormControlTextarea1" rows="3" placeholder="Berikan komentar anda"></textarea>
+                                                            <textarea type="text" class="form-control" name="komentar_monitoring" id="exampleFormControlTextarea1" rows="3" placeholder="Berikan komentar anda"></textarea>
                                                         </div>
 
                                                         <script>
@@ -140,7 +140,7 @@
 
 
                                                                 // Tampilkan input komentar hanya jika status adalah "Tidak Dapat Dilaksanakan"
-                                                                if (selectedValue === 'Tidak Dapat Dilaksanakan') {
+                                                                if (selectedValue === 'Dilaksanakan bersyarat') {
                                                                     commentInput.style.display = 'block';
                                                                 } else {
                                                                     commentInput.style.display = 'none';

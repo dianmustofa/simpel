@@ -1,10 +1,22 @@
 <?php
 class Perencanaan_model extends CI_Model{
 
-    public function load_perencanaan() {
+    public function load_perencanaan_akun() {
         $this->db->select('p.*');
         $this->db->from('tbl_perencanaan p');
         $this->db->order_by('id_isu', 'DESC');
+        $this->db->where('id_akun', $this->session->userdata('id_akun'));
+        // $this->db->join('tbl_category tc', 'td.category_id=tc.category_id');
+        // $this->db->group_by('td.promo_id');  // To ensure distinct promos
+
+        return $this->db->get()->result_array();
+    }
+
+    public function load_perencanaan_all() {
+        $this->db->select('p.*');
+        $this->db->from('tbl_perencanaan p');
+        $this->db->order_by('id_isu', 'DESC');
+        // $this->db->where('id_akun', $this->session->userdata('id_akun'));
         // $this->db->join('tbl_category tc', 'td.category_id=tc.category_id');
         // $this->db->group_by('td.promo_id');  // To ensure distinct promos
 
@@ -15,6 +27,22 @@ class Perencanaan_model extends CI_Model{
         // Insert data ke dalam tabel isu
         return $this->db->insert('tbl_perencanaan', $data);
     }
+
+    public function update_usulan($data, $id) {
+        // Data yang akan diupdate
+    
+        // Lakukan update data berdasarkan id
+        $this->db->where('id_isu', intval($id));
+        $update = $this->db->update('tbl_perencanaan', $data);
+    
+        // Cek apakah update berhasil
+        if ($update) {
+            echo "Update successful!";
+        } else {
+            echo "Update failed!";
+        }
+    }
+    
 
     public function update($post, $id){
 
@@ -105,6 +133,20 @@ class Perencanaan_model extends CI_Model{
         return $this->db->get()->result_array();
     }
 
+    public function level_kelurahan() {
+        $this->db->select('kel.*');
+        $this->db->from('tbl_kelurahan kel');
+
+        return $this->db->get()->result_array();
+    }
+
+    public function level_angka() {
+        $this->db->select('ang.*');
+        $this->db->from('tbl_angka ang');
+
+        return $this->db->get()->result_array();
+    }
+
     public function level_pekerjaan() {
         $this->db->select('pe.*');
         $this->db->from('tbl_pekerjaan pe');
@@ -122,6 +164,13 @@ class Perencanaan_model extends CI_Model{
     public function level_instansi() {
         $this->db->select('ip.*');
         $this->db->from('tbl_instansi_pelaksana ip');
+
+        return $this->db->get()->result_array();
+    }
+
+    public function level_sumber_pendanaan() {
+        $this->db->select('spd.*');
+        $this->db->from('tbl_sumber_pendanaan spd');
 
         return $this->db->get()->result_array();
     }

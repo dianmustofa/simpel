@@ -69,7 +69,7 @@
                                     </div>
                                     <div class="card-content">
                                         <div class="card-body">
-                                            <form class="form form-horizontal">
+                                            <form class="form form-horizontal" action="<?= site_url('usulan-simpan/'.$review_isu['id_isu']) ?>" method="post" enctype="multipart/form-data">
                                                 <div class="form-body">
                                                     <div class="row">
                                                     <?php if ($this->session->userdata('logged_in')) : ?>
@@ -78,19 +78,19 @@
                                                             <label>Maksud dan Tujuan</label>
                                                         </div>
                                                         <div class="col-md-8 form-group">
-                                                            <textarea type="text" class="form-control" name="fname" value="#"></textarea>
+                                                            <textarea type="text" class="form-control" name="manfaat_tujuan_usulan" value="#"></textarea>
                                                         </div>
                                                         <div class="col-md-4">
                                                             <label>Indikasi Program</label>
                                                         </div>
                                                         <div class="col-md-8 form-group">
-                                                            <textarea type="text" class="form-control" name="fname" value="#"></textarea>
+                                                            <textarea type="text" class="form-control" name="indikasi_program_usulan" value="#"></textarea>
                                                         </div>
                                                         <div class="col-md-4">
                                                             <label>Program</label>
                                                         </div>
                                                         <div class="col-md-8 form-group">
-                                                            <textarea type="text" class="form-control" name="fname" value="#"></textarea>
+                                                            <textarea type="text" class="form-control" name="program_usulan" value="#"></textarea>
                                                         </div>
                                                         <div class="col-md-4">
                                                             <label>Sumber Pendanaan</label>
@@ -145,7 +145,7 @@
 
                                                         <div class="col-md-12 form-group" id="verification_input" style="display:none;">
                                                             <label for="exampleFormControlTextarea1" class="form-label">Komentar</label>
-                                                            <textarea type="text" class="form-control" name="verification_text" id="exampleFormControlTextarea1" rows="3" placeholder="Berikan komentar anda"></textarea>
+                                                            <textarea type="text" class="form-control" name="komentar_usulan" id="exampleFormControlTextarea1" rows="3" placeholder="Berikan komentar anda"></textarea>
                                                         </div>
                                                         <?php elseif ($this->session->userdata('id_level_akun') === '2') : ?>
 
@@ -153,74 +153,25 @@
                                                                 <label>Maksud dan Tujuan</label>
                                                             </div>
                                                             <div class="col-md-8 form-group">
-                                                                <textarea type="text" class="form-control" name="fname" value="#"></textarea>
+                                                                <textarea type="text" class="form-control" name="manfaat_tujuan_usulan" value="#"></textarea>
                                                             </div>
                                                             <div class="col-md-4">
                                                                 <label>Indikasi Program</label>
                                                             </div>
                                                             <div class="col-md-8 form-group">
-                                                                <textarea type="text" class="form-control" name="fname" value="#"></textarea>
+                                                                <textarea type="text" class="form-control" name="indikasi_program_usulan" value="#"></textarea>
                                                             </div>
                                                             <div class="col-md-4">
                                                                 <label>Program</label>
                                                             </div>
                                                             <div class="col-md-8 form-group">
-                                                                <textarea type="text" class="form-control" name="fname" value="#"></textarea>
-                                                            </div>
-                                                            <div class="col-md-4">
-                                                                <label>Sumber Pendanaan</label>
-                                                            </div>
-                                                            <div class="col-md-8 form-group">
-                                                                <textarea type="text" class="form-control" name="fname" value="#"></textarea>
+                                                                <textarea type="text" class="form-control" name="program_usulan" value="#"></textarea>
                                                             </div>
                                                             <div class="col-md-4">
                                                                 <label>Instansi Pelaksana</label>
                                                             </div>
                                                             <div class="col-md-8 form-group">
-                                                                <textarea type="text" class="form-control" name="fname" value="#"></textarea>
-                                                            </div>
-                                                            <div class="col-md-4">
-                                                                <label>Indikasi Tahun Pelaksanaan</label>
-                                                            </div>
-                                                            <div class="col-md-8 form-group">
-                                                                <textarea type="text" class="form-control" name="fname" value="#"></textarea>
-                                                            </div>
-
-                                                            <div class="col-md-4">
-                                                                <label>Dokumentasi</label>
-                                                            </div>
-                                                            <div class="col-md-8 form-group">
-                                                                <input type="text" id="readonlyInput" readonly="readonly" class="form-control"
-                                                                    name="fname" value="You can't update me :P">
-                                                            </div>
-
-                                                            <!-- Input Isu -->
-                                                            <?php 
-                                                                $jenis="";
-                                                            if(isset($default['title_status_usulan'])) $jenis=$default['title_status_usulan'];
-                                                            ?>
-                                                            <div class="col-md-4">
-                                                                <label>Status Review</label>
-                                                            </div>
-                                                            <div class="col-md-8 form-group">
-                                                                <select class="choices form-select" name="title_status_usulan" id="title_status_usulan">
-                                                                    <!-- Pastikan $level_akun ada dan bukan kosong -->
-                                                                    <option value="Menunggu Verifikasi">Menunggu Verifikasi</option>
-                                                                    <?php if (!empty($level_status_usulan)): ?>
-                                                                        <?php foreach ($level_status_usulan as $row): ?>
-                                                                            <option value="<?= htmlspecialchars($row['title_status_usulan'], ENT_QUOTES, 'UTF-8') ?>">
-                                                                                <?= htmlspecialchars($row['title_status_usulan'], ENT_QUOTES, 'UTF-8') ?>
-                                                                            </option>
-                                                                        <?php endforeach; ?>
-                                                                    <?php else: ?>
-                                                                        <option value="">Isu tidak tersedia</option>
-                                                                    <?php endif; ?>
-                                                                </select>
-                                                            </div>
-
-                                                            <div class="col-md-12 form-group" id="verification_input" style="display:none;">
-                                                                <label for="exampleFormControlTextarea1" class="form-label">Komentar</label>
-                                                                <textarea type="text" class="form-control" name="verification_text" id="exampleFormControlTextarea1" rows="3" placeholder="Berikan komentar anda"></textarea>
+                                                                <textarea type="text" class="form-control" name="title_opd" value="#"></textarea>
                                                             </div>
 
                                                             <?php elseif ($this->session->userdata('id_level_akun') === '3') : ?>
@@ -229,42 +180,61 @@
                                                                     <label>Maksud dan Tujuan</label>
                                                                 </div>
                                                                 <div class="col-md-8 form-group">
-                                                                    <textarea type="text" class="form-control" name="fname" value="#" readonly></textarea>
+                                                                    <textarea type="text" class="form-control" value="<?php echo $review_isu['manfaat_tujuan_usulan'];?>" readonly><?php echo $review_isu['manfaat_tujuan_usulan'];?></textarea>
                                                                 </div>
                                                                 <div class="col-md-4">
                                                                     <label>Indikasi Program</label>
                                                                 </div>
                                                                 <div class="col-md-8 form-group">
-                                                                    <textarea type="text" class="form-control" name="fname" value="#" readonly></textarea>
+                                                                    <textarea type="text" class="form-control" name="fname" value="<?php echo $review_isu['indikasi_program_usulan'];?>" readonly><?php echo $review_isu['indikasi_program_usulan'];?></textarea>
                                                                 </div>
                                                                 <div class="col-md-4">
                                                                     <label>Program</label>
                                                                 </div>
                                                                 <div class="col-md-8 form-group">
-                                                                    <textarea type="text" class="form-control" name="fname" value="#" readonly></textarea>
+                                                                    <textarea type="text" class="form-control" name="fname" value="<?php echo $review_isu['program_usulan'];?>" readonly><?php echo $review_isu['program_usulan'];?></textarea>
                                                                 </div>
+
+                                                                <!-- Input Pendanaan -->
+                                                                <?php 
+                                                                    $jenis="";
+                                                                if(isset($default['title_sumber_pendanaan'])) $jenis=$default['title_sumber_pendanaan'];
+                                                                ?>
                                                                 <div class="col-md-4">
                                                                     <label>Sumber Pendanaan</label>
                                                                 </div>
                                                                 <div class="col-md-8 form-group">
-                                                                    <textarea type="text" class="form-control" name="fname" value="#"></textarea>
+                                                                    <select class="choices form-select" name="sumber_pendanaan_usulan">
+                                                                        <!-- Pastikan $level_akun ada dan bukan kosong -->
+                                                                        <option value="" disabled selected>Pilih sumber dana</option>
+                                                                        <?php if (!empty($level_sumber_pendanaan)): ?>
+                                                                            <?php foreach ($level_sumber_pendanaan as $row): ?>
+                                                                                <option value="<?= htmlspecialchars($row['title_sumber_pendanaan'], ENT_QUOTES, 'UTF-8') ?>">
+                                                                                    <?= htmlspecialchars($row['title_sumber_pendanaan'], ENT_QUOTES, 'UTF-8') ?>
+                                                                                </option>
+                                                                            <?php endforeach; ?>
+                                                                        <?php else: ?>
+                                                                            <option value="">Sumber tidak tersedia</option>
+                                                                        <?php endif; ?>
+                                                                    </select>
                                                                 </div>
+
                                                                 <div class="col-md-4">
                                                                     <label>Indikasi Tahun Pelaksanaan</label>
                                                                 </div>
                                                                 <div class="col-md-8 form-group">
-                                                                    <textarea type="text" class="form-control" name="fname" value="#"></textarea>
+                                                                    <textarea type="text" class="form-control" name="indikasi_tahun_pelaksana_usulan" value="#" placeholder="Contoh: 2024,2025,2026"></textarea>
                                                                 </div>
-                                                                <!-- Input Isu -->
+                                                                <!-- Input Status -->
                                                                 <?php 
                                                                     $jenis="";
                                                                 if(isset($default['title_status_usulan'])) $jenis=$default['title_status_usulan'];
                                                                 ?>
                                                                 <div class="col-md-4">
-                                                                    <label>Status Review</label>
+                                                                    <label>Status Usulan</label>
                                                                 </div>
                                                                 <div class="col-md-8 form-group">
-                                                                    <select class="choices form-select" name="title_status_usulan" id="title_status_usulan">
+                                                                    <select class="choices form-select" name="status_usulan" id="title_status_usulan">
                                                                         <!-- Pastikan $level_akun ada dan bukan kosong -->
                                                                         <option value="Menunggu Verifikasi">Menunggu Verifikasi</option>
                                                                         <?php if (!empty($level_status_usulan)): ?>
@@ -281,7 +251,7 @@
 
                                                                 <div class="col-md-12 form-group" id="verification_input" style="display:none;">
                                                                     <label for="exampleFormControlTextarea1" class="form-label">Komentar</label>
-                                                                    <textarea type="text" class="form-control" name="verification_text" id="exampleFormControlTextarea1" rows="3" placeholder="Berikan komentar anda"></textarea>
+                                                                    <textarea type="text" class="form-control" name="komentar_usulan" id="exampleFormControlTextarea1" rows="3" placeholder="Berikan komentar anda"></textarea>
                                                                 </div>
 
                                                                 <?php elseif ($this->session->userdata('id_level_akun') === '4') : ?>
@@ -290,19 +260,19 @@
                                                                         <label>Maksud dan Tujuan</label>
                                                                     </div>
                                                                     <div class="col-md-8 form-group">
-                                                                        <textarea type="text" class="form-control" name="fname" value="#"></textarea>
+                                                                        <textarea type="text" class="form-control" name="manfaat_tujuan_usulan" value="#"></textarea>
                                                                     </div>
                                                                     <div class="col-md-4">
                                                                         <label>Indikasi Program</label>
                                                                     </div>
                                                                     <div class="col-md-8 form-group">
-                                                                        <textarea type="text" class="form-control" name="fname" value="#"></textarea>
+                                                                        <textarea type="text" class="form-control" name="indikasi_program_usulan" value="#"></textarea>
                                                                     </div>
                                                                     <div class="col-md-4">
                                                                         <label>Program</label>
                                                                     </div>
                                                                     <div class="col-md-8 form-group">
-                                                                        <textarea type="text" class="form-control" name="fname" value="#"></textarea>
+                                                                        <textarea type="text" class="form-control" name="program_usulan" value="#"></textarea>
                                                                     </div>
 
                                                                     <!-- Input Isu -->
@@ -313,7 +283,7 @@
                                                                         $jenis = isset($review_isu['title_instansi_pelaksana']) ? $review_isu['title_instansi_pelaksana'] : '';
                                                                     ?>
                                                                     <div class="col-md-8 form-group">
-                                                                        <select class="choices form-select" name="instansi_pelaksana_usulan">
+                                                                        <select class="choices form-select" name="title_opd">
                                                                             <!-- Pastikan $level_akun ada dan bukan kosong -->
                                                                             <option value="Instansi Belum Dipilih">Instansi belum dipilih</option>
                                                                             <?php if (!empty($level_instansi)): ?>
@@ -330,7 +300,7 @@
 
                                                                     <div class="col-md-12 form-group" id="verification_input" style="display:none;">
                                                                         <label for="exampleFormControlTextarea1" class="form-label">Komentar</label>
-                                                                        <textarea type="text" class="form-control" name="verification_text" id="exampleFormControlTextarea1" rows="3" placeholder="Berikan komentar anda"></textarea>
+                                                                        <textarea type="text" class="form-control" name="komentar_usulan" id="exampleFormControlTextarea1" rows="3" placeholder="Berikan komentar anda"></textarea>
                                                                     </div>
 
                                                                 <?php else : ?>

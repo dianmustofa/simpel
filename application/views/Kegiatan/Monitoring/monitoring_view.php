@@ -52,8 +52,8 @@
                                             <th>Isu</th>
                                             <th>Latitude</th>
                                             <th>Longitude</th>
-                                            <th>Status</th>
-                                            <th>Action</th>
+                                            <th>Tanggal Realisasi</th>
+                                            <th>Action</th>                                            
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -64,12 +64,13 @@
                                             $latitude = $row['latitude'];
                                             $longitude = $row['longitude'];
                                             $statusMonitoring = $row['status_monitoring'];
+                                            $tanggalrealisasiMonitoring = $row['tanggal_realisasi_monitoring'];
                                         ?>
                                             <tr>
                                                 <td><?= $titleIsu ?></td>
                                                 <td><?= $latitude ?></td>
                                                 <td><?= $longitude ?></td>
-                                                <td></td>
+                                                <td><?= $tanggalrealisasiMonitoring ?></td>
                                                 <td>
                                                     <!-- <span class="badge bg-info" style="cursor: pointer;">Detail</span> -->
                                                     <!-- <span class="badge bg-secondary" style="cursor: pointer;" data-bs-toggle="modal" data-bs-target="#xlarge">Review</span> -->
@@ -77,13 +78,15 @@
                                                         <span class="badge bg-secondary" style="cursor: pointer;">Update Hasil Monitoring</span>
                                                     </a> -->
 
-                                                    <?php if ($statusMonitoring === 'Selesai') : ?>
-                                                        <span class="badge bg-success" style="cursor: pointer;">Selesai</span>
+                                                    <?php if ($statusMonitoring === 'Dilaksanakan') : ?>
+                                                        <span class="badge bg-success">Dilaksanakan</span>
+                                                        <?php elseif ($statusMonitoring === 'Dilaksanakan bersyarat') : ?>
+                                                            <span class="badge bg-warning">Dilaksanakan bersyarat</span>
                                                     <?php else : ?>
+                                                        <span class="badge bg-danger">Sedang Proses</span>
                                                         <a href="<?php echo base_url(); ?>monitoring/review/<?= $idIsu ?>">
                                                             <span class="badge bg-secondary" style="cursor: pointer;">Update Hasil Monitoring</span>
                                                         </a>
-                                                        <span class="badge bg-danger" style="cursor: pointer;">Akan Dilaksanakan</span>
                                                     <?php endif; ?>
                                                 </td>
                                             </tr>

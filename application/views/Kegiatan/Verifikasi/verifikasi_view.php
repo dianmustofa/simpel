@@ -108,7 +108,7 @@
                                     </thead>
                                     <tbody>
 
-                                        <?php foreach ($usulan as $row) { 
+                                        <?php foreach ($verifikasi as $row) { 
                                             $idIsu = $row['id_isu'];
                                             $titleIsu = $row['title_isu'];
                                             $latitude = $row['latitude'];
@@ -122,12 +122,12 @@
                                                 <td>
                                                     <!-- <span class="badge bg-primary zoom-to" data-lat="<?= $latitude ?>" data-lng="<?= $longitude ?>" data-title="<?= $titleIsu ?>" style="cursor: pointer;">Zoom to</span> -->
                                                     <a href="<?php echo base_url(); ?>verifikasi/detail/<?= $idIsu ?>">
-                                                        <span class="badge bg-secondary" style="cursor: pointer;">Detail</span>
+                                                        <span class="badge bg-info" style="cursor: pointer;">Detail</span>
                                                     </a>
 
                                                     <!-- Tambahkan checkbox Setuju di sini -->
                                                     <div class="form-check" style="display: inline-block; margin-left: 10px;">
-                                                        <input class="form-check-input" type="checkbox" id="setuju_<?= $idIsu ?>" name="setuju_<?= $idIsu ?>">
+                                                        <input class="form-check-input setuju-checkbox" type="checkbox" id="setuju_<?= $idIsu ?>" data-id="<?= $idIsu ?>" value="1" <?= $row['setuju'] ? 'checked' : '' ?>>
                                                         <label class="form-check-label" for="setuju_<?= $idIsu ?>">
                                                             Setuju
                                                         </label>
@@ -161,6 +161,30 @@
 
                                     </tbody>
                                 </table>
+
+                                <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+                                <script>
+                                    $(document).ready(function() {
+                                        // Event listener untuk checkbox
+                                        $('.setuju-checkbox').on('change', function() {
+                                            var idIsu = $(this).data('id');
+                                            var setuju = $(this).is(':checked') ? 1 : 0;
+
+                                            // Kirim data menggunakan AJAX
+                                            $.ajax({
+                                                url: "<?php echo base_url(); ?>usulan/update_setuju_ajax",
+                                                method: "POST",
+                                                data: { id_isu: idIsu, setuju: setuju },
+                                                success: function(response) {
+                                                    console.log('Data berhasil disimpan');
+                                                },
+                                                error: function(xhr, status, error) {
+                                                    console.error('Terjadi kesalahan:', error);
+                                                }
+                                            });
+                                        });
+                                    });
+                                </script>
 
                                 <span class="btn btn-success" id="exportExcel" style="cursor: pointer;">Export ke Excel</span>
                             </div>

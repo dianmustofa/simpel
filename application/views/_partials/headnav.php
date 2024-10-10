@@ -13,8 +13,8 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <?php if ($this->session->userdata('logged_in')) : ?>
                     <?php if ($this->session->userdata('id_level_akun') === '1') : ?>
-                    <!-- <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-                        <li class="nav-item dropdown me-1">
+                    <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                        <!-- <li class="nav-item dropdown me-1">
                             <a class="nav-link active dropdown-toggle" href="#" data-bs-toggle="dropdown"
                                 aria-expanded="false">
                                 <i class='bi bi-envelope bi-sub fs-4 text-gray-600'></i>
@@ -37,8 +37,8 @@
                                 </li>
                                 <li><a class="dropdown-item">No notification available</a></li>
                             </ul>
-                        </li>
-                    </ul> -->
+                        </li> -->
+                    </ul>
                     
                     <div class="dropdown">
                         <a href="#" data-bs-toggle="dropdown" aria-expanded="false">
@@ -70,7 +70,7 @@
                     <?php elseif (in_array($this->session->userdata('id_level_akun'), [2, 4])) : ?>
 
                         <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-                            <li class="nav-item dropdown me-1">
+                            <!-- <li class="nav-item dropdown me-1">
                                 <a class="nav-link active dropdown-toggle" href="#" data-bs-toggle="dropdown"
                                     aria-expanded="false">
                                     <i class='bi bi-envelope bi-sub fs-4 text-gray-600'></i>
@@ -93,7 +93,7 @@
                                     </li>
                                     <li><a class="dropdown-item">No notification available</a></li>
                                 </ul>
-                            </li>
+                            </li> -->
                         </ul>
                         
                         <div class="dropdown">
@@ -127,7 +127,7 @@
                         <?php elseif ($this->session->userdata('id_level_akun') === '3') : ?>
 
                             <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-                                <li class="nav-item dropdown me-1">
+                                <!-- <li class="nav-item dropdown me-1">
                                     <a class="nav-link active dropdown-toggle" href="#" data-bs-toggle="dropdown"
                                         aria-expanded="false">
                                         <i class='bi bi-envelope bi-sub fs-4 text-gray-600'></i>
@@ -150,7 +150,7 @@
                                         </li>
                                         <li><a class="dropdown-item">No notification available</a></li>
                                     </ul>
-                                </li>
+                                </li> -->
                             </ul>
 
                             <div class="dropdown">

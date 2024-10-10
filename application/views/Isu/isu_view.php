@@ -102,7 +102,7 @@
                                                     ?>
                                                     <div class="form-group">
                                                         <label>Aspek</label>
-                                                        <select class="choices form-select" name="title_aspek" id="title_kategori" required>
+                                                        <select class="choices form-select" name="title_aspek" id="title_aspek" required>
                                                             <!-- Opsi default yang tidak bisa dipilih -->
                                                             <option value="" disabled selected>Pilih Aspek</option>
                                                             <!-- Pastikan $level_akun ada dan bukan kosong -->
@@ -119,47 +119,50 @@
                                                     </div>
 
                                                     <script>
-                                                        document.getElementById('title_kategori').addEventListener('change', function() {
+                                                        document.getElementById('title_aspek').addEventListener('change', function() {
                                                             var selectedValue = this.value;
                                                             var detailInput = document.getElementById('detail_pekerjaan');
                                                             var volumeInput = document.getElementById('volume_pekerjaan');
-                                                            var jumlahPekerjaInput = document.getElementById('jumlah_pekerja');
+                                                            var satuanInput = document.getElementById('satuan');
 
                                                             // Menyembunyikan kedua input terlebih dahulu
                                                             // volumeInput.style.display = 'none';
-                                                            // jumlahPekerjaInput.style.display = 'none';
+                                                            // satuanInput.style.display = 'none';
 
-                                                            // Menampilkan input sesuai dengan pilihan
-                                                            // if (selectedValue === 'Fisik') {
-                                                            //     detailInput.style.display = 'block';
-                                                            //     volumeInput.style.display = 'block';
-                                                            //     jumlahPekerjaInput.style.display = 'block';
-                                                            // } else {
-                                                            //     verificationInput.style.display = 'none';
-                                                            // }
                                                             if (selectedValue === 'Fisik') {
-                                                                detailInput.style.display = 'none'; // Sembunyikan input Detail
-                                                                volumeInput.style.display = 'block'; // Tampilkan Volume
-                                                                volumeInput.classList.add('col-md-6'); // Set jadi 50% dari row
-                                                                jumlahPekerjaInput.style.display = 'block'; // Tampilkan Satuan
-                                                                jumlahPekerjaInput.classList.add('col-md-6'); // Set jadi 50% dari row
+                                                                // Sembunyikan input Detail (tidak digunakan untuk Fisik)
+                                                                detailInput.style.display = 'none'; 
+
+                                                                // Tampilkan Volume dan Satuan (masing-masing 50% dari row)
+                                                                volumeInput.style.display = 'block'; 
+                                                                volumeInput.classList.add('col-md-6');
+                                                                volumeInput.classList.remove('col-md-4'); // Pastikan tidak 1/3
+
+                                                                satuanInput.style.display = 'block'; 
+                                                                satuanInput.classList.add('col-md-6');
+                                                                satuanInput.classList.remove('col-md-4'); // Pastikan tidak 1/3
+
                                                             } else if (['Sosial', 'Budaya', 'Ekonomi'].includes(selectedValue)) {
-                                                                detailInput.style.display = 'block'; // Tampilkan Detail
-                                                                detailInput.classList.remove('col-md-6'); // Set Detail jadi 33% dari row
-                                                                detailInput.classList.add('col-md-4'); // Tampilkan dengan proporsi 1/3
-                                                                volumeInput.style.display = 'block'; // Tampilkan Volume
-                                                                volumeInput.classList.remove('col-md-6'); // Ubah kembali Volume menjadi 33%
-                                                                volumeInput.classList.add('col-md-4');
-                                                                jumlahPekerjaInput.style.display = 'block'; // Tampilkan Satuan
-                                                                jumlahPekerjaInput.classList.remove('col-md-6'); // Ubah kembali Satuan menjadi 33%
-                                                                jumlahPekerjaInput.classList.add('col-md-4');
+                                                                // Tampilkan input Detail (1 row penuh)
+                                                                detailInput.style.display = 'block'; 
+                                                                detailInput.classList.add('col-md-12');  // Set Detail jadi 1 row penuh
+                                                                detailInput.classList.remove('col-md-4', 'col-md-6');  // Pastikan lebar 100%
+
+                                                                // Tampilkan Volume dan Satuan (masing-masing 33% dari row)
+                                                                volumeInput.style.display = 'block'; 
+                                                                volumeInput.classList.add('col-md-6');
+                                                                volumeInput.classList.remove('col-md-4', 'col-md-12'); // Set jadi 1/3 dari row
+
+                                                                satuanInput.style.display = 'block'; 
+                                                                satuanInput.classList.add('col-md-6');
+                                                                satuanInput.classList.remove('col-md-4', 'col-md-12'); // Set jadi 1/3 dari row
                                                             } else {
-                                                                // Sembunyikan semua input jika tidak sesuai dengan kategori
+                                                                // Sembunyikan semua input jika kategori tidak sesuai
                                                                 detailInput.style.display = 'none';
                                                                 volumeInput.style.display = 'none';
-                                                                jumlahPekerjaInput.style.display = 'none';
+                                                                satuanInput.style.display = 'none';
                                                             }
-                                                            
+
                                                         });
                                                     </script>
 
@@ -210,11 +213,12 @@
                                                     </div>
 
                                                     <div class="row">
+
                                                         <!-- Detail (hanya muncul untuk Sosial, Budaya, Ekonomi) -->
                                                         <div class="col-md-4 col-sm-12" id="detail_pekerjaan" style="display:none;">
                                                             <div class="form-group">
                                                                 <label>Detail</label>
-                                                                <input type="text" name="detail_pekerjaan" placeholder="" class="form-control" required>
+                                                                <textarea type="text" name="detail_pekerjaan" placeholder="" class="form-control" required></textarea>
                                                             </div>
                                                         </div>
 
@@ -227,30 +231,90 @@
                                                         </div>
 
                                                         <!-- Satuan (selalu muncul untuk Fisik dan opsi lainnya) -->
-                                                        <div class="col-md-6 col-sm-12" id="jumlah_pekerja" style="display:none;">
+                                                        <div class="col-md-6 col-sm-12" id="satuan" style="display:none;">
                                                             <div class="form-group">
                                                                 <label>Satuan</label>
-                                                                <input type="text" name="jumlah_pekerja" placeholder="" class="form-control" required>
+                                                                <input type="text" name="satuan" placeholder="" class="form-control" required>
                                                             </div>
                                                         </div>
+                                                        
                                                     </div>
 
+                                                    <!-- Input Kelurahan -->
+                                                    <?php 
+                                                        $jenis="";
+                                                    if(isset($default['title_kelurahan'])) $jenis=$default['title_kelurahan'];
+                                                    ?>
                                                     <div class="form-group">
                                                         <label>Kelurahan</label>
-                                                        <input type="text" name="title_isu" placeholder="" class="form-control" required>
+                                                        <!-- <input type="text" name="title_isu" placeholder="Isu Perencanaan" class="form-control" required> -->
+                                                        <select class="choices form-select" name="title_kelurahan" required>
+                                                            <!-- Opsi default yang tidak bisa dipilih -->
+                                                            <option value="" disabled selected>Pilih Kelurahan</option>
+                                                            <!-- Pastikan $level_akun ada dan bukan kosong -->
+                                                            <?php if (!empty($level_kelurahan)): ?>
+                                                                <?php foreach ($level_kelurahan as $row): ?>
+                                                                    <option value="<?= htmlspecialchars($row['title_kelurahan'], ENT_QUOTES, 'UTF-8') ?>">
+                                                                        <?= htmlspecialchars($row['title_kelurahan'], ENT_QUOTES, 'UTF-8') ?>
+                                                                    </option>
+                                                                <?php endforeach; ?>
+                                                            <?php else: ?>
+                                                                <option value="">Kelurahan tidak tersedia</option>
+                                                            <?php endif; ?>
+                                                        </select>
                                                     </div>
+
+                                                    <!-- Input No RW -->
+                                                    <?php 
+                                                        $jenis="";
+                                                    if(isset($default['title_rw'])) $jenis=$default['title_rw'];
+                                                    ?>
                                                     <div class="form-group">
-                                                        <label>RW</label>
-                                                        <input type="text" name="title_isu" placeholder="" class="form-control" required>
+                                                        <label>No RW</label>
+                                                        <!-- <input type="text" name="title_isu" placeholder="Isu Perencanaan" class="form-control" required> -->
+                                                        <select class="choices form-select" name="title_rw" required>
+                                                            <!-- Opsi default yang tidak bisa dipilih -->
+                                                            <option value="" disabled selected>Pilih No RW</option>
+                                                            <!-- Pastikan $level_akun ada dan bukan kosong -->
+                                                            <?php if (!empty($level_angka)): ?>
+                                                                <?php foreach ($level_angka as $row): ?>
+                                                                    <option value="<?= htmlspecialchars($row['title_angka'], ENT_QUOTES, 'UTF-8') ?>">
+                                                                        <?= htmlspecialchars($row['title_angka'], ENT_QUOTES, 'UTF-8') ?>
+                                                                    </option>
+                                                                <?php endforeach; ?>
+                                                            <?php else: ?>
+                                                                <option value="">Kelurahan tidak tersedia</option>
+                                                            <?php endif; ?>
+                                                        </select>
                                                     </div>
+
+                                                    <!-- Input No RT -->
+                                                    <?php 
+                                                        $jenis="";
+                                                    if(isset($default['title_rt'])) $jenis=$default['title_rt'];
+                                                    ?>
                                                     <div class="form-group">
-                                                        <label>RT</label>
-                                                        <input type="text" name="title_isu" placeholder="" class="form-control" required>
+                                                        <label>No RT</label>
+                                                        <!-- <input type="text" name="title_isu" placeholder="Isu Perencanaan" class="form-control" required> -->
+                                                        <select class="choices form-select" name="title_rt" required>
+                                                            <!-- Opsi default yang tidak bisa dipilih -->
+                                                            <option value="" disabled selected>Pilih No RT</option>
+                                                            <!-- Pastikan $level_akun ada dan bukan kosong -->
+                                                            <?php if (!empty($level_angka)): ?>
+                                                                <?php foreach ($level_angka as $row): ?>
+                                                                    <option value="<?= htmlspecialchars($row['title_angka'], ENT_QUOTES, 'UTF-8') ?>">
+                                                                        <?= htmlspecialchars($row['title_angka'], ENT_QUOTES, 'UTF-8') ?>
+                                                                    </option>
+                                                                <?php endforeach; ?>
+                                                            <?php else: ?>
+                                                                <option value="">Kelurahan tidak tersedia</option>
+                                                            <?php endif; ?>
+                                                        </select>
                                                     </div>
 
                                                     <div class="form-group">
                                                         <label>Alamat</label>
-                                                        <input type="text" name="title_isu" placeholder="" class="form-control" required>
+                                                        <input type="text" name="alamat_isu" placeholder="" class="form-control" required>
                                                     </div>
 
                                                     <!-- Input Pekerjaan -->
@@ -302,18 +366,18 @@
                                                     </div>
 
                                                     <!-- Upload multiple files -->
-                                                    <div class="mb-3">
+                                                    <!-- <div class="mb-3">
                                                         <label for="formFile" class="form-label">Upload Dokumen</label>
                                                         <span>(Maksimum Ukuran File : 50mb)</span>
                                                         <input class="form-control" type="file" id="formFileMultiple" name="formFileMultiple[]" multiple required>
-                                                    </div>
+                                                    </div> -->
 
                                                     <!-- Upload Foto -->
-                                                    <div class="mb-3">
+                                                    <!-- <div class="mb-3">
                                                         <label for="formFile" class="form-label">Upload Foto atau Gunakan Kamera</label>
                                                         <span>(Maksimum Ukuran File: 50MB)</span>
                                                         <input class="form-control" type="file" id="formFileMultiple" name="formFileMultiple[]" accept="image/*" capture="camera" multiple required>
-                                                    </div>
+                                                    </div> -->
 
                                                 </div>
 
@@ -324,9 +388,10 @@
                                                     </button>
                                                     <button type="submit" class="btn btn-primary">Simpan</button>
 
-                                                    </form>
+                                                    
                                                 </div>
-                                            
+
+                                                </form>
 
                                             <script>
                                                 var map1 = L.map('map1').setView([-6.233246, 106.837806], 13);
@@ -350,7 +415,7 @@
                                                     defaultMarkGeocode: false
                                                 }).on('markgeocode', function(e) {
                                                     var latlng = e.geocode.center;
-                                                    L.marker(latlng).addTo(map1)
+                                                    L.marker(latlng)
                                                         .bindPopup(e.geocode.name)
                                                         .openPopup();
                                                     map1.setView(latlng, 16); // Zoom in ketika lokasi ditemukan
@@ -485,10 +550,10 @@
                                 <table class="table table-striped" id="table1">
                                     <thead>
                                         <tr>
+                                            <th>Aspek</th>    
                                             <th>Isu</th>
-                                            <th>Latitude</th>
-                                            <th>Longitude</th>
-                                            <th>Status</th>
+                                            <th>Program</th>
+                                            <th>Koordinat</th>
                                             <th>Action</th>
                                         </tr>
                                     </thead>
@@ -496,19 +561,24 @@
 
                                         <?php foreach ($isu as $row) { 
                                             $idIsu = $row['id_isu'];
+                                            $titleAspek = $row['title_aspek'];
                                             $titleIsu = $row['title_isu'];
+                                            $titleJenis = $row['title_jenis'];
                                             $latitude = $row['latitude'];
                                             $longitude = $row['longitude'];
                                             $statusIsu = $row['status_isu'];
                                             $statusUsulan = $row['status_usulan'];
                                         ?>
                                             <tr>
+                                                <td><?= $titleAspek ?></td>
                                                 <td><?= $titleIsu ?></td>
-                                                <td><?= $latitude ?></td>
-                                                <td><?= $longitude ?></td>
-                                                <td><?= $statusIsu ?></td>
+                                                <td><?= $titleJenis ?></td>
+                                                <td><?= $latitude ?>, <?= $longitude ?></td>
                                                 <td>   
-                                                    <span class="badge bg-danger" style="cursor: pointer;">Hapus</span>
+                                                    <?php if (in_array($this->session->userdata('id_level_akun'), [2, 4])) : ?>
+                                                        <span class="badge bg-danger" style="cursor: pointer;">Hapus</span>
+                                                        <?php else : ?>
+                                                            <?php endif; ?>
 
                                                     <span class="badge bg-primary zoom-to" data-lat="<?= $latitude ?>" data-lng="<?= $longitude ?>" data-title="<?= $titleIsu ?>" style="cursor: pointer;">Zoom to</span>
                                                     
@@ -519,7 +589,7 @@
                                                     <?php if ($statusUsulan != Null) : ?>
                                                         <span class="badge bg-success">Proses <?= $statusUsulan ?></span>
                                                     <?php else : ?>
-                                                        <span class="badge bg-danger">Perlu perbaikan</span>
+                                                        <span class="badge bg-info">Menunggu Verifikasi</span>
                                                         <!-- <a href="<?php echo base_url(); ?>usulan/review/<?= $idIsu ?>">
                                                             <span class="badge bg-danger" style="cursor: pointer;">Perlu perbaikan</span>
                                                         </a> -->

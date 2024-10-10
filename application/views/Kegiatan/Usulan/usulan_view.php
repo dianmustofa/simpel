@@ -114,6 +114,7 @@
                                             $latitude = $row['latitude'];
                                             $longitude = $row['longitude'];
                                             $titleOPD = $row['title_opd'];
+                                            $statusUsulan = $row['status_usulan'];
                                         ?>
                                             <tr>
                                                 <td><?= $titleIsu ?></td>
@@ -126,14 +127,33 @@
                                                         <!-- <span class="badge bg-secondary" style="cursor: pointer;">Lanjutkan Usulan</span> -->
                                                     </a>
 
-                                                    <?php if ($titleOPD != Null) : ?>
-                                                        <span class="badge bg-success" style="cursor: pointer;">Sudah diteruskan ke <?= $titleOPD ?></span>
-                                                    <?php else : ?>
-                                                        <!-- <span class="badge bg-danger" style="cursor: pointer;">Lengkapi Usulan</span> -->
-                                                        <a href="<?php echo base_url(); ?>usulan/review/<?= $idIsu ?>">
-                                                            <span class="badge bg-danger" style="cursor: pointer;">Review Usulan</span>
-                                                        </a>
-                                                    <?php endif; ?>
+                                                    <?php if (in_array($this->session->userdata('id_level_akun'), [2, 4])) : ?>
+                                                        <?php if ($titleOPD != Null) : ?>
+                                                            <span class="badge bg-success">Diteruskan ke <?= $titleOPD ?></span>
+                                                        <?php else : ?>
+                                                            <!-- <span class="badge bg-danger" style="cursor: pointer;">Lengkapi Usulan</span> -->
+                                                            <a href="<?php echo base_url(); ?>usulan/review/<?= $idIsu ?>">
+                                                                <span class="badge bg-danger" style="cursor: pointer;">Review Usulan</span>
+                                                            </a>
+                                                        <?php endif; ?>
+
+                                                        <?php elseif ($this->session->userdata('id_level_akun') === '3') : ?>
+                                                            <?php if ($statusUsulan != Null) : ?>
+                                                                <span class="badge bg-success">Status <?= $statusUsulan ?></span>
+                                                            <?php else : ?>
+                                                                <!-- <span class="badge bg-danger" style="cursor: pointer;">Lengkapi Usulan</span> -->
+                                                                <a href="<?php echo base_url(); ?>usulan/review/<?= $idIsu ?>">
+                                                                    <span class="badge bg-danger" style="cursor: pointer;">Review Usulan</span>
+                                                                </a>
+                                                            <?php endif; ?>
+
+                                                            <?php else : ?>
+
+                                                                <p>Tidak memiliki akses</p>
+
+                                                                <?php endif; ?>
+
+                                                    
                                                 </td>
                                             </tr>
 
