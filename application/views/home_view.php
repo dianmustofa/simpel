@@ -3,7 +3,7 @@
 
 <head>
     
-    <title>Vertical Navbar - Mazer Admin Dashboard</title>
+    <title>SIMONTER - Home</title>
     <?php $this->load->view("_partials/head.php") ?>
     
     <!-- css -->

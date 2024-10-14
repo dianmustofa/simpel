@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Form Layout - Mazer Admin Dashboard</title>
+    <title>SIMONTER - Usulan review</title>
 
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;600;700;800&display=swap" rel="stylesheet">
@@ -52,7 +52,7 @@
                                 <nav aria-label="breadcrumb" class="breadcrumb-header float-start float-lg-end">
                                     <ol class="breadcrumb">
                                         <li class="breadcrumb-item"><a href="<?php echo base_url();?>dashboard">Dashboard</a></li>
-                                        <li class="breadcrumb-item active" aria-current="page">Form Layout</li>
+                                        <li class="breadcrumb-item active" aria-current="page">Usulan review</li>
                                     </ol>
                                 </nav>
                             </div>

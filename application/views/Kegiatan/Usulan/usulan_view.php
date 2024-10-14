@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-    <title>DataTable - Mazer Admin Dashboard</title>
+    <title>SIMONTER - Usulan</title>
     <?php $this->load->view("_partials/head.php") ?>
     
     <!-- css -->
