@@ -121,6 +121,18 @@
                                                             <textarea type="text" class="form-control" name="komentar_monitoring" id="exampleFormControlTextarea1" rows="3" placeholder="Berikan komentar anda"></textarea>
                                                         </div>
 
+                                                        <!-- Tambahkan upload gambar -->
+                                                        <div class="form-group">
+                                                            <label for="image">Upload Gambar</label>
+                                                            <input type="file" name="gambar_monitoring" id="image" accept="image/*" required>
+                                                        </div>
+
+                                                        <!-- Tambahkan upload dokumen -->
+                                                        <div class="form-group">
+                                                            <label for="document">Upload Dokumen</label>
+                                                            <input type="file" name="document_monitoring" id="document" accept=".pdf,.doc,.docx" required>
+                                                        </div>
+
                                                         <script>
                                                             document.getElementById('title_status_isu').addEventListener('change', function() {
                                                                 var selectedValue = this.value;

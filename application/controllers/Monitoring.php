@@ -32,6 +32,40 @@ class Monitoring extends CI_Controller {
 	}
 
 	public function update($id) {
+
+		// Load helper untuk upload
+        $this->load->helper(array('form', 'url'));
+
+        // Konfigurasi upload gambar
+        $config['upload_path'] = './uploads/images/';
+        $config['allowed_types'] = 'gif|jpg|png';
+        $config['max_size'] = 4048; // 2MB
+        $this->load->library('upload', $config);
+
+        // Proses upload gambar
+        if (!$this->upload->do_upload('gambar_monitoring')) {
+            $error = array('error' => $this->upload->display_errors());
+            // Handle error
+            echo $error['error'];
+            return;
+        } else {
+            $image_data = $this->upload->data();
+        }
+
+        // Konfigurasi upload dokumen
+        $config['upload_path'] = './uploads/documents/';
+        $config['allowed_types'] = 'pdf|doc|docx';
+        $this->upload->initialize($config);
+
+        if (!$this->upload->do_upload('document_monitoring')) {
+            $error = array('error' => $this->upload->display_errors());
+            // Handle error
+            echo $error['error'];
+            return;
+        } else {
+            $document_data = $this->upload->data();
+        }
+
 		// Cek apakah $id diberikan
 		if (!$this->session->userdata('id_akun')) {
 			notice('error', 'Anda belum login');
@@ -47,6 +81,8 @@ class Monitoring extends CI_Controller {
 				'realisasi_monitoring' => $this->input->post('realisasi_monitoring'),
 				'keterangan_monitoring' => $this->input->post('keterangan_monitoring'),
 				'komentar_monitoring' => $this->input->post('komentar_monitoring'),
+				'gambar_monitoring' => $image_data['file_name'],
+            	'document_monitoring' => $document_data['file_name'],
 			);
 			// Debug data yang diterima (opsional, untuk pengembangan)
 			// var_dump($data);
