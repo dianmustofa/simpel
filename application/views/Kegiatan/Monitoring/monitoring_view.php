@@ -34,7 +34,7 @@
                     <div class="page-title">
                         <div class="row">
                             <div class="col-12 col-md-6 order-md-1 order-last">
-                                <h3>Monitoring Perencanaan</h3>
+                                <h3>Monitoring Kegiatan</h3>
                                 <p class="text-subtitle text-muted">Berikut histori data informasi perencanaan lingkungan.</p>
                             </div>
 
@@ -80,8 +80,10 @@
 
                                                     <?php if ($statusMonitoring === 'Dilaksanakan') : ?>
                                                         <span class="badge bg-success">Dilaksanakan</span>
+                                                        <span class="badge bg-info" style="cursor: pointer;">Edit</span>
                                                         <?php elseif ($statusMonitoring === 'Dilaksanakan bersyarat') : ?>
                                                             <span class="badge bg-warning">Dilaksanakan bersyarat</span>
+                                                            <span class="badge bg-info" style="cursor: pointer;">Edit</span>
                                                     <?php else : ?>
                                                         <span class="badge bg-danger">Sedang Proses</span>
                                                         <a href="<?php echo base_url(); ?>monitoring/review/<?= $idIsu ?>">

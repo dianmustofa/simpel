@@ -188,6 +188,30 @@
                                                         </select>
                                                     </div>
 
+                                                    <!-- Input Pekerjaan -->
+                                                    <?php 
+                                                        $jenis="";
+                                                    if(isset($default['title_pekerjaan'])) $jenis=$default['title_pekerjaan'];
+                                                    ?>
+                                                    <div class="form-group">
+                                                        <label>Pekerjaan</label>
+                                                        <!-- <input type="text" name="title_isu" placeholder="Isu Perencanaan" class="form-control" required> -->
+                                                        <select class="choices form-select" name="title_pekerjaan" required>
+                                                            <!-- Opsi default yang tidak bisa dipilih -->
+                                                            <option value="" disabled selected>Pilih Pekerjaan</option>
+                                                            <!-- Pastikan $level_akun ada dan bukan kosong -->
+                                                            <?php if (!empty($level_pekerjaan)): ?>
+                                                                <?php foreach ($level_pekerjaan as $row): ?>
+                                                                    <option value="<?= htmlspecialchars($row['title_pekerjaan'], ENT_QUOTES, 'UTF-8') ?>">
+                                                                        <?= htmlspecialchars($row['title_pekerjaan'], ENT_QUOTES, 'UTF-8') ?>
+                                                                    </option>
+                                                                <?php endforeach; ?>
+                                                            <?php else: ?>
+                                                                <option value="">Isu tidak tersedia</option>
+                                                            <?php endif; ?>
+                                                        </select>
+                                                    </div>
+
                                                     <!-- Input Jenis -->
                                                     <?php 
                                                         $jenis="";
@@ -317,29 +341,7 @@
                                                         <input type="text" name="alamat_isu" placeholder="" class="form-control" required>
                                                     </div>
 
-                                                    <!-- Input Pekerjaan -->
-                                                    <?php 
-                                                        $jenis="";
-                                                    if(isset($default['title_pekerjaan'])) $jenis=$default['title_pekerjaan'];
-                                                    ?>
-                                                    <div class="form-group">
-                                                        <label>Pekerjaan</label>
-                                                        <!-- <input type="text" name="title_isu" placeholder="Isu Perencanaan" class="form-control" required> -->
-                                                        <select class="choices form-select" name="title_pekerjaan" required>
-                                                            <!-- Opsi default yang tidak bisa dipilih -->
-                                                            <option value="" disabled selected>Pilih Pekerjaan</option>
-                                                            <!-- Pastikan $level_akun ada dan bukan kosong -->
-                                                            <?php if (!empty($level_pekerjaan)): ?>
-                                                                <?php foreach ($level_pekerjaan as $row): ?>
-                                                                    <option value="<?= htmlspecialchars($row['title_pekerjaan'], ENT_QUOTES, 'UTF-8') ?>">
-                                                                        <?= htmlspecialchars($row['title_pekerjaan'], ENT_QUOTES, 'UTF-8') ?>
-                                                                    </option>
-                                                                <?php endforeach; ?>
-                                                            <?php else: ?>
-                                                                <option value="">Isu tidak tersedia</option>
-                                                            <?php endif; ?>
-                                                        </select>
-                                                    </div>
+                                                    
 
                                                     <!-- Input Aset Lahan -->
                                                     <?php 
@@ -365,19 +367,17 @@
                                                         </select>
                                                     </div>
 
-                                                    <!-- Upload multiple files -->
-                                                    <!-- <div class="mb-3">
-                                                        <label for="formFile" class="form-label">Upload Dokumen</label>
-                                                        <span>(Maksimum Ukuran File : 50mb)</span>
-                                                        <input class="form-control" type="file" id="formFileMultiple" name="formFileMultiple[]" multiple required>
-                                                    </div> -->
+                                                    <!-- Tambahkan upload gambar -->
+                                                    <div class="form-group">
+                                                        <label for="image">Upload Gambar</label>
+                                                        <input type="file" name="gambar_isu" id="image" accept="image/*" required>
+                                                    </div>
 
-                                                    <!-- Upload Foto -->
-                                                    <!-- <div class="mb-3">
-                                                        <label for="formFile" class="form-label">Upload Foto atau Gunakan Kamera</label>
-                                                        <span>(Maksimum Ukuran File: 50MB)</span>
-                                                        <input class="form-control" type="file" id="formFileMultiple" name="formFileMultiple[]" accept="image/*" capture="camera" multiple required>
-                                                    </div> -->
+                                                    <!-- Tambahkan upload dokumen -->
+                                                    <div class="form-group">
+                                                        <label for="document">Upload Dokumen</label>
+                                                        <input type="file" name="document_isu" id="document" accept=".pdf,.doc,.docx" required>
+                                                    </div>
 
                                                 </div>
 

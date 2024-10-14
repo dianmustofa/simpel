@@ -93,6 +93,39 @@ class Perencanaan extends CI_Controller {
 
 	public function simpan() {
 
+        // Load helper untuk upload
+        $this->load->helper(array('form', 'url'));
+
+        // Konfigurasi upload gambar
+        $config['upload_path'] = './uploads/images/';
+        $config['allowed_types'] = 'gif|jpg|png';
+        $config['max_size'] = 4048; // 2MB
+        $this->load->library('upload', $config);
+
+        // Proses upload gambar
+        if (!$this->upload->do_upload('gambar_isu')) {
+            $error = array('error' => $this->upload->display_errors());
+            // Handle error
+            echo $error['error'];
+            return;
+        } else {
+            $image_data = $this->upload->data();
+        }
+
+        // Konfigurasi upload dokumen
+        $config['upload_path'] = './uploads/documents/';
+        $config['allowed_types'] = 'pdf|doc|docx';
+        $this->upload->initialize($config);
+
+        if (!$this->upload->do_upload('document_isu')) {
+            $error = array('error' => $this->upload->display_errors());
+            // Handle error
+            echo $error['error'];
+            return;
+        } else {
+            $document_data = $this->upload->data();
+        }
+
         // Ambil data dari form
         $data = array(
             'id_akun' => $this->session->userdata('id_akun'),
@@ -114,9 +147,11 @@ class Perencanaan extends CI_Controller {
             'latitude' => $this->input->post('latitude'),
             'longitude' => $this->input->post('longitude'),
             // 'title_opd' => $this->input->post('title_opd')
+            'gambar_isu' => $image_data['file_name'],
+            'document_isu' => $document_data['file_name'],
         );
 
-        // Upload multiple files
+        // // Upload multiple files
         // $uploaded_files = $this->upload_files('formFileMultiple');
 
         // if ($uploaded_files) {
@@ -130,42 +165,42 @@ class Perencanaan extends CI_Controller {
         redirect('isu');
     }
 
-    // private function upload_files($input_name) {
-    //     $this->load->library('upload');
-    //     $files = $_FILES[$input_name];
-    //     $file_count = count($files['name']);
-    //     $uploaded_files = array();
+    private function upload_files($input_name) {
+        $this->load->library('upload');
+        $files = $_FILES[$input_name];
+        $file_count = count($files['name']);
+        $uploaded_files = array();
     
-    //     for ($i = 0; $i < $file_count; $i++) {
-    //         if (!empty($files['name'][$i])) {
-    //             $_FILES['file']['name'] = $files['name'][$i];
-    //             $_FILES['file']['type'] = $files['type'][$i];
-    //             $_FILES['file']['tmp_name'] = $files['tmp_name'][$i];
-    //             $_FILES['file']['error'] = $files['error'][$i];
-    //             $_FILES['file']['size'] = $files['size'][$i];
+        for ($i = 0; $i < $file_count; $i++) {
+            if (!empty($files['name'][$i])) {
+                $_FILES['file']['name'] = $files['name'][$i];
+                $_FILES['file']['type'] = $files['type'][$i];
+                $_FILES['file']['tmp_name'] = $files['tmp_name'][$i];
+                $_FILES['file']['error'] = $files['error'][$i];
+                $_FILES['file']['size'] = $files['size'][$i];
     
-    //             $config['upload_path'] = './uploads/'; // Folder upload
-    //             $config['allowed_types'] = 'jpg|jpeg|png|pdf|docx'; // Tipe file yang diizinkan
-    //             $config['max_size'] = 2048; // Ukuran maksimal file 2MB
-    //             $config['file_name'] = time() . '_' . $i; // Nama file
+                $config['upload_path'] = './uploads/'; // Folder upload
+                $config['allowed_types'] = 'jpg|jpeg|png|pdf|docx'; // Tipe file yang diizinkan
+                $config['max_size'] = 2048; // Ukuran maksimal file 2MB
+                $config['file_name'] = time() . '_' . $i; // Nama file
     
-    //             $this->upload->initialize($config);
+                $this->upload->initialize($config);
     
-    //             if ($this->upload->do_upload('file')) {
-    //                 $uploaded_files[] = $this->upload->data('file_name');
-    //             } else {
-    //                 // Jika file tidak sesuai format, simpan pesan error
-    //                 $error_messages[] = $this->upload->display_errors();
-    //             }
-    //         }
-    //     }
+                if ($this->upload->do_upload('file')) {
+                    $uploaded_files[] = $this->upload->data('file_name');
+                } else {
+                    // Jika file tidak sesuai format, simpan pesan error
+                    $error_messages[] = $this->upload->display_errors();
+                }
+            }
+        }
 
-    //     // Jika ada error, simpan ke flashdata untuk ditampilkan di view
-    //     if (!empty($error_messages)) {
-    //         $this->session->set_flashdata('upload_errors', implode(', ', $error_messages));
-    //     }
+        // Jika ada error, simpan ke flashdata untuk ditampilkan di view
+        if (!empty($error_messages)) {
+            $this->session->set_flashdata('upload_errors', implode(', ', $error_messages));
+        }
     
-    //     return $uploaded_files;
-    // }
+        return $uploaded_files;
+    }
 
 }

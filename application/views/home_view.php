@@ -128,7 +128,7 @@
                                 $latitude = $row['latitude'];
                                 $longitude = $row['longitude'];
                                 $statusIsu = $row['status_isu'];
-                                $gambarIsu = $row['gambar'];
+                                $gambarIsu = $row['gambar_isu'];
                                 $detailPekerjaan = $row['detail_pekerjaan'];
                             ?>
 

@@ -75,14 +75,45 @@
                     <section class="section">
                         <div class="card">
                             <div class="card-header">
-                                <h4>Progress Label</h4>
+                                <h4>Progress</h4>
                             </div>
                             <div class="card-body">
                                 <p>Use class to add different colors to progressbar.
                                 </p>
                                 <div class="progress progress-primary  mb-4">
-                                    <div class="progress-bar progress-label" role="progressbar" style="width: 35%"
-                                        aria-valuenow="35" aria-valuemin="0" aria-valuemax="100"></div>
+
+                                    <?php
+                                        // Ambil status dari kolom database atau variabel PHP
+                                        $status = 'Isu Dilaksanakan'; // Contoh, ini bisa berasal dari database
+                                    ?>
+                                
+                                    <div id="progressBar" class="progress-bar progress-label" role="progressbar" style="width: 35%" aria-valuenow="35" aria-valuemin="0" aria-valuemax="100"></div>
+
+                                    <script>
+                                        // Ambil status dari PHP
+                                        var status = "<?php echo $status; ?>"; // Mengirim nilai PHP ke JavaScript
+
+                                        function updateProgressBar(status) {
+                                            var progressBar = document.getElementById('progressBar');
+                                            var progress = 0;
+                                            
+                                            if (status === 'Isu Dilaksanakan') {
+                                            progress = 70; // Misal 70% untuk status ini
+                                            } else if (status === 'Usulan Dilanjutkan') {
+                                            progress = 50; // Misal 50% untuk status ini
+                                            } else {
+                                            progress = 35; // Default value
+                                            }
+
+                                            // Update progress bar
+                                            progressBar.style.width = progress + '%';
+                                            progressBar.setAttribute('aria-valuenow', progress);
+                                        }
+
+                                        // Contoh penggunaan fungsi
+                                        updateProgressBar('Isu Dilaksanakan'); // Kamu bisa mengganti status di sini
+                                    </script>
+
                                 </div>
                             </div>
                         </div>
@@ -135,14 +166,7 @@
                                                         </div>
                                                         <div class="col-md-8 form-group">
                                                             <input type="text" id="readonlyInput" readonly="readonly" class="form-control"
-                                                                name="fname" value="You can't update me :P">
-                                                        </div>
-                                                        <div class="col-md-4">
-                                                            <label>Sumber</label>
-                                                        </div>
-                                                        <div class="col-md-8 form-group">
-                                                            <input type="text" id="readonlyInput" readonly="readonly" class="form-control"
-                                                                name="fname" value="<?php echo $review_isu['title_sumber'];?>">
+                                                                name="fname" value="<?php echo $review_isu['detail_pekerjaan'];?>">
                                                         </div>
                                                         <div class="col-md-4">
                                                             <label>Aset Lahan</label>
@@ -156,28 +180,28 @@
                                                         </div>
                                                         <div class="col-md-8 form-group">
                                                             <input type="text" id="readonlyInput" readonly="readonly" class="form-control"
-                                                                name="fname" value="You can't update me :P">
+                                                                name="fname" value="<?php echo $review_isu['title_kecamatan'];?>">
                                                         </div>
                                                         <div class="col-md-4">
                                                             <label>Kelurahan</label>
                                                         </div>
                                                         <div class="col-md-8 form-group">
                                                             <input type="text" id="readonlyInput" readonly="readonly" class="form-control"
-                                                                name="fname" value="You can't update me :P">
+                                                                name="fname" value="<?php echo $review_isu['title_kelurahan'];?>">
                                                         </div>
                                                         <div class="col-md-4">
                                                             <label>No RW</label>
                                                         </div>
                                                         <div class="col-md-8 form-group">
                                                             <input type="text" id="readonlyInput" readonly="readonly" class="form-control"
-                                                                name="fname" value="You can't update me :P">
+                                                                name="fname" value="<?php echo $review_isu['title_rw'];?>">
                                                         </div>
                                                         <div class="col-md-4">
                                                             <label>No RT</label>
                                                         </div>
                                                         <div class="col-md-8 form-group">
                                                             <input type="text" id="readonlyInput" readonly="readonly" class="form-control"
-                                                                name="fname" value="You can't update me :P">
+                                                                name="fname" value="<?php echo $review_isu['title_rt'];?>">
                                                         </div>
                                                         <div class="col-md-4">
                                                             <label>Latitude</label>
@@ -200,64 +224,6 @@
                                                             <input type="text" id="readonlyInput" readonly="readonly" class="form-control"
                                                                 name="fname" value="<?php echo $review_isu['last_created_date'];?>">
                                                         </div>
-                                                        <div class="col-md-4">
-                                                            <label>Dokumentasi</label>
-                                                        </div>
-                                                        <div class="col-md-8 form-group">
-                                                            <input type="text" id="readonlyInput" readonly="readonly" class="form-control"
-                                                                name="fname" value="You can't update me :P">
-                                                        </div>
-
-                                                        <!-- Input Isu -->
-                                                        <div class="col-md-4">
-                                                            <label>Instansi Tujuan</label>
-                                                        </div>
-                                                        <?php 
-                                                            $jenis = isset($review_isu['title_instansi_pelaksana']) ? $review_isu['title_instansi_pelaksana'] : '';
-                                                        ?>
-                                                        <div class="col-md-8 form-group">
-                                                            <select class="choices form-select" name="instansi_pelaksana_usulan">
-                                                                <!-- Pastikan $level_akun ada dan bukan kosong -->
-                                                                <option value="Instansi Belum Dipilih">Instansi belum dipilih</option>
-                                                                <?php if (!empty($level_instansi)): ?>
-                                                                    <?php foreach ($level_instansi as $row): ?>
-                                                                        <option value="<?= htmlspecialchars($row['title_instansi_pelaksana'], ENT_QUOTES, 'UTF-8') ?>" <?php if($row["title_instansi_pelaksana"] == $jenis) echo "selected";?>>
-                                                                            <?= htmlspecialchars($row['title_instansi_pelaksana'], ENT_QUOTES, 'UTF-8') ?>
-                                                                        </option>
-                                                                    <?php endforeach; ?>
-                                                                <?php else: ?>
-                                                                    <option value="">Instansi tidak tersedia</option>
-                                                                <?php endif; ?>
-                                                            </select>
-                                                        </div>
-
-                                                        <!-- Input Isu -->
-                                                        <div class="col-md-4">
-                                                            <label>Status Review Isu</label>
-                                                        </div>
-                                                        <?php 
-                                                            $jenis = isset($review_isu['title_status_isu']) ? $review_isu['title_status_isu'] : '';
-                                                        ?>
-                                                        <div class="col-md-8 form-group">
-                                                            <select class="choices form-select" name="status_isu" id="title_status_isu">
-                                                                <!-- Pastikan $level_akun ada dan bukan kosong -->
-                                                                <option value="Menunggu Verifikasi">Menunggu Verifikasi</option>
-                                                                <?php if (!empty($level_status_isu)): ?>
-                                                                    <?php foreach ($level_status_isu as $row): ?>
-                                                                        <option value="<?= htmlspecialchars($row['title_status_isu'], ENT_QUOTES, 'UTF-8') ?>" <?php if($row["title_status_isu"] == $jenis) echo "selected";?>>
-                                                                            <?= htmlspecialchars($row['title_status_isu'], ENT_QUOTES, 'UTF-8') ?>
-                                                                        </option>
-                                                                    <?php endforeach; ?>
-                                                                <?php else: ?>
-                                                                    <option value="">Isu tidak tersedia</option>
-                                                                <?php endif; ?>
-                                                            </select>
-                                                        </div>
-
-                                                        <div class="col-md-12 form-group" id="verification_input" style="display:none;">
-                                                            <label for="exampleFormControlTextarea1" class="form-label">Komentar</label>
-                                                            <textarea type="text" class="form-control" name="verification_text" id="exampleFormControlTextarea1" rows="3" placeholder="Berikan komentar anda"></textarea>
-                                                        </div>
 
                                                         <script>
                                                             document.getElementById('title_status_isu').addEventListener('change', function() {
@@ -272,12 +238,6 @@
                                                             });
                                                         </script>
 
-                                                        <div class="col-sm-12 d-flex justify-content-end">
-                                                            <button type="submit"
-                                                                class="btn btn-primary me-1 mb-1">Submit</button>
-                                                            <button type="reset"
-                                                                class="btn btn-light-secondary me-1 mb-1">Reset</button>
-                                                        </div>
                                                     </div>
                                                 </div>
                                             </form>
@@ -350,7 +310,7 @@
                                         <div class="card-body">
                                             <form class="form form-horizontal">
                                                 <div class="form-body">
-                                                    <img src="<?php echo base_url();?>assets/images/samples/<?php echo $review_isu['gambar'];?>" alt="" width="100%">
+                                                    <img src="<?php echo base_url();?>assets/images/samples/<?php echo $review_isu['gambar_isu'];?>" alt="" width="100%">
                                                 </div>
                                             </form>
                                         </div>
