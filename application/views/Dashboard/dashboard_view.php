@@ -29,7 +29,7 @@
             <div id="main-content">
 
                 <div class="page-heading">
-                    <h3>Profile Statistics</h3>
+                    <h3>Dashboard</h3>
                 </div>
                 <div class="page-content">
                     <section class="row">
@@ -184,7 +184,7 @@
                                 <div class="col-12">
                                     <div class="card">
                                         <div class="card-header">
-                                            <h4>Profile Visit</h4>
+                                            <h4>Grafik Kegiatan</h4>
                                         </div>
                                         <div class="card-body">
                                             <div id="chart-profile-visit"></div>
@@ -230,6 +230,7 @@
         // Parsing dan mengelompokkan data
         var categories = [];
         var salesCounts = [];
+        var otherCounts = []; // Dataset kedua
 
         // Mengelompokkan data berdasarkan bulan
         statistikData.forEach(function(item) {
@@ -237,6 +238,7 @@
             var options = { year: 'numeric', month: 'short' };
             categories.push(date.toLocaleDateString('en-US', options)); // Format: "Sep 2024"
             salesCounts.push(parseInt(item.sales_count)); // Menyimpan jumlah penjualan untuk bulan yang sesuai
+            otherCounts.push(parseInt(item.other_count)); // Dataset kedua, sesuaikan dengan nama field data lain
         });
 
         var optionsProfileVisit = {
@@ -259,17 +261,26 @@
                 }
             },
             series: [{
-                name: 'sales',
+                name: 'Isu Lingkungan',
                 data: salesCounts
+            }, {
+                name: 'Usulan', // Nama dataset kedua
+                data: otherCounts
             }],
-            colors: '#435ebe',
+            colors: ['#435ebe', '#f57c00'], // Warna batang untuk tiap dataset
             xaxis: {
                 categories: categories,
             },
         }
+
         var chartProfileVisit = new ApexCharts(document.querySelector("#chart-profile-visit"), optionsProfileVisit);
         chartProfileVisit.render();
     </script>
+
+<script>
+    var statistikData = <?php echo json_encode($statistik); ?>;
+    console.log(statistikData); // Tambahkan log untuk melihat data yang diterima di JavaScript
+</script>
 
     <script src="<?php echo base_url();?>assets/js/main.js"></script>
     

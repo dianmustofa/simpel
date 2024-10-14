@@ -31,7 +31,11 @@ class Dashboard extends CI_Controller {
 		$data['usulan'] = $this->Dashboard_model->load_usulan();
 		$data['monitor'] = $this->Dashboard_model->load_monitor();
 		// statistik
-		$data['statistik'] = $this->Dashboard_model->load_statistik();
+		if ($this->session->userdata('id_level_akun') === '1' || $this->session->userdata('id_level_akun') === '2' || $this->session->userdata('id_level_akun') === '4'){
+			$data['statistik'] = $this->Dashboard_model->load_statistik();
+		} else {
+			$data['statistik'] = $this->Dashboard_model->load_statistik_skpd();
+		}
 
 		$this->load->view('Dashboard/dashboard_view', $data);
 	}
