@@ -37,7 +37,7 @@
                 <li class="sidebar-item">
                     <a href="<?php echo base_url();?>isu" class='sidebar-link'>
                         <i class="bi bi-stack"></i>
-                        <span>Isu</span>
+                        <span>Isu Lingkungan</span>
                     </a>
                 </li>
 
@@ -85,7 +85,7 @@
                     <li class="sidebar-item">
                         <a href="<?php echo base_url();?>isu" class='sidebar-link'>
                             <i class="bi bi-stack"></i>
-                            <span>Isu</span>
+                            <span>Isu Lingkungan</span>
                         </a>
                     </li>
 

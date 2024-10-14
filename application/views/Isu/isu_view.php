@@ -54,7 +54,7 @@
                                         <li class="breadcrumb-item">
                                             <button type="button" class="btn btn-outline-success" data-bs-toggle="modal"
                                             data-bs-target="#exampleModalScrollable">
-                                                + Ajukan Permohonan
+                                                + Ajukan Kegiatan
                                             </button>
                                         </li>
                                     </ol>
@@ -65,7 +65,7 @@
                                     <div class="modal-dialog modal-dialog-scrollable" role="document">
                                         <div class="modal-content">
                                             <div class="modal-header">
-                                                <h5 class="modal-title" id="exampleModalScrollableTitle">Form Ajuan Perencanaan</h5>
+                                                <h5 class="modal-title" id="exampleModalScrollableTitle">Form Ajuan Kegiatan</h5>
                                                 <button type="button" class="close" data-bs-dismiss="modal"
                                                     aria-label="Close">
                                                     <i data-feather="x"></i>
@@ -218,7 +218,7 @@
                                                     if(isset($default['title_jenis'])) $jenis=$default['title_jenis'];
                                                     ?>
                                                     <div class="form-group">
-                                                        <label>Program</label>
+                                                        <label>Program / Kegiatan</label>
                                                         <!-- <input type="text" name="title_isu" placeholder="Isu Perencanaan" class="form-control" required> -->
                                                         <select class="choices form-select" name="title_jenis" required>
                                                             <!-- Opsi default yang tidak bisa dipilih -->
@@ -483,7 +483,7 @@
                             <div class="col-12">
                                 <div class="card">
                                     <div class="card-header">
-                                        <h5 class="card-title">Peta Lokasi Perencanaan</h5>
+                                        <h5 class="card-title">Peta Lokasi Kegiatan</h5>
                                     </div>
                                     <div class="card-body">
                                         <div id="map"></div>
@@ -544,17 +544,21 @@
                     <section class="section">
                         <div class="card">
                             <div class="card-header">
-                                Simple Datatable
+                                Daftar Pengajuan
                             </div>
                             <div class="card-body">
                                 <table class="table table-striped" id="table1">
                                     <thead>
                                         <tr>
-                                            <th>Aspek</th>    
-                                            <th>Isu</th>
+                                            <!-- <th>Aspek</th>     -->
+                                            <th>Isu Lingkungan</th>
                                             <th>Program</th>
-                                            <th>Koordinat</th>
+                                            <th>Alamat</th>
+                                            <th>Kelurahan</th>
+                                            <th>RW</th>
+                                            <th>RT</th>
                                             <th>Action</th>
+                                            <th></th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -566,14 +570,22 @@
                                             $titleJenis = $row['title_jenis'];
                                             $latitude = $row['latitude'];
                                             $longitude = $row['longitude'];
+                                            $alamatIsu = $row['alamat_isu'];
+                                            $titleKelurahan = $row['title_kelurahan'];
+                                            $titleRW = $row['title_rw'];
+                                            $titleRT = $row['title_rt'];
                                             $statusIsu = $row['status_isu'];
+                                            $komentarUsulan = $row['komentar_usulan'];
                                             $statusUsulan = $row['status_usulan'];
                                         ?>
                                             <tr>
-                                                <td><?= $titleAspek ?></td>
+                                                <!-- <td><?= $titleAspek ?></td> -->
                                                 <td><?= $titleIsu ?></td>
                                                 <td><?= $titleJenis ?></td>
-                                                <td><?= $latitude ?>, <?= $longitude ?></td>
+                                                <td><?= $alamatIsu ?></td>
+                                                <td><?= $titleKelurahan ?></td>
+                                                <td><?= $titleRW ?></td>
+                                                <td><?= $titleRT ?></td>
                                                 <td>   
                                                     <?php if (in_array($this->session->userdata('id_level_akun'), [2, 4])) : ?>
                                                         <span class="badge bg-danger" style="cursor: pointer;">Hapus</span>
@@ -587,7 +599,8 @@
                                                     </a> -->
 
                                                     <?php if ($statusUsulan != Null) : ?>
-                                                        <span class="badge bg-success">Proses <?= $statusUsulan ?></span>
+                                                        <span class="badge bg-success"><?= $statusUsulan ?></span>
+                                                        <!-- <span><?= $komentarUsulan ?></span> -->
                                                     <?php else : ?>
                                                         <span class="badge bg-info">Menunggu Verifikasi</span>
                                                         <!-- <a href="<?php echo base_url(); ?>usulan/review/<?= $idIsu ?>">
@@ -595,6 +608,7 @@
                                                         </a> -->
                                                     <?php endif; ?>
                                                 </td>
+                                                <td><?= $komentarUsulan ?></td>
                                             </tr>
 
                                             <script>

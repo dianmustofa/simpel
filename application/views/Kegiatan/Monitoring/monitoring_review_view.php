@@ -270,13 +270,13 @@
                                                                 name="fname" value="You can't update me :P"></textarea>
                                                         </div>
                                                     </div>
-                                                    <div class="col-md-6 col-12">
+                                                    <!-- <div class="col-md-6 col-12">
                                                         <div class="form-group">
                                                             <label for="email-id-column">Sumber</label>
                                                             <input type="text" id="readonlyInput" readonly="readonly" class="form-control"
                                                                 name="fname" value="<?php echo $review_isu['title_sumber'];?>">
                                                         </div>
-                                                    </div>
+                                                    </div> -->
                                                     <div class="col-md-6 col-12">
                                                         <div class="form-group">
                                                             <label for="email-id-column">Aset Lahan</label>

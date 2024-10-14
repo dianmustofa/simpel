@@ -75,7 +75,7 @@
                                                     <?php if ($this->session->userdata('logged_in')) : ?>
                                                         <?php if ($this->session->userdata('id_level_akun') === '1') : ?>
                                                         <div class="col-md-4">
-                                                            <label>Maksud dan Tujuan</label>
+                                                            <label>Manfaat dan Tujuan</label>
                                                         </div>
                                                         <div class="col-md-8 form-group">
                                                             <textarea type="text" class="form-control" name="manfaat_tujuan_usulan" value="#"></textarea>
@@ -150,7 +150,7 @@
                                                         <?php elseif ($this->session->userdata('id_level_akun') === '2') : ?>
 
                                                             <div class="col-md-4">
-                                                                <label>Maksud dan Tujuan</label>
+                                                                <label>Manfaat dan Tujuan</label>
                                                             </div>
                                                             <div class="col-md-8 form-group">
                                                                 <textarea type="text" class="form-control" name="manfaat_tujuan_usulan" value="#"></textarea>
@@ -177,7 +177,7 @@
                                                             <?php elseif ($this->session->userdata('id_level_akun') === '3') : ?>
 
                                                                 <div class="col-md-4">
-                                                                    <label>Maksud dan Tujuan</label>
+                                                                    <label>Manfaat dan Tujuan</label>
                                                                 </div>
                                                                 <div class="col-md-8 form-group">
                                                                     <textarea type="text" class="form-control" value="<?php echo $review_isu['manfaat_tujuan_usulan'];?>" readonly><?php echo $review_isu['manfaat_tujuan_usulan'];?></textarea>
@@ -257,7 +257,7 @@
                                                                 <?php elseif ($this->session->userdata('id_level_akun') === '4') : ?>
 
                                                                     <div class="col-md-4">
-                                                                        <label>Maksud dan Tujuan</label>
+                                                                        <label>Manfaat dan Tujuan</label>
                                                                     </div>
                                                                     <div class="col-md-8 form-group">
                                                                         <textarea type="text" class="form-control" name="manfaat_tujuan_usulan" value="#"></textarea>
@@ -449,13 +449,13 @@
                                                                 name="fname" value="You can't update me :P"></textarea>
                                                         </div>
                                                     </div>
-                                                    <div class="col-md-6 col-12">
+                                                    <!-- <div class="col-md-6 col-12">
                                                         <div class="form-group">
                                                             <label for="email-id-column">Sumber</label>
                                                             <input type="text" id="readonlyInput" readonly="readonly" class="form-control"
                                                                 name="fname" value="<?php echo $review_isu['title_sumber'];?>">
                                                         </div>
-                                                    </div>
+                                                    </div> -->
                                                     <div class="col-md-6 col-12">
                                                         <div class="form-group">
                                                             <label for="email-id-column">Aset Lahan</label>

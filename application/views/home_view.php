@@ -106,9 +106,9 @@
                                 <nav aria-label="breadcrumb" class="breadcrumb-header float-start float-lg-end">
                                     <ol class="breadcrumb">
                                     <?php if ($this->session->userdata('logged_in')) : ?>
-                                        <li class="breadcrumb-item"><a href="<?php echo base_url();?>isu" class="btn btn-primary">+ Ajukan Perencanaan</a></li>
+                                        <li class="breadcrumb-item"><a href="<?php echo base_url();?>isu" class="btn btn-primary">+ Ajukan Kegiatan</a></li>
                                         <?php else : ?>
-                                            <li class="breadcrumb-item"><a href="<?php echo base_url();?>auth" class="btn btn-primary">+ Ajukan Perencanaan</a></li>
+                                            <li class="breadcrumb-item"><a href="<?php echo base_url();?>auth" class="btn btn-primary">+ Ajukan Kegiatan</a></li>
                                             <?php endif; ?>
                                     </ol>
                                 </nav>

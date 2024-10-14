@@ -100,9 +100,12 @@
                                 <table class="table table-striped" id="table1">
                                     <thead>
                                         <tr>
-                                            <th>Isu</th>
-                                            <th>Latitude</th>
-                                            <th>Longitude</th>
+                                            <th>Isu Lingkungan</th>
+                                            <th>Program</th>
+                                            <th>Alamat</th>
+                                            <th>Kelurahan</th>
+                                            <th>RW</th>
+                                            <th>RT</th>
                                             <th>Action</th>
                                         </tr>
                                     </thead>
@@ -113,12 +116,20 @@
                                             $titleIsu = $row['title_isu'];
                                             $latitude = $row['latitude'];
                                             $longitude = $row['longitude'];
+                                            $titleJenis = $row['title_jenis'];
+                                            $alamatIsu = $row['alamat_isu'];
+                                            $titleKelurahan = $row['title_kelurahan'];
+                                            $titleRW = $row['title_rw'];
+                                            $titleRT = $row['title_rt'];
                                             $titleOPD = $row['title_opd'];
                                         ?>
                                             <tr>
                                                 <td><?= $titleIsu ?></td>
-                                                <td><?= $latitude ?></td>
-                                                <td><?= $longitude ?></td>
+                                                <td><?= $titleJenis ?></td>
+                                                <td><?= $alamatIsu ?></td>
+                                                <td><?= $titleKelurahan ?></td>
+                                                <td><?= $titleRW ?></td>
+                                                <td><?= $titleRT ?></td>
                                                 <td>
                                                     <!-- <span class="badge bg-primary zoom-to" data-lat="<?= $latitude ?>" data-lng="<?= $longitude ?>" data-title="<?= $titleIsu ?>" style="cursor: pointer;">Zoom to</span> -->
                                                     <a href="<?php echo base_url(); ?>verifikasi/detail/<?= $idIsu ?>">

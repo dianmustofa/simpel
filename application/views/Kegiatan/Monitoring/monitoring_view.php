@@ -43,15 +43,18 @@
                     <section class="section">
                         <div class="card">
                             <div class="card-header">
-                                Simple Datatable
+                                Daftar Monitoring
                             </div>
                             <div class="card-body">
                                 <table class="table table-striped" id="table1">
                                     <thead>
                                         <tr>
-                                            <th>Isu</th>
-                                            <th>Latitude</th>
-                                            <th>Longitude</th>
+                                            <th>Isu Lingkungan</th>
+                                            <th>Program</th>
+                                            <th>Alamat</th>
+                                            <th>Kelurahan</th>
+                                            <th>RW</th>
+                                            <th>RT</th>
                                             <th>Tanggal Realisasi</th>
                                             <th>Action</th>                                            
                                         </tr>
@@ -63,13 +66,21 @@
                                             $titleIsu = $row['title_isu'];
                                             $latitude = $row['latitude'];
                                             $longitude = $row['longitude'];
+                                            $titleJenis = $row['title_jenis'];
+                                            $alamatIsu = $row['alamat_isu'];
+                                            $titleKelurahan = $row['title_kelurahan'];
+                                            $titleRW = $row['title_rw'];
+                                            $titleRT = $row['title_rt'];
                                             $statusMonitoring = $row['status_monitoring'];
                                             $tanggalrealisasiMonitoring = $row['tanggal_realisasi_monitoring'];
                                         ?>
                                             <tr>
                                                 <td><?= $titleIsu ?></td>
-                                                <td><?= $latitude ?></td>
-                                                <td><?= $longitude ?></td>
+                                                <td><?= $titleJenis ?></td>
+                                                <td><?= $alamatIsu ?></td>
+                                                <td><?= $titleKelurahan ?></td>
+                                                <td><?= $titleRW ?></td>
+                                                <td><?= $titleRT ?></td>
                                                 <td><?= $tanggalrealisasiMonitoring ?></td>
                                                 <td>
                                                     <!-- <span class="badge bg-info" style="cursor: pointer;">Detail</span> -->

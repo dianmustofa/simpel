@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-    <title>Vertical Navbar - Mazer Admin Dashboard</title>
+    <title>SIMONTER - Tentang Kami</title>
     <?php $this->load->view("_partials/head.php") ?>
     
     <!-- css -->
@@ -29,13 +29,13 @@
                         <div class="row">
                             <div class="col-12 col-md-6 order-md-1 order-last">
                                 <h3>Tentang Kami</h3>
-                                <p class="text-subtitle text-muted">Navbar will appear in top of the page.</p>
+                                <p class="text-subtitle text-muted">Sistem Informasi Monitoring Terintegrasi Community Action Plan dan Collaborative Implementation Program.</p>
                             </div>
                             <div class="col-12 col-md-6 order-md-2 order-first">
                                 <nav aria-label="breadcrumb" class="breadcrumb-header float-start float-lg-end">
                                     <ol class="breadcrumb">
                                         <li class="breadcrumb-item"><a href="index.html">Dashboard</a></li>
-                                        <li class="breadcrumb-item active" aria-current="page">Layout Vertical Navbar
+                                        <li class="breadcrumb-item active" aria-current="page">Tentang kami
                                         </li>
                                     </ol>
                                 </nav>
@@ -45,20 +45,32 @@
                     <section class="section">
                         <div class="card">
                             <div class="card-header">
-                                <h4 class="card-title">Example Content</h4>
+                                <h4 class="card-title">SIMONTER-CAPCIP</h4>
                             </div>
                             <div class="card-body">
-                                Lorem ipsum dolor sit amet consectetur adipisicing elit. Consectetur quas omnis
-                                laudantium tempore
-                                exercitationem, expedita aspernatur sed officia asperiores unde tempora maxime odio
-                                reprehenderit
-                                distinctio incidunt! Vel aspernatur dicta consequatur!
+                            <p>
+                                <strong>SIMONTER-CAPCIP</strong> adalah Sistem Informasi Monitoring Terintegrasi Community Action Plan dan Collaborative Implementation Program. SIMONTER-CAPCIP merupakan platform digital perencanaan dan pengawasan penataan permukiman berbasis web sebagai media publikasi, interaksi, dan monitoring bersama semua stakeholders dalam rangka peningkatan kualitas permukiman RW kumuh.
+                            </p>
+                            <p>
+                                SIMONTER-CAPCIP dapat memfasilitasi:
+                            </p>
+                                    <ol>
+                                        <li>
+                                            <strong>PUBLIKASI</strong> – Sharing informasi kepada masyarakat dan semua stakeholders terkait administrasi lokasi penataan, kondisi kependudukan, peruntukan ruang, analisa isu dan permasalahan lingkungan, perkembangan perencanaan CAP dan pengawasan pelaksanaan CIP yang dapat diakses secara mudah, tepat, dan cepat melalui internet, sehingga dapat mendekatkan pelayanan kepada masyarakat dan memberikan akses yang lebih luas kepada masyarakat dan semua stakeholders terkait untuk memperoleh pelayanan.
+                                        </li>
+                                        <li>
+                                            <strong>INTERAKSI</strong> – Fasilitasi partisipasi masyarakat dan kolaborasi antar stakeholders dalam perencanaan CAP dan pengawasan pelaksanaan CIP, agar dapat mewujudkan proses pelayanan yang cepat, mudah, dan transparan bagi masyarakat sehingga meningkatkan efisiensi, kenyamanan serta aksesibilitas antar pemangku kepentingan.
+                                        </li>
+                                        <li>
+                                            <strong>MONITORING</strong> – Pemantauan, evaluasi, dan pelaporan yang bisa diakses oleh semua stakeholders untuk memonitor progress perencanaan secara real time, detail, dan akuntabel, melacak implementasi rencana penataan lingkungan dan mengevaluasi dampaknya serta mempermudah pelaporan kemajuan pencapaian kegiatan perencanaan CAP dan pengawasan pelaksanaan CIP.
+                                        </li>
+                                    </ol>
                             </div>
                         </div>
                     </section>
                 </div>
 
-                <?php $this->load->view("_partials/footer.php") ?>
+                <!-- <?php $this->load->view("_partials/footer.php") ?> -->
 
             </div>
         </div>
