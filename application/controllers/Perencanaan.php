@@ -99,7 +99,8 @@ class Perencanaan extends CI_Controller {
         // Konfigurasi upload gambar
         $config['upload_path'] = './uploads/images/';
         $config['allowed_types'] = 'gif|jpg|png';
-        $config['max_size'] = 4048; // 2MB
+        // $config['max_size'] = 4048; // 2MB
+        $config['file_name'] = uniqid() . '_' . preg_replace('/[^a-zA-Z0-9-_\.]/','', $_FILES['gambar_isu']['name']);
         $this->load->library('upload', $config);
 
         // Proses upload gambar
@@ -115,6 +116,7 @@ class Perencanaan extends CI_Controller {
         // Konfigurasi upload dokumen
         $config['upload_path'] = './uploads/documents/';
         $config['allowed_types'] = 'pdf|doc|docx';
+        $config['file_name'] = uniqid() . '_' . preg_replace('/[^a-zA-Z0-9-_\.]/','', $_FILES['document_isu']['name']);
         $this->upload->initialize($config);
 
         if (!$this->upload->do_upload('document_isu')) {

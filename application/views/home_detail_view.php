@@ -310,7 +310,7 @@
                                         <div class="card-body">
                                             <form class="form form-horizontal">
                                                 <div class="form-body">
-                                                    <img src="<?php echo base_url();?>assets/images/samples/<?php echo $review_isu['gambar_isu'];?>" alt="" width="100%">
+                                                    <img src="<?php echo base_url();?>uploads/images/<?php echo $review_isu['gambar_isu'];?>" alt="" width="100%">
                                                 </div>
                                             </form>
                                         </div>

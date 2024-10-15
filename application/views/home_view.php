@@ -106,10 +106,16 @@
                                 <nav aria-label="breadcrumb" class="breadcrumb-header float-start float-lg-end">
                                     <ol class="breadcrumb">
                                     <?php if ($this->session->userdata('logged_in')) : ?>
-                                        <li class="breadcrumb-item"><a href="<?php echo base_url();?>isu" class="btn btn-primary">+ Ajukan Kegiatan</a></li>
-                                        <?php else : ?>
-                                            <li class="breadcrumb-item"><a href="<?php echo base_url();?>auth" class="btn btn-primary">+ Ajukan Kegiatan</a></li>
-                                            <?php endif; ?>
+                                        <?php if ($this->session->userdata('id_level_akun') === '1') : ?>
+                                            <li class="breadcrumb-item"><a href="<?php echo base_url();?>isu" class="btn btn-primary">+ Ajukan Kegiatan</a></li>
+                                            <?php elseif (in_array($this->session->userdata('id_level_akun'), [2, 4])) : ?>
+                                                    <li class="breadcrumb-item"><a href="<?php echo base_url();?>isu" class="btn btn-primary">+ Ajukan Kegiatan</a></li>
+                                                <?php elseif ($this->session->userdata('id_level_akun') === '3') : ?>
+                                                    <?php else : ?>
+                                                        <?php endif; ?>
+                                    <?php else : ?>
+                                        <li class="breadcrumb-item"><a href="<?php echo base_url();?>auth" class="btn btn-primary">+ Ajukan Kegiatan</a></li>
+                                        <?php endif; ?>
                                     </ol>
                                 </nav>
                             </div>
@@ -141,7 +147,7 @@
                                                 <?= $detailPekerjaan ?>
                                             </p>
                                         </div>
-                                        <img class="img-fluid w-100" src="<?php echo base_url();?>assets/images/samples/<?= $gambarIsu ?>"
+                                        <img class="img-fluid w-100" src="<?php echo base_url();?>uploads/images/<?= $gambarIsu ?>"
                                             alt="Card image cap">
                                     </div>
                                     <div class="card-footer d-flex justify-content-between">

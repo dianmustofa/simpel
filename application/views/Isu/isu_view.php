@@ -142,7 +142,7 @@
                                                                 satuanInput.classList.add('col-md-6');
                                                                 satuanInput.classList.remove('col-md-4'); // Pastikan tidak 1/3
 
-                                                            } else if (['Sosial', 'Budaya', 'Ekonomi'].includes(selectedValue)) {
+                                                            } else if (['Sosial Budaya', 'Ekonomi'].includes(selectedValue)) {
                                                                 // Tampilkan input Detail (1 row penuh)
                                                                 detailInput.style.display = 'block'; 
                                                                 detailInput.classList.add('col-md-12');  // Set Detail jadi 1 row penuh
