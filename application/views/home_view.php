@@ -131,6 +131,7 @@
                             <?php foreach ($ajuan as $row) { 
                                 $idIsu = $row['id_isu'];
                                 $titleIsu = $row['title_isu'];
+                                $titleJenis = $row['title_jenis'];
                                 $latitude = $row['latitude'];
                                 $longitude = $row['longitude'];
                                 $statusIsu = $row['status_isu'];
@@ -142,7 +143,7 @@
                                 <div class="card">
                                     <div class="card-content">
                                         <div class="card-body">
-                                            <h4 class="card-title"><?= $titleIsu ?></h4>
+                                            <h4 class="card-title"><?= $titleJenis ?></h4>
                                             <p class="card-text">
                                                 <?= $detailPekerjaan ?>
                                             </p>

@@ -242,7 +242,7 @@
                                                         <div class="col-md-4 col-sm-12" id="detail_pekerjaan" style="display:none;">
                                                             <div class="form-group">
                                                                 <label>Detail</label>
-                                                                <textarea type="text" name="detail_pekerjaan" placeholder="" class="form-control" required></textarea>
+                                                                <textarea type="text" name="detail_pekerjaan" placeholder="" class="form-control"></textarea>
                                                             </div>
                                                         </div>
 
