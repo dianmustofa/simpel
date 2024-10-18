@@ -3,7 +3,7 @@
 
 <head>
     
-    <title>Vertical Navbar - Mazer Admin Dashboard</title>
+    <title>SIMONTER - User List</title>
     <?php $this->load->view("_partials/head.php") ?>
     
     <!-- css -->
@@ -31,7 +31,7 @@
                         <div class="row">
                             <div class="col-12 col-md-6 order-md-1 order-last">
                                 <h3>Katalog User</h3>
-                                <p class="text-subtitle text-muted">Berikut list user pada portal SIMPEL.</p>
+                                <p class="text-subtitle text-muted">Berikut list user pada portal SIMONTER.</p>
                             </div>
                             <div class="col-12 col-md-6 order-md-2 order-first">
                                 <nav aria-label="breadcrumb" class="breadcrumb-header float-start float-lg-end">

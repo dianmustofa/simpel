@@ -113,6 +113,13 @@
                         </a>
                     </li>
 
+                    <li class="sidebar-item">
+                        <a href="<?php echo base_url();?>laporan" class='sidebar-link'>
+                            <i class="bi bi-stack"></i>
+                            <span>Laporan Tahunan</span>
+                        </a>
+                    </li>
+
                     <li class="sidebar-title">Informasi</li>
 
                     <li class="sidebar-item  ">

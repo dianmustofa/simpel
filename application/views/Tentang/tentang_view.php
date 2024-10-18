@@ -29,7 +29,7 @@
                         <div class="row">
                             <div class="col-12 col-md-6 order-md-1 order-last">
                                 <h3>Tentang Kami</h3>
-                                <p class="text-subtitle text-muted">Sistem Informasi Monitoring Terintegrasi Community Action Plan dan Collaborative Implementation Program.</p>
+                                <!-- <p class="text-subtitle text-muted">Sistem Informasi Monitoring Terintegrasi Community Action Plan dan Collaborative Implementation Program.</p> -->
                             </div>
                             <div class="col-12 col-md-6 order-md-2 order-first">
                                 <nav aria-label="breadcrumb" class="breadcrumb-header float-start float-lg-end">
@@ -65,6 +65,18 @@
                                             <strong>MONITORING</strong> – Pemantauan, evaluasi, dan pelaporan yang bisa diakses oleh semua stakeholders untuk memonitor progress perencanaan secara real time, detail, dan akuntabel, melacak implementasi rencana penataan lingkungan dan mengevaluasi dampaknya serta mempermudah pelaporan kemajuan pencapaian kegiatan perencanaan CAP dan pengawasan pelaksanaan CIP.
                                         </li>
                                     </ol>
+                            <p>
+                                Community Action Plan (CAP) adalah rencana aksi peningkatan kualitas permukiman berbasis masyarakat. Collaborative Implementation Program (CIP) adalah program peningkatan kualitas permukiman berbasis masyarakat melalui penanganan bersama oleh multi pihak.
+                            </p>
+                            <p>
+                                CAP adalah perencanaan partisipatif berbasis masyarakat yang menempatkan masyarakat dalam kedudukan penting yakni pengambilan Keputusan, masyarakat tidak lagi menjadi objek tetapi beralih menjadi subjek yang berkedudukan sebagai perencana aktif. Masyarakat memiliki kesempatan untuk berpartisipasi dalam menentukan prioritas, kebutuhan, dan aspirasi mereka sendiri. Hal ini memungkinkan mereka untuk memberikan masukan yang berharga dalam perencanaan pembangunan kawasan mereka dan memastikan bahwa rencana tersebut benar-benar mencerminkan kebutuhan masyarakat setempat. 
+                            </p>
+                            <p>
+                                Tiga aspek penataan CAP terdiri dari Aspek Penataan Fisik Lingkungan, Aspek Pemberdayaan Sosial dan Budaya serta Aspek Pemberdayaan Ekonomi Masyarakat. Permukiman yang layak dan berkualitas mencakup infrastruktur yang baik dan masyarakat yang diberdayakan. 
+                            </p>
+                            <p>
+                                Berdasarkan CAP, Suku Dinas Perumahan Rakyat dan Kawasan Permukiman Kota Administrasi Jakarta Selatan (SDPRKP JS) melaksanakan CIP khusus untuk pelaksanaan pembangunan fisik lingkungan melalui dokumen pelaksanaan anggaran (DPA) SDPRKP JS. Sedangkan pelaksanaan CIP khusus aspek pemberdayaan sosial, budaya dan ekonomi masyarakat dilaksanakan oleh Perangkat Daerah/ Unit Kerja terkait sesuai tugas dan fungsinya melalui DPA Perangkat Derah/ Unit Kerja terkait.
+                            </p>
                             </div>
                         </div>
                     </section>
