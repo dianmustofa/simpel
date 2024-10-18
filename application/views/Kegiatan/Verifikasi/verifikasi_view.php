@@ -135,6 +135,9 @@
                                                     <a href="<?php echo base_url(); ?>verifikasi/detail/<?= $idIsu ?>">
                                                         <span class="badge bg-info" style="cursor: pointer;">Detail</span>
                                                     </a>
+                                                    <a href="<?php echo base_url(); ?>verifikasi/review/<?= $idIsu ?>">
+                                                        <span class="badge bg-danger" style="cursor: pointer;">Lengkapi Dokumen DED</span>
+                                                    </a>
 
                                                     <!-- Tambahkan checkbox Setuju di sini -->
                                                     <div class="form-check" style="display: inline-block; margin-left: 10px;">

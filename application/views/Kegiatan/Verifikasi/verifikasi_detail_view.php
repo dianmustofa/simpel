@@ -266,6 +266,41 @@
                                                                 name="fname" value="<?php echo $review_isu['program_usulan'];?>"><?php echo $review_isu['program_usulan'];?></textarea>
                                                         </div>
                                                     </div>
+                                                    <div class="col-md-12 col-12">
+                                                        <div class="form-group">
+                                                            <label for="company-column">Instansi Pelaksana</label>
+                                                            <input type="text" id="readonlyInput" readonly="readonly" class="form-control"
+                                                                name="fname" value="<?php echo $review_isu['title_opd'];?>">
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-12 col-12">
+                                                        <div class="form-group">
+                                                            <label for="company-column">Sumber Pendanaan</label>
+                                                            <textarea type="text" id="readonlyInput" readonly="readonly" class="form-control"
+                                                                name="fname" value="<?php echo $review_isu['sumber_pendanaan_usulan'];?>"><?php echo $review_isu['sumber_pendanaan_usulan'];?></textarea>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-12 col-12">
+                                                        <div class="form-group">
+                                                            <label for="company-column">Indikasi Tahun Pelaksanaan</label>
+                                                            <textarea type="text" id="readonlyInput" readonly="readonly" class="form-control"
+                                                                name="fname" value="<?php echo $review_isu['indikasi_tahun_pelaksana_usulan'];?>"><?php echo $review_isu['indikasi_tahun_pelaksana_usulan'];?></textarea>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-12 col-12">
+                                                        <div class="form-group">
+                                                            <label for="company-column">Status Usulan</label>
+                                                            <textarea type="text" id="readonlyInput" readonly="readonly" class="form-control"
+                                                                name="fname" value="<?php echo $review_isu['status_usulan'];?>"><?php echo $review_isu['status_usulan'];?></textarea>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-12 col-12">
+                                                        <div class="form-group">
+                                                            <label for="company-column">Komentar</label>
+                                                            <textarea type="text" id="readonlyInput" readonly="readonly" class="form-control"
+                                                                name="fname" value="<?php echo $review_isu['komentar_usulan'];?>"><?php echo $review_isu['komentar_usulan'];?></textarea>
+                                                        </div>
+                                                    </div>
                                                 </div>
                                             </form>
                                         </div>
