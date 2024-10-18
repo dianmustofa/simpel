@@ -36,6 +36,8 @@ class Perencanaan extends CI_Controller {
         $level_instansi = $this->Perencanaan_model->level_instansi();
 		$data["level_instansi"] = $level_instansi;
 
+        
+
         if ($this->session->userdata('id_level_akun') === '1'){
             $isu = $this->Perencanaan_model->load_perencanaan_akun();
             $data['isu'] = $isu;
@@ -43,7 +45,6 @@ class Perencanaan extends CI_Controller {
             $isu = $this->Perencanaan_model->load_perencanaan_all();
             $data['isu'] = $isu;
         }
-		
 
         $this->load->view('Isu/isu_view', $data);
 	}
@@ -203,6 +204,17 @@ class Perencanaan extends CI_Controller {
         }
     
         return $uploaded_files;
+    }
+
+    public function delete($id) {
+        // Load model
+        $this->load->model('Perencanaan_model');
+
+        // Soft delete berdasarkan ID
+        $this->Perencanaan_model->soft_delete($id);
+
+        // Redirect atau beri notifikasi
+        redirect('isu');
     }
 
 }

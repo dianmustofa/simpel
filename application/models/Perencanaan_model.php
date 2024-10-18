@@ -6,6 +6,7 @@ class Perencanaan_model extends CI_Model{
         $this->db->from('tbl_perencanaan p');
         $this->db->order_by('id_isu', 'DESC');
         $this->db->where('id_akun', $this->session->userdata('id_akun'));
+        $this->db->where('deleted_at IS NULL');
         // $this->db->join('tbl_category tc', 'td.category_id=tc.category_id');
         // $this->db->group_by('td.promo_id');  // To ensure distinct promos
 
@@ -16,6 +17,7 @@ class Perencanaan_model extends CI_Model{
         $this->db->select('p.*');
         $this->db->from('tbl_perencanaan p');
         $this->db->order_by('id_isu', 'DESC');
+        $this->db->where('deleted_at IS NULL');
         // $this->db->where('id_akun', $this->session->userdata('id_akun'));
         // $this->db->join('tbl_category tc', 'td.category_id=tc.category_id');
         // $this->db->group_by('td.promo_id');  // To ensure distinct promos
@@ -88,8 +90,15 @@ class Perencanaan_model extends CI_Model{
 		$this->db->select('*');
 		$this->db->from('tbl_perencanaan');
 		$this->db->where('id_isu', $id);
+        $this->db->where('deleted_at IS NULL');
 		return $this->db->get();
 	}
+
+    public function soft_delete($id) {
+        // Update kolom deleted_at dengan waktu sekarang
+        $this->db->where('id_isu', $id);
+        return $this->db->update('tbl_perencanaan', ['deleted_at' => date('Y-m-d H:i:s')]);
+    }
 
     public function level_aspek() {
         $this->db->select('as.*');

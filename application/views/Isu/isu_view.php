@@ -588,7 +588,10 @@
                                                 <td><?= $titleRT ?></td>
                                                 <td>   
                                                     <?php if (in_array($this->session->userdata('id_level_akun'), [2, 4])) : ?>
-                                                        <span class="badge bg-danger" style="cursor: pointer;">Hapus</span>
+                                                        <a href="<?php echo base_url(); ?>perencanaan/delete/<?= $idIsu ?>">
+                                                            <span class="badge bg-danger" style="cursor: pointer;" onclick="return confirm('Anda yakin ingin menghapus item ini?');">Hapus</span>
+                                                        </a>
+                                                        <!-- <span class="badge bg-danger" style="cursor: pointer;">Hapus</span> -->
                                                         <?php else : ?>
                                                             <?php endif; ?>
 
