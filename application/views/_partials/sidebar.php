@@ -7,7 +7,7 @@
         <div class="sidebar-header">
             <div class="d-flex justify-content-between">
                 <div class="logo">
-                    <a href="<?php echo base_url();?>"><img src="<?php echo base_url();?>assets/images/logo/logo.svg" alt="Logo" srcset="" width="35" height="300"></a>
+                    <a href="<?php echo base_url();?>"><img src="<?php echo base_url();?>assets/images/logo/logo.png" alt="Logo" srcset=""></a>
                 </div>
                 <div class="toggler">
                     <a href="#" class="sidebar-hide d-xl-none d-block"><i class="bi bi-x bi-middle"></i></a>
