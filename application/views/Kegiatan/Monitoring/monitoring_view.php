@@ -81,7 +81,14 @@
                                                 <td><?= $titleKelurahan ?></td>
                                                 <td><?= $titleRW ?></td>
                                                 <td><?= $titleRT ?></td>
-                                                <td><?= $tanggalrealisasiMonitoring ?></td>
+                                                <td>
+                                                <?php if ($statusMonitoring != NULL) : ?>
+                                                    <?= $tanggalrealisasiMonitoring ?>
+                                                    <?php else : ?>
+                                                        Tanggal belum update
+                                                        <?php endif; ?>
+                                                </td>
+                                                
                                                 <td>
                                                     <!-- <span class="badge bg-info" style="cursor: pointer;">Detail</span> -->
                                                     <!-- <span class="badge bg-secondary" style="cursor: pointer;" data-bs-toggle="modal" data-bs-target="#xlarge">Review</span> -->

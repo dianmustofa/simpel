@@ -141,6 +141,11 @@
                                                     <?php if (in_array($this->session->userdata('id_level_akun'), [2, 4])) : ?>
                                                         <?php if ($titleOPD != Null) : ?>
                                                             <span class="badge bg-success">Diteruskan ke <?= $titleOPD ?></span>
+                                                            <?php if ($statusUsulan != Null) : ?>
+                                                                <span class="badge bg-success">Status <?= $statusUsulan ?></span>
+                                                            <?php else : ?>
+                                                                <span class="badge bg-info">Status masih di SKPD</span>
+                                                                <?php endif; ?>
                                                             <!-- <span class="badge bg-info" style="cursor: pointer;">Edit</span> -->
                                                         <?php else : ?>
                                                             <!-- <span class="badge bg-danger" style="cursor: pointer;">Lengkapi Usulan</span> -->

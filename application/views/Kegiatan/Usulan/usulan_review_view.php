@@ -90,7 +90,7 @@
                                                             <label>Program</label>
                                                         </div>
                                                         <div class="col-md-8 form-group">
-                                                            <textarea type="text" class="form-control" name="program_usulan" value="#"></textarea>
+                                                            <textarea type="text" class="form-control" name="program_usulan" value="<?php echo $review_isu['title_jenis'];?>" readonly><?php echo $review_isu['title_jenis'];?></textarea>
                                                         </div>
                                                         <div class="col-md-4">
                                                             <label>Sumber Pendanaan</label>
@@ -165,7 +165,7 @@
                                                                 <label>Program</label>
                                                             </div>
                                                             <div class="col-md-8 form-group">
-                                                                <textarea type="text" class="form-control" name="program_usulan" value="#"></textarea>
+                                                                <textarea type="text" class="form-control" name="program_usulan" value="<?php echo $review_isu['title_jenis'];?>" readonly><?php echo $review_isu['title_jenis'];?></textarea>
                                                             </div>
                                                             <div class="col-md-4">
                                                                 <label>Instansi Pelaksana</label>
@@ -272,7 +272,7 @@
                                                                         <label>Program</label>
                                                                     </div>
                                                                     <div class="col-md-8 form-group">
-                                                                        <textarea type="text" class="form-control" name="program_usulan" value="#"></textarea>
+                                                                        <textarea type="text" class="form-control" name="program_usulan" value="<?php echo $review_isu['title_jenis'];?>" readonly><?php echo $review_isu['title_jenis'];?></textarea>
                                                                     </div>
 
                                                                     <!-- Input Isu -->

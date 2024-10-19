@@ -8,6 +8,7 @@ class Usulan extends CI_Controller {
 		parent::__construct();
 		$this->load->model("Usulan_model");
 		$this->load->model("Perencanaan_model");
+		$this->load->library('upload');
 	}
 
 	public function index()
@@ -141,6 +142,39 @@ class Usulan extends CI_Controller {
 
 
 	public function simpan_verifikasi($id = null) {
+
+		// Load helper untuk upload
+        $this->load->helper(array('form', 'url'));
+
+		// Konfigurasi upload dokumen
+        $config['upload_path'] = './uploads/documents/';
+        $config['allowed_types'] = 'pdf|doc|docx';
+		$config['file_name'] = uniqid() . '_' . preg_replace('/[^a-zA-Z0-9-_\.]/','', $_FILES['document_ded']['name']);
+        $this->upload->initialize($config);
+
+        if (!$this->upload->do_upload('document_ded')) {
+            $error = array('error' => $this->upload->display_errors());
+            // Handle error
+            echo $error['error'];
+            return;
+        } else {
+            $document_ded_data = $this->upload->data();
+        }
+
+		$config['upload_path'] = './uploads/documents/';
+        $config['allowed_types'] = 'pdf|doc|docx';
+		$config['file_name'] = uniqid() . '_' . preg_replace('/[^a-zA-Z0-9-_\.]/','', $_FILES['document_ba']['name']);
+        $this->upload->initialize($config);
+
+		if (!$this->upload->do_upload('document_ba')) {
+            $error = array('error' => $this->upload->display_errors());
+            // Handle error
+            echo $error['error'];
+            return;
+        } else {
+            $document_ba_data = $this->upload->data();
+        }
+
 		// Cek apakah $id diberikan
 		if ($id === null) {
 			echo "ID tidak ada!";
@@ -163,10 +197,9 @@ class Usulan extends CI_Controller {
 			} elseif ($this->session->userdata('id_level_akun') === '4') {
 				$data = array(
 					// Masukkan data yang relevan untuk level akun 4
-					'manfaat_tujuan_usulan' => $this->input->post('manfaat_tujuan_usulan'),
-					'indikasi_program_usulan' => $this->input->post('indikasi_program_usulan'),
-					'program_usulan' => $this->input->post('program_usulan'),
-					'title_opd' => $this->input->post('title_opd'),
+					'document_ded' => $document_ded_data['file_name'],
+					'document_ba' => $document_ba_data['file_name'],
+					'rencana_anggaran' => $this->input->post('rencana_anggaran'),
 				);
 			} else {
 				// Tangani kasus jika level akun tidak sesuai
@@ -182,7 +215,7 @@ class Usulan extends CI_Controller {
 				$this->Perencanaan_model->update_usulan($data, $id);
 				
 				// Redirect ke halaman usulan setelah update berhasil
-				redirect('usulan');
+				redirect('verifikasi-usulan');
 			} else {
 				echo "Data tidak ditemukan atau tidak valid!";
 			}

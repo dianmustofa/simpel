@@ -69,7 +69,7 @@ class Usulan_model extends CI_Model{
     public function load_verifikasi() {
         $this->db->select('p.*');
         $this->db->from('tbl_perencanaan p');
-        $this->db->where('p.status_usulan', "Dilaksanakan");
+        $this->db->where_in('p.status_usulan', ["Dilaksanakan", "Dilaksanakan Bersyarat"]);
         $this->db->where('deleted_at IS NULL');
 
         return $this->db->get()->result_array();

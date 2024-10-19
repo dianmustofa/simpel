@@ -39,7 +39,8 @@ class Monitoring extends CI_Controller {
         // Konfigurasi upload gambar
         $config['upload_path'] = './uploads/images/';
         $config['allowed_types'] = 'gif|jpg|png';
-        $config['max_size'] = 4048; // 2MB
+        // $config['max_size'] = 4048; // 2MB
+		$config['file_name'] = uniqid() . '_' . preg_replace('/[^a-zA-Z0-9-_\.]/','', $_FILES['gambar_monitoring']['name']);
         $this->load->library('upload', $config);
 
         // Proses upload gambar
@@ -53,18 +54,18 @@ class Monitoring extends CI_Controller {
         }
 
         // Konfigurasi upload dokumen
-        $config['upload_path'] = './uploads/documents/';
-        $config['allowed_types'] = 'pdf|doc|docx';
-        $this->upload->initialize($config);
+        // $config['upload_path'] = './uploads/documents/';
+        // $config['allowed_types'] = 'pdf|doc|docx';
+        // $this->upload->initialize($config);
 
-        if (!$this->upload->do_upload('document_monitoring')) {
-            $error = array('error' => $this->upload->display_errors());
-            // Handle error
-            echo $error['error'];
-            return;
-        } else {
-            $document_data = $this->upload->data();
-        }
+        // if (!$this->upload->do_upload('document_monitoring')) {
+        //     $error = array('error' => $this->upload->display_errors());
+        //     // Handle error
+        //     echo $error['error'];
+        //     return;
+        // } else {
+        //     $document_data = $this->upload->data();
+        // }
 
 		// Cek apakah $id diberikan
 		if (!$this->session->userdata('id_akun')) {
@@ -82,7 +83,7 @@ class Monitoring extends CI_Controller {
 				'keterangan_monitoring' => $this->input->post('keterangan_monitoring'),
 				'komentar_monitoring' => $this->input->post('komentar_monitoring'),
 				'gambar_monitoring' => $image_data['file_name'],
-            	'document_monitoring' => $document_data['file_name'],
+            	// 'document_monitoring' => $document_data['file_name'],
 			);
 			// Debug data yang diterima (opsional, untuk pengembangan)
 			// var_dump($data);

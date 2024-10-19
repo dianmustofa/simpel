@@ -131,20 +131,19 @@
                                                         </div>
                                                         <div class="col-md-8 form-group verification-input" >
                                                             <!-- <input type="text" class="form-control" name="keterangan_monitoring" value=""> -->
-                                                            <input type="file" name="gambar_monitoring" id="image" accept="image/*" required>
+                                                            <input type="file" name="gambar_monitoring" id="image" accept="image/*">
                                                         </div>
                                                         <!-- Tambahkan upload dokumen -->
                                                         <!-- <div class="form-group">
                                                             <label for="document">Upload Dokumen</label>
                                                             <input type="file" name="document_monitoring" id="document" accept=".pdf,.doc,.docx" required>
                                                         </div> -->
-                                                        <div class="col-md-4 verification-input" >
+                                                        <!-- <div class="col-md-4 verification-input" >
                                                             <label for="document">Upload Dokumen</label>
                                                         </div>
                                                         <div class="col-md-8 form-group verification-input" >
-                                                            <!-- <input type="text" class="form-control" name="keterangan_monitoring" value=""> -->
                                                             <input type="file" name="document_monitoring" id="document" accept=".pdf,.doc,.docx" required>
-                                                        </div>
+                                                        </div> -->
 
                                                         <script>
                                                             document.getElementById('title_status_isu').addEventListener('change', function() {

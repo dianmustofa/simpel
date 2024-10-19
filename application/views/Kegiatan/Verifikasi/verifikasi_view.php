@@ -122,6 +122,7 @@
                                             $titleRW = $row['title_rw'];
                                             $titleRT = $row['title_rt'];
                                             $titleOPD = $row['title_opd'];
+                                            $documentDED = $row['document_ded'];
                                         ?>
                                             <tr>
                                                 <td><?= $titleIsu ?></td>
@@ -135,9 +136,13 @@
                                                     <a href="<?php echo base_url(); ?>verifikasi/detail/<?= $idIsu ?>">
                                                         <span class="badge bg-info" style="cursor: pointer;">Detail</span>
                                                     </a>
-                                                    <a href="<?php echo base_url(); ?>verifikasi/review/<?= $idIsu ?>">
-                                                        <span class="badge bg-danger" style="cursor: pointer;">Lengkapi Dokumen DED</span>
-                                                    </a>
+                                                    <?php if ($documentDED != Null) : ?>
+                                                        <span class="badge bg-info">Dokument Lengkap</span>
+                                                    <?php else : ?>
+                                                        <a href="<?php echo base_url(); ?>verifikasi/review/<?= $idIsu ?>">
+                                                            <span class="badge bg-danger" style="cursor: pointer;">Lengkapi Dokumen DED</span>
+                                                        </a>
+                                                        <?php endif; ?>
 
                                                     <!-- Tambahkan checkbox Setuju di sini -->
                                                     <div class="form-check" style="display: inline-block; margin-left: 10px;">
