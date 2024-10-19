@@ -46,7 +46,7 @@
                         <div class="row">
                             <div class="col-12 col-md-6 order-md-1 order-last">
                                 <h3>Review Usulan</h3>
-                                <p class="text-subtitle text-muted">Multiple form layout you can use</p>
+                                <p class="text-subtitle text-muted"></p>
                             </div>
                             <div class="col-12 col-md-6 order-md-2 order-first">
                                 <nav aria-label="breadcrumb" class="breadcrumb-header float-start float-lg-end">
@@ -446,7 +446,7 @@
                                                         <div class="form-group">
                                                             <label for="company-column">Detail Pekerjaan</label>
                                                             <textarea type="text" id="readonlyInput" readonly="readonly" class="form-control"
-                                                                name="fname" value="You can't update me :P"></textarea>
+                                                                name="fname" value="<?php echo $review_isu['detail_pekerjaan'];?>"><?php echo $review_isu['detail_pekerjaan'];?></textarea>
                                                         </div>
                                                     </div>
                                                     <!-- <div class="col-md-6 col-12">
@@ -467,28 +467,28 @@
                                                         <div class="form-group">
                                                             <label for="email-id-column">Kecamatan</label>
                                                             <input type="text" id="readonlyInput" readonly="readonly" class="form-control"
-                                                                name="fname" value="You can't update me :P">
+                                                                name="fname" value="<?php echo $review_isu['title_kecamatan'];?>">
                                                         </div>
                                                     </div>
                                                     <div class="col-md-6 col-12">
                                                         <div class="form-group">
                                                             <label for="email-id-column">Kelurahan</label>
                                                             <input type="text" id="readonlyInput" readonly="readonly" class="form-control"
-                                                                name="fname" value="You can't update me :P">
+                                                                name="fname" value="<?php echo $review_isu['title_kelurahan'];?>">
                                                         </div>
                                                     </div>
                                                     <div class="col-md-6 col-12">
                                                         <div class="form-group">
                                                             <label for="email-id-column">No RW</label>
                                                             <input type="text" id="readonlyInput" readonly="readonly" class="form-control"
-                                                                name="fname" value="You can't update me :P">
+                                                                name="fname" value="<?php echo $review_isu['title_rw'];?>">
                                                         </div>
                                                     </div>
                                                     <div class="col-md-6 col-12">
                                                         <div class="form-group">
                                                             <label for="email-id-column">No RT</label>
                                                             <input type="text" id="readonlyInput" readonly="readonly" class="form-control"
-                                                                name="fname" value="You can't update me :P">
+                                                                name="fname" value="<?php echo $review_isu['title_rt'];?>">
                                                         </div>
                                                     </div>
                                                     <div class="col-md-6 col-12">
@@ -509,7 +509,7 @@
                                                         <div class="form-group">
                                                             <label for="email-id-column">Alamat</label>
                                                             <input type="text" id="readonlyInput" readonly="readonly" class="form-control"
-                                                                name="fname" value="You can't update me :P">
+                                                                name="fname" value="<?php echo $review_isu['alamat_isu'];?>">
                                                         </div>
                                                     </div>
                                                     <div class="col-md-6 col-12">

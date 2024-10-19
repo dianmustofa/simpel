@@ -43,6 +43,13 @@
 
                 <li class="sidebar-title">Informasi</li>
 
+                <li class="sidebar-item">
+                    <a href="<?php echo base_url();?>laporan-tahunan" class='sidebar-link'>
+                        <i class="bi bi-stack"></i>
+                        <span>Laporan Tahunan</span>
+                    </a>
+                </li>
+
                 <li class="sidebar-item  ">
                     <a href="<?php echo base_url();?>literasi" class='sidebar-link'>
                         <i class="bi bi-grid-fill"></i>
@@ -114,7 +121,7 @@
                     </li>
 
                     <li class="sidebar-item">
-                        <a href="<?php echo base_url();?>laporan" class='sidebar-link'>
+                        <a href="<?php echo base_url();?>laporan-tahunan" class='sidebar-link'>
                             <i class="bi bi-stack"></i>
                             <span>Laporan Tahunan</span>
                         </a>
@@ -172,6 +179,13 @@
                             <a href="<?php echo base_url();?>monitoring" class='sidebar-link'>
                                 <i class="bi bi-stack"></i>
                                 <span>Monitoring</span>
+                            </a>
+                        </li>
+
+                        <li class="sidebar-item">
+                            <a href="<?php echo base_url();?>laporan-tahunan" class='sidebar-link'>
+                                <i class="bi bi-stack"></i>
+                                <span>Laporan Tahunan</span>
                             </a>
                         </li>
 

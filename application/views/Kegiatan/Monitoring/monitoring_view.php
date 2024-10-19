@@ -94,7 +94,7 @@
                                                         <span class="badge bg-info" style="cursor: pointer;">Edit</span>
                                                         <?php elseif ($statusMonitoring === 'Dilaksanakan bersyarat') : ?>
                                                             <span class="badge bg-warning">Dilaksanakan bersyarat</span>
-                                                            <span class="badge bg-info" style="cursor: pointer;">Edit</span>
+                                                            <!-- <span class="badge bg-info" style="cursor: pointer;">Edit</span> -->
                                                     <?php else : ?>
                                                         <span class="badge bg-danger">Sedang Proses</span>
                                                         <a href="<?php echo base_url(); ?>monitoring/review/<?= $idIsu ?>">

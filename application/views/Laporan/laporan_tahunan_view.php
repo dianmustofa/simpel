@@ -56,7 +56,7 @@
                                             <th>RW</th>
                                             <th>RT</th>
                                             <th>Tanggal Realisasi</th>
-                                            <th>Action</th>                                            
+                                            <!-- <th>Action</th> -->
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -72,6 +72,7 @@
                                             $titleRW = $row['title_rw'];
                                             $titleRT = $row['title_rt'];
                                             $statusMonitoring = $row['status_monitoring'];
+                                            $setuju = $row['setuju'];
                                             $tanggalrealisasiMonitoring = $row['tanggal_realisasi_monitoring'];
                                         ?>
                                             <tr>
@@ -82,26 +83,26 @@
                                                 <td><?= $titleRW ?></td>
                                                 <td><?= $titleRT ?></td>
                                                 <td><?= $tanggalrealisasiMonitoring ?></td>
-                                                <td>
+                                                <!-- <td> -->
                                                     <!-- <span class="badge bg-info" style="cursor: pointer;">Detail</span> -->
                                                     <!-- <span class="badge bg-secondary" style="cursor: pointer;" data-bs-toggle="modal" data-bs-target="#xlarge">Review</span> -->
                                                     <!-- <a href="<?php echo base_url(); ?>monitoring/review/<?= $idIsu ?>">
                                                         <span class="badge bg-secondary" style="cursor: pointer;">Update Hasil Monitoring</span>
                                                     </a> -->
 
-                                                    <?php if ($statusMonitoring === 'Dilaksanakan') : ?>
+                                                    <!-- <?php if ($statusMonitoring === 0) : ?>
                                                         <span class="badge bg-success">Dilaksanakan</span>
                                                         <span class="badge bg-info" style="cursor: pointer;">Edit</span>
                                                         <?php elseif ($statusMonitoring === 'Dilaksanakan bersyarat') : ?>
                                                             <span class="badge bg-warning">Dilaksanakan bersyarat</span>
                                                             <span class="badge bg-info" style="cursor: pointer;">Edit</span>
                                                     <?php else : ?>
-                                                        <span class="badge bg-danger">Sedang Proses</span>
+                                                        <span class="badge bg-info">Belum </span>
                                                         <a href="<?php echo base_url(); ?>monitoring/review/<?= $idIsu ?>">
                                                             <span class="badge bg-secondary" style="cursor: pointer;">Update Hasil Monitoring</span>
                                                         </a>
-                                                    <?php endif; ?>
-                                                </td>
+                                                    <?php endif; ?> -->
+                                                <!-- </td> -->
                                             </tr>
                                         <?php } ?>
                                         

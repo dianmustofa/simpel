@@ -141,7 +141,7 @@
                                                     <?php if (in_array($this->session->userdata('id_level_akun'), [2, 4])) : ?>
                                                         <?php if ($titleOPD != Null) : ?>
                                                             <span class="badge bg-success">Diteruskan ke <?= $titleOPD ?></span>
-                                                            <span class="badge bg-info" style="cursor: pointer;">Edit</span>
+                                                            <!-- <span class="badge bg-info" style="cursor: pointer;">Edit</span> -->
                                                         <?php else : ?>
                                                             <!-- <span class="badge bg-danger" style="cursor: pointer;">Lengkapi Usulan</span> -->
                                                             <a href="<?php echo base_url(); ?>usulan/review/<?= $idIsu ?>">
@@ -152,7 +152,7 @@
                                                         <?php elseif ($this->session->userdata('id_level_akun') === '3') : ?>
                                                             <?php if ($statusUsulan != Null) : ?>
                                                                 <span class="badge bg-success">Status <?= $statusUsulan ?></span>
-                                                                <span class="badge bg-info" style="cursor: pointer;">Edit</span>
+                                                                <!-- <span class="badge bg-info" style="cursor: pointer;">Edit</span> -->
                                                             <?php else : ?>
                                                                 <!-- <span class="badge bg-danger" style="cursor: pointer;">Lengkapi Usulan</span> -->
                                                                 <a href="<?php echo base_url(); ?>usulan/review/<?= $idIsu ?>">
