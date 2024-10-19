@@ -84,3 +84,5 @@ $route['monitoring/review/(:any)'] = 'monitoring/monitoring_review/$1';
 $route['monitoring-simpan/(:num)'] = 'monitoring/update/$1';
 
 $route['laporan-tahunan'] = 'laporan/index';
+$route['laporan/edit/(:any)'] = 'laporan/edit/$1';
+$route['laporan-update/(:num)'] = 'laporan/update/$1';

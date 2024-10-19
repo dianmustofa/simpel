@@ -37,72 +37,115 @@
                                 <h3>Laporan Tahunan</h3>
                                 <p class="text-subtitle text-muted"></p>
                             </div>
+                            <div class="col-12 col-md-6 order-md-2 order-first">
+                                <nav aria-label="breadcrumb" class="breadcrumb-header float-start float-lg-end">
+                                    <ol class="breadcrumb">
+                                        <li class="breadcrumb-item">
+                                            <button type="button" class="btn btn-outline-success" data-bs-toggle="modal"
+                                            data-bs-target="#exampleModalScrollable">
+                                                + Upload dokumen Tahunan
+                                            </button>
+                                        </li>
+                                    </ol>
+                                </nav>
+                                <!-- Form Perencanaan Modal -->
+                                <div class="modal fade" id="exampleModalScrollable" tabindex="-1" role="dialog"
+                                    aria-labelledby="exampleModalScrollableTitle" aria-hidden="true">
+                                    <div class="modal-dialog modal-dialog-scrollable" role="document">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title" id="exampleModalScrollableTitle">Form Laporan Tahunan</h5>
+                                                <button type="button" class="close" data-bs-dismiss="modal"
+                                                    aria-label="Close">
+                                                    <i data-feather="x"></i>
+                                                </button>
+                                            </div>
+                                            <?php if($this->session->flashdata('upload_errors')): ?>
+                                                <div class="alert alert-danger">
+                                                    <strong>Error:</strong> <?= $this->session->flashdata('upload_errors'); ?>
+                                                </div>
+                                            <?php endif; ?>
+                                            
+                                                <div class="modal-body">
+                                                    <form action="<?= site_url('laporan/simpan') ?>" method="post" enctype="multipart/form-data">
+                                                    <!-- Tambahkan CSS untuk ukuran peta -->
+
+                                                    <div class="form-group">
+                                                        <label>Judul Laporan</label>
+                                                        <input type="text" name="title_laporan" placeholder="" class="form-control" required>
+                                                    </div>
+
+                                                    <div class="form-group">
+                                                        <label>Tahun</label>
+                                                        <input type="text" name="tahun_laporan" placeholder="" class="form-control" required>
+                                                    </div>
+
+                                                    <!-- Tambahkan upload dokumen -->
+                                                    <div class="form-group">
+                                                        <label for="document">Upload Dokumen</label>
+                                                        <input type="file" name="document_laporan" id="document" accept=".pdf,.doc,.docx" required>
+                                                    </div>
+
+                                                </div>
+
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-light-secondary" data-bs-dismiss="modal">
+                                                        <i class="bx bx-x d-block d-sm-none"></i>
+                                                        <span class="d-none d-sm-block">Close</span>
+                                                    </button>
+                                                    <button type="submit" class="btn btn-primary">Simpan</button>
+
+                                                    
+                                                </div>
+
+                                                </form>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
 
                         </div>
                     </div>
                     <section class="section">
                         <div class="card">
                             <div class="card-header">
-                                Daftar Kegiatan
+                                Daftar Laporan
                             </div>
                             <div class="card-body">
                                 <table class="table table-striped" id="table1">
                                     <thead>
                                         <tr>
-                                            <th>Isu Lingkungan</th>
-                                            <th>Program</th>
-                                            <th>Alamat</th>
-                                            <th>Kelurahan</th>
-                                            <th>RW</th>
-                                            <th>RT</th>
-                                            <th>Tanggal Realisasi</th>
-                                            <!-- <th>Action</th> -->
+                                            <th>Judul Laporan</th>
+                                            <th>Tahun</th>
+                                            <th>Dokumen</th>
+                                            <th>Action</th>
                                         </tr>
                                     </thead>
                                     <tbody>
 
                                         <?php foreach ($laporan as $row) { 
-                                            $idIsu = $row['id_isu'];
-                                            $titleIsu = $row['title_isu'];
-                                            $latitude = $row['latitude'];
-                                            $longitude = $row['longitude'];
-                                            $titleJenis = $row['title_jenis'];
-                                            $alamatIsu = $row['alamat_isu'];
-                                            $titleKelurahan = $row['title_kelurahan'];
-                                            $titleRW = $row['title_rw'];
-                                            $titleRT = $row['title_rt'];
-                                            $statusMonitoring = $row['status_monitoring'];
-                                            $setuju = $row['setuju'];
-                                            $tanggalrealisasiMonitoring = $row['tanggal_realisasi_monitoring'];
+                                            $idLaporan = $row['id_laporan'];
+                                            $titleLaporan = $row['title_laporan'];
+                                            $tahunLaporan = $row['tahun_laporan'];
+                                            $dokumentLaporan = $row['document_laporan'];
                                         ?>
                                             <tr>
-                                                <td><?= $titleIsu ?></td>
-                                                <td><?= $titleJenis ?></td>
-                                                <td><?= $alamatIsu ?></td>
-                                                <td><?= $titleKelurahan ?></td>
-                                                <td><?= $titleRW ?></td>
-                                                <td><?= $titleRT ?></td>
-                                                <td><?= $tanggalrealisasiMonitoring ?></td>
-                                                <!-- <td> -->
-                                                    <!-- <span class="badge bg-info" style="cursor: pointer;">Detail</span> -->
-                                                    <!-- <span class="badge bg-secondary" style="cursor: pointer;" data-bs-toggle="modal" data-bs-target="#xlarge">Review</span> -->
-                                                    <!-- <a href="<?php echo base_url(); ?>monitoring/review/<?= $idIsu ?>">
-                                                        <span class="badge bg-secondary" style="cursor: pointer;">Update Hasil Monitoring</span>
-                                                    </a> -->
-
-                                                    <!-- <?php if ($statusMonitoring === 0) : ?>
-                                                        <span class="badge bg-success">Dilaksanakan</span>
-                                                        <span class="badge bg-info" style="cursor: pointer;">Edit</span>
-                                                        <?php elseif ($statusMonitoring === 'Dilaksanakan bersyarat') : ?>
-                                                            <span class="badge bg-warning">Dilaksanakan bersyarat</span>
-                                                            <span class="badge bg-info" style="cursor: pointer;">Edit</span>
-                                                    <?php else : ?>
-                                                        <span class="badge bg-info">Belum </span>
-                                                        <a href="<?php echo base_url(); ?>monitoring/review/<?= $idIsu ?>">
-                                                            <span class="badge bg-secondary" style="cursor: pointer;">Update Hasil Monitoring</span>
-                                                        </a>
-                                                    <?php endif; ?> -->
-                                                <!-- </td> -->
+                                                <td><?= $titleLaporan ?></td>
+                                                <td><?= $tahunLaporan ?></td>
+                                                <td>
+                                                    <a href="<?php echo base_url(); ?>uploads/documents/<?= $dokumentLaporan ?>" target="blank">
+                                                        <span class="badge bg-info" style="cursor: pointer;">lihat dokumen</span>
+                                                    </a>
+                                                </td>
+                                                <td>
+                                                    <a href="<?php echo base_url(); ?>laporan/edit/<?= $idLaporan ?>">
+                                                        <span class="badge bg-secondary" style="cursor: pointer;">Edit</span>
+                                                    </a>
+                                                    <a href="<?php echo base_url(); ?>laporan/delete/<?= $idLaporan ?>">
+                                                        <span class="badge bg-danger" style="cursor: pointer;" onclick="return confirm('Anda yakin ingin menghapus item ini?');">Hapus</span>
+                                                    </a>
+                                                </td>
                                             </tr>
                                         <?php } ?>
                                         
