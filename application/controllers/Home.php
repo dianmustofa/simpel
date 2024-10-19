@@ -138,6 +138,10 @@ class Home extends CI_Controller {
 	{    
 
         $data['review_isu'] = $this->Perencanaan_model->get_isu_id($id)->row_array();
+		
+		// Ambil status isu dan usulan dari array review_isu
+		$data['status_isu'] = $data['review_isu']['status_isu']; 
+		$data['status_usulan'] = $data['review_isu']['status_usulan'];
 
     	$this->load->view('home_detail_view', $data);
 	}

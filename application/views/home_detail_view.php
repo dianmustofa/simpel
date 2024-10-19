@@ -66,7 +66,7 @@
                                 <h4 class="card-title"><?php echo $review_isu['title_isu'];?></h4>
                             </div>
                             <div class="card-body">
-                                <?php echo $review_isu['detail_pekerjaan'];?>
+                                <?php echo $review_isu['title_jenis'];?>
                             </div>
                         </div>
                     </section>
@@ -78,41 +78,46 @@
                                 <h4>Progress</h4>
                             </div>
                             <div class="card-body">
-                                <p>Use class to add different colors to progressbar.
+                                <p>
                                 </p>
                                 <div class="progress progress-primary  mb-4">
 
-                                    <?php
-                                        // Ambil status dari kolom database atau variabel PHP
-                                        $status = 'Isu Dilaksanakan'; // Contoh, ini bisa berasal dari database
-                                    ?>
-                                
-                                    <div id="progressBar" class="progress-bar progress-label" role="progressbar" style="width: 35%" aria-valuenow="35" aria-valuemin="0" aria-valuemax="100"></div>
+                                <?php
+                                    // Ambil status dari variabel PHP yang dikirim dari controller
+                                    $status_isu = isset($status_isu) ? $status_isu : 'Belum Ada Status'; // Status default jika kosong
+                                    $status_usulan = isset($status_usulan) ? $status_usulan : 'Belum Ada Status'; // Status default jika kosong
+                                ?>
 
-                                    <script>
-                                        // Ambil status dari PHP
-                                        var status = "<?php echo $status; ?>"; // Mengirim nilai PHP ke JavaScript
+                                <div id="progressBar" class="progress-bar progress-label" role="progressbar" style="width: 35%" aria-valuenow="35" aria-valuemin="0" aria-valuemax="100"></div>
 
-                                        function updateProgressBar(status) {
-                                            var progressBar = document.getElementById('progressBar');
-                                            var progress = 0;
-                                            
-                                            if (status === 'Isu Dilaksanakan') {
-                                            progress = 70; // Misal 70% untuk status ini
-                                            } else if (status === 'Usulan Dilanjutkan') {
-                                            progress = 50; // Misal 50% untuk status ini
-                                            } else {
-                                            progress = 35; // Default value
-                                            }
+                                <script>
+                                    // Ambil status dari PHP
+                                    var statusIsu = "<?php echo $status_isu; ?>";
+                                    var statusUsulan = "<?php echo $status_usulan; ?>";
 
-                                            // Update progress bar
-                                            progressBar.style.width = progress + '%';
-                                            progressBar.setAttribute('aria-valuenow', progress);
+                                    function updateProgressBar(statusIsu, statusUsulan) {
+                                        var progressBar = document.getElementById('progressBar');
+                                        var progress = 0;
+                                        
+                                        // Logika status isu
+                                        if (statusIsu === 'Dilanjutkan') {
+                                            progress = 40; // Progress 40% untuk status isu 'Dilanjutkan'
                                         }
 
-                                        // Contoh penggunaan fungsi
-                                        updateProgressBar('Isu Dilaksanakan'); // Kamu bisa mengganti status di sini
-                                    </script>
+                                        // Logika status usulan
+                                        if (statusUsulan === 'Dilaksanakan' || statusUsulan === 'Dilaksanakan Bersyarat') {
+                                            progress = 90; // Progress 90% untuk status usulan 'Dilaksanakan' atau 'Dilaksanakan Bersyarat'
+                                        }
+
+                                        // Update progress bar
+                                        progressBar.style.width = progress + '%';
+                                        progressBar.setAttribute('aria-valuenow', progress);
+                                    }
+
+                                    // Panggil fungsi untuk memperbarui progress bar
+                                    updateProgressBar(statusIsu, statusUsulan); // Kirim status isu dan usulan
+                                </script>
+
 
                                 </div>
                             </div>
@@ -126,7 +131,7 @@
                             <div class="col-md-6 col-12">
                                 <div class="card">
                                     <div class="card-header">
-                                        <h4 class="card-title">Review Isu Perencanaan</h4>
+                                        <h4 class="card-title">Detail Isu Lingkungan</h4>
                                     </div>
                                     <div class="card-content">
                                         <div class="card-body">
