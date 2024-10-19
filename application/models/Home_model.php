@@ -29,34 +29,42 @@ class Home_model extends CI_Model{
     //     return $this->db->get('tbl_perencanaan')->result_array();
     // }
 
-    public function searchAjuan($keyword, $kelurahan = null, $rw = null, $rt = null, $limit = null, $start = null) {
-        $this->db->like('title_isu', $keyword)
-                 ->or_like('status_isu', $keyword)
-                 ->or_like('detail_pekerjaan', $keyword)
-                 ->or_like('latitude', $keyword)
-                 ->or_like('longitude', $keyword);
+    public function searchAjuan($keyword = null, $kelurahan = null, $rw = null, $rt = null, $limit = null, $start = null) {
+        // Pencarian hanya berdasarkan keyword
+        if ($keyword) {
+            $this->db->group_start()
+                     ->like('title_isu', $keyword)
+                     ->or_like('status_isu', $keyword)
+                     ->or_like('title_jenis', $keyword)
+                     ->or_like('detail_pekerjaan', $keyword)
+                     ->or_like('latitude', $keyword)
+                     ->or_like('longitude', $keyword)
+                     ->group_end();
+        }
     
-        // Jika ada filter kelurahan
+        // Filter kelurahan (jika ada)
         if ($kelurahan) {
             $this->db->where('title_kelurahan', $kelurahan);
         }
     
-        // Jika ada filter RW
+        // Filter RW (jika ada)
         if ($rw) {
             $this->db->where('title_rw', $rw);
         }
     
-        // Jika ada filter RT
+        // Filter RT (jika ada)
         if ($rt) {
             $this->db->where('title_rt', $rt);
         }
     
-        if ($limit && $start) {
-            $this->db->limit($limit, $start); // Pagination
+        // Pagination
+        if ($limit !== null && $start !== null) {
+            $this->db->limit($limit, $start);
         }
     
         return $this->db->get('tbl_perencanaan')->result_array();
     }
+    
     
 
 

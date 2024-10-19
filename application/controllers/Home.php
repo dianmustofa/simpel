@@ -86,10 +86,10 @@ class Home extends CI_Controller {
 	{
 		$this->load->library('pagination'); // Load library pagination
 
-		$keyword = $this->input->get('search');
-		$kelurahan = $this->input->get('kelurahan');
-		$rw = $this->input->get('rw');
-		$rt = $this->input->get('rt');
+		$keyword = $this->input->get('search', TRUE); // Kata kunci pencarian
+		$kelurahan = $this->input->get('kelurahan', TRUE); // Filter kelurahan
+		$rw = $this->input->get('rw', TRUE); // Filter RW
+		$rt = $this->input->get('rt', TRUE); // Filter RT
 
 		// Konfigurasi pagination
 		$config['base_url'] = base_url('home/index');
@@ -117,7 +117,12 @@ class Home extends CI_Controller {
 
 		$page = ($this->uri->segment(3)) ? $this->uri->segment(3) : 0;
 
-		// Ambil data dari model berdasarkan filter
+		$level_kelurahan = $this->Perencanaan_model->level_kelurahan();
+		$data["level_kelurahan"] = $level_kelurahan;
+        $level_angka = $this->Perencanaan_model->level_angka();
+		$data["level_angka"] = $level_angka;
+
+		// Ambil data dari model berdasarkan search dan filter
 		if ($keyword || $kelurahan || $rw || $rt) {
 			$data['ajuan'] = $this->Home_model->searchAjuan($keyword, $kelurahan, $rw, $rt, $config['per_page'], $page);
 		} else {

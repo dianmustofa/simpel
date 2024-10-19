@@ -57,33 +57,86 @@
                                 </div>
                             </div>
                             <div class="row mt-2">
-                                <div class="col-sm-3">
-                                    <!-- Filter Kelurahan -->
+                                <!-- <div class="col-sm-3">
+                                    Filter Kelurahan
                                     <select class="form-control form-control-lg" name="kelurahan">
                                         <option value="">Pilih Kelurahan</option>
                                         <option value="Menteng Dalam" <?= ($this->input->get('kelurahan') == 'Menteng Dalam') ? 'selected' : ''; ?>>Menteng Dalam</option>
                                         <option value="Gambir" <?= ($this->input->get('kelurahan') == 'Gambir') ? 'selected' : ''; ?>>Gambir</option>
-                                        <!-- Tambahkan opsi kelurahan lainnya -->
+                                        Tambahkan opsi kelurahan lainnya
+                                    </select>
+                                </div> -->
+
+                                <div class="col-sm-3">
+                                    <!-- <label>Filter Kelurahan</label> -->
+                                    <select class="form-control form-control-lg" name="kelurahan">
+                                        <option value="">Pilih Kelurahan</option>
+                                        <?php if (!empty($level_kelurahan)): ?>
+                                            <?php foreach ($level_kelurahan as $row): ?>
+                                                <option value="<?= htmlspecialchars($row['title_kelurahan'], ENT_QUOTES, 'UTF-8') ?>" 
+                                                    <?= ($this->input->get('kelurahan') == $row['title_kelurahan']) ? 'selected' : ''; ?>>
+                                                    <?= htmlspecialchars($row['title_kelurahan'], ENT_QUOTES, 'UTF-8') ?>
+                                                </option>
+                                            <?php endforeach; ?>
+                                        <?php else: ?>
+                                            <option value="">Kelurahan tidak tersedia</option>
+                                        <?php endif; ?>
                                     </select>
                                 </div>
+
                                 <div class="col-sm-3">
-                                    <!-- Filter RW -->
+                                    <!-- <label>Filter Kelurahan</label> -->
                                     <select class="form-control form-control-lg" name="rw">
                                         <option value="">Pilih RW</option>
-                                        <option value="013" <?= ($this->input->get('rw') == '013') ? 'selected' : ''; ?>>RW 013</option>
-                                        <option value="001" <?= ($this->input->get('rw') == '001') ? 'selected' : ''; ?>>RW 001</option>
-                                        <!-- Tambahkan opsi RW lainnya -->
+                                        <?php if (!empty($level_angka)): ?>
+                                            <?php foreach ($level_angka as $row): ?>
+                                                <option value="<?= htmlspecialchars($row['title_angka'], ENT_QUOTES, 'UTF-8') ?>" 
+                                                    <?= ($this->input->get('rw') == $row['title_angka']) ? 'selected' : ''; ?>>
+                                                    RW <?= htmlspecialchars($row['title_angka'], ENT_QUOTES, 'UTF-8') ?>
+                                                </option>
+                                            <?php endforeach; ?>
+                                        <?php else: ?>
+                                            <option value="">RW tidak tersedia</option>
+                                        <?php endif; ?>
                                     </select>
                                 </div>
+
                                 <div class="col-sm-3">
-                                    <!-- Filter RT -->
+                                    <!-- <label>Filter Kelurahan</label> -->
                                     <select class="form-control form-control-lg" name="rt">
                                         <option value="">Pilih RT</option>
-                                        <option value="005" <?= ($this->input->get('rt') == '005') ? 'selected' : ''; ?>>RT 005</option>
-                                        <option value="009" <?= ($this->input->get('rt') == '009') ? 'selected' : ''; ?>>RT 009</option>
-                                        <!-- Tambahkan opsi RT lainnya -->
+                                        <?php if (!empty($level_angka)): ?>
+                                            <?php foreach ($level_angka as $row): ?>
+                                                <option value="<?= htmlspecialchars($row['title_angka'], ENT_QUOTES, 'UTF-8') ?>" 
+                                                    <?= ($this->input->get('rt') == $row['title_angka']) ? 'selected' : ''; ?>>
+                                                    RT <?= htmlspecialchars($row['title_angka'], ENT_QUOTES, 'UTF-8') ?>
+                                                </option>
+                                            <?php endforeach; ?>
+                                        <?php else: ?>
+                                            <option value="">RT tidak tersedia</option>
+                                        <?php endif; ?>
                                     </select>
                                 </div>
+
+
+                                <!-- <div class="col-sm-3"> -->
+                                    <!-- Filter RW -->
+                                    <!-- <select class="form-control form-control-lg" name="rw">
+                                        <option value="">Pilih RW</option>
+                                        <option value="013" <?= ($this->input->get('rw') == '013') ? 'selected' : ''; ?>>RW 013</option>
+                                        <option value="001" <?= ($this->input->get('rw') == '001') ? 'selected' : ''; ?>>RW 001</option> -->
+                                        <!-- Tambahkan opsi RW lainnya -->
+                                    <!-- </select>
+                                </div> -->
+                                <!-- <div class="col-sm-3"> -->
+                                    <!-- Filter RT -->
+                                    <!-- <select class="form-control form-control-lg" name="rt">
+                                        <option value="">Pilih RT</option>
+                                        <option value="005" <?= ($this->input->get('rt') == '005') ? 'selected' : ''; ?>>RT 005</option>
+                                        <option value="009" <?= ($this->input->get('rt') == '009') ? 'selected' : ''; ?>>RT 009</option> -->
+                                        <!-- Tambahkan opsi RT lainnya -->
+                                    <!-- </select>
+                                </div> -->
                                 <div class="col-sm-3">
                                     <button type="submit" class="btn btn-primary btn-lg w-100">Filter</button>
                                 </div>
@@ -135,6 +188,10 @@
                                 $latitude = $row['latitude'];
                                 $longitude = $row['longitude'];
                                 $statusIsu = $row['status_isu'];
+                                $alamatIsu = $row['alamat_isu'];
+                                $kelurahan = $row['title_kelurahan'];
+                                $RW = $row['title_rw'];
+                                $RT = $row['title_rt'];
                                 $gambarIsu = $row['gambar_isu'];
                                 $detailPekerjaan = $row['detail_pekerjaan'];
                             ?>
@@ -145,7 +202,7 @@
                                         <div class="card-body">
                                             <h4 class="card-title"><?= $titleJenis ?></h4>
                                             <p class="card-text">
-                                                <?= $detailPekerjaan ?>
+                                                <?= $alamatIsu ?> Kelurahan <?= $kelurahan ?> RW <?= $RW ?> RT <?= $RT ?>
                                             </p>
                                         </div>
                                         <img class="img-fluid w-100" src="<?php echo base_url();?>uploads/images/<?= $gambarIsu ?>"
