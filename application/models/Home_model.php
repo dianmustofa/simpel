@@ -61,6 +61,8 @@ class Home_model extends CI_Model{
         if ($limit !== null && $start !== null) {
             $this->db->limit($limit, $start);
         }
+
+        $this->db->where('deleted_at IS NULL');
     
         return $this->db->get('tbl_perencanaan')->result_array();
     }
