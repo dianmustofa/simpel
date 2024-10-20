@@ -7,6 +7,7 @@ class Laporan extends CI_Controller {
 	{	
 		parent::__construct();
 		$this->load->model("Laporan_model");
+		$this->load->model("Perencanaan_model");
 		$this->load->library('upload');
 	}
 
@@ -14,6 +15,8 @@ class Laporan extends CI_Controller {
 	{
 		$laporan = $this->Laporan_model->load_laporan();
         $data['laporan'] = $laporan;
+		$level_kelurahan = $this->Perencanaan_model->level_kelurahan();
+		$data["level_kelurahan"] = $level_kelurahan;
 
         $this->load->view('Laporan/laporan_tahunan_view', $data);
 	}
@@ -44,6 +47,7 @@ class Laporan extends CI_Controller {
         $data = array(
             'id_akun' => $this->session->userdata('id_akun'),
             'title_laporan' => $this->input->post('title_laporan'),
+			'kelurahan_laporan' => $this->input->post('kelurahan_laporan'),
             'tahun_laporan' => $this->input->post('tahun_laporan'),
 			// 'document_laporan' => $this->input->post('document_laporan'),
             'document_laporan' => $document_data['file_name'],
@@ -74,6 +78,9 @@ class Laporan extends CI_Controller {
             redirect("laporan-tahunan");
         }
 
+		$level_kelurahan = $this->Perencanaan_model->level_kelurahan();
+		$data["level_kelurahan"] = $level_kelurahan;
+
     	$this->load->view('Laporan/laporan_edit_view', $data);
 	}
 
@@ -87,6 +94,7 @@ class Laporan extends CI_Controller {
 		$data = array(
 			'id_akun' => $this->session->userdata('id_akun'),
 			'title_laporan' => $this->input->post('title_laporan'),
+			'kelurahan_laporan' => $this->input->post('kelurahan_laporan'),
 			'tahun_laporan' => $this->input->post('tahun_laporan'),
 		);
 	

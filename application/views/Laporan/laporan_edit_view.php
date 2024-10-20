@@ -74,10 +74,34 @@
                                                     <div class="row">
                                                         <?php if ($this->session->userdata('logged_in')) : ?>
                                                             <div class="col-md-4">
-                                                                <label>Judul Laporan</label>
+                                                                <label>Judul Dokumen</label>
                                                             </div>
                                                             <div class="col-md-8 form-group">
                                                                 <textarea type="text" class="form-control" name="title_laporan" required><?php echo isset($update_laporan['title_laporan']) ? $update_laporan['title_laporan'] : ''; ?></textarea>
+                                                            </div>
+
+                                                            <!-- Input Kelurahan -->
+                                                            <?php 
+                                                                $jenis="";
+                                                            if(isset($default['title_kelurahan'])) $jenis=$default['title_kelurahan'];
+                                                            ?>
+                                                            <div class="form-group">
+                                                                <label>Kelurahan</label>
+                                                                <!-- <input type="text" name="title_isu" placeholder="Isu Perencanaan" class="form-control" required> -->
+                                                                <select class="choices form-select" name="kelurahan_laporan" required>
+                                                                    <!-- Opsi default yang tidak bisa dipilih -->
+                                                                    <option value="" disabled selected>Pilih Kelurahan</option>
+                                                                    <!-- Pastikan $level_akun ada dan bukan kosong -->
+                                                                    <?php if (!empty($level_kelurahan)): ?>
+                                                                        <?php foreach ($level_kelurahan as $row): ?>
+                                                                            <option value="<?= htmlspecialchars($row['title_kelurahan'], ENT_QUOTES, 'UTF-8') ?>">
+                                                                                <?= htmlspecialchars($row['title_kelurahan'], ENT_QUOTES, 'UTF-8') ?>
+                                                                            </option>
+                                                                        <?php endforeach; ?>
+                                                                    <?php else: ?>
+                                                                        <option value="">Kelurahan tidak tersedia</option>
+                                                                    <?php endif; ?>
+                                                                </select>
                                                             </div>
                                                             
                                                             <div class="col-md-4">
@@ -88,7 +112,7 @@
                                                             </div>
 
                                                             <div class="col-md-4">
-                                                                <label>Laporan Dokumen</label>
+                                                                <label>Upload Dokumen</label>
                                                             </div>
                                                             <div class="col-md-8 form-group">
                                                                 <!-- Tampilkan dokumen lama jika ada -->

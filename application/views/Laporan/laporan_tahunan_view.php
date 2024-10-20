@@ -71,12 +71,36 @@
                                                     <!-- Tambahkan CSS untuk ukuran peta -->
 
                                                     <div class="form-group">
-                                                        <label>Judul Laporan</label>
+                                                        <label>Judul Dokumen</label>
                                                         <input type="text" name="title_laporan" placeholder="" class="form-control" required>
                                                     </div>
 
+                                                    <!-- Input Kelurahan -->
+                                                    <?php 
+                                                        $jenis="";
+                                                    if(isset($default['title_kelurahan'])) $jenis=$default['title_kelurahan'];
+                                                    ?>
                                                     <div class="form-group">
-                                                        <label>Tahun</label>
+                                                        <label>Kelurahan</label>
+                                                        <!-- <input type="text" name="title_isu" placeholder="Isu Perencanaan" class="form-control" required> -->
+                                                        <select class="choices form-select" name="kelurahan_laporan" required>
+                                                            <!-- Opsi default yang tidak bisa dipilih -->
+                                                            <option value="" disabled selected>Pilih Kelurahan</option>
+                                                            <!-- Pastikan $level_akun ada dan bukan kosong -->
+                                                            <?php if (!empty($level_kelurahan)): ?>
+                                                                <?php foreach ($level_kelurahan as $row): ?>
+                                                                    <option value="<?= htmlspecialchars($row['title_kelurahan'], ENT_QUOTES, 'UTF-8') ?>">
+                                                                        <?= htmlspecialchars($row['title_kelurahan'], ENT_QUOTES, 'UTF-8') ?>
+                                                                    </option>
+                                                                <?php endforeach; ?>
+                                                            <?php else: ?>
+                                                                <option value="">Kelurahan tidak tersedia</option>
+                                                            <?php endif; ?>
+                                                        </select>
+                                                    </div>
+
+                                                    <div class="form-group">
+                                                        <label>Tahun CAP</label>
                                                         <input type="text" name="tahun_laporan" placeholder="" class="form-control" required>
                                                     </div>
 
