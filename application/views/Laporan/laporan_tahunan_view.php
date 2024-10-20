@@ -119,7 +119,10 @@
                                             <th>Judul Laporan</th>
                                             <th>Tahun</th>
                                             <th>Dokumen</th>
+                                            <?php if (in_array($this->session->userdata('id_level_akun'), [2, 4])) : ?>
                                             <th>Action</th>
+                                            <?php else : ?>
+                                                <?php endif; ?>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -139,12 +142,15 @@
                                                     </a>
                                                 </td>
                                                 <td>
+                                                <?php if (in_array($this->session->userdata('id_level_akun'), [2, 4])) : ?>
                                                     <a href="<?php echo base_url(); ?>laporan/edit/<?= $idLaporan ?>">
                                                         <span class="badge bg-secondary" style="cursor: pointer;">Edit</span>
                                                     </a>
                                                     <a href="<?php echo base_url(); ?>laporan/delete/<?= $idLaporan ?>">
                                                         <span class="badge bg-danger" style="cursor: pointer;" onclick="return confirm('Anda yakin ingin menghapus item ini?');">Hapus</span>
                                                     </a>
+                                                <?php else : ?>
+                                                    <?php endif; ?>
                                                 </td>
                                             </tr>
                                         <?php } ?>
