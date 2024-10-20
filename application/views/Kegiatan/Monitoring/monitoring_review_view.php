@@ -121,18 +121,20 @@
                                                             <textarea type="text" class="form-control" name="komentar_monitoring" id="exampleFormControlTextarea1" rows="3" placeholder="Berikan komentar anda"></textarea>
                                                         </div>
 
+                                                        <div class="col-md-4" >
+                                                            <label for="image">Upload Gambar</label>
+                                                        </div>
+                                                        <div class="col-md-8 form-group" >
+                                                            <!-- <input type="text" class="form-control" name="keterangan_monitoring" value=""> -->
+                                                            <input type="file" name="gambar_monitoring" id="image" accept="image/*">
+                                                        </div>
+
                                                         <!-- Tambahkan upload gambar -->
                                                         <!-- <div class="form-group">
                                                             <label for="image">Upload Gambar</label>
                                                             <input type="file" name="gambar_monitoring" id="image" accept="image/*" required>
                                                         </div> -->
-                                                        <div class="col-md-4 verification-input" >
-                                                            <label for="image">Upload Gambar</label>
-                                                        </div>
-                                                        <div class="col-md-8 form-group verification-input" >
-                                                            <!-- <input type="text" class="form-control" name="keterangan_monitoring" value=""> -->
-                                                            <input type="file" name="gambar_monitoring" id="image" accept="image/*">
-                                                        </div>
+                                                        
                                                         <!-- Tambahkan upload dokumen -->
                                                         <!-- <div class="form-group">
                                                             <label for="document">Upload Dokumen</label>

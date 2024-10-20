@@ -73,6 +73,7 @@
                                             $titleRT = $row['title_rt'];
                                             $statusMonitoring = $row['status_monitoring'];
                                             $tanggalrealisasiMonitoring = $row['tanggal_realisasi_monitoring'];
+                                            $komentarMonitoring = $row['komentar_monitoring'];
                                         ?>
                                             <tr>
                                                 <td><?= $titleIsu ?></td>
@@ -99,9 +100,9 @@
                                                     <?php if ($statusMonitoring === 'Dilaksanakan') : ?>
                                                         <span class="badge bg-success">Dilaksanakan</span>
                                                         <span class="badge bg-info" style="cursor: pointer;">Edit</span>
-                                                        <?php elseif ($statusMonitoring === 'Dilaksanakan bersyarat') : ?>
-                                                            <span class="badge bg-warning">Dilaksanakan bersyarat</span>
-                                                            <!-- <span class="badge bg-info" style="cursor: pointer;">Edit</span> -->
+                                                        <?php elseif ($statusMonitoring === 'Tidak dapat dilaksanakan') : ?>
+                                                            <span class="badge bg-warning">Tidak dapat dilaksanakan</span>
+                                                            <p><?= $komentarMonitoring ?></p>
                                                     <?php else : ?>
                                                         <span class="badge bg-danger">Sedang Proses</span>
                                                         <a href="<?php echo base_url(); ?>monitoring/review/<?= $idIsu ?>">
