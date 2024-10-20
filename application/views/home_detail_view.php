@@ -230,6 +230,32 @@
                                                                 name="fname" value="<?php echo $review_isu['last_created_date'];?>">
                                                         </div>
 
+                                                        <div class="col-md-4">
+                                                            <label>Instansi Pelaksana</label>
+                                                        </div>
+                                                        <div class="col-md-8 form-group">
+                                                            <?php if ( $review_isu['title_opd'] != Null) : ?>
+                                                                <input type="text" id="readonlyInput" readonly="readonly" class="form-control"
+                                                                    name="fname" value="<?php echo $review_isu['title_opd'];?>">
+                                                            <?php else : ?>
+                                                                <input type="text" id="readonlyInput" readonly="readonly" class="form-control"
+                                                                    name="fname" value="Sedang di Proses">
+                                                                <?php endif; ?>
+                                                        </div>
+
+                                                        <div class="col-md-4">
+                                                            <label>Indikasi Tahun Pelaksana</label>
+                                                        </div>
+                                                        <div class="col-md-8 form-group">
+                                                            <?php if ( $review_isu['indikasi_tahun_pelaksana_usulan'] != Null) : ?>
+                                                                    <input type="text" id="readonlyInput" readonly="readonly" class="form-control"
+                                                                        name="fname" value="<?php echo $review_isu['indikasi_tahun_pelaksana_usulan'];?>">
+                                                                <?php else : ?>
+                                                                    <input type="text" id="readonlyInput" readonly="readonly" class="form-control"
+                                                                        name="fname" value="Sedang di Proses">
+                                                                    <?php endif; ?>
+                                                        </div>
+
                                                         <script>
                                                             document.getElementById('title_status_isu').addEventListener('change', function() {
                                                                 var selectedValue = this.value;

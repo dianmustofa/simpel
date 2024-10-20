@@ -80,18 +80,17 @@
                                                             <!-- <textarea type="text" class="form-control" value="" ></textarea> -->
                                                             <input type="file" name="document_ded" id="document" accept=".pdf,.doc,.docx" required>
                                                         </div>
-                                                        <div class="col-md-4">
+                                                        <!-- <div class="col-md-4">
                                                             <label>Berita Acara (BA)</label>
                                                         </div>
                                                         <div class="col-md-8 form-group">
-                                                            <!-- <textarea type="text" class="form-control" name="fname" value="" ></textarea> -->
                                                             <input type="file" name="document_ba" id="document" accept=".pdf,.doc,.docx" required>
-                                                        </div>
+                                                        </div> -->
                                                         <div class="col-md-4">
                                                             <label>Rencana Anggaran</label>
                                                         </div>
                                                         <div class="col-md-8 form-group">
-                                                            <textarea type="text" class="form-control" name="rencana_anggaran" value="" ></textarea>
+                                                            <textarea type="text" class="form-control" name="rencana_anggaran" value="" required></textarea>
                                                         </div>
 
                                                     <?php else : ?>

@@ -46,7 +46,7 @@
                 <li class="sidebar-item">
                     <a href="<?php echo base_url();?>laporan-tahunan" class='sidebar-link'>
                         <i class="bi bi-stack"></i>
-                        <span>Laporan Tahunan</span>
+                        <span>Dokumen Pendukung CAP</span>
                     </a>
                 </li>
 
@@ -123,7 +123,7 @@
                     <li class="sidebar-item">
                         <a href="<?php echo base_url();?>laporan-tahunan" class='sidebar-link'>
                             <i class="bi bi-stack"></i>
-                            <span>Laporan Tahunan</span>
+                            <span>Dokumen Pendukung CAP</span>
                         </a>
                     </li>
 
@@ -185,7 +185,7 @@
                         <li class="sidebar-item">
                             <a href="<?php echo base_url();?>laporan-tahunan" class='sidebar-link'>
                                 <i class="bi bi-stack"></i>
-                                <span>Laporan Tahunan</span>
+                                <span>Dokumen Pendukung CAP</span>
                             </a>
                         </li>
 

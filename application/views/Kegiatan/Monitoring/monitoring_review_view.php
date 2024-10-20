@@ -84,10 +84,10 @@
                                                             <select class="choices form-select" name="status_monitoring" id="title_status_isu">
                                                                 <!-- Pastikan $level_akun ada dan bukan kosong -->
                                                                 <option value="Menunggu Verifikasi">Menunggu Verifikasi</option>
-                                                                <?php if (!empty($level_status_usulan)): ?>
-                                                                    <?php foreach ($level_status_usulan as $row): ?>
-                                                                        <option value="<?= htmlspecialchars($row['title_status_usulan'], ENT_QUOTES, 'UTF-8') ?>">
-                                                                            <?= htmlspecialchars($row['title_status_usulan'], ENT_QUOTES, 'UTF-8') ?>
+                                                                <?php if (!empty($level_status_isu)): ?>
+                                                                    <?php foreach ($level_status_isu as $row): ?>
+                                                                        <option value="<?= htmlspecialchars($row['title_status_isu'], ENT_QUOTES, 'UTF-8') ?>">
+                                                                            <?= htmlspecialchars($row['title_status_isu'], ENT_QUOTES, 'UTF-8') ?>
                                                                         </option>
                                                                     <?php endforeach; ?>
                                                                 <?php else: ?>
@@ -104,16 +104,16 @@
                                                             <input type="date" class="form-control" name="tanggal_realisasi_monitoring" value="">
                                                         </div>
                                                         <div class="col-md-4 verification-input" style="display:none;">
-                                                            <label>Realisasi Monitoring</label>
+                                                            <label>Progres Realisasi Pekerjaan</label>
                                                         </div>
                                                         <div class="col-md-8 form-group verification-input" style="display:none;">
-                                                            <input type="text" class="form-control" name="realisasi_monitoring" value="">
+                                                            <input type="text" class="form-control" name="realisasi_monitoring" placeholder="pensentase %" value="">
                                                         </div>
                                                         <div class="col-md-4 verification-input" style="display:none;">
-                                                            <label>Keterangan Monitoring</label>
+                                                            <label>Keterangan Monitoring (opsional)</label>
                                                         </div>
                                                         <div class="col-md-8 form-group verification-input" style="display:none;">
-                                                            <input type="text" class="form-control" name="keterangan_monitoring" value="">
+                                                            <input type="text" class="form-control" name="keterangan_monitoring" placeholder="volume" value="">
                                                         </div>
 
                                                         <div class="col-md-12 form-group comment-input" style="display:none;">
@@ -164,7 +164,7 @@
 
 
                                                                 // Tampilkan input komentar hanya jika status adalah "Tidak Dapat Dilaksanakan"
-                                                                if (selectedValue === 'Dilaksanakan bersyarat') {
+                                                                if (selectedValue === 'Tidak dapat dilaksanakan') {
                                                                     commentInput.style.display = 'block';
                                                                 } else {
                                                                     commentInput.style.display = 'none';

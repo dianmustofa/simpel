@@ -161,19 +161,19 @@ class Usulan extends CI_Controller {
             $document_ded_data = $this->upload->data();
         }
 
-		$config['upload_path'] = './uploads/documents/';
-        $config['allowed_types'] = 'pdf|doc|docx';
-		$config['file_name'] = uniqid() . '_' . preg_replace('/[^a-zA-Z0-9-_\.]/','', $_FILES['document_ba']['name']);
-        $this->upload->initialize($config);
+		// $config['upload_path'] = './uploads/documents/';
+        // $config['allowed_types'] = 'pdf|doc|docx';
+		// $config['file_name'] = uniqid() . '_' . preg_replace('/[^a-zA-Z0-9-_\.]/','', $_FILES['document_ba']['name']);
+        // $this->upload->initialize($config);
 
-		if (!$this->upload->do_upload('document_ba')) {
-            $error = array('error' => $this->upload->display_errors());
-            // Handle error
-            echo $error['error'];
-            return;
-        } else {
-            $document_ba_data = $this->upload->data();
-        }
+		// if (!$this->upload->do_upload('document_ba')) {
+        //     $error = array('error' => $this->upload->display_errors());
+        //     // Handle error
+        //     echo $error['error'];
+        //     return;
+        // } else {
+        //     $document_ba_data = $this->upload->data();
+        // }
 
 		// Cek apakah $id diberikan
 		if ($id === null) {
@@ -198,7 +198,7 @@ class Usulan extends CI_Controller {
 				$data = array(
 					// Masukkan data yang relevan untuk level akun 4
 					'document_ded' => $document_ded_data['file_name'],
-					'document_ba' => $document_ba_data['file_name'],
+					// 'document_ba' => $document_ba_data['file_name'],
 					'rencana_anggaran' => $this->input->post('rencana_anggaran'),
 				);
 			} else {

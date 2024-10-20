@@ -34,7 +34,7 @@
                     <div class="page-title">
                         <div class="row">
                             <div class="col-12 col-md-6 order-md-1 order-last">
-                                <h3>Laporan Tahunan</h3>
+                                <h3>Dokumen Pendukung CAP</h3>
                                 <p class="text-subtitle text-muted"></p>
                             </div>
                             <div class="col-12 col-md-6 order-md-2 order-first">
@@ -43,7 +43,7 @@
                                         <li class="breadcrumb-item">
                                             <button type="button" class="btn btn-outline-success" data-bs-toggle="modal"
                                             data-bs-target="#exampleModalScrollable">
-                                                + Upload dokumen Tahunan
+                                                + Upload dokumen pendukung CAP
                                             </button>
                                         </li>
                                     </ol>
