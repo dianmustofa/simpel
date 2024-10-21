@@ -98,12 +98,14 @@ class Perencanaan extends CI_Controller {
         // Load helper untuk upload
         $this->load->helper(array('form', 'url'));
 
+        $this->load->library('upload');
+
         // Konfigurasi upload gambar
         $config['upload_path'] = './uploads/images/';
         $config['allowed_types'] = 'gif|jpg|png';
         // $config['max_size'] = 4048; // 2MB
         $config['file_name'] = uniqid() . '_' . preg_replace('/[^a-zA-Z0-9-_\.]/','', $_FILES['gambar_isu']['name']);
-        $this->load->library('upload', $config);
+        $this->upload->initialize($config);
 
         // Proses upload gambar
         if (!$this->upload->do_upload('gambar_isu')) {
