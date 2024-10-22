@@ -249,6 +249,9 @@
                 rowData.push(rows[i].cells[0].innerText); // Kolom Title Isu
                 rowData.push(rows[i].cells[1].innerText); // Kolom Latitude
                 rowData.push(rows[i].cells[2].innerText); // Kolom Longitude
+                rowData.push(rows[i].cells[3].innerText); // Kolom Title Isu
+                rowData.push(rows[i].cells[4].innerText); // Kolom Latitude
+                rowData.push(rows[i].cells[5].innerText); // Kolom Longitude
                 selectedData.push(rowData);
             }
 

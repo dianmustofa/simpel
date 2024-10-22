@@ -338,7 +338,7 @@
 
                                                     <div class="form-group">
                                                         <label>Alamat</label>
-                                                        <input type="text" name="alamat_isu" placeholder="" class="form-control" required>
+                                                        <input type="text" name="alamat_isu" placeholder="" class="form-control" >
                                                     </div>
 
                                                     
@@ -370,13 +370,13 @@
                                                     <!-- Tambahkan upload gambar -->
                                                     <div class="form-group">
                                                         <label for="image">Upload Gambar</label>
-                                                        <input type="file" name="gambar_isu" id="image" accept="image/*" required>
+                                                        <input type="file" name="gambar_isu" id="image" accept="image/*" >
                                                     </div>
 
                                                     <!-- Tambahkan upload dokumen -->
                                                     <div class="form-group">
                                                         <label for="document">Upload Dokumen</label>
-                                                        <input type="file" name="document_isu" id="document" accept=".pdf,.doc,.docx" required>
+                                                        <input type="file" name="document_isu" id="document" accept=".pdf,.doc,.docx" >
                                                     </div>
 
                                                 </div>
@@ -698,6 +698,8 @@
                 rowData.push(rows[i].cells[1].innerText); // Kolom Latitude
                 rowData.push(rows[i].cells[2].innerText); // Kolom Longitude
                 rowData.push(rows[i].cells[3].innerText); // Kolom Status Isu
+                rowData.push(rows[i].cells[4].innerText); // Kolom Status Isu
+                rowData.push(rows[i].cells[5].innerText); // Kolom Status Isu
                 selectedData.push(rowData);
             }
 

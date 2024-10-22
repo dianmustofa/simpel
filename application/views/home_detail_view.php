@@ -86,6 +86,7 @@
                                     // Ambil status dari variabel PHP yang dikirim dari controller
                                     $status_isu = isset($status_isu) ? $status_isu : 'Belum Ada Status'; // Status default jika kosong
                                     $status_usulan = isset($status_usulan) ? $status_usulan : 'Belum Ada Status'; // Status default jika kosong
+                                    $title_opd = isset($title_opd) ? $title_opd : NULL; // Status default jika kosong
                                 ?>
 
                                 <div id="progressBar" class="progress-bar progress-label" role="progressbar" style="width: 35%" aria-valuenow="35" aria-valuemin="0" aria-valuemax="100"></div>
@@ -94,20 +95,27 @@
                                     // Ambil status dari PHP
                                     var statusIsu = "<?php echo $status_isu; ?>";
                                     var statusUsulan = "<?php echo $status_usulan; ?>";
+                                    var titleOPD = "<?php echo $title_opd; ?>";
 
-                                    function updateProgressBar(statusIsu, statusUsulan) {
+                                    function updateProgressBar(statusIsu, statusUsulan, titleOPD) {
                                         var progressBar = document.getElementById('progressBar');
                                         var progress = 0;
                                         
                                         // Logika status isu
-                                        if (statusIsu === 'Dilanjutkan') {
-                                            progress = 40; // Progress 40% untuk status isu 'Dilanjutkan'
+                                        if (statusUsulan === 'Dilaksanakan' || statusUsulan === 'Dilaksanakan bersyarat') {
+                                            progress = 100; // Progress 50% untuk status isu 'Dilanjutkan'
+                                        } else if (statusIsu === 'Dilanjutkan'){
+                                            progress = 70; // Progress 100% untuk status usulan 'Dilaksanakan' atau 'Dilaksanakan Bersyarat'
+                                        } else if (titleOPD !== null && titleOPD !== ''){
+                                            progress = 40; // Progress 100% untuk status usulan 'Dilaksanakan' atau 'Dilaksanakan Bersyarat'
+                                        } else {
+                                            progress = 5;
                                         }
 
-                                        // Logika status usulan
-                                        if (statusUsulan === 'Dilaksanakan' || statusUsulan === 'Dilaksanakan Bersyarat') {
-                                            progress = 90; // Progress 90% untuk status usulan 'Dilaksanakan' atau 'Dilaksanakan Bersyarat'
-                                        }
+                                        // // Logika status usulan
+                                        // if (statusUsulan === 'Dilaksanakan' || statusUsulan === 'Dilaksanakan bersyarat') {
+                                        //     progress = 100; // Progress 100% untuk status usulan 'Dilaksanakan' atau 'Dilaksanakan Bersyarat'
+                                        // }
 
                                         // Update progress bar
                                         progressBar.style.width = progress + '%';
@@ -115,7 +123,7 @@
                                     }
 
                                     // Panggil fungsi untuk memperbarui progress bar
-                                    updateProgressBar(statusIsu, statusUsulan); // Kirim status isu dan usulan
+                                    updateProgressBar(statusIsu, statusUsulan, titleOPD); // Kirim status isu dan usulan
                                 </script>
 
 

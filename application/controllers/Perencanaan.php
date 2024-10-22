@@ -107,14 +107,30 @@ class Perencanaan extends CI_Controller {
         $config['file_name'] = uniqid() . '_' . preg_replace('/[^a-zA-Z0-9-_\.]/','', $_FILES['gambar_isu']['name']);
         $this->upload->initialize($config);
 
-        // Proses upload gambar
-        if (!$this->upload->do_upload('gambar_isu')) {
-            $error = array('error' => $this->upload->display_errors());
-            // Handle error
-            echo $error['error'];
-            return;
+        // // Proses upload gambar
+        // if (!$this->upload->do_upload('gambar_isu')) {
+        //     $error = array('error' => $this->upload->display_errors());
+        //     // Handle error
+        //     echo $error['error'];
+        //     return;
+        // } else {
+        //     $image_data = $this->upload->data();
+        // }
+
+        // Cek apakah ada file yang diunggah
+        if (!empty($_FILES['gambar_isu']['name'])) {
+            // Proses upload gambar
+            if (!$this->upload->do_upload('gambar_isu')) {
+                $error = array('error' => $this->upload->display_errors());
+                // Handle error
+                echo $error['error'];
+                return;
+            } else {
+                $image_data = $this->upload->data();
+            }
         } else {
-            $image_data = $this->upload->data();
+            // Jika tidak ada file yang diunggah, lanjutkan tanpa error
+            $image_data = null; // Atau sesuai dengan kebutuhan Anda
         }
 
         // Konfigurasi upload dokumen
@@ -123,14 +139,31 @@ class Perencanaan extends CI_Controller {
         $config['file_name'] = uniqid() . '_' . preg_replace('/[^a-zA-Z0-9-_\.]/','', $_FILES['document_isu']['name']);
         $this->upload->initialize($config);
 
-        if (!$this->upload->do_upload('document_isu')) {
-            $error = array('error' => $this->upload->display_errors());
-            // Handle error
-            echo $error['error'];
-            return;
+        // if (!$this->upload->do_upload('document_isu')) {
+        //     $error = array('error' => $this->upload->display_errors());
+        //     // Handle error
+        //     echo $error['error'];
+        //     return;
+        // } else {
+        //     $document_data = $this->upload->data();
+        // }
+
+        // Cek apakah ada file dokumen yang diunggah
+        if (!empty($_FILES['document_isu']['name'])) {
+            // Proses upload dokumen
+            if (!$this->upload->do_upload('document_isu')) {
+                $error = array('error' => $this->upload->display_errors());
+                // Handle error
+                echo $error['error'];
+                return;
+            } else {
+                $document_data = $this->upload->data();
+            }
         } else {
-            $document_data = $this->upload->data();
+            // Jika tidak ada file yang diunggah, lanjutkan tanpa error
+            $document_data = null; // Atau sesuai dengan kebutuhan Anda
         }
+
 
         // Ambil data dari form
         $data = array(

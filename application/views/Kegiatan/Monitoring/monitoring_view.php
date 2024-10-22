@@ -49,12 +49,16 @@
                                 <table class="table table-striped" id="table1">
                                     <thead>
                                         <tr>
-                                            <th>Isu Lingkungan</th>
+                                            <th>Manfaat dan Tujuan</th>
+                                            <th>Indikasi Program</th>
                                             <th>Program</th>
                                             <th>Alamat</th>
                                             <th>Kelurahan</th>
                                             <th>RW</th>
                                             <th>RT</th>
+                                            <th>Indikasi Tahun Pelaksana</th>
+                                            <th>Sumber Pendanaan</th>
+                                            <th>Instansi Pelaksana</th>
                                             <th>Tanggal Realisasi</th>
                                             <th>Action</th>                                            
                                         </tr>
@@ -74,14 +78,23 @@
                                             $statusMonitoring = $row['status_monitoring'];
                                             $tanggalrealisasiMonitoring = $row['tanggal_realisasi_monitoring'];
                                             $komentarMonitoring = $row['komentar_monitoring'];
+                                            $manfaatTujuanUsulan = $row['manfaat_tujuan_usulan'];
+                                            $indikasiProgramUsulan = $row['indikasi_program_usulan'];
+                                            $sumberPendanaanUsulan = $row['sumber_pendanaan_usulan'];
+                                            $indikasiTahunPelaksanaUsulan = $row['indikasi_tahun_pelaksana_usulan'];
+                                            $titleOPD = $row['title_opd'];
                                         ?>
                                             <tr>
-                                                <td><?= $titleIsu ?></td>
+                                                <td><?= $manfaatTujuanUsulan ?></td>
+                                                <td><?= $indikasiProgramUsulan ?></td>
                                                 <td><?= $titleJenis ?></td>
                                                 <td><?= $alamatIsu ?></td>
                                                 <td><?= $titleKelurahan ?></td>
                                                 <td><?= $titleRW ?></td>
                                                 <td><?= $titleRT ?></td>
+                                                <td><?= $indikasiTahunPelaksanaUsulan ?></td>
+                                                <td><?= $sumberPendanaanUsulan ?></td>
+                                                <td><?= $titleOPD ?></td>
                                                 <td>
                                                 <?php if ($statusMonitoring != NULL) : ?>
                                                     <?= $tanggalrealisasiMonitoring ?>
@@ -205,6 +218,13 @@
                 rowData.push(rows[i].cells[1].innerText); // Kolom Latitude
                 rowData.push(rows[i].cells[2].innerText); // Kolom Longitude
                 rowData.push(rows[i].cells[3].innerText); // Kolom Status
+                rowData.push(rows[i].cells[4].innerText); // Kolom Status
+                rowData.push(rows[i].cells[5].innerText); // Kolom Status
+                rowData.push(rows[i].cells[6].innerText); // Kolom Status
+                rowData.push(rows[i].cells[7].innerText); // Kolom Status
+                rowData.push(rows[i].cells[8].innerText); // Kolom Status
+                rowData.push(rows[i].cells[9].innerText); // Kolom Status
+                rowData.push(rows[i].cells[10].innerText); // Kolom Status
                 selectedData.push(rowData);
             }
 

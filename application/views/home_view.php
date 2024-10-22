@@ -188,6 +188,8 @@
                                 $latitude = $row['latitude'];
                                 $longitude = $row['longitude'];
                                 $statusIsu = $row['status_isu'];
+                                $statusUsulan = $row['status_usulan'];
+                                $titleOPD = $row['title_opd'];
                                 $alamatIsu = $row['alamat_isu'];
                                 $kelurahan = $row['title_kelurahan'];
                                 $RW = $row['title_rw'];
@@ -209,7 +211,16 @@
                                             alt="Card image cap">
                                     </div>
                                     <div class="card-footer d-flex justify-content-between">
-                                        <span>Status : <?= $statusIsu ?></span>
+                                    <?php if ($statusUsulan === "Dilaksanakan" || $statusUsulan === "Dilaksanakan bersyarat") : ?>
+                                        <span>Status : <?= $statusUsulan ?></span>
+                                        <?php elseif ($statusIsu === "Dilanjutkan") : ?>
+                                            <span>Status : <?= $statusIsu ?></span>
+                                            <?php elseif ($titleOPD != NULL) : ?>
+                                                <span>Proses Verifikasi SKPD</span>
+                                                <?php else : ?>
+                                                <span>Menunggu Konfirmasi</span>
+                                                <?php endif; ?>
+                                            
                                         
                                         <a href="<?php echo base_url(); ?>home/details/<?= $idIsu ?>"><button class="btn btn-light-primary">Lihat Detail</button></a>
                                     </div>

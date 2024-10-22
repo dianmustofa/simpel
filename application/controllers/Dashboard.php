@@ -58,4 +58,9 @@ class Dashboard extends CI_Controller {
 		$this->load->view('User/user_view', $data);
 	}
 
+	public function manualbook()
+	{
+		$this->load->view('ManualBook/manualbook_view');
+	}
+
 }

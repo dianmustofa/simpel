@@ -63,6 +63,7 @@ $route['profile'] = 'auth/profile';
 $route['dashboard'] = 'dashboard/index';
 $route['tentang'] = 'dashboard/tentang';
 $route['literasi'] = 'dashboard/literasi';
+$route['manualbook'] = 'dashboard/manualbook';
 $route['user'] = 'dashboard/user';
 
 $route['isu'] = 'perencanaan/isu';

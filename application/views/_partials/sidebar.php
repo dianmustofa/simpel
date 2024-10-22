@@ -58,6 +58,13 @@
                 </li>
 
                 <li class="sidebar-item  ">
+                    <a href="<?php echo base_url();?>manualbook" class='sidebar-link'>
+                        <i class="bi bi-grid-fill"></i>
+                        <span>Manual Book</span>
+                    </a>
+                </li>
+
+                <li class="sidebar-item  ">
                     <a href="<?php echo base_url();?>tentang" class='sidebar-link'>
                         <i class="bi bi-grid-fill"></i>
                         <span>Tentang Kami</span>
@@ -137,6 +144,13 @@
                     </li>
 
                     <li class="sidebar-item  ">
+                        <a href="<?php echo base_url();?>manualbook" class='sidebar-link'>
+                            <i class="bi bi-grid-fill"></i>
+                            <span>Manual Book</span>
+                        </a>
+                    </li>
+
+                    <li class="sidebar-item  ">
                         <a href="<?php echo base_url();?>tentang" class='sidebar-link'>
                             <i class="bi bi-grid-fill"></i>
                             <span>Tentang Kami</span>
@@ -199,6 +213,13 @@
                         </li>
 
                         <li class="sidebar-item  ">
+                            <a href="<?php echo base_url();?>manualbook" class='sidebar-link'>
+                                <i class="bi bi-grid-fill"></i>
+                                <span>Manual Book</span>
+                            </a>
+                        </li>
+
+                        <li class="sidebar-item  ">
                             <a href="<?php echo base_url();?>tentang" class='sidebar-link'>
                                 <i class="bi bi-grid-fill"></i>
                                 <span>Tentang Kami</span>
@@ -226,6 +247,13 @@
                         </li>
 
                         <li class="sidebar-item  ">
+                            <a href="<?php echo base_url();?>manualbook" class='sidebar-link'>
+                                <i class="bi bi-grid-fill"></i>
+                                <span>Manual Book</span>
+                            </a>
+                        </li>
+
+                        <li class="sidebar-item  ">
                             <a href="<?php echo base_url();?>tentang" class='sidebar-link'>
                                 <i class="bi bi-grid-fill"></i>
                                 <span>Tentang Kami</span>
@@ -249,6 +277,13 @@
                     <a href="<?php echo base_url();?>literasi" class='sidebar-link'>
                         <i class="bi bi-grid-fill"></i>
                         <span>Literasi Pengetahuan</span>
+                    </a>
+                </li>
+
+                <li class="sidebar-item  ">
+                    <a href="<?php echo base_url();?>manualbook" class='sidebar-link'>
+                        <i class="bi bi-grid-fill"></i>
+                        <span>Manual Book</span>
                     </a>
                 </li>
 

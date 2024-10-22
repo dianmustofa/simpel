@@ -38,16 +38,19 @@
                                 <p class="text-subtitle text-muted"></p>
                             </div>
                             <div class="col-12 col-md-6 order-md-2 order-first">
-                                <nav aria-label="breadcrumb" class="breadcrumb-header float-start float-lg-end">
-                                    <ol class="breadcrumb">
-                                        <li class="breadcrumb-item">
-                                            <button type="button" class="btn btn-outline-success" data-bs-toggle="modal"
-                                            data-bs-target="#exampleModalScrollable">
-                                                + Upload dokumen pendukung CAP
-                                            </button>
-                                        </li>
-                                    </ol>
-                                </nav>
+                                <?php if (in_array($this->session->userdata('id_level_akun'), [2, 4])) : ?>
+                                    <nav aria-label="breadcrumb" class="breadcrumb-header float-start float-lg-end">
+                                        <ol class="breadcrumb">
+                                            <li class="breadcrumb-item">
+                                                <button type="button" class="btn btn-outline-success" data-bs-toggle="modal"
+                                                data-bs-target="#exampleModalScrollable">
+                                                    + Upload dokumen pendukung CAP
+                                                </button>
+                                            </li>
+                                        </ol>
+                                    </nav>
+                                <?php else : ?>
+                                    <?php endif; ?>
                                 <!-- Form Perencanaan Modal -->
                                 <div class="modal fade" id="exampleModalScrollable" tabindex="-1" role="dialog"
                                     aria-labelledby="exampleModalScrollableTitle" aria-hidden="true">
@@ -140,8 +143,9 @@
                                 <table class="table table-striped" id="table1">
                                     <thead>
                                         <tr>
-                                            <th>Judul Laporan</th>
-                                            <th>Tahun</th>
+                                            <th>Judul Dokumen</th>
+                                            <th>Lokasi CAP</th>
+                                            <th>Tahun CAP</th>
                                             <th>Dokumen</th>
                                             <?php if (in_array($this->session->userdata('id_level_akun'), [2, 4])) : ?>
                                             <th>Action</th>
@@ -153,12 +157,14 @@
 
                                         <?php foreach ($laporan as $row) { 
                                             $idLaporan = $row['id_laporan'];
+                                            $kelLaporan = $row['kelurahan_laporan'];
                                             $titleLaporan = $row['title_laporan'];
                                             $tahunLaporan = $row['tahun_laporan'];
                                             $dokumentLaporan = $row['document_laporan'];
                                         ?>
                                             <tr>
                                                 <td><?= $titleLaporan ?></td>
+                                                <td><?= $kelLaporan ?></td>
                                                 <td><?= $tahunLaporan ?></td>
                                                 <td>
                                                     <a href="<?php echo base_url(); ?>uploads/documents/<?= $dokumentLaporan ?>" target="blank">

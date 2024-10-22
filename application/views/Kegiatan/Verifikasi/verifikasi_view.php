@@ -147,6 +147,8 @@
                                                         </a>
                                                         <?php endif; ?>
 
+                                                    
+                                                    <?php if ($this->session->userdata('id_level_akun') === '2') : ?>
                                                     <!-- Tambahkan checkbox Setuju di sini -->
                                                     <div class="form-check" style="display: inline-block; margin-left: 10px;">
                                                         <input class="form-check-input setuju-checkbox" type="checkbox" id="setuju_<?= $idIsu ?>" data-id="<?= $idIsu ?>" value="1" <?= $row['setuju'] ? 'checked' : '' ?>>
@@ -154,6 +156,8 @@
                                                             Setuju
                                                         </label>
                                                     </div>
+                                                    <?php else : ?>
+                                                        <?php endif; ?>
                                                 </td>
                                             </tr>
 
@@ -245,6 +249,9 @@
                 rowData.push(rows[i].cells[0].innerText); // Kolom Title Isu
                 rowData.push(rows[i].cells[1].innerText); // Kolom Latitude
                 rowData.push(rows[i].cells[2].innerText); // Kolom Longitude
+                rowData.push(rows[i].cells[3].innerText); // Kolom Title Isu
+                rowData.push(rows[i].cells[4].innerText); // Kolom Latitude
+                rowData.push(rows[i].cells[5].innerText); // Kolom Longitude
                 selectedData.push(rowData);
             }
 
