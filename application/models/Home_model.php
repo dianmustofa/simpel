@@ -39,6 +39,8 @@ class Home_model extends CI_Model{
                      ->or_like('detail_pekerjaan', $keyword)
                      ->or_like('latitude', $keyword)
                      ->or_like('longitude', $keyword)
+                     ->or_like('title_kelurahan', $keyword)
+                     ->or_like('title_rw', $keyword)
                      ->group_end();
         }
     
