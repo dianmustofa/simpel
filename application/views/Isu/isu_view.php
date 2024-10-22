@@ -558,7 +558,7 @@
                                             <th>RW</th>
                                             <th>RT</th>
                                             <th>Action</th>
-                                            <th></th>
+                                            <th>Komentar</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -592,8 +592,8 @@
                                                             <span class="badge bg-danger" style="cursor: pointer;" onclick="return confirm('Anda yakin ingin menghapus item ini?');">Hapus</span>
                                                         </a>
                                                         <!-- <span class="badge bg-danger" style="cursor: pointer;">Hapus</span> -->
-                                                        <?php else : ?>
-                                                            <?php endif; ?>
+                                                    <?php else : ?>
+                                                    <?php endif; ?>
 
                                                     <span class="badge bg-primary zoom-to" data-lat="<?= $latitude ?>" data-lng="<?= $longitude ?>" data-title="<?= $titleIsu ?>" style="cursor: pointer;">Zoom to</span>
                                                     
@@ -601,14 +601,24 @@
                                                         <span class="badge bg-secondary" style="cursor: pointer;">Review</span>
                                                     </a> -->
 
-                                                    <?php if ($statusUsulan != Null) : ?>
+                                                    <?php if ($statusUsulan === "Dilaksanakan") : ?>
                                                         <span class="badge bg-success"><?= $statusUsulan ?></span>
-                                                        <!-- <span><?= $komentarUsulan ?></span> -->
+                                                        <a href="<?php echo base_url(); ?>perencanaan/edit/<?= $idIsu ?>">
+                                                            <span class="badge bg-secondary" style="cursor: pointer;">Edit</span>
+                                                        </a>
+                                                    <?php elseif ($statusUsulan === "Dilaksanakan bersyarat") : ?>
+                                                        <span class="badge bg-success"><?= $statusUsulan ?></span>
+                                                        <a href="<?php echo base_url(); ?>perencanaan/edit/<?= $idIsu ?>">
+                                                            <span class="badge bg-secondary" style="cursor: pointer;">Edit</span>
+                                                        </a>
                                                     <?php else : ?>
                                                         <span class="badge bg-info">Menunggu Verifikasi</span>
-                                                        <!-- <a href="<?php echo base_url(); ?>usulan/review/<?= $idIsu ?>">
-                                                            <span class="badge bg-danger" style="cursor: pointer;">Perlu perbaikan</span>
+                                                        <!-- <a href="<?php echo base_url(); ?>perencanaan/delete/<?= $idIsu ?>">
+                                                            <span class="badge bg-secondary" style="cursor: pointer;">Edit</span>
                                                         </a> -->
+                                                        <a href="<?php echo base_url(); ?>perencanaan/edit/<?= $idIsu ?>">
+                                                            <span class="badge bg-secondary" style="cursor: pointer;">Edit</span>
+                                                        </a>
                                                     <?php endif; ?>
                                                 </td>
                                                 <td><?= $komentarUsulan ?></td>

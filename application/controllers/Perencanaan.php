@@ -171,6 +171,118 @@ class Perencanaan extends CI_Controller {
         redirect('isu');
     }
 
+    public function edit($id)
+	{    
+    	if (!$this->session->userdata('id_akun')) {
+			notice('error', 'Anda belum login');
+			redirect('login');
+		}
+
+        $data['edit_isu'] = $this->Perencanaan_model->get_isu_id($id)->row_array();
+
+        // if ($this->input->post('submit')) {
+        //     // Debug post data
+        //     var_dump($this->input->post());
+    
+        //     // Proceed with update
+        //     $this->Laporan_model->update_laporan($this->input->post(), $id);
+        //     redirect("laporan-tahunan");
+        // }
+
+		$level_kelurahan = $this->Perencanaan_model->level_kelurahan();
+		$data["level_kelurahan"] = $level_kelurahan;
+
+    	$this->load->view('Isu/isu_edit_view', $data);
+	}
+
+    public function update($id) {
+		// Load helper untuk upload
+		$this->load->helper(array('form', 'url'));
+		$this->load->library('upload'); // Pastikan library upload di-load
+	
+		// Ambil data dari form
+		$data = array(
+			'title_isu' => $this->input->post('title_isu'),
+			'title_kategori' => $this->input->post('title_kategori'),
+			'title_jenis' => $this->input->post('title_jenis'),
+			'title_pekerjaan' => $this->input->post('title_pekerjaan'),
+            'detail_pekerjaan' => $this->input->post('detail_pekerjaan'),
+			'title_aset_lahan' => $this->input->post('title_aset_lahan'),
+			'title_kelurahan' => $this->input->post('title_kelurahan'),
+            'title_rw' => $this->input->post('title_rw'),
+			'title_rt' => $this->input->post('title_rt'),
+			'latitude' => $this->input->post('latitude'),
+            'longitude' => $this->input->post('longitude'),
+            'last_created_date' => $this->input->post('last_created_date'),
+            'title_opd' => $this->input->post('title_opd'),
+            'status_usulan' => $this->input->post('status_usulan'),
+            'komentar_usulan' => $this->input->post('komentar_usulan'),
+		);
+	
+		// Konfigurasi upload dokumen
+		if (!empty($_FILES['gambar_isu']['name'])) {
+			$config['upload_path'] = './uploads/images/';
+			$config['allowed_types'] = 'pdf|doc|docx';
+			$config['file_name'] = uniqid() . '_' . preg_replace('/[^a-zA-Z0-9-_\.]/', '', $_FILES['gambar_isu']['name']);
+			$config['max_size'] = 10000; // Batasan ukuran file 10MB
+			
+			// Inisialisasi konfigurasi
+			$this->upload->initialize($config);
+	
+			if ($this->upload->do_upload('gambar_isu')) {
+				$image_data = $this->upload->data();
+				$data['gambar_isu'] = $image_data['file_name'];
+	
+				// Hapus dokumen lama jika ada (dari database atau path file)
+				$old_image = $this->Perencanaan_model->get_isu_id($id)->gambar_isu;
+				if (!empty($old_image) && file_exists('./uploads/images/' . $old_image)) {
+					unlink('./uploads/images/' . $old_image);
+				}
+			} else {
+				// Tangani error upload dengan menyimpan pesan error ke flashdata atau tampilkan di view
+				$error = $this->upload->display_errors();
+				$this->session->set_flashdata('error', $error);
+				redirect('perencanaan/edit/' . $id);
+				return;
+			}
+		}
+
+        // Konfigurasi upload dokumen
+		if (!empty($_FILES['document_isu']['name'])) {
+			$config['upload_path'] = './uploads/documents/';
+			$config['allowed_types'] = 'pdf|doc|docx';
+			$config['file_name'] = uniqid() . '_' . preg_replace('/[^a-zA-Z0-9-_\.]/', '', $_FILES['document_isu']['name']);
+			$config['max_size'] = 10000; // Batasan ukuran file 10MB
+			
+			// Inisialisasi konfigurasi
+			$this->upload->initialize($config);
+	
+			if ($this->upload->do_upload('document_isu')) {
+				$document_data = $this->upload->data();
+				$data['document_isu'] = $document_data['file_name'];
+	
+				// Hapus dokumen lama jika ada (dari database atau path file)
+				$old_document = $this->Perencanaan_model->get_isu_id($id)->document_laporan;
+				if (!empty($old_document) && file_exists('./uploads/documents/' . $old_document)) {
+					unlink('./uploads/documents/' . $old_document);
+				}
+			} else {
+				// Tangani error upload dengan menyimpan pesan error ke flashdata atau tampilkan di view
+				$error = $this->upload->display_errors();
+				$this->session->set_flashdata('error', $error);
+				redirect('perencanaan/edit/' . $id);
+				return;
+			}
+		}
+	
+		// Simpan data yang di-update ke database
+		$this->Perencanaan_model->update_isu($data, $id);
+	
+		// Redirect ke halaman lain dengan pesan sukses
+		$this->session->set_flashdata('success', 'Laporan berhasil diperbarui.');
+		redirect('isu');
+	}
+
     // private function upload_files($input_name) {
     //     $this->load->library('upload');
     //     $files = $_FILES[$input_name];

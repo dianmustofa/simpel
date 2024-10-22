@@ -31,7 +31,74 @@ class Monitoring extends CI_Controller {
     	$this->load->view('Kegiatan/Monitoring/monitoring_review_view', $data);
 	}
 
+	public function edit($id)
+	{    
+    	if (!$this->session->userdata('id_akun')) {
+			notice('error', 'Anda belum login');
+			redirect('login');
+		}
+
+		$level_status_isu = $this->Perencanaan_model->level_status_isu();
+		$data["level_status_isu"] = $level_status_isu;
+		$level_status_usulan = $this->Perencanaan_model->level_status_usulan();
+		$data["level_status_usulan"] = $level_status_usulan;
+
+        $data['edit_monitoring'] = $this->Perencanaan_model->get_isu_id($id)->row_array();
+
+    	$this->load->view('Kegiatan/Monitoring/monitoring_edit_view', $data);
+	}
+
 	public function update($id) {
+		// Load helper untuk upload
+		$this->load->helper(array('form', 'url'));
+		$this->load->library('upload'); // Pastikan library upload di-load
+	
+		// Ambil data dari form
+		$data = array(
+			'status_monitoring' => $this->input->post('status_monitoring'),
+			'tanggal_realisasi_monitoring' => $this->input->post('tanggal_realisasi_monitoring'),
+            'realisasi_monitoring' => $this->input->post('realisasi_monitoring'),
+            'keterangan_monitoring' => $this->input->post('keterangan_monitoring'),
+            'komentar_monitoring' => $this->input->post('komentar_monitoring'),
+		);
+	
+		// Konfigurasi upload dokumen
+		if (!empty($_FILES['gambar_monitoring']['name'])) {
+			$config['upload_path'] = './uploads/images/';
+			$config['allowed_types'] = 'pdf|doc|docx';
+			$config['file_name'] = uniqid() . '_' . preg_replace('/[^a-zA-Z0-9-_\.]/', '', $_FILES['gambar_monitoring']['name']);
+			$config['max_size'] = 10000; // Batasan ukuran file 10MB
+			
+			// Inisialisasi konfigurasi
+			$this->upload->initialize($config);
+	
+			if ($this->upload->do_upload('gambar_monitoring')) {
+				$image_data = $this->upload->data();
+				$data['gambar_monitoring'] = $image_data['file_name'];
+	
+				// Hapus dokumen lama jika ada (dari database atau path file)
+				$old_image = $this->Perencanaan_model->get_isu_id($id)->gambar_isu;
+				if (!empty($old_image) && file_exists('./uploads/images/' . $old_image)) {
+					unlink('./uploads/images/' . $old_image);
+				}
+			} else {
+				// Tangani error upload dengan menyimpan pesan error ke flashdata atau tampilkan di view
+				$error = $this->upload->display_errors();
+				$this->session->set_flashdata('error', $error);
+				redirect('monitoring/edit/' . $id);
+				return;
+			}
+		}
+	
+		// Simpan data yang di-update ke database
+		$this->Perencanaan_model->update_monitoring($data, $id);
+	
+		// Redirect ke halaman lain dengan pesan sukses
+		$this->session->set_flashdata('success', 'Laporan berhasil diperbarui.');
+		redirect('monitoring');
+	}
+
+	public function simpan($id) {
 
 		// Load helper untuk upload
         $this->load->helper(array('form', 'url'));

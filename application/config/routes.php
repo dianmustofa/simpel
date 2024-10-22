@@ -68,20 +68,28 @@ $route['user'] = 'dashboard/user';
 $route['isu'] = 'perencanaan/isu';
 $route['isu/review/(:any)'] = 'perencanaan/isu_review/$1';
 $route['isu/simpan'] = 'perencanaan/simpan';
+$route['isu/edit/(:any)'] = 'perencanaan/edit/$1';
+$route['isu-update/(:num)'] = 'perencanaan/update/$1';
 
 $route['usulan'] = 'usulan/index';
 $route['usulan-simpan/(:num)'] = 'usulan/simpan/$1';
 $route['usulan/review/(:any)'] = 'usulan/usulan_review/$1';
 $route['usulan/update_setuju_ajax'] = 'usulan/update_setuju_ajax';
+$route['usulan/edit/(:any)'] = 'usulan/edit/$1';
+$route['usulan-update/(:num)'] = 'usulan/update/$1';
 
 $route['verifikasi-usulan'] = 'usulan/verifikasi';
 $route['verifikasi-simpan/(:num)'] = 'usulan/simpan_verifikasi/$1';
 $route['verifikasi/detail/(:any)'] = 'usulan/verifikasi_detail/$1';
 $route['verifikasi/review/(:any)'] = 'usulan/verifikasi_review/$1';
+$route['verifikasi/edit/(:any)'] = 'usulan/verifikasi_edit/$1';
+$route['verifikasi-update/(:num)'] = 'usulan/verifikasi_update/$1';
 
 $route['monitoring'] = 'monitoring/index';
 $route['monitoring/review/(:any)'] = 'monitoring/monitoring_review/$1';
-$route['monitoring-simpan/(:num)'] = 'monitoring/update/$1';
+$route['monitoring-simpan/(:num)'] = 'monitoring/simpan/$1';
+$route['monitoring/edit/(:any)'] = 'monitoring/edit/$1';
+$route['monitoring-update/(:num)'] = 'monitoring/update/$1';
 
 $route['laporan-tahunan'] = 'laporan/index';
 $route['laporan/edit/(:any)'] = 'laporan/edit/$1';

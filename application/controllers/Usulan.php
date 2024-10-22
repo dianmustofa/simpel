@@ -27,6 +27,155 @@ class Usulan extends CI_Controller {
         $this->load->view('Kegiatan/Verifikasi/verifikasi_view', $data);
 	}
 
+	public function edit($id)
+	{    
+    	if (!$this->session->userdata('id_akun')) {
+			notice('error', 'Anda belum login');
+			redirect('login');
+		}
+
+        $data['edit_usulan'] = $this->Perencanaan_model->get_isu_id($id)->row_array();
+
+		$level_instansi = $this->Perencanaan_model->level_instansi();
+		$data["level_instansi"] = $level_instansi;
+		$level_status_usulan = $this->Perencanaan_model->level_status_usulan();
+		$data["level_status_usulan"] = $level_status_usulan;
+		$level_sumber_pendanaan = $this->Perencanaan_model->level_sumber_pendanaan();
+		$data["level_sumber_pendanaan"] = $level_sumber_pendanaan;
+
+    	$this->load->view('Kegiatan/Usulan/usulan_edit_view', $data);
+	}
+
+	public function verifikasi_edit($id)
+	{    
+    	if (!$this->session->userdata('id_akun')) {
+			notice('error', 'Anda belum login');
+			redirect('login');
+		}
+
+        $data['edit_verifikasi'] = $this->Perencanaan_model->get_isu_id($id)->row_array();
+
+		$level_instansi = $this->Perencanaan_model->level_instansi();
+		$data["level_instansi"] = $level_instansi;
+		$level_status_usulan = $this->Perencanaan_model->level_status_usulan();
+		$data["level_status_usulan"] = $level_status_usulan;
+		$level_sumber_pendanaan = $this->Perencanaan_model->level_sumber_pendanaan();
+		$data["level_sumber_pendanaan"] = $level_sumber_pendanaan;
+
+    	$this->load->view('Kegiatan/Verifikasi/verifikasi_edit_view', $data);
+	}
+
+	public function update($id) {
+		// Load helper untuk upload
+		$this->load->helper(array('form', 'url'));
+		$this->load->library('upload'); // Pastikan library upload di-load
+
+		// Cek apakah request method adalah POST
+		if ($this->input->server('REQUEST_METHOD') === 'POST') {
+			// Inisialisasi $data
+			$data = array();
+			
+			// Ambil data dari form sesuai dengan level akun
+			if ($this->session->userdata('id_level_akun') === '3') {
+				$data = array(
+					'sumber_pendanaan_usulan' => $this->input->post('sumber_pendanaan_usulan'),
+					'indikasi_tahun_pelaksana_usulan' => $this->input->post('indikasi_tahun_pelaksana_usulan'),
+					'status_usulan' => $this->input->post('status_usulan'),
+					'komentar_usulan' => $this->input->post('komentar_usulan'),
+				);
+			} elseif ($this->session->userdata('id_level_akun') === '4') {
+				$data = array(
+					// Masukkan data yang relevan untuk level akun 4
+					'manfaat_tujuan_usulan' => $this->input->post('manfaat_tujuan_usulan'),
+					'indikasi_program_usulan' => $this->input->post('indikasi_program_usulan'),
+					'program_usulan' => $this->input->post('program_usulan'),
+					'title_opd' => $this->input->post('title_opd'),
+				);
+			} else {
+				// Tangani kasus jika level akun tidak sesuai
+				echo "Level akun tidak valid!";
+				return;
+			}
+			
+			// Debug data yang diterima (opsional, untuk pengembangan)
+			// var_dump($data);
+			
+			// Update data menggunakan model jika $data tidak kosong
+			if (!empty($data)) {
+				$this->Perencanaan_model->update_usulan($data, $id);
+				
+				// Redirect ke halaman usulan setelah update berhasil
+				redirect('usulan');
+			} else {
+				echo "Data tidak ditemukan atau tidak valid!";
+			}
+		} else {
+			// Tampilkan pesan jika request bukan POST
+			echo "Invalid Request";
+		}
+	
+		// // Ambil data dari form
+		// $data = array(
+		// 	'sumber_pendanaan_usulan' => $this->input->post('sumber_pendanaan_usulan'),
+		// 	'indikasi_tahun_pelaksana_usulan' => $this->input->post('indikasi_tahun_pelaksana_usulan'),
+		// 	'status_usulan' => $this->input->post('status_usulan'),
+		// 	'komentar_usulan' => $this->input->post('komentar_usulan'),
+		// );
+	
+		// // Simpan data yang di-update ke database
+		// $this->Perencanaan_model->update_usulan($data, $id);
+	
+		// // Redirect ke halaman lain dengan pesan sukses
+		// $this->session->set_flashdata('success', 'Laporan berhasil diperbarui.');
+		// redirect('usulan');
+	}
+
+	public function verifikasi_update($id) {
+		// Load helper untuk upload
+		$this->load->helper(array('form', 'url'));
+		$this->load->library('upload'); // Pastikan library upload di-load
+	
+		// Ambil data dari form
+		$data = array(
+			'rencana_anggaran' => $this->input->post('rencana_anggaran'),
+		);
+	
+		// Konfigurasi upload dokumen
+		if (!empty($_FILES['document_ded']['name'])) {
+			$config['upload_path'] = './uploads/documents/';
+			$config['allowed_types'] = 'pdf|doc|docx';
+			$config['file_name'] = uniqid() . '_' . preg_replace('/[^a-zA-Z0-9-_\.]/', '', $_FILES['document_ded']['name']);
+			$config['max_size'] = 10000; // Batasan ukuran file 10MB
+			
+			// Inisialisasi konfigurasi
+			$this->upload->initialize($config);
+	
+			if ($this->upload->do_upload('document_ded')) {
+				$document_data = $this->upload->data();
+				$data['document_ded'] = $document_data['file_name'];
+	
+				// Hapus dokumen lama jika ada (dari database atau path file)
+				$old_document = $this->Perencanaan_model->get_isu_id($id)->document_ded;
+				if (!empty($old_document) && file_exists('./uploads/documents/' . $old_document)) {
+					unlink('./uploads/documents/' . $old_document);
+				}
+			} else {
+				// Tangani error upload dengan menyimpan pesan error ke flashdata atau tampilkan di view
+				$error = $this->upload->display_errors();
+				$this->session->set_flashdata('error', $error);
+				redirect('verifikasi/edit/' . $id);
+				return;
+			}
+		}
+	
+		// Simpan data yang di-update ke database
+		$this->Perencanaan_model->update_verifikasi($data, $id);
+	
+		// Redirect ke halaman lain dengan pesan sukses
+		$this->session->set_flashdata('success', 'Laporan berhasil diperbarui.');
+		redirect('verifikasi-usulan');
+	}
+
 	public function update_setuju_ajax() {
 		// Ambil data yang dikirimkan via AJAX
 		$idIsu = $this->input->post('id_isu');

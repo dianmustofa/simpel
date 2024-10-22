@@ -138,6 +138,9 @@
                                                     </a>
                                                     <?php if ($documentDED != Null) : ?>
                                                         <span class="badge bg-info">Dokument Lengkap</span>
+                                                        <a href="<?php echo base_url(); ?>verifikasi/edit/<?= $idIsu ?>">
+                                                            <span class="badge bg-secondary" style="cursor: pointer;">Edit</span>
+                                                        </a>
                                                     <?php else : ?>
                                                         <a href="<?php echo base_url(); ?>verifikasi/review/<?= $idIsu ?>">
                                                             <span class="badge bg-danger" style="cursor: pointer;">Lengkapi Dokumen DED</span>

@@ -134,18 +134,25 @@
                                                 <td>
                                                     <!-- <span class="badge bg-primary zoom-to" data-lat="<?= $latitude ?>" data-lng="<?= $longitude ?>" data-title="<?= $titleIsu ?>" style="cursor: pointer;">Zoom to</span> -->
                                                     <!-- <span class="badge bg-secondary" style="cursor: pointer;">Review</span> -->
-                                                    <a href="<?php echo base_url(); ?>usulan/review/<?= $idIsu ?>">
+                                                    <!-- <a href="<?php echo base_url(); ?>usulan/review/<?= $idIsu ?>"> -->
                                                         <!-- <span class="badge bg-secondary" style="cursor: pointer;">Lanjutkan Usulan</span> -->
-                                                    </a>
+                                                    <!-- </a> -->
 
                                                     <?php if (in_array($this->session->userdata('id_level_akun'), [2, 4])) : ?>
                                                         <?php if ($titleOPD != Null) : ?>
                                                             <span class="badge bg-success">Diteruskan ke <?= $titleOPD ?></span>
+                                                            
                                                             <?php if ($statusUsulan != Null) : ?>
                                                                 <span class="badge bg-success">Status <?= $statusUsulan ?></span>
+                                                                <a href="<?php echo base_url(); ?>usulan/edit/<?= $idIsu ?>">
+                                                                    <span class="badge bg-secondary" style="cursor: pointer;">Edit</span>
+                                                                </a>
                                                             <?php else : ?>
                                                                 <span class="badge bg-info">Status masih di SKPD</span>
-                                                                <?php endif; ?>
+                                                                <a href="<?php echo base_url(); ?>usulan/edit/<?= $idIsu ?>">
+                                                                    <span class="badge bg-secondary" style="cursor: pointer;">Edit</span>
+                                                                </a>
+                                                            <?php endif; ?>
                                                             <!-- <span class="badge bg-info" style="cursor: pointer;">Edit</span> -->
                                                         <?php else : ?>
                                                             <!-- <span class="badge bg-danger" style="cursor: pointer;">Lengkapi Usulan</span> -->
@@ -157,6 +164,9 @@
                                                         <?php elseif ($this->session->userdata('id_level_akun') === '3') : ?>
                                                             <?php if ($statusUsulan != Null) : ?>
                                                                 <span class="badge bg-success">Status <?= $statusUsulan ?></span>
+                                                                <a href="<?php echo base_url(); ?>usulan/edit/<?= $idIsu ?>">
+                                                                    <span class="badge bg-secondary" style="cursor: pointer;">Edit</span>
+                                                                </a>
                                                                 <!-- <span class="badge bg-info" style="cursor: pointer;">Edit</span> -->
                                                             <?php else : ?>
                                                                 <!-- <span class="badge bg-danger" style="cursor: pointer;">Lengkapi Usulan</span> -->
