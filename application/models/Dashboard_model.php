@@ -23,6 +23,7 @@ class Dashboard_model extends CI_Model
         $this->db->select('p.*');
         $this->db->from('tbl_perencanaan p');
         $this->db->where('deleted_at IS NULL');
+        $this->db->where('YEAR(p.last_created_date) =', date('Y'));
         if (!$is_admin) {
             $this->db->where('id_akun', $user_id); // Hanya filter id_akun jika bukan admin
         }
@@ -46,6 +47,7 @@ class Dashboard_model extends CI_Model
             $this->db->from('tbl_perencanaan p');
             $this->db->where('title_opd IS NOT NULL');
             $this->db->where('deleted_at IS NULL');
+            $this->db->where('YEAR(p.last_created_date) =', date('Y'));
         } elseif ($user_role == 3) {
             // SKPD: melihat yang sesuai nama_skpd
             $this->db->select('p.*');
@@ -53,6 +55,7 @@ class Dashboard_model extends CI_Model
             $this->db->where('title_opd IS NOT NULL');
             $this->db->where('title_opd', $nama_skpd); // Memfilter berdasarkan nama_skpd
             $this->db->where('deleted_at IS NULL');
+            $this->db->where('YEAR(p.last_created_date) =', date('Y'));
         } else {
             // Role 2 (RW) hanya melihat yang diinput
             $this->db->select('p.*');
@@ -60,6 +63,7 @@ class Dashboard_model extends CI_Model
             $this->db->where('title_opd IS NOT NULL');
             $this->db->where('id_akun', $user_id); // Hanya filter id_akun jika bukan admin
             $this->db->where('deleted_at IS NULL');
+            $this->db->where('YEAR(p.last_created_date) =', date('Y'));
         }
     
         return $this->db->get()->result_array();
@@ -74,6 +78,7 @@ class Dashboard_model extends CI_Model
         $this->db->where('status_usulan IS NOT NULL');
         $this->db->where('title_opd', $nama_skpd);
         $this->db->where('deleted_at IS NULL');
+        $this->db->where('YEAR(p.last_created_date) =', date('Y'));
         // $this->db->where('p.status_usulan', 'Dilaksanakan');
         // $this->db->join('tbl_level_akun la', 'a.id_level_akun=la.id_level');
         // $this->db->group_by('td.promo_id');  // To ensure distinct promos
@@ -85,6 +90,7 @@ class Dashboard_model extends CI_Model
         $this->db->select('DATE_FORMAT(last_created_date, "%Y-%m") as month, COUNT(*) as sales_count');
         $this->db->from('tbl_perencanaan p'); // Ganti dengan nama tabel Anda
         $this->db->where('deleted_at IS NULL');
+        $this->db->where('YEAR(p.last_created_date) =', date('Y'));
         $this->db->group_by('month');
         $query = $this->db->get();
         return $query->result();
@@ -102,6 +108,7 @@ class Dashboard_model extends CI_Model
         $this->db->select('DATE_FORMAT(last_created_date, "%Y-%m") as month, COUNT(*) as sales_count');
         $this->db->from('tbl_perencanaan p');
         $this->db->where('deleted_at IS NULL');
+        $this->db->where('YEAR(p.last_created_date) =', date('Y'));
         if (!$is_admin) {
             $this->db->where('id_akun', $user_id); // Hanya filter id_akun jika bukan admin
         }
@@ -113,6 +120,7 @@ class Dashboard_model extends CI_Model
         $this->db->from('tbl_perencanaan p');
         $this->db->where('title_opd IS NOT NULL');
         $this->db->where('deleted_at IS NULL');
+        $this->db->where('YEAR(p.last_created_date) =', date('Y'));
         if (!$is_admin) {
             $this->db->where('id_akun', $user_id); // Hanya filter id_akun jika bukan admin
         }
@@ -146,6 +154,7 @@ class Dashboard_model extends CI_Model
         $this->db->where('title_opd IS NOT NULL');
         $this->db->where('title_opd', $nama_skpd);
         $this->db->where('deleted_at IS NULL');
+        $this->db->where('YEAR(p.last_created_date) =', date('Y'));
         // if (!$is_admin) {
         //     $this->db->where('id_akun', $user_id); // Hanya filter id_akun jika bukan admin
         // }
@@ -158,6 +167,7 @@ class Dashboard_model extends CI_Model
         $this->db->where('status_usulan IS NOT NULL');
         $this->db->where('title_opd', $nama_skpd);
         $this->db->where('deleted_at IS NULL');
+        $this->db->where('YEAR(p.last_created_date) =', date('Y'));
         // if (!$is_admin) {
         //     $this->db->where('id_akun', $user_id); // Hanya filter id_akun jika bukan admin
         // }

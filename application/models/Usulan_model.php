@@ -47,6 +47,7 @@ class Usulan_model extends CI_Model{
             $this->db->from('tbl_perencanaan p');
             // $this->db->where('title_opd IS NOT NULL');
             $this->db->where('deleted_at IS NULL');
+            $this->db->where('YEAR(p.last_created_date) =', date('Y'));
         } elseif ($user_role == 3) {
             // SKPD: melihat yang sesuai nama_skpd
             $this->db->select('p.*');
@@ -54,6 +55,7 @@ class Usulan_model extends CI_Model{
             // $this->db->where('title_opd IS NOT NULL');
             $this->db->where('deleted_at IS NULL');
             $this->db->where('title_opd', $nama_skpd); // Memfilter berdasarkan nama_skpd
+            $this->db->where('YEAR(p.last_created_date) =', date('Y'));
         } else {
             // Role 2 (RW) hanya melihat yang diinput
             $this->db->select('p.*');
@@ -61,6 +63,7 @@ class Usulan_model extends CI_Model{
             // $this->db->where('title_opd IS NOT NULL');
             $this->db->where('deleted_at IS NULL');
             $this->db->where('id_akun', $user_id); // Hanya filter id_akun jika bukan admin
+            $this->db->where('YEAR(p.last_created_date) =', date('Y'));
         }
     
         return $this->db->get()->result_array();
@@ -71,6 +74,7 @@ class Usulan_model extends CI_Model{
         $this->db->from('tbl_perencanaan p');
         $this->db->where_in('p.status_usulan', ["Dilaksanakan", "Dilaksanakan Bersyarat"]);
         $this->db->where('deleted_at IS NULL');
+        $this->db->where('YEAR(p.last_created_date) =', date('Y'));
 
         return $this->db->get()->result_array();
     }
