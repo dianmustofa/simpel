@@ -314,28 +314,28 @@
                                                         <div class="form-group">
                                                             <label for="email-id-column">Kecamatan</label>
                                                             <input type="text" id="readonlyInput" readonly="readonly" class="form-control"
-                                                                name="fname" value="You can't update me :P">
+                                                                name="fname" value="<?php echo $review_isu['title_kecamatan'];?>">
                                                         </div>
                                                     </div>
                                                     <div class="col-md-6 col-12">
                                                         <div class="form-group">
                                                             <label for="email-id-column">Kelurahan</label>
                                                             <input type="text" id="readonlyInput" readonly="readonly" class="form-control"
-                                                                name="fname" value="You can't update me :P">
+                                                                name="fname" value="<?php echo $review_isu['title_kelurahan'];?>">
                                                         </div>
                                                     </div>
                                                     <div class="col-md-6 col-12">
                                                         <div class="form-group">
                                                             <label for="email-id-column">No RW</label>
                                                             <input type="text" id="readonlyInput" readonly="readonly" class="form-control"
-                                                                name="fname" value="You can't update me :P">
+                                                                name="fname" value="<?php echo $review_isu['title_rw'];?>">
                                                         </div>
                                                     </div>
                                                     <div class="col-md-6 col-12">
                                                         <div class="form-group">
                                                             <label for="email-id-column">No RT</label>
                                                             <input type="text" id="readonlyInput" readonly="readonly" class="form-control"
-                                                                name="fname" value="You can't update me :P">
+                                                                name="fname" value="<?php echo $review_isu['title_rt'];?>">
                                                         </div>
                                                     </div>
                                                     <div class="col-md-6 col-12">
@@ -356,7 +356,7 @@
                                                         <div class="form-group">
                                                             <label for="email-id-column">Alamat</label>
                                                             <input type="text" id="readonlyInput" readonly="readonly" class="form-control"
-                                                                name="fname" value="You can't update me :P">
+                                                                name="fname" value="<?php echo $review_isu['alamat_isu'];?>">
                                                         </div>
                                                     </div>
                                                     <div class="col-md-6 col-12">
@@ -371,23 +371,37 @@
                                                     </div>
                                                     <div class="col-md-12 col-12">
                                                         <div class="form-group">
-                                                            <label for="company-column">Detail Pekerjaan</label>
+                                                            <label for="company-column">Manfaat dan Tujuan</label>
                                                             <textarea type="text" id="readonlyInput" readonly="readonly" class="form-control"
-                                                                name="fname" value="You can't update me :P"></textarea>
+                                                                name="fname" value="<?php echo $review_isu['manfaat_tujuan_usulan'];?>"></textarea>
                                                         </div>
                                                     </div>
                                                     <div class="col-md-12 col-12">
                                                         <div class="form-group">
-                                                            <label for="company-column">Detail Pekerjaan</label>
+                                                            <label for="company-column">Indikasi Program</label>
                                                             <textarea type="text" id="readonlyInput" readonly="readonly" class="form-control"
-                                                                name="fname" value="You can't update me :P"></textarea>
+                                                                name="fname" value="<?php echo $review_isu['indikasi_program_usulan'];?>"></textarea>
                                                         </div>
                                                     </div>
                                                     <div class="col-md-12 col-12">
                                                         <div class="form-group">
-                                                            <label for="company-column">Detail Pekerjaan</label>
+                                                            <label for="company-column">Program</label>
                                                             <textarea type="text" id="readonlyInput" readonly="readonly" class="form-control"
-                                                                name="fname" value="You can't update me :P"></textarea>
+                                                                name="fname" value="<?php echo $review_isu['title_jenis'];?>"></textarea>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-12 col-12">
+                                                        <div class="form-group">
+                                                            <label for="company-column">Indikasi Tahun Pelaksanaan</label>
+                                                            <textarea type="text" id="readonlyInput" readonly="readonly" class="form-control"
+                                                                name="fname" value="<?php echo $review_isu['indikasi_tahun_pelaksana_usulan'];?>"></textarea>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-12 col-12">
+                                                        <div class="form-group">
+                                                            <label for="company-column">Sumber Pendanaan</label>
+                                                            <textarea type="text" id="readonlyInput" readonly="readonly" class="form-control"
+                                                                name="fname" value="<?php echo $review_isu['sumber_pendanaan_usulan'];?>"></textarea>
                                                         </div>
                                                     </div>
                                                 </div>

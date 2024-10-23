@@ -259,7 +259,7 @@ class Perencanaan extends CI_Controller {
 		// Konfigurasi upload dokumen
 		if (!empty($_FILES['gambar_isu']['name'])) {
 			$config['upload_path'] = './uploads/images/';
-			$config['allowed_types'] = 'pdf|doc|docx';
+			$config['allowed_types'] = 'gif|jpg|png';
 			$config['file_name'] = uniqid() . '_' . preg_replace('/[^a-zA-Z0-9-_\.]/', '', $_FILES['gambar_isu']['name']);
 			$config['max_size'] = 10000; // Batasan ukuran file 10MB
 			
