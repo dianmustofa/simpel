@@ -129,9 +129,13 @@ class Perencanaan extends CI_Controller {
                 $image_data = $this->upload->data();
             }
         } else {
-            // Jika tidak ada file yang diunggah, lanjutkan tanpa error
-            $image_data = null; // Atau sesuai dengan kebutuhan Anda
+            // Jika tidak ada file yang diunggah, gunakan default.jpg
+            $image_data = array(
+                'file_name' => 'default.jpg',
+                'file_path' => './uploads/images/' // Sesuaikan path-nya dengan lokasi default.jpg
+            );
         }
+        
 
         // Konfigurasi upload dokumen
         $config['upload_path'] = './uploads/documents/';

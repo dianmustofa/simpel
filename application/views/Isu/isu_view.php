@@ -313,17 +313,14 @@
                                                     </div>
 
                                                     <!-- Input No RT -->
-                                                    <?php 
+                                                    <!-- <?php 
                                                         $jenis="";
                                                     if(isset($default['title_rt'])) $jenis=$default['title_rt'];
                                                     ?>
                                                     <div class="form-group">
                                                         <label>No RT</label>
-                                                        <!-- <input type="text" name="title_isu" placeholder="Isu Perencanaan" class="form-control" required> -->
                                                         <select class="choices form-select" name="title_rt" required>
-                                                            <!-- Opsi default yang tidak bisa dipilih -->
                                                             <option value="" disabled selected>Pilih No RT</option>
-                                                            <!-- Pastikan $level_akun ada dan bukan kosong -->
                                                             <?php if (!empty($level_angka)): ?>
                                                                 <?php foreach ($level_angka as $row): ?>
                                                                     <option value="<?= htmlspecialchars($row['title_angka'], ENT_QUOTES, 'UTF-8') ?>">
@@ -334,6 +331,11 @@
                                                                 <option value="">Kelurahan tidak tersedia</option>
                                                             <?php endif; ?>
                                                         </select>
+                                                    </div> -->
+
+                                                    <div class="form-group">
+                                                        <label>No RT</label>
+                                                        <input type="text" name="title_rt" placeholder="contoh: 004, 012, 010" class="form-control" required>
                                                     </div>
 
                                                     <div class="form-group">
