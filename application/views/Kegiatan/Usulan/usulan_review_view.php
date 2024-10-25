@@ -167,11 +167,27 @@
                                                             <div class="col-md-8 form-group">
                                                                 <textarea type="text" class="form-control" name="program_usulan" value="<?php echo $review_isu['title_jenis'];?>" readonly><?php echo $review_isu['title_jenis'];?></textarea>
                                                             </div>
+                                                            <!-- Input Isu -->
                                                             <div class="col-md-4">
                                                                 <label>Instansi Pelaksana</label>
                                                             </div>
+                                                            <?php 
+                                                                $jenis = isset($review_isu['title_instansi_pelaksana']) ? $review_isu['title_instansi_pelaksana'] : '';
+                                                            ?>
                                                             <div class="col-md-8 form-group">
-                                                                <textarea type="text" class="form-control" name="title_opd" value="#"></textarea>
+                                                                <select class="choices form-select" name="title_opd">
+                                                                    <!-- Pastikan $level_akun ada dan bukan kosong -->
+                                                                    <option value="Instansi Belum Dipilih">Instansi belum dipilih</option>
+                                                                    <?php if (!empty($level_instansi)): ?>
+                                                                        <?php foreach ($level_instansi as $row): ?>
+                                                                            <option value="<?= htmlspecialchars($row['title_instansi_pelaksana'], ENT_QUOTES, 'UTF-8') ?>" <?php if($row["title_instansi_pelaksana"] == $jenis) echo "selected";?>>
+                                                                                <?= htmlspecialchars($row['title_instansi_pelaksana'], ENT_QUOTES, 'UTF-8') ?>
+                                                                            </option>
+                                                                        <?php endforeach; ?>
+                                                                    <?php else: ?>
+                                                                        <option value="">Instansi tidak tersedia</option>
+                                                                    <?php endif; ?>
+                                                                </select>
                                                             </div>
 
                                                             <?php elseif ($this->session->userdata('id_level_akun') === '3') : ?>
