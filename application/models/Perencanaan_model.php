@@ -150,6 +150,7 @@ class Perencanaan_model extends CI_Model{
     public function level_aspek() {
         $this->db->select('as.*');
         $this->db->from('tbl_aspek as');
+        $this->db->where('deleted_at IS NULL');
 
         return $this->db->get()->result_array();
     }
@@ -157,6 +158,7 @@ class Perencanaan_model extends CI_Model{
     public function level_isu() {
         $this->db->select('i.*');
         $this->db->from('tbl_isu i');
+        $this->db->where('deleted_at IS NULL');
 
         return $this->db->get()->result_array();
     }
@@ -164,6 +166,7 @@ class Perencanaan_model extends CI_Model{
     public function level_status_isu() {
         $this->db->select('si.*');
         $this->db->from('tbl_status_isu si');
+        $this->db->where('deleted_at IS NULL');
 
         return $this->db->get()->result_array();
     }
@@ -171,6 +174,7 @@ class Perencanaan_model extends CI_Model{
     public function level_status_usulan() {
         $this->db->select('su.*');
         $this->db->from('tbl_status_usulan su');
+        $this->db->where('deleted_at IS NULL');
 
         return $this->db->get()->result_array();
     }
@@ -178,6 +182,7 @@ class Perencanaan_model extends CI_Model{
     public function level_kategori() {
         $this->db->select('k.*');
         $this->db->from('tbl_kategori k');
+        $this->db->where('deleted_at IS NULL');
 
         return $this->db->get()->result_array();
     }
@@ -185,6 +190,7 @@ class Perencanaan_model extends CI_Model{
     public function level_jenis() {
         $this->db->select('j.*');
         $this->db->from('tbl_jenis j');
+        $this->db->where('deleted_at IS NULL');
 
         return $this->db->get()->result_array();
     }
@@ -192,6 +198,7 @@ class Perencanaan_model extends CI_Model{
     public function level_kelurahan() {
         $this->db->select('kel.*');
         $this->db->from('tbl_kelurahan kel');
+        $this->db->where('deleted_at IS NULL');
 
         return $this->db->get()->result_array();
     }
@@ -199,6 +206,7 @@ class Perencanaan_model extends CI_Model{
     public function level_angka() {
         $this->db->select('ang.*');
         $this->db->from('tbl_angka ang');
+        $this->db->where('deleted_at IS NULL');
 
         return $this->db->get()->result_array();
     }
@@ -206,6 +214,7 @@ class Perencanaan_model extends CI_Model{
     public function level_pekerjaan() {
         $this->db->select('pe.*');
         $this->db->from('tbl_pekerjaan pe');
+        $this->db->where('deleted_at IS NULL');
 
         return $this->db->get()->result_array();
     }
@@ -213,6 +222,7 @@ class Perencanaan_model extends CI_Model{
     public function level_aset_lahan() {
         $this->db->select('al.*');
         $this->db->from('tbl_aset_lahan al');
+        $this->db->where('deleted_at IS NULL');
 
         return $this->db->get()->result_array();
     }
@@ -220,6 +230,7 @@ class Perencanaan_model extends CI_Model{
     public function level_instansi() {
         $this->db->select('ip.*');
         $this->db->from('tbl_instansi_pelaksana ip');
+        $this->db->where('deleted_at IS NULL');
 
         return $this->db->get()->result_array();
     }
@@ -227,6 +238,7 @@ class Perencanaan_model extends CI_Model{
     public function level_sumber_pendanaan() {
         $this->db->select('spd.*');
         $this->db->from('tbl_sumber_pendanaan spd');
+        $this->db->where('deleted_at IS NULL');
 
         return $this->db->get()->result_array();
     }

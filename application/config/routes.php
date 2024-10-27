@@ -95,3 +95,39 @@ $route['monitoring-update/(:num)'] = 'monitoring/update/$1';
 $route['laporan-tahunan'] = 'laporan/index';
 $route['laporan/edit/(:any)'] = 'laporan/edit/$1';
 $route['laporan-update/(:num)'] = 'laporan/update/$1';
+
+$route['aspek'] = 'setting/aspek';
+$route['aspek/edit/(:any)'] = 'setting/edit_aspek/$1';
+$route['aspek-update/(:num)'] = 'setting/update_aspek/$1';
+
+$route['aset-lahan'] = 'setting/asetlahan';
+$route['asetlahan/edit/(:any)'] = 'setting/edit_asetlahan/$1';
+$route['asetlahan-update/(:num)'] = 'setting/update_asetlahan/$1';
+
+$route['instansi-pelaksana'] = 'setting/instansipelaksana';
+$route['instansipelaksana/edit/(:any)'] = 'setting/edit_instansipelaksana/$1';
+$route['instansipelaksana-update/(:num)'] = 'setting/update_instansipelaksana/$1';
+
+$route['isu-lingkungan'] = 'setting/isulingkungan';
+$route['isulingkungan/edit/(:any)'] = 'setting/edit_isulingkungan/$1';
+$route['isulingkungan-update/(:num)'] = 'setting/update_isulingkungan/$1';
+
+$route['kelurahan'] = 'setting/kelurahan';
+$route['kelurahan/edit/(:any)'] = 'setting/edit_kelurahan/$1';
+$route['kelurahan-update/(:num)'] = 'setting/update_kelurahan/$1';
+
+$route['lingkup-pekerjaan'] = 'setting/pekerjaan';
+$route['pekerjaan/edit/(:any)'] = 'setting/edit_pekerjaan/$1';
+$route['pekerjaan-update/(:num)'] = 'setting/update_pekerjaan/$1';
+
+$route['program'] = 'setting/program';
+$route['program/edit/(:any)'] = 'setting/edit_program/$1';
+$route['program-update/(:num)'] = 'setting/update_program/$1';
+
+$route['rw'] = 'setting/rw';
+$route['rw/edit/(:any)'] = 'setting/edit_rw/$1';
+$route['rw-update/(:num)'] = 'setting/update_rw/$1';
+
+$route['sumber-pendanaan'] = 'setting/sumberpendanaan';
+$route['sumberpendanaan/edit/(:any)'] = 'setting/edit_sumberpendanaan/$1';
+$route['sumberpendanaan-update/(:num)'] = 'setting/update_sumberpendanaan/$1';

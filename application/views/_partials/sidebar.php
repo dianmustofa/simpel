@@ -150,6 +150,42 @@
                         </a>
                     </li>
 
+                    <li class="sidebar-item  has-sub">
+                        <a href="#" class='sidebar-link'>
+                            <i class="bi bi-collection-fill"></i>
+                            <span>Setting</span>
+                        </a>
+                        <ul class="submenu ">
+                            <li class="submenu-item ">
+                                <a href="<?php echo base_url();?>aspek">Aspek</a>
+                            </li>
+                            <li class="submenu-item ">
+                                <a href="<?php echo base_url();?>aset-lahan">Aset Lahan</a>
+                            </li>
+                            <li class="submenu-item ">
+                                <a href="<?php echo base_url();?>instansi-pelaksana">Instansi Pelaksana</a>
+                            </li>
+                            <li class="submenu-item ">
+                                <a href="<?php echo base_url();?>isu-lingkungan">Isu Lingkungan</a>
+                            </li>
+                            <li class="submenu-item ">
+                                <a href="<?php echo base_url();?>program">Program/Kegiatan</a>
+                            </li>
+                            <li class="submenu-item ">
+                                <a href="<?php echo base_url();?>lingkup-pekerjaan">Lingkup Pekerjaan</a>
+                            </li>
+                            <li class="submenu-item ">
+                                <a href="<?php echo base_url();?>sumber-pendanaan">Sumber Pendanaan</a>
+                            </li>
+                            <li class="submenu-item ">
+                                <a href="<?php echo base_url();?>kelurahan">Kelurahan</a>
+                            </li>
+                            <li class="submenu-item ">
+                                <a href="<?php echo base_url();?>rw">RW</a>
+                            </li>
+                        </ul>
+                    </li>
+
                     <li class="sidebar-item  ">
                         <a href="<?php echo base_url();?>tentang" class='sidebar-link'>
                             <i class="bi bi-grid-fill"></i>
