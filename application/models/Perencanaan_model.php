@@ -166,7 +166,6 @@ class Perencanaan_model extends CI_Model{
     public function level_status_isu() {
         $this->db->select('si.*');
         $this->db->from('tbl_status_isu si');
-        $this->db->where('deleted_at IS NULL');
 
         return $this->db->get()->result_array();
     }
@@ -174,7 +173,6 @@ class Perencanaan_model extends CI_Model{
     public function level_status_usulan() {
         $this->db->select('su.*');
         $this->db->from('tbl_status_usulan su');
-        $this->db->where('deleted_at IS NULL');
 
         return $this->db->get()->result_array();
     }
