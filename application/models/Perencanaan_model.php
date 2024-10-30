@@ -180,7 +180,7 @@ class Perencanaan_model extends CI_Model{
     public function level_kategori() {
         $this->db->select('k.*');
         $this->db->from('tbl_kategori k');
-        $this->db->where('deleted_at IS NULL');
+        // $this->db->where('deleted_at IS NULL');
 
         return $this->db->get()->result_array();
     }
