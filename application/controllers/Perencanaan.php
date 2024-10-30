@@ -262,6 +262,8 @@ class Perencanaan extends CI_Controller {
 			'title_jenis' => $this->input->post('title_jenis'),
 			'title_pekerjaan' => $this->input->post('title_pekerjaan'),
             'detail_pekerjaan' => $this->input->post('detail_pekerjaan'),
+            'volume_pekerjaan' => $this->input->post('volume_pekerjaan'),
+            'satuan' => $this->input->post('satuan'),
 			'title_aset_lahan' => $this->input->post('title_aset_lahan'),
 			'title_kelurahan' => $this->input->post('title_kelurahan'),
             'title_rw' => $this->input->post('title_rw'),
@@ -273,6 +275,7 @@ class Perencanaan extends CI_Controller {
             'title_opd' => $this->input->post('title_opd'),
             'status_usulan' => $this->input->post('status_usulan'),
             'komentar_usulan' => $this->input->post('komentar_usulan'),
+            'program_usulan' => $this->input->post('program_usulan'),
 		);
 	
 		// Konfigurasi upload dokumen
