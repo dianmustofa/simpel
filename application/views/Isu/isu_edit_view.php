@@ -72,34 +72,125 @@
                                             <form class="form form-horizontal" action="<?= site_url('isu-update/'.$edit_isu['id_isu']) ?>" method="post" enctype="multipart/form-data">
                                                 <div class="form-body">
                                                     <div class="row">
+                                                        
                                                         <div class="col-md-4">
+                                                            <label>Aspek</label>
+                                                        </div>
+                                                        <?php 
+                                                            $jenis = isset($edit_isu['title_aspek']) ? $edit_isu['title_aspek'] : '';
+                                                        ?>
+                                                        <div class="col-md-8 form-group">
+                                                            <select class="choices form-select" name="title_aspek">
+                                                                <!-- Pastikan $level_akun ada dan bukan kosong -->
+                                                                <option value="Aspek Belum Dipilih">Aspek belum dipilih</option>
+                                                                <?php if (!empty($level_aspek)): ?>
+                                                                    <?php foreach ($level_aspek as $row): ?>
+                                                                        <option value="<?= htmlspecialchars($row['title_aspek'], ENT_QUOTES, 'UTF-8') ?>" <?php if($row["title_aspek"] == $jenis) echo "selected";?>>
+                                                                            <?= htmlspecialchars($row['title_aspek'], ENT_QUOTES, 'UTF-8') ?>
+                                                                        </option>
+                                                                    <?php endforeach; ?>
+                                                                <?php else: ?>
+                                                                    <option value="">Aspek tidak tersedia</option>
+                                                                <?php endif; ?>
+                                                            </select>
+                                                        </div>
+                                                        <!-- <div class="col-md-4">
                                                             <label>Isu Lingkungan</label>
                                                         </div>
                                                         <div class="col-md-8 form-group">
                                                             <input type="text" id="readonlyInput" class="form-control"
                                                                 name="title_isu" value="<?php echo isset($edit_isu['title_isu']) ? $edit_isu['title_isu'] : ''; ?>">
-                                                        </div>
+                                                        </div> -->
+
                                                         <div class="col-md-4">
+                                                            <label>Isu Lingkungan</label>
+                                                        </div>
+                                                        <?php 
+                                                            $jenis = isset($edit_isu['title_isu']) ? $edit_isu['title_isu'] : '';
+                                                        ?>
+                                                        <div class="col-md-8 form-group">
+                                                            <select class="choices form-select" name="title_isu">
+                                                                <!-- Pastikan $level_akun ada dan bukan kosong -->
+                                                                <option value="Isu Belum Dipilih">Isu belum dipilih</option>
+                                                                <?php if (!empty($level_isu)): ?>
+                                                                    <?php foreach ($level_isu as $row): ?>
+                                                                        <option value="<?= htmlspecialchars($row['title_isu'], ENT_QUOTES, 'UTF-8') ?>" <?php if($row["title_isu"] == $jenis) echo "selected";?>>
+                                                                            <?= htmlspecialchars($row['title_isu'], ENT_QUOTES, 'UTF-8') ?>
+                                                                        </option>
+                                                                    <?php endforeach; ?>
+                                                                <?php else: ?>
+                                                                    <option value="">Isu tidak tersedia</option>
+                                                                <?php endif; ?>
+                                                            </select>
+                                                        </div>
+                                                        
+                                                        <!-- <div class="col-md-4">
                                                             <label>Kategori</label>
                                                         </div>
                                                         <div class="col-md-8 form-group">
                                                             <input type="text" class="form-control"
                                                                 name="title_kategori" value="<?php echo isset($edit_isu['title_kategori']) ? $edit_isu['title_kategori'] : ''; ?>">
-                                                        </div>
-                                                        <div class="col-md-4">
-                                                            <label>Jenis</label>
+                                                        </div> -->
+                                                        <!-- <div class="col-md-4">
+                                                            <label>Program</label>
                                                         </div>
                                                         <div class="col-md-8 form-group">
                                                             <input type="text" class="form-control"
                                                                 name="title_jenis" value="<?php echo isset($edit_isu['title_jenis']) ? $edit_isu['title_jenis'] : ''; ?>">
-                                                        </div>
+                                                        </div> -->
+
                                                         <div class="col-md-4">
+                                                            <label>Program/Kegiatan</label>
+                                                        </div>
+                                                        <?php 
+                                                            $jenis = isset($edit_isu['title_jenis']) ? $edit_isu['title_jenis'] : '';
+                                                        ?>
+                                                        <div class="col-md-8 form-group">
+                                                            <select class="choices form-select" name="title_jenis">
+                                                                <!-- Pastikan $level_akun ada dan bukan kosong -->
+                                                                <option value="Isu Belum Dipilih">Program belum dipilih</option>
+                                                                <?php if (!empty($level_jenis)): ?>
+                                                                    <?php foreach ($level_jenis as $row): ?>
+                                                                        <option value="<?= htmlspecialchars($row['title_jenis'], ENT_QUOTES, 'UTF-8') ?>" <?php if($row["title_jenis"] == $jenis) echo "selected";?>>
+                                                                            <?= htmlspecialchars($row['title_jenis'], ENT_QUOTES, 'UTF-8') ?>
+                                                                        </option>
+                                                                    <?php endforeach; ?>
+                                                                <?php else: ?>
+                                                                    <option value="">Program tidak tersedia</option>
+                                                                <?php endif; ?>
+                                                            </select>
+                                                        </div>
+
+                                                        <!-- <div class="col-md-4">
                                                             <label>Pekerjaan</label>
                                                         </div>
                                                         <div class="col-md-8 form-group">
                                                             <input type="text" class="form-control"
                                                                 name="title_pekerjaan" value="<?php echo isset($edit_isu['title_pekerjaan']) ? $edit_isu['title_pekerjaan'] : ''; ?>">
+                                                        </div> -->
+
+                                                        <div class="col-md-4">
+                                                            <label>Pekerjaan</label>
                                                         </div>
+                                                        <?php 
+                                                            $jenis = isset($edit_isu['title_pekerjaan']) ? $edit_isu['title_pekerjaan'] : '';
+                                                        ?>
+                                                        <div class="col-md-8 form-group">
+                                                            <select class="choices form-select" name="title_pekerjaan">
+                                                                <!-- Pastikan $level_akun ada dan bukan kosong -->
+                                                                <option value="Pekerjaan Belum Dipilih">Pekerjaan belum dipilih</option>
+                                                                <?php if (!empty($level_pekerjaan)): ?>
+                                                                    <?php foreach ($level_pekerjaan as $row): ?>
+                                                                        <option value="<?= htmlspecialchars($row['title_pekerjaan'], ENT_QUOTES, 'UTF-8') ?>" <?php if($row["title_pekerjaan"] == $jenis) echo "selected";?>>
+                                                                            <?= htmlspecialchars($row['title_pekerjaan'], ENT_QUOTES, 'UTF-8') ?>
+                                                                        </option>
+                                                                    <?php endforeach; ?>
+                                                                <?php else: ?>
+                                                                    <option value="">Pekerjaan tidak tersedia</option>
+                                                                <?php endif; ?>
+                                                            </select>
+                                                        </div>
+
                                                         <div class="col-md-4">
                                                             <label>Detail Pekerjaan</label>
                                                         </div>
@@ -107,12 +198,34 @@
                                                             <input type="text" class="form-control"
                                                                 name="detail_pekerjaan" value="<?php echo isset($edit_isu['detail_pekerjaan']) ? $edit_isu['detail_pekerjaan'] : ''; ?>">
                                                         </div>
-                                                        <div class="col-md-4">
+                                                        <!-- <div class="col-md-4">
                                                             <label>Aset Lahan</label>
                                                         </div>
                                                         <div class="col-md-8 form-group">
                                                             <input type="text" class="form-control"
                                                                 name="title_aset_lahan" value="<?php echo isset($edit_isu['title_aset_lahan']) ? $edit_isu['title_aset_lahan'] : ''; ?>">
+                                                        </div> -->
+
+                                                        <div class="col-md-4">
+                                                            <label>Aset Lahan</label>
+                                                        </div>
+                                                        <?php 
+                                                            $jenis = isset($edit_isu['title_aset_lahan']) ? $edit_isu['title_aset_lahan'] : '';
+                                                        ?>
+                                                        <div class="col-md-8 form-group">
+                                                            <select class="choices form-select" name="title_aset_lahan">
+                                                                <!-- Pastikan $level_akun ada dan bukan kosong -->
+                                                                <option value="Aset Lahan Belum Dipilih">Aset Lahan belum dipilih</option>
+                                                                <?php if (!empty($level_aset_lahan)): ?>
+                                                                    <?php foreach ($level_aset_lahan as $row): ?>
+                                                                        <option value="<?= htmlspecialchars($row['title_aset_lahan'], ENT_QUOTES, 'UTF-8') ?>" <?php if($row["title_aset_lahan"] == $jenis) echo "selected";?>>
+                                                                            <?= htmlspecialchars($row['title_aset_lahan'], ENT_QUOTES, 'UTF-8') ?>
+                                                                        </option>
+                                                                    <?php endforeach; ?>
+                                                                <?php else: ?>
+                                                                    <option value="">Aset Lahan tidak tersedia</option>
+                                                                <?php endif; ?>
+                                                            </select>
                                                         </div>
                                                         <!-- <div class="col-md-4">
                                                             <label>Kecamatan</label>
@@ -121,26 +234,79 @@
                                                             <input type="text" class="form-control"
                                                                 name="title_kecamatan" value="<?php echo isset($edit_isu['title_kecamatan']) ? $edit_isu['title_kecamatan'] : ''; ?>">
                                                         </div> -->
-                                                        <div class="col-md-4">
+                                                        <!-- <div class="col-md-4">
                                                             <label>Kelurahan</label>
                                                         </div>
                                                         <div class="col-md-8 form-group">
                                                             <input type="text" class="form-control"
                                                                 name="title_kelurahan" value="<?php echo isset($edit_isu['title_kelurahan']) ? $edit_isu['title_kelurahan'] : ''; ?>">
-                                                        </div>
+                                                        </div> -->
+
                                                         <div class="col-md-4">
+                                                            <label>Kelurahan</label>
+                                                        </div>
+                                                        <?php 
+                                                            $jenis = isset($edit_isu['title_kelurahan']) ? $edit_isu['title_kelurahan'] : '';
+                                                        ?>
+                                                        <div class="col-md-8 form-group">
+                                                            <select class="choices form-select" name="title_kelurahan">
+                                                                <!-- Pastikan $level_akun ada dan bukan kosong -->
+                                                                <option value="Kelurahan Belum Dipilih">Kelurahan belum dipilih</option>
+                                                                <?php if (!empty($level_kelurahan)): ?>
+                                                                    <?php foreach ($level_kelurahan as $row): ?>
+                                                                        <option value="<?= htmlspecialchars($row['title_kelurahan'], ENT_QUOTES, 'UTF-8') ?>" <?php if($row["title_kelurahan"] == $jenis) echo "selected";?>>
+                                                                            <?= htmlspecialchars($row['title_kelurahan'], ENT_QUOTES, 'UTF-8') ?>
+                                                                        </option>
+                                                                    <?php endforeach; ?>
+                                                                <?php else: ?>
+                                                                    <option value="">Kelurahan tidak tersedia</option>
+                                                                <?php endif; ?>
+                                                            </select>
+                                                        </div>
+
+                                                        <!-- <div class="col-md-4">
                                                             <label>No RW</label>
                                                         </div>
                                                         <div class="col-md-8 form-group">
                                                             <input type="text" class="form-control"
                                                                 name="title_rw" value="<?php echo isset($edit_isu['title_rw']) ? $edit_isu['title_rw'] : ''; ?>">
+                                                        </div> -->
+
+                                                        <div class="col-md-4">
+                                                            <label>No RW</label>
                                                         </div>
+                                                        <?php 
+                                                            $jenis = isset($edit_isu['title_rw']) ? $edit_isu['title_rw'] : '';
+                                                        ?>
+                                                        <div class="col-md-8 form-group">
+                                                            <select class="choices form-select" name="title_rw">
+                                                                <!-- Pastikan $level_akun ada dan bukan kosong -->
+                                                                <option value="RW Belum Dipilih">RW belum dipilih</option>
+                                                                <?php if (!empty($level_angka)): ?>
+                                                                    <?php foreach ($level_angka as $row): ?>
+                                                                        <option value="<?= htmlspecialchars($row['title_angka'], ENT_QUOTES, 'UTF-8') ?>" <?php if($row["title_angka"] == $jenis) echo "selected";?>>
+                                                                            <?= htmlspecialchars($row['title_angka'], ENT_QUOTES, 'UTF-8') ?>
+                                                                        </option>
+                                                                    <?php endforeach; ?>
+                                                                <?php else: ?>
+                                                                    <option value="">RW tidak tersedia</option>
+                                                                <?php endif; ?>
+                                                            </select>
+                                                        </div>
+                                                        
                                                         <div class="col-md-4">
                                                             <label>No RT</label>
                                                         </div>
                                                         <div class="col-md-8 form-group">
                                                             <input type="text" class="form-control"
                                                                 name="title_rt" value="<?php echo isset($edit_isu['title_rt']) ? $edit_isu['title_rt'] : ''; ?>">
+                                                        </div>
+                                                        <div class="col-md-4">
+                                                            <label>Alamat</label>
+                                                        </div>
+                                                        <div class="col-md-8 form-group">
+                                                            <input type="text" class="form-control"
+                                                                name="alamat_isu" value="<?php echo isset($edit_isu['alamat_isu']) ? $edit_isu['alamat_isu'] : ''; ?>">
                                                         </div>
                                                         <div class="col-md-4">
                                                             <label>Latitude</label>
@@ -193,7 +359,7 @@
 
                                                         <div class="col-md-12 form-group">
                                                             <label for="exampleFormControlTextarea1" class="form-label">Komentar</label>
-                                                            <textarea type="text" class="form-control" name="komentar_usulan" id="exampleFormControlTextarea1" rows="3"><?php echo isset($edit_isu['komentar_usulan']) ? $edit_isu['komentar_usulan'] : ''; ?></textarea>
+                                                            <textarea type="text" class="form-control" name="komentar_usulan" id="exampleFormControlTextarea1" rows="3" readonly><?php echo isset($edit_isu['komentar_usulan']) ? $edit_isu['komentar_usulan'] : ''; ?></textarea>
                                                         </div>
 
                                                         <div class="col-md-4">

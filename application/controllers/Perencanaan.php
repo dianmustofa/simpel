@@ -226,8 +226,24 @@ class Perencanaan extends CI_Controller {
         //     redirect("laporan-tahunan");
         // }
 
-		$level_kelurahan = $this->Perencanaan_model->level_kelurahan();
+        $level_aspek = $this->Perencanaan_model->level_aspek();
+		$data["level_aspek"] = $level_aspek;
+		$level_isu = $this->Perencanaan_model->level_isu();
+		$data["level_isu"] = $level_isu;
+        $level_kategori = $this->Perencanaan_model->level_kategori();
+		$data["level_kategori"] = $level_kategori;
+        $level_jenis = $this->Perencanaan_model->level_jenis();
+		$data["level_jenis"] = $level_jenis;
+        $level_kelurahan = $this->Perencanaan_model->level_kelurahan();
 		$data["level_kelurahan"] = $level_kelurahan;
+        $level_angka = $this->Perencanaan_model->level_angka();
+		$data["level_angka"] = $level_angka;
+        $level_pekerjaan = $this->Perencanaan_model->level_pekerjaan();
+		$data["level_pekerjaan"] = $level_pekerjaan;
+        $level_aset_lahan = $this->Perencanaan_model->level_aset_lahan();
+		$data["level_aset_lahan"] = $level_aset_lahan;
+        $level_instansi = $this->Perencanaan_model->level_instansi();
+		$data["level_instansi"] = $level_instansi;
 
     	$this->load->view('Isu/isu_edit_view', $data);
 	}
@@ -239,8 +255,9 @@ class Perencanaan extends CI_Controller {
 	
 		// Ambil data dari form
 		$data = array(
-			'title_isu' => $this->input->post('title_isu'),
-			'title_kategori' => $this->input->post('title_kategori'),
+			'title_aspek' => $this->input->post('title_aspek'),
+            'title_isu' => $this->input->post('title_isu'),
+			// 'title_kategori' => $this->input->post('title_kategori'),
 			'title_jenis' => $this->input->post('title_jenis'),
 			'title_pekerjaan' => $this->input->post('title_pekerjaan'),
             'detail_pekerjaan' => $this->input->post('detail_pekerjaan'),
@@ -248,6 +265,7 @@ class Perencanaan extends CI_Controller {
 			'title_kelurahan' => $this->input->post('title_kelurahan'),
             'title_rw' => $this->input->post('title_rw'),
 			'title_rt' => $this->input->post('title_rt'),
+            'alamat_isu' => $this->input->post('alamat_isu'),
 			'latitude' => $this->input->post('latitude'),
             'longitude' => $this->input->post('longitude'),
             'last_created_date' => $this->input->post('last_created_date'),

@@ -92,14 +92,14 @@
                                                                 <label>Program</label>
                                                             </div>
                                                             <div class="col-md-8 form-group">
-                                                                <textarea type="text" class="form-control" name="program_usulan" value="<?php echo $edit_usulan['title_jenis'];?>" readonly><?php echo $edit_usulan['title_jenis'];?></textarea>
+                                                                <textarea type="text" class="form-control" name="title_jenis" value="<?php echo isset($edit_usulan['title_jenis']) ? $edit_usulan['title_jenis'] : ''; ?>" readonly><?php echo $edit_usulan['title_jenis'];?></textarea>
                                                             </div>
                                                             <!-- Input Isu -->
                                                             <div class="col-md-4">
                                                                 <label>Instansi Pelaksana</label>
                                                             </div>
                                                             <?php 
-                                                                $jenis = isset($edit_usulan['title_instansi_pelaksana']) ? $edit_usulan['title_instansi_pelaksana'] : '';
+                                                                $jenis = isset($edit_usulan['title_opd']) ? $edit_usulan['title_opd'] : '';
                                                             ?>
                                                             <div class="col-md-8 form-group">
                                                                 <select class="choices form-select" name="title_opd">
@@ -135,29 +135,28 @@
                                                                     <label>Program</label>
                                                                 </div>
                                                                 <div class="col-md-8 form-group">
-                                                                    <textarea type="text" class="form-control" name="fname" value="<?php echo $edit_usulan['program_usulan'];?>" readonly><?php echo $edit_usulan['program_usulan'];?></textarea>
+                                                                    <textarea type="text" class="form-control" name="title_jenis" value="<?php echo isset($edit_usulan['title_jenis']) ? $edit_usulan['title_jenis'] : ''; ?>" readonly><?php echo $edit_usulan['title_jenis'];?></textarea>
                                                                 </div>
 
                                                                 <!-- Input Pendanaan -->
-                                                                <?php 
-                                                                    $jenis="";
-                                                                if(isset($default['title_sumber_pendanaan'])) $jenis=$default['title_sumber_pendanaan'];
-                                                                ?>
                                                                 <div class="col-md-4">
                                                                     <label>Sumber Pendanaan</label>
                                                                 </div>
+                                                                <?php 
+                                                                    $jenis = isset($edit_usulan['sumber_pendanaan_usulan']) ? $edit_usulan['sumber_pendanaan_usulan'] : '';
+                                                                ?>
                                                                 <div class="col-md-8 form-group">
                                                                     <select class="choices form-select" name="sumber_pendanaan_usulan">
                                                                         <!-- Pastikan $level_akun ada dan bukan kosong -->
-                                                                        <option value="" disabled selected>Pilih sumber dana</option>
+                                                                        <option value="Sumber Dana Belum Dipilih">Sumber dana belum dipilih</option>
                                                                         <?php if (!empty($level_sumber_pendanaan)): ?>
                                                                             <?php foreach ($level_sumber_pendanaan as $row): ?>
-                                                                                <option value="<?= htmlspecialchars($row['title_sumber_pendanaan'], ENT_QUOTES, 'UTF-8') ?>">
+                                                                                <option value="<?= htmlspecialchars($row['title_sumber_pendanaan'], ENT_QUOTES, 'UTF-8') ?>" <?php if($row["title_sumber_pendanaan"] == $jenis) echo "selected";?>>
                                                                                     <?= htmlspecialchars($row['title_sumber_pendanaan'], ENT_QUOTES, 'UTF-8') ?>
                                                                                 </option>
                                                                             <?php endforeach; ?>
                                                                         <?php else: ?>
-                                                                            <option value="">Sumber tidak tersedia</option>
+                                                                            <option value="">Sumber dana tidak tersedia</option>
                                                                         <?php endif; ?>
                                                                     </select>
                                                                 </div>
@@ -169,31 +168,24 @@
                                                                     <textarea type="text" class="form-control" name="indikasi_tahun_pelaksana_usulan" value="<?php echo isset($edit_usulan['indikasi_tahun_pelaksana_usulan']) ? $edit_usulan['indikasi_tahun_pelaksana_usulan'] : ''; ?>"><?php echo $edit_usulan['indikasi_tahun_pelaksana_usulan'];?></textarea>
                                                                 </div>
                                                                 <!-- Input Status -->
-                                                                <?php 
-                                                                // Ambil nilai dari database yang ingin diedit, misalnya dari query database
-                                                                $jenis = ""; // Inisialisasi variabel untuk menyimpan nilai dari database
-                                                                if (isset($default['title_status_usulan'])) {
-                                                                    $jenis = $default['title_status_usulan']; // Nilai dari database yang ingin diedit
-                                                                }
-                                                                ?>
                                                                 <div class="col-md-4">
                                                                     <label>Status Usulan</label>
                                                                 </div>
+                                                                <?php 
+                                                                    $jenis = isset($edit_usulan['status_usulan']) ? $edit_usulan['status_usulan'] : '';
+                                                                ?>
                                                                 <div class="col-md-8 form-group">
-                                                                    <select class="choices form-select" name="status_usulan" id="title_status_usulan">
-                                                                        <!-- Opsi default -->
-                                                                        <option value="Menunggu Verifikasi" <?= ($jenis == 'Menunggu Verifikasi') ? 'selected' : '' ?>>Menunggu Verifikasi</option>
-
-                                                                        <!-- Looping opsi dari $level_status_usulan jika ada -->
+                                                                    <select class="choices form-select" name="status_usulan">
+                                                                        <!-- Pastikan $level_akun ada dan bukan kosong -->
+                                                                        <option value="Status Belum Dipilih">Status belum dipilih</option>
                                                                         <?php if (!empty($level_status_usulan)): ?>
                                                                             <?php foreach ($level_status_usulan as $row): ?>
-                                                                                <option value="<?= htmlspecialchars($row['title_status_usulan'], ENT_QUOTES, 'UTF-8') ?>"
-                                                                                    <?= ($jenis == $row['title_status_usulan']) ? 'selected' : '' ?>>
+                                                                                <option value="<?= htmlspecialchars($row['title_status_usulan'], ENT_QUOTES, 'UTF-8') ?>" <?php if($row["title_status_usulan"] == $jenis) echo "selected";?>>
                                                                                     <?= htmlspecialchars($row['title_status_usulan'], ENT_QUOTES, 'UTF-8') ?>
                                                                                 </option>
                                                                             <?php endforeach; ?>
                                                                         <?php else: ?>
-                                                                            <option value="">Isu tidak tersedia</option>
+                                                                            <option value="">Status tidak tersedia</option>
                                                                         <?php endif; ?>
                                                                     </select>
                                                                 </div>
@@ -227,11 +219,32 @@
                                                                     </div>
 
                                                                     <!-- Input Isu -->
-                                                                    <div class="col-md-4">
+                                                                    <!-- <div class="col-md-4">
                                                                         <label>Instansi Pelaksana</label>
                                                                     </div>
                                                                     <?php 
                                                                         $jenis = isset($edit_usulan['title_instansi_pelaksana']) ? $edit_usulan['title_instansi_pelaksana'] : '';
+                                                                    ?>
+                                                                    <div class="col-md-8 form-group">
+                                                                        <select class="choices form-select" name="title_opd">
+                                                                            <option value="Instansi Belum Dipilih">Instansi belum dipilih</option>
+                                                                            <?php if (!empty($level_instansi)): ?>
+                                                                                <?php foreach ($level_instansi as $row): ?>
+                                                                                    <option value="<?= htmlspecialchars($row['title_opd'], ENT_QUOTES, 'UTF-8') ?>" <?php if($row["title_opd"] == $jenis) echo "selected";?>>
+                                                                                        <?= htmlspecialchars($row['title_opd'], ENT_QUOTES, 'UTF-8') ?>
+                                                                                    </option>
+                                                                                <?php endforeach; ?>
+                                                                            <?php else: ?>
+                                                                                <option value="">Instansi tidak tersedia</option>
+                                                                            <?php endif; ?>
+                                                                        </select>
+                                                                    </div> -->
+
+                                                                    <div class="col-md-4">
+                                                                        <label>Instansi Pelaksana</label>
+                                                                    </div>
+                                                                    <?php 
+                                                                        $jenis = isset($edit_usulan['title_opd']) ? $edit_usulan['title_opd'] : '';
                                                                     ?>
                                                                     <div class="col-md-8 form-group">
                                                                         <select class="choices form-select" name="title_opd">

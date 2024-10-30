@@ -81,20 +81,39 @@
                                                             </div>
 
                                                             <!-- Input Kelurahan -->
-                                                            <?php 
+                                                            <!-- <?php 
                                                                 $jenis="";
                                                             if(isset($default['title_kelurahan'])) $jenis=$default['title_kelurahan'];
                                                             ?>
                                                             <div class="form-group">
                                                                 <label>Kelurahan</label>
-                                                                <!-- <input type="text" name="title_isu" placeholder="Isu Perencanaan" class="form-control" required> -->
                                                                 <select class="choices form-select" name="kelurahan_laporan" required>
-                                                                    <!-- Opsi default yang tidak bisa dipilih -->
                                                                     <option value="" disabled selected>Pilih Kelurahan</option>
-                                                                    <!-- Pastikan $level_akun ada dan bukan kosong -->
                                                                     <?php if (!empty($level_kelurahan)): ?>
                                                                         <?php foreach ($level_kelurahan as $row): ?>
                                                                             <option value="<?= htmlspecialchars($row['title_kelurahan'], ENT_QUOTES, 'UTF-8') ?>">
+                                                                                <?= htmlspecialchars($row['title_kelurahan'], ENT_QUOTES, 'UTF-8') ?>
+                                                                            </option>
+                                                                        <?php endforeach; ?>
+                                                                    <?php else: ?>
+                                                                        <option value="">Kelurahan tidak tersedia</option>
+                                                                    <?php endif; ?>
+                                                                </select>
+                                                            </div> -->
+
+                                                            <div class="col-md-4">
+                                                                <label>Kelurahan</label>
+                                                            </div>
+                                                            <?php 
+                                                                $jenis = isset($update_laporan['kelurahan_laporan']) ? $update_laporan['kelurahan_laporan'] : '';
+                                                            ?>
+                                                            <div class="col-md-8 form-group">
+                                                                <select class="choices form-select" name="kelurahan_laporan">
+                                                                    <!-- Pastikan $level_akun ada dan bukan kosong -->
+                                                                    <option value="Kelurahan Belum Dipilih">Kelurahan belum dipilih</option>
+                                                                    <?php if (!empty($level_kelurahan)): ?>
+                                                                        <?php foreach ($level_kelurahan as $row): ?>
+                                                                            <option value="<?= htmlspecialchars($row['title_kelurahan'], ENT_QUOTES, 'UTF-8') ?>" <?php if($row["title_kelurahan"] == $jenis) echo "selected";?>>
                                                                                 <?= htmlspecialchars($row['title_kelurahan'], ENT_QUOTES, 'UTF-8') ?>
                                                                             </option>
                                                                         <?php endforeach; ?>

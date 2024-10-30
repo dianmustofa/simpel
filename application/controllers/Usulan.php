@@ -88,7 +88,7 @@ class Usulan extends CI_Controller {
 					// Masukkan data yang relevan untuk level akun 4
 					'manfaat_tujuan_usulan' => $this->input->post('manfaat_tujuan_usulan'),
 					'indikasi_program_usulan' => $this->input->post('indikasi_program_usulan'),
-					'program_usulan' => $this->input->post('program_usulan'),
+					'title_jenis' => $this->input->post('title_jenis'),
 					'title_opd' => $this->input->post('title_opd'),
 				);
 			} else {
@@ -262,7 +262,7 @@ class Usulan extends CI_Controller {
 					// Masukkan data yang relevan untuk level akun 4
 					'manfaat_tujuan_usulan' => $this->input->post('manfaat_tujuan_usulan'),
 					'indikasi_program_usulan' => $this->input->post('indikasi_program_usulan'),
-					'program_usulan' => $this->input->post('program_usulan'),
+					'title_jenis' => $this->input->post('title_jenis'),
 					'title_opd' => $this->input->post('title_opd'),
 				);
 			} else {

@@ -208,7 +208,7 @@
                                                                     <label>Program</label>
                                                                 </div>
                                                                 <div class="col-md-8 form-group">
-                                                                    <textarea type="text" class="form-control" name="fname" value="<?php echo $review_isu['program_usulan'];?>" readonly><?php echo $review_isu['program_usulan'];?></textarea>
+                                                                    <textarea type="text" class="form-control" name="fname" value="<?php echo $review_isu['title_jenis'];?>" readonly><?php echo $review_isu['title_jenis'];?></textarea>
                                                                 </div>
 
                                                                 <!-- Input Pendanaan -->
