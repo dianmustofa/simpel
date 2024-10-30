@@ -218,7 +218,7 @@
                                                     if(isset($default['title_jenis'])) $jenis=$default['title_jenis'];
                                                     ?>
                                                     <div class="form-group">
-                                                        <label>Program / Kegiatan</label>
+                                                        <label>Program</label>
                                                         <!-- <input type="text" name="title_isu" placeholder="Isu Perencanaan" class="form-control" required> -->
                                                         <select class="choices form-select" name="title_jenis" required>
                                                             <!-- Opsi default yang tidak bisa dipilih -->
@@ -234,6 +234,11 @@
                                                                 <option value="">Isu tidak tersedia</option>
                                                             <?php endif; ?>
                                                         </select>
+                                                    </div>
+
+                                                    <div class="form-group">
+                                                        <label>Kegiatan</label>
+                                                        <input type="text" name="program_usulan" placeholder="" class="form-control" >
                                                     </div>
 
                                                     <div class="row">

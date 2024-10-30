@@ -89,10 +89,10 @@
                                                                 <textarea type="text" class="form-control" name="indikasi_program_usulan" value="<?php echo isset($edit_usulan['indikasi_program_usulan']) ? $edit_usulan['indikasi_program_usulan'] : ''; ?>"><?php echo $edit_usulan['indikasi_program_usulan'];?></textarea>
                                                             </div>
                                                             <div class="col-md-4">
-                                                                <label>Program</label>
+                                                                <label>Kegiatan</label>
                                                             </div>
                                                             <div class="col-md-8 form-group">
-                                                                <textarea type="text" class="form-control" name="title_jenis" value="<?php echo isset($edit_usulan['title_jenis']) ? $edit_usulan['title_jenis'] : ''; ?>" readonly><?php echo $edit_usulan['title_jenis'];?></textarea>
+                                                                <textarea type="text" class="form-control" name="program_usulan" value="<?php echo isset($edit_usulan['program_usulan']) ? $edit_usulan['program_usulan'] : ''; ?>" readonly><?php echo $edit_usulan['program_usulan'];?></textarea>
                                                             </div>
                                                             <!-- Input Isu -->
                                                             <div class="col-md-4">
@@ -132,10 +132,10 @@
                                                                     <textarea type="text" class="form-control" name="fname" value="<?php echo $edit_usulan['indikasi_program_usulan'];?>" readonly><?php echo $edit_usulan['indikasi_program_usulan'];?></textarea>
                                                                 </div>
                                                                 <div class="col-md-4">
-                                                                    <label>Program</label>
+                                                                    <label>Kegiatan</label>
                                                                 </div>
                                                                 <div class="col-md-8 form-group">
-                                                                    <textarea type="text" class="form-control" name="title_jenis" value="<?php echo isset($edit_usulan['title_jenis']) ? $edit_usulan['title_jenis'] : ''; ?>" readonly><?php echo $edit_usulan['title_jenis'];?></textarea>
+                                                                    <textarea type="text" class="form-control" name="program_usulan" value="<?php echo isset($edit_usulan['program_usulan']) ? $edit_usulan['program_usulan'] : ''; ?>" readonly><?php echo $edit_usulan['program_usulan'];?></textarea>
                                                                 </div>
 
                                                                 <!-- Input Pendanaan -->
@@ -212,10 +212,10 @@
                                                                         <textarea type="text" class="form-control" name="indikasi_program_usulan" value="<?php echo isset($edit_usulan['indikasi_program_usulan']) ? $edit_usulan['indikasi_program_usulan'] : ''; ?>"><?php echo $edit_usulan['indikasi_program_usulan'];?></textarea>
                                                                     </div>
                                                                     <div class="col-md-4">
-                                                                        <label>Program</label>
+                                                                        <label>Kegiatan</label>
                                                                     </div>
                                                                     <div class="col-md-8 form-group">
-                                                                        <textarea type="text" class="form-control" name="title_jenis" value="<?php echo isset($edit_usulan['title_jenis']) ? $edit_usulan['title_jenis'] : ''; ?>" readonly><?php echo $edit_usulan['title_jenis'];?></textarea>
+                                                                        <textarea type="text" class="form-control" name="program_usulan" value="<?php echo isset($edit_usulan['program_usulan']) ? $edit_usulan['program_usulan'] : ''; ?>" readonly><?php echo $edit_usulan['program_usulan'];?></textarea>
                                                                     </div>
 
                                                                     <!-- Input Isu -->
@@ -363,6 +363,135 @@
                         </div>
                     </section>
                     <!-- // Basic Horizontal form layout section end -->
+
+
+                    <section id="multiple-column-form">
+                        <div class="row match-height">
+                            <div class="col-12">
+                                <div class="card">
+                                    <div class="card-header">
+                                        <h4 class="card-title">Detail Isu dari Masayarakat</h4>
+                                    </div>
+                                    <div class="card-content">
+                                        <div class="card-body">
+                                            <form class="form">
+                                                <div class="row">
+                                                    <div class="divider">
+                                                        <div class="divider-text">Isu</div>
+                                                    </div>
+                                                    <div class="col-md-6 col-12">
+                                                        <div class="form-group">
+                                                            <label for="first-name-column">Isu Lingkungan</label>
+                                                            <input type="text" id="readonlyInput" readonly="readonly" class="form-control"
+                                                                name="fname" value="<?php echo $edit_usulan['title_isu'];?>">
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-6 col-12">
+                                                        <div class="form-group">
+                                                            <label for="last-name-column">Kategori</label>
+                                                            <input type="text" id="readonlyInput" readonly="readonly" class="form-control"
+                                                                name="fname" value="<?php echo $edit_usulan['title_kategori'];?>">
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-6 col-12">
+                                                        <div class="form-group">
+                                                            <label for="city-column">Jenis</label>
+                                                            <input type="text" id="readonlyInput" readonly="readonly" class="form-control"
+                                                                name="fname" value="<?php echo $edit_usulan['title_jenis'];?>">
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-6 col-12">
+                                                        <div class="form-group">
+                                                            <label for="country-floating">Pekerjaan</label>
+                                                            <input type="text" id="readonlyInput" readonly="readonly" class="form-control"
+                                                                name="fname" value="<?php echo $edit_usulan['title_pekerjaan'];?>">
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-12 col-12">
+                                                        <div class="form-group">
+                                                            <label for="company-column">Detail Pekerjaan</label>
+                                                            <textarea type="text" id="readonlyInput" readonly="readonly" class="form-control"
+                                                                name="fname" value="<?php echo $edit_usulan['detail_pekerjaan'];?>"><?php echo $edit_usulan['detail_pekerjaan'];?></textarea>
+                                                        </div>
+                                                    </div>
+                                                    <!-- <div class="col-md-6 col-12">
+                                                        <div class="form-group">
+                                                            <label for="email-id-column">Sumber</label>
+                                                            <input type="text" id="readonlyInput" readonly="readonly" class="form-control"
+                                                                name="fname" value="<?php echo $edit_usulan['title_sumber'];?>">
+                                                        </div>
+                                                    </div> -->
+                                                    <div class="col-md-6 col-12">
+                                                        <div class="form-group">
+                                                            <label for="email-id-column">Aset Lahan</label>
+                                                            <input type="text" id="readonlyInput" readonly="readonly" class="form-control"
+                                                                name="fname" value="<?php echo $edit_usulan['title_aset_lahan'];?>">
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-6 col-12">
+                                                        <div class="form-group">
+                                                            <label for="email-id-column">Kecamatan</label>
+                                                            <input type="text" id="readonlyInput" readonly="readonly" class="form-control"
+                                                                name="fname" value="<?php echo $edit_usulan['title_kecamatan'];?>">
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-6 col-12">
+                                                        <div class="form-group">
+                                                            <label for="email-id-column">Kelurahan</label>
+                                                            <input type="text" id="readonlyInput" readonly="readonly" class="form-control"
+                                                                name="fname" value="<?php echo $edit_usulan['title_kelurahan'];?>">
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-6 col-12">
+                                                        <div class="form-group">
+                                                            <label for="email-id-column">No RW</label>
+                                                            <input type="text" id="readonlyInput" readonly="readonly" class="form-control"
+                                                                name="fname" value="<?php echo $edit_usulan['title_rw'];?>">
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-6 col-12">
+                                                        <div class="form-group">
+                                                            <label for="email-id-column">No RT</label>
+                                                            <input type="text" id="readonlyInput" readonly="readonly" class="form-control"
+                                                                name="fname" value="<?php echo $edit_usulan['title_rt'];?>">
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-6 col-12">
+                                                        <div class="form-group">
+                                                            <label for="email-id-column">Latitude</label>
+                                                            <input type="text" id="readonlyInput" readonly="readonly" class="form-control"
+                                                                name="fname" value="<?php echo $edit_usulan['latitude'];?>">
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-6 col-12">
+                                                        <div class="form-group">
+                                                            <label for="email-id-column">Longitude</label>
+                                                            <input type="text" id="readonlyInput" readonly="readonly" class="form-control"
+                                                                name="fname" value="<?php echo $edit_usulan['longitude'];?>">
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-6 col-12">
+                                                        <div class="form-group">
+                                                            <label for="email-id-column">Alamat</label>
+                                                            <input type="text" id="readonlyInput" readonly="readonly" class="form-control"
+                                                                name="fname" value="<?php echo $edit_usulan['alamat_isu'];?>">
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-6 col-12">
+                                                        <div class="form-group">
+                                                            <label for="email-id-column">Tanggal Ajuan</label>
+                                                            <input type="text" id="readonlyInput" readonly="readonly" class="form-control"
+                                                                name="fname" value="<?php echo $edit_usulan['last_created_date'];?>">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
 
                 </div>
 

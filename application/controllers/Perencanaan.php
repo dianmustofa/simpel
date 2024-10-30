@@ -192,6 +192,7 @@ class Perencanaan extends CI_Controller {
             // 'title_opd' => $this->input->post('title_opd')
             'gambar_isu' => $image_data['file_name'],
             'document_isu' => $document_data['file_name'],
+            'program_usulan' => $this->input->post('program_usulan'),
         );
 
         // // Upload multiple files

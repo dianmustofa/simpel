@@ -140,7 +140,29 @@
                                                         </div> -->
 
                                                         <div class="col-md-4">
-                                                            <label>Program/Kegiatan</label>
+                                                            <label>Pekerjaan</label>
+                                                        </div>
+                                                        <?php 
+                                                            $jenis = isset($edit_isu['title_pekerjaan']) ? $edit_isu['title_pekerjaan'] : '';
+                                                        ?>
+                                                        <div class="col-md-8 form-group">
+                                                            <select class="choices form-select" name="title_pekerjaan">
+                                                                <!-- Pastikan $level_akun ada dan bukan kosong -->
+                                                                <option value="Pekerjaan Belum Dipilih">Pekerjaan belum dipilih</option>
+                                                                <?php if (!empty($level_pekerjaan)): ?>
+                                                                    <?php foreach ($level_pekerjaan as $row): ?>
+                                                                        <option value="<?= htmlspecialchars($row['title_pekerjaan'], ENT_QUOTES, 'UTF-8') ?>" <?php if($row["title_pekerjaan"] == $jenis) echo "selected";?>>
+                                                                            <?= htmlspecialchars($row['title_pekerjaan'], ENT_QUOTES, 'UTF-8') ?>
+                                                                        </option>
+                                                                    <?php endforeach; ?>
+                                                                <?php else: ?>
+                                                                    <option value="">Pekerjaan tidak tersedia</option>
+                                                                <?php endif; ?>
+                                                            </select>
+                                                        </div>
+
+                                                        <div class="col-md-4">
+                                                            <label>Program</label>
                                                         </div>
                                                         <?php 
                                                             $jenis = isset($edit_isu['title_jenis']) ? $edit_isu['title_jenis'] : '';
@@ -169,35 +191,41 @@
                                                                 name="title_pekerjaan" value="<?php echo isset($edit_isu['title_pekerjaan']) ? $edit_isu['title_pekerjaan'] : ''; ?>">
                                                         </div> -->
 
-                                                        <div class="col-md-4">
-                                                            <label>Pekerjaan</label>
-                                                        </div>
-                                                        <?php 
-                                                            $jenis = isset($edit_isu['title_pekerjaan']) ? $edit_isu['title_pekerjaan'] : '';
-                                                        ?>
-                                                        <div class="col-md-8 form-group">
-                                                            <select class="choices form-select" name="title_pekerjaan">
-                                                                <!-- Pastikan $level_akun ada dan bukan kosong -->
-                                                                <option value="Pekerjaan Belum Dipilih">Pekerjaan belum dipilih</option>
-                                                                <?php if (!empty($level_pekerjaan)): ?>
-                                                                    <?php foreach ($level_pekerjaan as $row): ?>
-                                                                        <option value="<?= htmlspecialchars($row['title_pekerjaan'], ENT_QUOTES, 'UTF-8') ?>" <?php if($row["title_pekerjaan"] == $jenis) echo "selected";?>>
-                                                                            <?= htmlspecialchars($row['title_pekerjaan'], ENT_QUOTES, 'UTF-8') ?>
-                                                                        </option>
-                                                                    <?php endforeach; ?>
-                                                                <?php else: ?>
-                                                                    <option value="">Pekerjaan tidak tersedia</option>
-                                                                <?php endif; ?>
-                                                            </select>
-                                                        </div>
+                                                        
 
                                                         <div class="col-md-4">
-                                                            <label>Detail Pekerjaan</label>
+                                                            <label>Kegiatan</label>
                                                         </div>
                                                         <div class="col-md-8 form-group">
                                                             <input type="text" class="form-control"
-                                                                name="detail_pekerjaan" value="<?php echo isset($edit_isu['detail_pekerjaan']) ? $edit_isu['detail_pekerjaan'] : ''; ?>">
+                                                                name="program_usulan" value="<?php echo isset($edit_isu['program_usulan']) ? $edit_isu['program_usulan'] : ''; ?>" >
                                                         </div>
+
+
+                                                        <div class="col-md-4">
+                                                            <label>Detail</label>
+                                                        </div>
+                                                        <div class="col-md-8 form-group">
+                                                            <input type="text" class="form-control"
+                                                                name="detail_pekerjaan" value="<?php echo isset($edit_isu['detail_pekerjaan']) ? $edit_isu['detail_pekerjaan'] : ''; ?>" >
+                                                        </div>
+
+                                                        <div class="col-md-4">
+                                                            <label>Volume</label>
+                                                        </div>
+                                                        <div class="col-md-8 form-group">
+                                                            <input type="text" class="form-control"
+                                                                name="volume_pekerjaan" value="<?php echo isset($edit_isu['volume_pekerjaan']) ? $edit_isu['volume_pekerjaan'] : ''; ?>" >
+                                                        </div>
+
+                                                        <div class="col-md-4">
+                                                            <label>Satuan</label>
+                                                        </div>
+                                                        <div class="col-md-8 form-group">
+                                                            <input type="text" class="form-control"
+                                                                name="satuan" value="<?php echo isset($edit_isu['satuan']) ? $edit_isu['satuan'] : ''; ?>" >
+                                                        </div>
+
                                                         <!-- <div class="col-md-4">
                                                             <label>Aset Lahan</label>
                                                         </div>

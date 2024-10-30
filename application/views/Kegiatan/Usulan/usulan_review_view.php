@@ -162,10 +162,10 @@
                                                                 <textarea type="text" class="form-control" name="indikasi_program_usulan" value="#"></textarea>
                                                             </div>
                                                             <div class="col-md-4">
-                                                                <label>Program</label>
+                                                                <label>Kegiatan</label>
                                                             </div>
                                                             <div class="col-md-8 form-group">
-                                                                <textarea type="text" class="form-control" name="program_usulan" value="<?php echo $review_isu['title_jenis'];?>" readonly><?php echo $review_isu['title_jenis'];?></textarea>
+                                                                <textarea type="text" class="form-control" name="program_usulan" value="<?php echo $review_isu['program_usulan'];?>" readonly><?php echo $review_isu['program_usulan'];?></textarea>
                                                             </div>
                                                             <!-- Input Isu -->
                                                             <div class="col-md-4">
@@ -205,10 +205,10 @@
                                                                     <textarea type="text" class="form-control" name="fname" value="<?php echo $review_isu['indikasi_program_usulan'];?>" readonly><?php echo $review_isu['indikasi_program_usulan'];?></textarea>
                                                                 </div>
                                                                 <div class="col-md-4">
-                                                                    <label>Program</label>
+                                                                    <label>Kegiatan</label>
                                                                 </div>
                                                                 <div class="col-md-8 form-group">
-                                                                    <textarea type="text" class="form-control" name="fname" value="<?php echo $review_isu['title_jenis'];?>" readonly><?php echo $review_isu['title_jenis'];?></textarea>
+                                                                    <textarea type="text" class="form-control" name="fname" value="<?php echo $review_isu['program_usulan'];?>" readonly><?php echo $review_isu['program_usulan'];?></textarea>
                                                                 </div>
 
                                                                 <!-- Input Pendanaan -->
@@ -285,10 +285,10 @@
                                                                         <textarea type="text" class="form-control" name="indikasi_program_usulan" value="#"></textarea>
                                                                     </div>
                                                                     <div class="col-md-4">
-                                                                        <label>Program</label>
+                                                                        <label>Kegiatan</label>
                                                                     </div>
                                                                     <div class="col-md-8 form-group">
-                                                                        <textarea type="text" class="form-control" name="program_usulan" value="<?php echo $review_isu['title_jenis'];?>" readonly><?php echo $review_isu['title_jenis'];?></textarea>
+                                                                        <textarea type="text" class="form-control" name="program_usulan" value="<?php echo $review_isu['program_usulan'];?>" readonly><?php echo $review_isu['program_usulan'];?></textarea>
                                                                     </div>
 
                                                                     <!-- Input Isu -->
