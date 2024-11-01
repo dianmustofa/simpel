@@ -162,7 +162,7 @@
                                                         </div>
 
                                                         <div class="col-md-4">
-                                                            <label>Program</label>
+                                                            <label>Kegiatan</label>
                                                         </div>
                                                         <?php 
                                                             $jenis = isset($edit_isu['title_jenis']) ? $edit_isu['title_jenis'] : '';
@@ -170,7 +170,7 @@
                                                         <div class="col-md-8 form-group">
                                                             <select class="choices form-select" name="title_jenis">
                                                                 <!-- Pastikan $level_akun ada dan bukan kosong -->
-                                                                <option value="Isu Belum Dipilih">Program belum dipilih</option>
+                                                                <option value="Isu Belum Dipilih">Kegiatan belum dipilih</option>
                                                                 <?php if (!empty($level_jenis)): ?>
                                                                     <?php foreach ($level_jenis as $row): ?>
                                                                         <option value="<?= htmlspecialchars($row['title_jenis'], ENT_QUOTES, 'UTF-8') ?>" <?php if($row["title_jenis"] == $jenis) echo "selected";?>>
@@ -178,7 +178,7 @@
                                                                         </option>
                                                                     <?php endforeach; ?>
                                                                 <?php else: ?>
-                                                                    <option value="">Program tidak tersedia</option>
+                                                                    <option value="">Kegiatan tidak tersedia</option>
                                                                 <?php endif; ?>
                                                             </select>
                                                         </div>
@@ -194,7 +194,7 @@
                                                         
 
                                                         <div class="col-md-4">
-                                                            <label>Kegiatan</label>
+                                                            <label>Detail Kegiatan</label>
                                                         </div>
                                                         <div class="col-md-8 form-group">
                                                             <input type="text" class="form-control"

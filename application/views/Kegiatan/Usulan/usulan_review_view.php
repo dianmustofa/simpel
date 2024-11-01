@@ -162,7 +162,7 @@
                                                                 <textarea type="text" class="form-control" name="indikasi_program_usulan" value="#"></textarea>
                                                             </div>
                                                             <div class="col-md-4">
-                                                                <label>Kegiatan</label>
+                                                                <label>Detail Kegiatan</label>
                                                             </div>
                                                             <div class="col-md-8 form-group">
                                                                 <textarea type="text" class="form-control" name="program_usulan" value="<?php echo $review_isu['program_usulan'];?>" readonly><?php echo $review_isu['program_usulan'];?></textarea>
@@ -205,7 +205,7 @@
                                                                     <textarea type="text" class="form-control" name="fname" value="<?php echo $review_isu['indikasi_program_usulan'];?>" readonly><?php echo $review_isu['indikasi_program_usulan'];?></textarea>
                                                                 </div>
                                                                 <div class="col-md-4">
-                                                                    <label>Kegiatan</label>
+                                                                    <label>Detail Kegiatan</label>
                                                                 </div>
                                                                 <div class="col-md-8 form-group">
                                                                     <textarea type="text" class="form-control" name="fname" value="<?php echo $review_isu['program_usulan'];?>" readonly><?php echo $review_isu['program_usulan'];?></textarea>
@@ -285,7 +285,7 @@
                                                                         <textarea type="text" class="form-control" name="indikasi_program_usulan" value="#"></textarea>
                                                                     </div>
                                                                     <div class="col-md-4">
-                                                                        <label>Kegiatan</label>
+                                                                        <label>Detail Kegiatan</label>
                                                                     </div>
                                                                     <div class="col-md-8 form-group">
                                                                         <textarea type="text" class="form-control" name="program_usulan" value="<?php echo $review_isu['program_usulan'];?>" readonly><?php echo $review_isu['program_usulan'];?></textarea>

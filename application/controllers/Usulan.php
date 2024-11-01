@@ -42,6 +42,8 @@ class Usulan extends CI_Controller {
 		$data["level_status_usulan"] = $level_status_usulan;
 		$level_sumber_pendanaan = $this->Perencanaan_model->level_sumber_pendanaan();
 		$data["level_sumber_pendanaan"] = $level_sumber_pendanaan;
+		$level_pekerjaan = $this->Perencanaan_model->level_pekerjaan();
+		$data["level_pekerjaan"] = $level_pekerjaan;
 
     	$this->load->view('Kegiatan/Usulan/usulan_edit_view', $data);
 	}

@@ -218,11 +218,11 @@
                                                     if(isset($default['title_jenis'])) $jenis=$default['title_jenis'];
                                                     ?>
                                                     <div class="form-group">
-                                                        <label>Program</label>
+                                                        <label>Kegiatan</label>
                                                         <!-- <input type="text" name="title_isu" placeholder="Isu Perencanaan" class="form-control" required> -->
                                                         <select class="choices form-select" name="title_jenis" required>
                                                             <!-- Opsi default yang tidak bisa dipilih -->
-                                                            <option value="" disabled selected>Pilih Program</option>
+                                                            <option value="" disabled selected>Pilih Kegiatan</option>
                                                             <!-- Pastikan $level_akun ada dan bukan kosong -->
                                                             <?php if (!empty($level_jenis)): ?>
                                                                 <?php foreach ($level_jenis as $row): ?>
@@ -231,13 +231,13 @@
                                                                     </option>
                                                                 <?php endforeach; ?>
                                                             <?php else: ?>
-                                                                <option value="">Isu tidak tersedia</option>
+                                                                <option value="">Kegiatan tidak tersedia</option>
                                                             <?php endif; ?>
                                                         </select>
                                                     </div>
 
                                                     <div class="form-group">
-                                                        <label>Kegiatan</label>
+                                                        <label>Detail Kegiatan</label>
                                                         <input type="text" name="program_usulan" placeholder="" class="form-control" >
                                                     </div>
 
@@ -559,7 +559,8 @@
                                         <tr>
                                             <!-- <th>Aspek</th>     -->
                                             <th>Isu Lingkungan</th>
-                                            <th>Program</th>
+                                            <th>Pekerjaan</th>
+                                            <th>Kegiatan</th>
                                             <th>Alamat</th>
                                             <th>Kelurahan</th>
                                             <th>RW</th>
@@ -575,6 +576,7 @@
                                             $titleAspek = $row['title_aspek'];
                                             $titleIsu = $row['title_isu'];
                                             $titleJenis = $row['title_jenis'];
+                                            $titlePekerjaan = $row['title_pekerjaan'];
                                             $latitude = $row['latitude'];
                                             $longitude = $row['longitude'];
                                             $alamatIsu = $row['alamat_isu'];
@@ -588,6 +590,7 @@
                                             <tr>
                                                 <!-- <td><?= $titleAspek ?></td> -->
                                                 <td><?= $titleIsu ?></td>
+                                                <td><?= $titlePekerjaan ?></td>
                                                 <td><?= $titleJenis ?></td>
                                                 <td><?= $alamatIsu ?></td>
                                                 <td><?= $titleKelurahan ?></td>
@@ -707,6 +710,7 @@
                 rowData.push(rows[i].cells[3].innerText); // Kolom Status Isu
                 rowData.push(rows[i].cells[4].innerText); // Kolom Status Isu
                 rowData.push(rows[i].cells[5].innerText); // Kolom Status Isu
+                rowData.push(rows[i].cells[6].innerText); // Kolom Status Isu
                 selectedData.push(rowData);
             }
 
