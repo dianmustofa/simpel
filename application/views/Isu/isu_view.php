@@ -318,7 +318,7 @@
                                                     </div>
 
                                                     <!-- Input No RT -->
-                                                    <!-- <?php 
+                                                    <?php 
                                                         $jenis="";
                                                     if(isset($default['title_rt'])) $jenis=$default['title_rt'];
                                                     ?>
@@ -336,12 +336,12 @@
                                                                 <option value="">Kelurahan tidak tersedia</option>
                                                             <?php endif; ?>
                                                         </select>
-                                                    </div> -->
+                                                    </div>
 
-                                                    <div class="form-group">
+                                                    <!-- <div class="form-group">
                                                         <label>No RT</label>
                                                         <input type="text" name="title_rt" placeholder="contoh: 004, 012, 010" class="form-control" required>
-                                                    </div>
+                                                    </div> -->
 
                                                     <div class="form-group">
                                                         <label>Alamat</label>
@@ -641,7 +641,7 @@
 
                                                     // Fungsi untuk zoom ke koordinat
                                                     function zoomTo(lat, lng, titleIsu) {
-                                                        map.setView([lat, lng], 17); // Zoom level 17 sebagai contoh
+                                                        map.setView([lat, lng], 20); // Zoom level 17 sebagai contoh
                                                         
                                                         // Jika ada marker aktif, hapus marker lama
                                                         if (currentMarker !== null) {

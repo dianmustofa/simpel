@@ -147,6 +147,16 @@ class Perencanaan_model extends CI_Model{
         return $this->db->update('tbl_perencanaan', ['deleted_at' => date('Y-m-d H:i:s')]);
     }
 
+    public function getAvailableYears()
+    {
+        $this->db->select('DISTINCT(YEAR(last_created_date)) as title_year', FALSE);
+        $this->db->from('tbl_perencanaan');
+        $this->db->where('deleted_at IS NULL');
+        $this->db->order_by('title_year', 'DESC');
+        
+        return $this->db->get()->result_array();
+    }
+
     public function level_aspek() {
         $this->db->select('as.*');
         $this->db->from('tbl_aspek as');

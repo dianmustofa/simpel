@@ -90,6 +90,7 @@ class Home extends CI_Controller {
 		$kelurahan = $this->input->get('kelurahan', TRUE); // Filter kelurahan
 		$rw = $this->input->get('rw', TRUE); // Filter RW
 		$rt = $this->input->get('rt', TRUE); // Filter RT
+		$year = $this->input->get('year', TRUE); // Filter Tahun
 
 		// Konfigurasi pagination
 		$config['base_url'] = base_url('home/index');
@@ -121,10 +122,12 @@ class Home extends CI_Controller {
 		$data["level_kelurahan"] = $level_kelurahan;
         $level_angka = $this->Perencanaan_model->level_angka();
 		$data["level_angka"] = $level_angka;
+		$level_year = $this->Perencanaan_model->getAvailableYears(); // Mendapatkan daftar tahun yang tersedia
+    	$data["level_year"] = $level_year;
 
 		// Ambil data dari model berdasarkan search dan filter
-		if ($keyword || $kelurahan || $rw || $rt) {
-			$data['ajuan'] = $this->Home_model->searchAjuan($keyword, $kelurahan, $rw, $rt, $config['per_page'], $page);
+		if ($keyword || $kelurahan || $rw || $rt || $year) {
+			$data['ajuan'] = $this->Home_model->searchAjuan($keyword, $kelurahan, $rw, $rt, $year, $config['per_page'], $page);
 		} else {
 			$data['ajuan'] = $this->Home_model->getAllAjuan($config['per_page'], $page);
 		}

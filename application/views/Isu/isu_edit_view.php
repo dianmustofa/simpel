@@ -321,14 +321,36 @@
                                                                 <?php endif; ?>
                                                             </select>
                                                         </div>
-                                                        
+
                                                         <div class="col-md-4">
+                                                            <label>No RT</label>
+                                                        </div>
+                                                        <?php 
+                                                            $jenis = isset($edit_isu['title_rt']) ? $edit_isu['title_rt'] : '';
+                                                        ?>
+                                                        <div class="col-md-8 form-group">
+                                                            <select class="choices form-select" name="title_rt">
+                                                                <!-- Pastikan $level_akun ada dan bukan kosong -->
+                                                                <option value="RT Belum Dipilih">RT belum dipilih</option>
+                                                                <?php if (!empty($level_angka)): ?>
+                                                                    <?php foreach ($level_angka as $row): ?>
+                                                                        <option value="<?= htmlspecialchars($row['title_angka'], ENT_QUOTES, 'UTF-8') ?>" <?php if($row["title_angka"] == $jenis) echo "selected";?>>
+                                                                            <?= htmlspecialchars($row['title_angka'], ENT_QUOTES, 'UTF-8') ?>
+                                                                        </option>
+                                                                    <?php endforeach; ?>
+                                                                <?php else: ?>
+                                                                    <option value="">RT tidak tersedia</option>
+                                                                <?php endif; ?>
+                                                            </select>
+                                                        </div>
+                                                        
+                                                        <!-- <div class="col-md-4">
                                                             <label>No RT</label>
                                                         </div>
                                                         <div class="col-md-8 form-group">
                                                             <input type="text" class="form-control"
                                                                 name="title_rt" value="<?php echo isset($edit_isu['title_rt']) ? $edit_isu['title_rt'] : ''; ?>">
-                                                        </div>
+                                                        </div> -->
                                                         <div class="col-md-4">
                                                             <label>Alamat</label>
                                                         </div>

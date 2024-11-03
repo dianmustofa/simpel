@@ -84,7 +84,7 @@
                                     </select>
                                 </div>
 
-                                <div class="col-sm-3">
+                                <div class="col-sm-2">
                                     <!-- <label>Filter Kelurahan</label> -->
                                     <select class="form-control form-control-lg" name="rw">
                                         <option value="">Pilih RW</option>
@@ -101,7 +101,7 @@
                                     </select>
                                 </div>
 
-                                <div class="col-sm-3">
+                                <div class="col-sm-2">
                                     <!-- <label>Filter Kelurahan</label> -->
                                     <select class="form-control form-control-lg" name="rt">
                                         <option value="">Pilih RT</option>
@@ -114,6 +114,23 @@
                                             <?php endforeach; ?>
                                         <?php else: ?>
                                             <option value="">RT tidak tersedia</option>
+                                        <?php endif; ?>
+                                    </select>
+                                </div>
+
+                                <div class="col-sm-2">
+                                    <!-- <label>Filter Kelurahan</label> -->
+                                    <select class="form-control form-control-lg" name="year">
+                                        <option value="">Pilih Tahun</option>
+                                        <?php if (!empty($level_year)): ?>
+                                            <?php foreach ($level_year as $row): ?>
+                                                <option value="<?= htmlspecialchars($row['title_year'], ENT_QUOTES, 'UTF-8') ?>" 
+                                                    <?= ($this->input->get('year') == $row['title_year']) ? 'selected' : ''; ?>>
+                                                    Tahun <?= htmlspecialchars($row['title_year'], ENT_QUOTES, 'UTF-8') ?>
+                                                </option>
+                                            <?php endforeach; ?>
+                                        <?php else: ?>
+                                            <option value="">Tahun tidak tersedia</option>
                                         <?php endif; ?>
                                     </select>
                                 </div>

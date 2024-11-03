@@ -432,6 +432,13 @@
                                                     </div>
                                                     <div class="col-md-6 col-12">
                                                         <div class="form-group">
+                                                            <label for="first-name-column">Aspek</label>
+                                                            <input type="text" id="readonlyInput" readonly="readonly" class="form-control"
+                                                                name="fname" value="<?php echo $review_isu['title_aspek'];?>">
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-6 col-12">
+                                                        <div class="form-group">
                                                             <label for="first-name-column">Isu Lingkungan</label>
                                                             <input type="text" id="readonlyInput" readonly="readonly" class="form-control"
                                                                 name="fname" value="<?php echo $review_isu['title_isu'];?>">
@@ -439,28 +446,28 @@
                                                     </div>
                                                     <div class="col-md-6 col-12">
                                                         <div class="form-group">
-                                                            <label for="last-name-column">Kategori</label>
-                                                            <input type="text" id="readonlyInput" readonly="readonly" class="form-control"
-                                                                name="fname" value="<?php echo $review_isu['title_kategori'];?>">
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-md-6 col-12">
-                                                        <div class="form-group">
-                                                            <label for="city-column">Jenis</label>
-                                                            <input type="text" id="readonlyInput" readonly="readonly" class="form-control"
-                                                                name="fname" value="<?php echo $review_isu['title_jenis'];?>">
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-md-6 col-12">
-                                                        <div class="form-group">
-                                                            <label for="country-floating">Pekerjaan</label>
+                                                            <label for="last-name-column">Pekerjaan</label>
                                                             <input type="text" id="readonlyInput" readonly="readonly" class="form-control"
                                                                 name="fname" value="<?php echo $review_isu['title_pekerjaan'];?>">
                                                         </div>
                                                     </div>
+                                                    <div class="col-md-6 col-12">
+                                                        <div class="form-group">
+                                                            <label for="city-column">Kegiatan</label>
+                                                            <input type="text" id="readonlyInput" readonly="readonly" class="form-control"
+                                                                name="fname" value="<?php echo $review_isu['title_jenis'];?>">
+                                                        </div>
+                                                    </div>
                                                     <div class="col-md-12 col-12">
                                                         <div class="form-group">
-                                                            <label for="company-column">Detail Pekerjaan</label>
+                                                            <label for="country-floating">Detail Kegiatan</label>
+                                                            <input type="text" id="readonlyInput" readonly="readonly" class="form-control"
+                                                                name="fname" value="<?php echo $review_isu['program_usulan'];?>">
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-12 col-12">
+                                                        <div class="form-group">
+                                                            <label for="company-column">Detail</label>
                                                             <textarea type="text" id="readonlyInput" readonly="readonly" class="form-control"
                                                                 name="fname" value="<?php echo $review_isu['detail_pekerjaan'];?>"><?php echo $review_isu['detail_pekerjaan'];?></textarea>
                                                         </div>
@@ -474,18 +481,25 @@
                                                     </div> -->
                                                     <div class="col-md-6 col-12">
                                                         <div class="form-group">
-                                                            <label for="email-id-column">Aset Lahan</label>
+                                                            <label for="email-id-column">volumen</label>
                                                             <input type="text" id="readonlyInput" readonly="readonly" class="form-control"
-                                                                name="fname" value="<?php echo $review_isu['title_aset_lahan'];?>">
+                                                                name="fname" value="<?php echo $review_isu['volume_pekerjaan'];?>">
                                                         </div>
                                                     </div>
                                                     <div class="col-md-6 col-12">
+                                                        <div class="form-group">
+                                                            <label for="email-id-column">Satuan</label>
+                                                            <input type="text" id="readonlyInput" readonly="readonly" class="form-control"
+                                                                name="fname" value="<?php echo $review_isu['satuan'];?>">
+                                                        </div>
+                                                    </div>
+                                                    <!-- <div class="col-md-6 col-12">
                                                         <div class="form-group">
                                                             <label for="email-id-column">Kecamatan</label>
                                                             <input type="text" id="readonlyInput" readonly="readonly" class="form-control"
                                                                 name="fname" value="<?php echo $review_isu['title_kecamatan'];?>">
                                                         </div>
-                                                    </div>
+                                                    </div> -->
                                                     <div class="col-md-6 col-12">
                                                         <div class="form-group">
                                                             <label for="email-id-column">Kelurahan</label>
@@ -526,6 +540,13 @@
                                                             <label for="email-id-column">Alamat</label>
                                                             <input type="text" id="readonlyInput" readonly="readonly" class="form-control"
                                                                 name="fname" value="<?php echo $review_isu['alamat_isu'];?>">
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-6 col-12">
+                                                        <div class="form-group">
+                                                            <label for="email-id-column">Aset Lahan</label>
+                                                            <input type="text" id="readonlyInput" readonly="readonly" class="form-control"
+                                                                name="fname" value="<?php echo $review_isu['title_aset_lahan'];?>">
                                                         </div>
                                                     </div>
                                                     <div class="col-md-6 col-12">

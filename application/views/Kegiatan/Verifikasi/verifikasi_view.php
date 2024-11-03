@@ -101,7 +101,10 @@
                                     <thead>
                                         <tr>
                                             <th>Isu Lingkungan</th>
-                                            <th>Program</th>
+                                            <th>Pekerjaan</th>
+                                            <th>Kegiatan</th>
+                                            <th>Manfaat dan Tujuan</th>
+                                            <th>Indikasi Program</th>
                                             <th>Alamat</th>
                                             <th>Kelurahan</th>
                                             <th>RW</th>
@@ -122,11 +125,17 @@
                                             $titleRW = $row['title_rw'];
                                             $titleRT = $row['title_rt'];
                                             $titleOPD = $row['title_opd'];
+                                            $manfaatTujuanUsulan = $row['manfaat_tujuan_usulan'];
+                                            $indikasiProgramUsulan = $row['indikasi_program_usulan'];
+                                            $titlePekerjaan = $row['title_pekerjaan'];
                                             $documentDED = $row['document_ded'];
                                         ?>
                                             <tr>
                                                 <td><?= $titleIsu ?></td>
+                                                <td><?= $titlePekerjaan ?></td>
                                                 <td><?= $titleJenis ?></td>
+                                                <td><?= $manfaatTujuanUsulan ?></td>
+                                                <td><?= $indikasiProgramUsulan ?></td>
                                                 <td><?= $alamatIsu ?></td>
                                                 <td><?= $titleKelurahan ?></td>
                                                 <td><?= $titleRW ?></td>
