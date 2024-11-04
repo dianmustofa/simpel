@@ -334,7 +334,11 @@
                                                                 var selectedValue = this.value;
                                                                 var verificationInput = document.getElementById('verification_input');
                                                                 
-                                                                if (selectedValue === 'Dilaksanakan bersyarat') {
+                                                                if (selectedValue === 'Dilaksanakan') {
+                                                                    verificationInput.style.display = 'block';
+                                                                } else if (selectedValue === 'Dilaksanakan bersyarat') {
+                                                                    verificationInput.style.display = 'block';
+                                                                } else if (selectedValue === 'Tidak Dilaksanakan') {
                                                                     verificationInput.style.display = 'block';
                                                                 } else {
                                                                     verificationInput.style.display = 'none';
