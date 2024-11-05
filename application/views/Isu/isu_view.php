@@ -7,11 +7,26 @@
     
     <!-- css -->
     <link rel="stylesheet" href="<?php echo base_url();?>assets/css/bootstrap.css">
-    <link rel="stylesheet" href="<?php echo base_url();?>assets/vendors/simple-datatables/style.css">
+    <!-- <link rel="stylesheet" href="<?php echo base_url();?>assets/vendors/simple-datatables/style.css"> -->
     <link rel="stylesheet" href="<?php echo base_url();?>assets/vendors/perfect-scrollbar/perfect-scrollbar.css">
     <link rel="stylesheet" href="<?php echo base_url();?>assets/vendors/bootstrap-icons/bootstrap-icons.css">
     <link rel="stylesheet" href="<?php echo base_url();?>assets/css/app.css">
     <!-- end css -->
+
+    <style>
+
+        .pagination {
+            margin-top: 10px;
+        }
+
+        .pagination button {
+            margin: 0 2px;
+            padding: 5px 10px;
+        }
+    </style>
+
+    <!-- Tambahkan library SheetJS dari CDN -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
 </head>
 
 <body>
@@ -547,138 +562,245 @@
 
                     </script>
 
-
+                    <!-- Basic Tables start -->
                     <section class="section">
-                        <div class="card">
-                            <div class="card-header">
-                                Daftar Pengajuan
-                            </div>
-                            <div class="card-body">
-                                <table class="table table-striped" id="table1">
-                                    <thead>
-                                        <tr>
-                                            <!-- <th>Aspek</th>     -->
-                                            <th>Isu Lingkungan</th>
-                                            <th>Pekerjaan</th>
-                                            <th>Kegiatan</th>
-                                            <th>Alamat</th>
-                                            <th>Kelurahan</th>
-                                            <th>RW</th>
-                                            <th>RT</th>
-                                            <th>Action</th>
-                                            <th>Komentar</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
+                        <div class="row" id="basic-table">
+                            <div class="col-12 col-md-12">
+                                <div class="card">
+                                    <div class="card-header">
+                                        <h4 class="card-title">Daftar Pengajuan</h4>
+                                    </div>
+                                    <div class="card-content">
+                                        <div class="card-body">
+                                            <input type="text" id="searchInput" placeholder="Cari..." onkeyup="filterTable()">
+                                            <button onclick="exportToExcel()">Ekspor ke Excel</button>
+                                        </div>
 
-                                        <?php foreach ($isu as $row) { 
-                                            $idIsu = $row['id_isu'];
-                                            $titleAspek = $row['title_aspek'];
-                                            $titleIsu = $row['title_isu'];
-                                            $titleJenis = $row['title_jenis'];
-                                            $titlePekerjaan = $row['title_pekerjaan'];
-                                            $latitude = $row['latitude'];
-                                            $longitude = $row['longitude'];
-                                            $alamatIsu = $row['alamat_isu'];
-                                            $titleKelurahan = $row['title_kelurahan'];
-                                            $titleRW = $row['title_rw'];
-                                            $titleRT = $row['title_rt'];
-                                            $statusIsu = $row['status_isu'];
-                                            $komentarUsulan = $row['komentar_usulan'];
-                                            $statusUsulan = $row['status_usulan'];
-                                        ?>
-                                            <tr>
-                                                <!-- <td><?= $titleAspek ?></td> -->
-                                                <td><?= $titleIsu ?></td>
-                                                <td><?= $titlePekerjaan ?></td>
-                                                <td><?= $titleJenis ?></td>
-                                                <td><?= $alamatIsu ?></td>
-                                                <td><?= $titleKelurahan ?></td>
-                                                <td><?= $titleRW ?></td>
-                                                <td><?= $titleRT ?></td>
-                                                <td>   
-                                                    <?php if (in_array($this->session->userdata('id_level_akun'), [2, 4])) : ?>
-                                                        <a href="<?php echo base_url(); ?>perencanaan/delete/<?= $idIsu ?>">
-                                                            <span class="badge bg-danger" style="cursor: pointer;" onclick="return confirm('Anda yakin ingin menghapus item ini?');">Hapus</span>
-                                                        </a>
-                                                        <!-- <span class="badge bg-danger" style="cursor: pointer;">Hapus</span> -->
-                                                    <?php else : ?>
-                                                    <?php endif; ?>
+                                        <!-- Table with no outer spacing -->
+                                        <div class="table-responsive">
+                                            <table class="table table-striped mb-0 table-lg" id="dataTable">
+                                                <thead>
+                                                    <tr>
+                                                        <!-- <th>Aspek</th>     -->
+                                                        <th>Isu Lingkungan</th>
+                                                        <th>Pekerjaan</th>
+                                                        <th>Kegiatan</th>
+                                                        <th>Alamat</th>
+                                                        <th>Kelurahan</th>
+                                                        <th>RW</th>
+                                                        <th>RT</th>
+                                                        <th>Action</th>
+                                                        <th>Komentar</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <?php foreach ($isu as $row) { 
+                                                        $idIsu = $row['id_isu'];
+                                                        $titleAspek = $row['title_aspek'];
+                                                        $titleIsu = $row['title_isu'];
+                                                        $titleJenis = $row['title_jenis'];
+                                                        $titlePekerjaan = $row['title_pekerjaan'];
+                                                        $latitude = $row['latitude'];
+                                                        $longitude = $row['longitude'];
+                                                        $alamatIsu = $row['alamat_isu'];
+                                                        $titleKelurahan = $row['title_kelurahan'];
+                                                        $titleRW = $row['title_rw'];
+                                                        $titleRT = $row['title_rt'];
+                                                        $statusIsu = $row['status_isu'];
+                                                        $komentarUsulan = $row['komentar_usulan'];
+                                                        $statusUsulan = $row['status_usulan'];
+                                                    ?>
+                                                        <tr>
+                                                            <!-- <td><?= $titleAspek ?></td> -->
+                                                            <td><?= $titleIsu ?></td>
+                                                            <td><?= $titlePekerjaan ?></td>
+                                                            <td><?= $titleJenis ?></td>
+                                                            <td><?= $alamatIsu ?></td>
+                                                            <td><?= $titleKelurahan ?></td>
+                                                            <td><?= $titleRW ?></td>
+                                                            <td><?= $titleRT ?></td>
+                                                            <td>   
+                                                                <?php if (in_array($this->session->userdata('id_level_akun'), [2, 4])) : ?>
+                                                                    <a href="<?php echo base_url(); ?>perencanaan/delete/<?= $idIsu ?>">
+                                                                        <span class="badge bg-danger" style="cursor: pointer;" onclick="return confirm('Anda yakin ingin menghapus item ini?');">Hapus</span>
+                                                                    </a>
+                                                                    <!-- <span class="badge bg-danger" style="cursor: pointer;">Hapus</span> -->
+                                                                <?php else : ?>
+                                                                <?php endif; ?>
 
-                                                    <span class="badge bg-primary zoom-to" data-lat="<?= $latitude ?>" data-lng="<?= $longitude ?>" data-title="<?= $titleIsu ?>" style="cursor: pointer;">Zoom to</span>
-                                                    
-                                                    <!-- <a href="<?php echo base_url(); ?>isu/review/<?= $idIsu ?>">
-                                                        <span class="badge bg-secondary" style="cursor: pointer;">Review</span>
-                                                    </a> -->
+                                                                <span class="badge bg-primary zoom-to" data-lat="<?= $latitude ?>" data-lng="<?= $longitude ?>" data-title="<?= $titleIsu ?>" style="cursor: pointer;">Zoom to</span>
+                                                                
+                                                                <!-- <a href="<?php echo base_url(); ?>isu/review/<?= $idIsu ?>">
+                                                                    <span class="badge bg-secondary" style="cursor: pointer;">Review</span>
+                                                                </a> -->
 
-                                                    <?php if ($statusUsulan === "Dilaksanakan") : ?>
-                                                        <span class="badge bg-success"><?= $statusUsulan ?></span>
-                                                        <a href="<?php echo base_url(); ?>perencanaan/edit/<?= $idIsu ?>">
-                                                            <span class="badge bg-secondary" style="cursor: pointer;">Edit</span>
-                                                        </a>
-                                                    <?php elseif ($statusUsulan === "Dilaksanakan bersyarat") : ?>
-                                                        <span class="badge bg-success"><?= $statusUsulan ?></span>
-                                                        <a href="<?php echo base_url(); ?>perencanaan/edit/<?= $idIsu ?>">
-                                                            <span class="badge bg-secondary" style="cursor: pointer;">Edit</span>
-                                                        </a>
-                                                    <?php else : ?>
-                                                        <span class="badge bg-info">Menunggu Verifikasi</span>
-                                                        <!-- <a href="<?php echo base_url(); ?>perencanaan/delete/<?= $idIsu ?>">
-                                                            <span class="badge bg-secondary" style="cursor: pointer;">Edit</span>
-                                                        </a> -->
-                                                        <a href="<?php echo base_url(); ?>perencanaan/edit/<?= $idIsu ?>">
-                                                            <span class="badge bg-secondary" style="cursor: pointer;">Edit</span>
-                                                        </a>
-                                                    <?php endif; ?>
-                                                </td>
-                                                <td><?= $komentarUsulan ?></td>
-                                            </tr>
+                                                                <?php if ($statusUsulan === "Dilaksanakan") : ?>
+                                                                    <span class="badge bg-success"><?= $statusUsulan ?></span>
+                                                                    <a href="<?php echo base_url(); ?>perencanaan/edit/<?= $idIsu ?>">
+                                                                        <span class="badge bg-secondary" style="cursor: pointer;">Edit</span>
+                                                                    </a>
+                                                                <?php elseif ($statusUsulan === "Dilaksanakan bersyarat") : ?>
+                                                                    <span class="badge bg-success"><?= $statusUsulan ?></span>
+                                                                    <a href="<?php echo base_url(); ?>perencanaan/edit/<?= $idIsu ?>">
+                                                                        <span class="badge bg-secondary" style="cursor: pointer;">Edit</span>
+                                                                    </a>
+                                                                <?php else : ?>
+                                                                    <span class="badge bg-info">Menunggu Verifikasi</span>
+                                                                    <!-- <a href="<?php echo base_url(); ?>perencanaan/delete/<?= $idIsu ?>">
+                                                                        <span class="badge bg-secondary" style="cursor: pointer;">Edit</span>
+                                                                    </a> -->
+                                                                    <a href="<?php echo base_url(); ?>perencanaan/edit/<?= $idIsu ?>">
+                                                                        <span class="badge bg-secondary" style="cursor: pointer;">Edit</span>
+                                                                    </a>
+                                                                <?php endif; ?>
+                                                            </td>
+                                                            <td><?= $komentarUsulan ?></td>
+                                                        </tr>
+
+                                                        <script>
+                                                            document.addEventListener('DOMContentLoaded', function() {
+
+                                                                var currentMarker = null; // Simpan referensi marker yang aktif saat ini
+
+                                                                // Fungsi untuk zoom ke koordinat
+                                                                function zoomTo(lat, lng, titleIsu) {
+                                                                    map.setView([lat, lng], 20); // Zoom level 17 sebagai contoh
+                                                                    
+                                                                    // Jika ada marker aktif, hapus marker lama
+                                                                    if (currentMarker !== null) {
+                                                                        map.removeLayer(currentMarker);
+                                                                    }
+
+                                                                    // Buat marker baru dan simpan referensinya
+                                                                    currentMarker = L.marker([lat, lng]).addTo(map);
+                                                                    currentMarker.bindPopup(titleIsu).openPopup();
+                                                                }
+
+                                                                // Event listener untuk klik pada tombol 'Zoom to'
+                                                                document.querySelectorAll('.zoom-to').forEach(function(element) {
+                                                                    element.addEventListener('click', function() {
+                                                                        var lat = parseFloat(this.getAttribute('data-lat'));
+                                                                        var lng = parseFloat(this.getAttribute('data-lng'));
+                                                                        var titleIsu = this.getAttribute('data-title');
+                                                                        zoomTo(lat, lng, titleIsu);
+                                                                    });
+                                                                });
+                                                            });
+                                                        </script>
+
+                                                    <?php } ?>
+                                                </tbody>
+                                            </table>
+
+                                            <div class="card-body">
+                                                <div class="pagination" id="paginationControls"></div>
+                                            </div>
 
                                             <script>
-                                                document.addEventListener('DOMContentLoaded', function() {
+                                                const rowsPerPage = 10;
+                                                let currentPage = 1;
+                                                let filteredRows = [];
 
-                                                    var currentMarker = null; // Simpan referensi marker yang aktif saat ini
+                                                function filterTable() {
+                                                    const input = document.getElementById("searchInput").value.toUpperCase();
+                                                    const table = document.getElementById("dataTable");
+                                                    const rows = table.getElementsByTagName("tr");
+                                                    const noDataMessage = document.getElementById("noDataMessage");
+                                                    filteredRows = [];
 
-                                                    // Fungsi untuk zoom ke koordinat
-                                                    function zoomTo(lat, lng, titleIsu) {
-                                                        map.setView([lat, lng], 20); // Zoom level 17 sebagai contoh
-                                                        
-                                                        // Jika ada marker aktif, hapus marker lama
-                                                        if (currentMarker !== null) {
-                                                            map.removeLayer(currentMarker);
+                                                    // Filter rows based on search input and save the result
+                                                    for (let i = 1; i < rows.length; i++) {
+                                                        const cells = rows[i].getElementsByTagName("td");
+                                                        let match = false;
+                                                        for (let j = 0; j < cells.length; j++) {
+                                                            if (cells[j].innerHTML.toUpperCase().indexOf(input) > -1) {
+                                                                match = true;
+                                                                break;
+                                                            }
                                                         }
-
-                                                        // Buat marker baru dan simpan referensinya
-                                                        currentMarker = L.marker([lat, lng]).addTo(map);
-                                                        currentMarker.bindPopup(titleIsu).openPopup();
+                                                        rows[i].style.display = match ? "" : "none";
+                                                        if (match) filteredRows.push(rows[i]);
                                                     }
 
-                                                    // Event listener untuk klik pada tombol 'Zoom to'
-                                                    document.querySelectorAll('.zoom-to').forEach(function(element) {
-                                                        element.addEventListener('click', function() {
-                                                            var lat = parseFloat(this.getAttribute('data-lat'));
-                                                            var lng = parseFloat(this.getAttribute('data-lng'));
-                                                            var titleIsu = this.getAttribute('data-title');
-                                                            zoomTo(lat, lng, titleIsu);
-                                                        });
+                                                    // Tampilkan atau sembunyikan pesan "Tidak ada data ditemukan"
+                                                    if (filteredRows.length === 0) {
+                                                        noDataMessage.style.display = "block";
+                                                    } else {
+                                                        noDataMessage.style.display = "none";
+                                                    }
+
+                                                    paginate(filteredRows.length);
+                                                }
+
+                                                function paginate(totalRows) {
+                                                    const totalPages = Math.ceil(totalRows / rowsPerPage);
+                                                    const paginationControls = document.getElementById("paginationControls");
+
+                                                    paginationControls.innerHTML = "";
+                                                    for (let i = 1; i <= totalPages; i++) {
+                                                        const btn = document.createElement("button");
+                                                        btn.innerHTML = i;
+                                                        btn.onclick = function () { changePage(i); };
+                                                        paginationControls.appendChild(btn);
+                                                    }
+
+                                                    changePage(1);
+                                                }
+
+                                                function changePage(page) {
+                                                    const table = document.getElementById("dataTable");
+                                                    const rows = filteredRows.length ? filteredRows : Array.from(table.getElementsByTagName("tr")).slice(1);
+
+                                                    currentPage = page;
+                                                    const start = (currentPage - 1) * rowsPerPage;
+                                                    const end = start + rowsPerPage;
+
+                                                    for (let i = 1; i < table.getElementsByTagName("tr").length; i++) {
+                                                        table.getElementsByTagName("tr")[i].style.display = "none";
+                                                    }
+
+                                                    for (let i = start; i < end && i < rows.length; i++) {
+                                                        rows[i].style.display = "";
+                                                    }
+                                                }
+
+                                                function exportToExcel() {
+                                                    const table = document.getElementById("dataTable");
+                                                    const workbook = XLSX.utils.book_new();
+                                                    const worksheetData = [];
+
+                                                    // Mendapatkan data header tabel
+                                                    const headerCells = table.querySelectorAll("thead th");
+                                                    const header = Array.from(headerCells).map(cell => cell.innerText);
+                                                    worksheetData.push(header);
+
+                                                    // Mendapatkan data baris tabel
+                                                    const rows = table.querySelectorAll("tbody tr");
+                                                    rows.forEach(row => {
+                                                        const rowData = Array.from(row.querySelectorAll("td")).map(cell => cell.innerText);
+                                                        worksheetData.push(rowData);
                                                     });
-                                                });
+
+                                                    // Menambahkan worksheet ke dalam workbook dan mengekspor ke Excel
+                                                    const worksheet = XLSX.utils.aoa_to_sheet(worksheetData);
+                                                    XLSX.utils.book_append_sheet(workbook, worksheet, "DataTabel");
+                                                    XLSX.writeFile(workbook, "tabel_isu_lingkungan.xlsx");
+                                                }
+
+                                                window.onload = function () {
+                                                    const rows = document.getElementById("dataTable").getElementsByTagName("tr").length - 1;
+                                                    filteredRows = Array.from(document.getElementById("dataTable").getElementsByTagName("tr")).slice(1);
+                                                    paginate(rows);
+                                                }
                                             </script>
 
-                                        <?php } ?>
-
-                                        
-
-                                    </tbody>
-                                </table>
-
-                                <span class="btn btn-success" id="exportExcel" style="cursor: pointer;">Export ke Excel</span>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
-
                     </section>
-
-                    
+                    <!-- Basic Tables end -->    
 
                 </div>
 
@@ -690,46 +812,8 @@
     
     <script src="<?php echo base_url();?>assets/vendors/perfect-scrollbar/perfect-scrollbar.min.js"></script>
     <script src="<?php echo base_url();?>assets/js/bootstrap.bundle.min.js"></script>
-    <script src="<?php echo base_url();?>assets/vendors/simple-datatables/simple-datatables.js"></script>
+    <!-- <script src="<?php echo base_url();?>assets/vendors/simple-datatables/simple-datatables.js"></script> -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.16.9/xlsx.full.min.js"></script>
-    <script>
-        let dataTable = new simpleDatatables.DataTable('#table1');
-        // Fungsi untuk memilih kolom tertentu dari tabel
-        function getSelectedColumns() {
-            const table = document.getElementById('table1');
-            const rows = table.rows;
-            let selectedData = [];
-
-            // Loop melalui setiap baris tabel
-            for (let i = 0; i < rows.length; i++) {
-                let rowData = [];
-                // Pilih kolom tertentu
-                rowData.push(rows[i].cells[0].innerText); // Kolom Title Isu
-                rowData.push(rows[i].cells[1].innerText); // Kolom Latitude
-                rowData.push(rows[i].cells[2].innerText); // Kolom Longitude
-                rowData.push(rows[i].cells[3].innerText); // Kolom Status Isu
-                rowData.push(rows[i].cells[4].innerText); // Kolom Status Isu
-                rowData.push(rows[i].cells[5].innerText); // Kolom Status Isu
-                rowData.push(rows[i].cells[6].innerText); // Kolom Status Isu
-                selectedData.push(rowData);
-            }
-
-            return selectedData;
-        }
-
-        // Fungsi untuk ekspor data ke Excel
-        document.getElementById('exportExcel').addEventListener('click', function() {
-            const selectedData = getSelectedColumns();
-
-            // Membuat workbook baru
-            let ws = XLSX.utils.aoa_to_sheet(selectedData);
-            let wb = XLSX.utils.book_new();
-            XLSX.utils.book_append_sheet(wb, ws, "Data Terpilih");
-
-            // Simpan file Excel
-            XLSX.writeFile(wb, "selected_columns.xlsx");
-        });
-    </script>
     <script src="<?php echo base_url();?>assets/js/main.js"></script>
     <!-- end js -->
 </body>
