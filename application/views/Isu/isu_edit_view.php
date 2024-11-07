@@ -456,14 +456,14 @@
                                                         </div>
                                                         <div class="col-md-8 form-group">
                                                             <input type="text" class="form-control"
-                                                                name="latitude" id="latitudeInput" value="<?php echo isset($edit_isu['latitude']) ? $edit_isu['latitude'] : ''; ?>" readonly>
+                                                                name="latitude" id="latitudeInput" value="<?php echo isset($edit_isu['latitude']) ? $edit_isu['latitude'] : ''; ?>" >
                                                         </div>
                                                         <div class="col-md-4">
                                                             <label for="longitude">Longitude</label>
                                                         </div>
                                                         <div class="col-md-8 form-group">
                                                             <input type="text" class="form-control"
-                                                                name="longitude" id="longitudeInput" value="<?php echo isset($edit_isu['longitude']) ? $edit_isu['longitude'] : ''; ?>" readonly>
+                                                                name="longitude" id="longitudeInput" value="<?php echo isset($edit_isu['longitude']) ? $edit_isu['longitude'] : ''; ?>" >
                                                         </div>
                                                         
                                                         <div class="col-md-4">
