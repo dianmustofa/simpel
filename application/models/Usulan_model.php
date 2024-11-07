@@ -47,7 +47,7 @@ class Usulan_model extends CI_Model{
             $this->db->from('tbl_perencanaan p');
             // $this->db->where('title_opd IS NOT NULL');
             $this->db->where('deleted_at IS NULL');
-            $this->db->where('YEAR(p.last_created_date) =', date('Y'));
+            // $this->db->where('YEAR(p.last_created_date) =', date('Y'));
         } elseif ($user_role == 3) {
             // SKPD: melihat yang sesuai nama_skpd
             $this->db->select('p.*');
