@@ -47,7 +47,7 @@
                                                     </div>
                                                 </div>
                                                 <div class="col-md-8">
-                                                    <h6 class="text-muted font-semibold">Jumlah Isu</h6>
+                                                    <h6 class="text-muted font-semibold">Jumlah Usulan Kegiatan</h6>
                                                     <h6 class="font-extrabold mb-0"><?php echo count($ajuan); ?></h6>
                                                 </div>
                                             </div>
@@ -64,7 +64,7 @@
                                                     </div>
                                                 </div>
                                                 <div class="col-md-8">
-                                                    <h6 class="text-muted font-semibold">Jumlah Usulan</h6>
+                                                    <h6 class="text-muted font-semibold">Jumlah Tervalidasi OPD</h6>
                                                     <h6 class="font-extrabold mb-0"><?php echo count($usulan); ?></h6>
                                                 </div>
                                             </div>
@@ -83,7 +83,7 @@
                                                         </div>
                                                     </div>
                                                     <div class="col-md-8">
-                                                        <h6 class="text-muted font-semibold">Jumlah Isu</h6>
+                                                        <h6 class="text-muted font-semibold">Jumlah Usulan Kegiatan</h6>
                                                         <h6 class="font-extrabold mb-0"><?php echo count($ajuan); ?></h6>
                                                     </div>
                                                 </div>
@@ -100,7 +100,7 @@
                                                         </div>
                                                     </div>
                                                     <div class="col-md-8">
-                                                        <h6 class="text-muted font-semibold">Jumlah Usulan</h6>
+                                                        <h6 class="text-muted font-semibold">Jumlah Tervalidasi OPD</h6>
                                                         <h6 class="font-extrabold mb-0"><?php echo count($usulan); ?></h6>
                                                     </div>
                                                 </div>
@@ -117,7 +117,7 @@
                                                         </div>
                                                     </div>
                                                     <div class="col-md-8">
-                                                        <h6 class="text-muted font-semibold">Jumlah Monitoring</h6>
+                                                        <h6 class="text-muted font-semibold">Jumlah Perencanaan (Monitoring)</h6>
                                                         <h6 class="font-extrabold mb-0"><?php echo count($monitor); ?></h6>
                                                     </div>
                                                 </div>
@@ -134,8 +134,8 @@
                                                         </div>
                                                     </div>
                                                     <div class="col-md-8">
-                                                        <h6 class="text-muted font-semibold">Total Akun</h6>
-                                                        <h6 class="font-extrabold mb-0"><?php echo count($akun); ?></h6>
+                                                        <h6 class="text-muted font-semibold">Jumlah Telah Dilaporkan OPD</h6>
+                                                        <h6 class="font-extrabold mb-0"><?php echo count($laporkan); ?></h6>
                                                     </div>
                                                 </div>
                                             </div>
@@ -152,7 +152,7 @@
                                                             </div>
                                                         </div>
                                                         <div class="col-md-8">
-                                                            <h6 class="text-muted font-semibold">Jumlah Usulan</h6>
+                                                            <h6 class="text-muted font-semibold">Jumlah Usulan Kegiatan</h6>
                                                             <h6 class="font-extrabold mb-0"><?php echo count($usulan); ?></h6>
                                                         </div>
                                                     </div>
@@ -169,7 +169,7 @@
                                                             </div>
                                                         </div>
                                                         <div class="col-md-8">
-                                                            <h6 class="text-muted font-semibold">Jumlah Monitoring</h6>
+                                                            <h6 class="text-muted font-semibold">Jumlah Perencanaan (Monitoring)</h6>
                                                             <h6 class="font-extrabold mb-0"><?php echo count($monitor); ?></h6>
                                                         </div>
                                                     </div>

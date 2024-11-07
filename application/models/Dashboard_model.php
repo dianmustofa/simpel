@@ -73,15 +73,94 @@ class Dashboard_model extends CI_Model
     public function load_monitor() {
         $nama_skpd = $this->session->userdata('nama_akun');
 
-        $this->db->select('p.*');
-        $this->db->from('tbl_perencanaan p');
-        $this->db->where('status_usulan IS NOT NULL');
-        $this->db->where('title_opd', $nama_skpd);
-        $this->db->where('deleted_at IS NULL');
-        $this->db->where('YEAR(p.last_created_date) =', date('Y'));
-        // $this->db->where('p.status_usulan', 'Dilaksanakan');
-        // $this->db->join('tbl_level_akun la', 'a.id_level_akun=la.id_level');
-        // $this->db->group_by('td.promo_id');  // To ensure distinct promos
+        $user_role = $this->session->userdata('id_level_akun');  // Asumsi role disimpan di session
+
+        if ($user_role == 2 || $user_role == 4) {
+
+            $this->db->select('p.*');
+            $this->db->from('tbl_perencanaan p');
+            $this->db->where('status_usulan IS NOT NULL');
+            // $this->db->where('title_opd', $nama_skpd);
+            $this->db->where('deleted_at IS NULL');
+            $this->db->where('YEAR(p.last_created_date) <', date('Y'));
+            // $this->db->where('p.status_usulan', 'Dilaksanakan');
+            // $this->db->join('tbl_level_akun la', 'a.id_level_akun=la.id_level');
+            // $this->db->group_by('td.promo_id');  // To ensure distinct promos
+
+        }  elseif ($user_role == 3) {
+
+            $this->db->select('p.*');
+            $this->db->from('tbl_perencanaan p');
+            $this->db->where('status_usulan IS NOT NULL');
+            $this->db->where('title_opd', $nama_skpd);
+            $this->db->where('deleted_at IS NULL');
+            $this->db->where('YEAR(p.last_created_date) <', date('Y'));
+            // $this->db->where('p.status_usulan', 'Dilaksanakan');
+            // $this->db->join('tbl_level_akun la', 'a.id_level_akun=la.id_level');
+            // $this->db->group_by('td.promo_id');  // To ensure distinct promos
+
+        } else {
+
+            // $this->db->select('p.*');
+            // $this->db->from('tbl_perencanaan p');
+            // $this->db->where('status_usulan IS NOT NULL');
+            // $this->db->where('title_opd', $nama_skpd);
+            // $this->db->where('deleted_at IS NULL');
+            // // $this->db->where('YEAR(p.last_created_date) =', date('Y'));
+            // // $this->db->where('p.status_usulan', 'Dilaksanakan');
+            // // $this->db->join('tbl_level_akun la', 'a.id_level_akun=la.id_level');
+            // // $this->db->group_by('td.promo_id');  // To ensure distinct promos
+        }
+
+        return $this->db->get()->result_array();
+    }
+
+    public function load_laporkan() {
+
+        $nama_skpd = $this->session->userdata('nama_akun');
+
+        $user_role = $this->session->userdata('id_level_akun');  // Asumsi role disimpan di session
+
+        if ($user_role == 2 || $user_role == 4) {
+
+            $this->db->select('p.*');
+            $this->db->from('tbl_perencanaan p');
+            // $this->db->where('status_usulan IS NOT NULL');
+            $this->db->where_in('status_monitoring', ["Dilaksanakan", "Tidak dapat dilaksanakan"]);
+            // $this->db->where('title_opd', $nama_skpd);
+            $this->db->where('deleted_at IS NULL');
+            $this->db->where('YEAR(p.last_created_date) <', date('Y'));
+            // $this->db->where('p.status_usulan', 'Dilaksanakan');
+            // $this->db->join('tbl_level_akun la', 'a.id_level_akun=la.id_level');
+            // $this->db->group_by('td.promo_id');  // To ensure distinct promos
+
+        }  elseif ($user_role == 3) {
+
+            $this->db->select('p.*');
+            $this->db->from('tbl_perencanaan p');
+            // $this->db->where('status_usulan IS NOT NULL');
+            $this->db->where_in('status_monitoring', ["Dilaksanakan", "Tidak dapat dilaksanakan"]);
+            $this->db->where('title_opd', $nama_skpd);
+            $this->db->where('deleted_at IS NULL');
+            $this->db->where('YEAR(p.last_created_date) <', date('Y'));
+            // $this->db->where('p.status_usulan', 'Dilaksanakan');
+            // $this->db->join('tbl_level_akun la', 'a.id_level_akun=la.id_level');
+            // $this->db->group_by('td.promo_id');  // To ensure distinct promos
+
+        } else {
+
+            // $this->db->select('p.*');
+            // $this->db->from('tbl_perencanaan p');
+            // $this->db->where('status_monitoring IS NOT NULL');
+            // $this->db->where('title_opd', $nama_skpd);
+            // $this->db->where('deleted_at IS NULL');
+            // $this->db->where('YEAR(p.last_created_date) =', date('Y'));
+            // // $this->db->where('p.status_usulan', 'Dilaksanakan');
+            // // $this->db->join('tbl_level_akun la', 'a.id_level_akun=la.id_level');
+            // // $this->db->group_by('td.promo_id');  // To ensure distinct promos
+        }
+
+        
 
         return $this->db->get()->result_array();
     }
@@ -90,7 +169,7 @@ class Dashboard_model extends CI_Model
         $this->db->select('DATE_FORMAT(last_created_date, "%Y-%m") as month, COUNT(*) as sales_count');
         $this->db->from('tbl_perencanaan p'); // Ganti dengan nama tabel Anda
         $this->db->where('deleted_at IS NULL');
-        $this->db->where('YEAR(p.last_created_date) =', date('Y'));
+        // $this->db->where('YEAR(p.last_created_date) =', date('Y'));
         $this->db->group_by('month');
         $query = $this->db->get();
         return $query->result();
@@ -108,7 +187,7 @@ class Dashboard_model extends CI_Model
         $this->db->select('DATE_FORMAT(last_created_date, "%Y-%m") as month, COUNT(*) as sales_count');
         $this->db->from('tbl_perencanaan p');
         $this->db->where('deleted_at IS NULL');
-        $this->db->where('YEAR(p.last_created_date) =', date('Y'));
+        // $this->db->where('YEAR(p.last_created_date) =', date('Y'));
         if (!$is_admin) {
             $this->db->where('id_akun', $user_id); // Hanya filter id_akun jika bukan admin
         }
@@ -120,7 +199,7 @@ class Dashboard_model extends CI_Model
         $this->db->from('tbl_perencanaan p');
         $this->db->where('title_opd IS NOT NULL');
         $this->db->where('deleted_at IS NULL');
-        $this->db->where('YEAR(p.last_created_date) =', date('Y'));
+        // $this->db->where('YEAR(p.last_created_date) =', date('Y'));
         if (!$is_admin) {
             $this->db->where('id_akun', $user_id); // Hanya filter id_akun jika bukan admin
         }
@@ -154,7 +233,7 @@ class Dashboard_model extends CI_Model
         $this->db->where('title_opd IS NOT NULL');
         $this->db->where('title_opd', $nama_skpd);
         $this->db->where('deleted_at IS NULL');
-        $this->db->where('YEAR(p.last_created_date) =', date('Y'));
+        // $this->db->where('YEAR(p.last_created_date) =', date('Y'));
         // if (!$is_admin) {
         //     $this->db->where('id_akun', $user_id); // Hanya filter id_akun jika bukan admin
         // }
@@ -167,7 +246,7 @@ class Dashboard_model extends CI_Model
         $this->db->where('status_usulan IS NOT NULL');
         $this->db->where('title_opd', $nama_skpd);
         $this->db->where('deleted_at IS NULL');
-        $this->db->where('YEAR(p.last_created_date) =', date('Y'));
+        // $this->db->where('YEAR(p.last_created_date) =', date('Y'));
         // if (!$is_admin) {
         //     $this->db->where('id_akun', $user_id); // Hanya filter id_akun jika bukan admin
         // }
