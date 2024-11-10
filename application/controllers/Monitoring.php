@@ -63,18 +63,18 @@ class Monitoring extends CI_Controller {
 		);
 	
 		// Konfigurasi upload dokumen
-		if (!empty($_FILES['gambar_monitoring']['name'])) {
+		if (!empty($_FILES['gambar_isu']['name'])) {
 			$config['upload_path'] = './uploads/images/';
 			$config['allowed_types'] = 'gif|jpg|png';
-			$config['file_name'] = uniqid() . '_' . preg_replace('/[^a-zA-Z0-9-_\.]/', '', $_FILES['gambar_monitoring']['name']);
+			$config['file_name'] = uniqid() . '_' . preg_replace('/[^a-zA-Z0-9-_\.]/', '', $_FILES['gambar_isu']['name']);
 			$config['max_size'] = 10000; // Batasan ukuran file 10MB
 			
 			// Inisialisasi konfigurasi
 			$this->upload->initialize($config);
 	
-			if ($this->upload->do_upload('gambar_monitoring')) {
+			if ($this->upload->do_upload('gambar_isu')) {
 				$image_data = $this->upload->data();
-				$data['gambar_monitoring'] = $image_data['file_name'];
+				$data['gambar_isu'] = $image_data['file_name'];
 	
 				// Hapus dokumen lama jika ada (dari database atau path file)
 				$old_image = $this->Perencanaan_model->get_isu_id($id)->gambar_isu;
@@ -107,11 +107,11 @@ class Monitoring extends CI_Controller {
         $config['upload_path'] = './uploads/images/';
         $config['allowed_types'] = 'gif|jpg|png';
         // $config['max_size'] = 4048; // 2MB
-		$config['file_name'] = uniqid() . '_' . preg_replace('/[^a-zA-Z0-9-_\.]/','', $_FILES['gambar_monitoring']['name']);
+		$config['file_name'] = uniqid() . '_' . preg_replace('/[^a-zA-Z0-9-_\.]/','', $_FILES['gambar_isu']['name']);
         $this->load->library('upload', $config);
 
         // Proses upload gambar
-        if (!$this->upload->do_upload('gambar_monitoring')) {
+        if (!$this->upload->do_upload('gambar_isu')) {
             $error = array('error' => $this->upload->display_errors());
             // Handle error
             echo $error['error'];
@@ -149,7 +149,7 @@ class Monitoring extends CI_Controller {
 				'realisasi_monitoring' => $this->input->post('realisasi_monitoring'),
 				'keterangan_monitoring' => $this->input->post('keterangan_monitoring'),
 				'komentar_monitoring' => $this->input->post('komentar_monitoring'),
-				'gambar_monitoring' => $image_data['file_name'],
+				'gambar_isu' => $image_data['file_name'],
             	// 'document_monitoring' => $document_data['file_name'],
 			);
 			// Debug data yang diterima (opsional, untuk pengembangan)

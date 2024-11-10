@@ -133,6 +133,9 @@
                                                         <th>Kelurahan</th>
                                                         <th>RW</th>
                                                         <th>RT</th>
+                                                        <th>Indikasi Tahun Pelaksana</th>
+                                                        <th>Sumber Pendanaan</th>
+                                                        <th>Instansi Pelaksana</th>
                                                         <th>Action</th>
                                                     </tr>
                                                 </thead>
@@ -151,6 +154,10 @@
                                                         $titleOPD = $row['title_opd'];
                                                         $manfaatTujuanUsulan = $row['manfaat_tujuan_usulan'];
                                                         $indikasiProgramUsulan = $row['indikasi_program_usulan'];
+                                                        $indikasiProgramUsulan = $row['indikasi_program_usulan'];
+                                                        $sumberPendanaanUsulan = $row['sumber_pendanaan_usulan'];
+                                                        $indikasiTahunPelaksanaUsulan = $row['indikasi_tahun_pelaksana_usulan'];
+                                                        $titleOPD = $row['title_opd'];
                                                         $titlePekerjaan = $row['title_pekerjaan'];
                                                         $documentDED = $row['document_ded'];
                                                     ?>
@@ -164,6 +171,9 @@
                                                             <td><?= $titleKelurahan ?></td>
                                                             <td><?= $titleRW ?></td>
                                                             <td><?= $titleRT ?></td>
+                                                            <td><?= $indikasiTahunPelaksanaUsulan ?></td>
+                                                            <td><?= $sumberPendanaanUsulan ?></td>
+                                                            <td><?= $titleOPD ?></td>
                                                             <td>
                                                                 <!-- <span class="badge bg-primary zoom-to" data-lat="<?= $latitude ?>" data-lng="<?= $longitude ?>" data-title="<?= $titleIsu ?>" style="cursor: pointer;">Zoom to</span> -->
                                                                 <a href="<?php echo base_url(); ?>verifikasi/detail/<?= $idIsu ?>">

@@ -261,10 +261,10 @@
                 }
             },
             series: [{
-                name: 'Isu Lingkungan',
+                name: 'Jumlah Usulan Kegiatan',
                 data: salesCounts
             }, {
-                name: 'Usulan', // Nama dataset kedua
+                name: 'Jumlah Tervalidasi OPD', // Nama dataset kedua
                 data: otherCounts
             }],
             colors: ['#435ebe', '#f57c00'], // Warna batang untuk tiap dataset

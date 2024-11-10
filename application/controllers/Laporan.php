@@ -28,7 +28,8 @@ class Laporan extends CI_Controller {
 
         // Konfigurasi upload dokumen
         $config['upload_path'] = './uploads/documents/';
-        $config['allowed_types'] = 'pdf|doc|docx';
+        $config['allowed_types'] = 'pdf';
+		// $config['allowed_types'] = 'pdf|doc|docx';
         $config['file_name'] = uniqid() . '_' . preg_replace('/[^a-zA-Z0-9-_\.]/','', $_FILES['document_laporan']['name']);
 		$config['max_size'] = 10000; // Batasan ukuran file 10MB
         $this->upload->initialize($config);
@@ -101,7 +102,8 @@ class Laporan extends CI_Controller {
 		// Konfigurasi upload dokumen
 		if (!empty($_FILES['document_laporan']['name'])) {
 			$config['upload_path'] = './uploads/documents/';
-			$config['allowed_types'] = 'pdf|doc|docx';
+			$config['allowed_types'] = 'pdf';
+			// $config['allowed_types'] = 'pdf|doc|docx';
 			$config['file_name'] = uniqid() . '_' . preg_replace('/[^a-zA-Z0-9-_\.]/', '', $_FILES['document_laporan']['name']);
 			$config['max_size'] = 10000; // Batasan ukuran file 10MB
 			
