@@ -101,15 +101,15 @@ class Dashboard_model extends CI_Model
 
         } else {
 
-            // $this->db->select('p.*');
-            // $this->db->from('tbl_perencanaan p');
-            // $this->db->where('status_usulan IS NOT NULL');
-            // $this->db->where('title_opd', $nama_skpd);
-            // $this->db->where('deleted_at IS NULL');
-            // // $this->db->where('YEAR(p.last_created_date) =', date('Y'));
-            // // $this->db->where('p.status_usulan', 'Dilaksanakan');
-            // // $this->db->join('tbl_level_akun la', 'a.id_level_akun=la.id_level');
-            // // $this->db->group_by('td.promo_id');  // To ensure distinct promos
+            $this->db->select('p.*');
+            $this->db->from('tbl_perencanaan p');
+            $this->db->where('status_usulan IS NOT NULL');
+            $this->db->where('title_opd', $nama_skpd);
+            $this->db->where('deleted_at IS NULL');
+            // $this->db->where('YEAR(p.last_created_date) =', date('Y'));
+            // $this->db->where('p.status_usulan', 'Dilaksanakan');
+            // $this->db->join('tbl_level_akun la', 'a.id_level_akun=la.id_level');
+            // $this->db->group_by('td.promo_id');  // To ensure distinct promos
         }
 
         return $this->db->get()->result_array();
@@ -149,15 +149,15 @@ class Dashboard_model extends CI_Model
 
         } else {
 
-            // $this->db->select('p.*');
-            // $this->db->from('tbl_perencanaan p');
-            // $this->db->where('status_monitoring IS NOT NULL');
-            // $this->db->where('title_opd', $nama_skpd);
-            // $this->db->where('deleted_at IS NULL');
-            // $this->db->where('YEAR(p.last_created_date) =', date('Y'));
-            // // $this->db->where('p.status_usulan', 'Dilaksanakan');
-            // // $this->db->join('tbl_level_akun la', 'a.id_level_akun=la.id_level');
-            // // $this->db->group_by('td.promo_id');  // To ensure distinct promos
+            $this->db->select('p.*');
+            $this->db->from('tbl_perencanaan p');
+            $this->db->where('status_monitoring IS NOT NULL');
+            $this->db->where('title_opd', $nama_skpd);
+            $this->db->where('deleted_at IS NULL');
+            $this->db->where('YEAR(p.last_created_date) =', date('Y'));
+            // $this->db->where('p.status_usulan', 'Dilaksanakan');
+            // $this->db->join('tbl_level_akun la', 'a.id_level_akun=la.id_level');
+            // $this->db->group_by('td.promo_id');  // To ensure distinct promos
         }
 
         
