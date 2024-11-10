@@ -15,14 +15,42 @@ class Perencanaan_model extends CI_Model{
     }
 
     public function load_perencanaan_all() {
-        $this->db->select('p.*');
-        $this->db->from('tbl_perencanaan p');
-        $this->db->order_by('id_isu', 'DESC');
-        $this->db->where('deleted_at IS NULL');
-        $this->db->where('YEAR(p.last_created_date) =', date('Y'));
-        // $this->db->where('id_akun', $this->session->userdata('id_akun'));
-        // $this->db->join('tbl_category tc', 'td.category_id=tc.category_id');
-        // $this->db->group_by('td.promo_id');  // To ensure distinct promos
+
+        $nama_skpd = $this->session->userdata('nama_akun');
+
+        $user_role = $this->session->userdata('id_level_akun');  // Asumsi role disimpan di session
+
+        // $this->db->select('p.*');
+        // $this->db->from('tbl_perencanaan p');
+        // $this->db->order_by('id_isu', 'DESC');
+        // $this->db->where('deleted_at IS NULL');
+        // // $this->db->where('YEAR(p.last_created_date) =', date('Y'));
+        // // $this->db->where('id_akun', $this->session->userdata('id_akun'));
+        // // $this->db->join('tbl_category tc', 'td.category_id=tc.category_id');
+        // // $this->db->group_by('td.promo_id');  // To ensure distinct promos
+
+        if ($user_role == 2 || $user_role == 4) {
+
+            $this->db->select('p.*');
+            $this->db->from('tbl_perencanaan p');
+            $this->db->order_by('id_isu', 'DESC');
+            $this->db->where('deleted_at IS NULL');
+            // $this->db->where('YEAR(p.last_created_date) =', date('Y'));
+            // $this->db->where('id_akun', $this->session->userdata('id_akun'));
+            // $this->db->join('tbl_category tc', 'td.category_id=tc.category_id');
+            // $this->db->group_by('td.promo_id');  // To ensure distinct promos
+
+        } else {
+
+            $this->db->select('p.*');
+            $this->db->from('tbl_perencanaan p');
+            $this->db->order_by('id_isu', 'DESC');
+            $this->db->where('deleted_at IS NULL');
+            $this->db->where('YEAR(p.last_created_date) =', date('Y'));
+            // $this->db->where('id_akun', $this->session->userdata('id_akun'));
+            // $this->db->join('tbl_category tc', 'td.category_id=tc.category_id');
+            // $this->db->group_by('td.promo_id');  // To ensure distinct promos
+        }
 
         return $this->db->get()->result_array();
     }
