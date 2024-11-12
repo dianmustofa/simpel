@@ -40,7 +40,7 @@
             <?php $this->load->view("_partials/headnav.php") ?>
 
             <div id="main-content">
-                <a href="<?php echo base_url();?>isu"><i class="bi bi-chevron-left"></i></a>
+                <a href="<?php echo base_url();?>monitoring"><i class="bi bi-chevron-left"></i></a>
                 <div class="page-heading">
                     <div class="page-title">
                         <div class="row">
@@ -75,23 +75,23 @@
                                                         <!-- Input Isu -->
                                                         <?php 
                                                             $jenis="";
-                                                            if(isset($default['title_status_usulan'])) $jenis=$default['title_status_usulan'];
+                                                            if(isset($default['title_status_monitoring'])) $jenis=$default['title_status_monitoring'];
                                                         ?>
                                                         <div class="col-md-4">
                                                             <label>Status Monitoring</label>
                                                         </div>
                                                         <div class="col-md-8 form-group">
-                                                            <select class="choices form-select" name="status_monitoring" id="title_status_isu">
+                                                            <select class="choices form-select" name="status_monitoring" id="title_status_monitoring">
                                                                 <!-- Pastikan $level_akun ada dan bukan kosong -->
                                                                 <option value="Menunggu Verifikasi">Menunggu Verifikasi</option>
-                                                                <?php if (!empty($level_status_isu)): ?>
-                                                                    <?php foreach ($level_status_isu as $row): ?>
-                                                                        <option value="<?= htmlspecialchars($row['title_status_isu'], ENT_QUOTES, 'UTF-8') ?>">
-                                                                            <?= htmlspecialchars($row['title_status_isu'], ENT_QUOTES, 'UTF-8') ?>
+                                                                <?php if (!empty($level_status_monitoring)): ?>
+                                                                    <?php foreach ($level_status_monitoring as $row): ?>
+                                                                        <option value="<?= htmlspecialchars($row['title_status_monitoring'], ENT_QUOTES, 'UTF-8') ?>">
+                                                                            <?= htmlspecialchars($row['title_status_monitoring'], ENT_QUOTES, 'UTF-8') ?>
                                                                         </option>
                                                                     <?php endforeach; ?>
                                                                 <?php else: ?>
-                                                                    <option value="">Isu tidak tersedia</option>
+                                                                    <option value="">Usulan tidak tersedia</option>
                                                                 <?php endif; ?>
                                                             </select>
                                                         </div>
@@ -148,7 +148,7 @@
                                                         </div> -->
 
                                                         <script>
-                                                            document.getElementById('title_status_isu').addEventListener('change', function() {
+                                                            document.getElementById('title_status_monitoring').addEventListener('change', function() {
                                                                 var selectedValue = this.value;
                                                                 var verificationInputs = document.querySelectorAll('.verification-input');
                                                                 var commentInput = document.querySelector('.comment-input');

@@ -25,6 +25,8 @@ class Monitoring extends CI_Controller {
 		$data["level_status_isu"] = $level_status_isu;
 		$level_status_usulan = $this->Perencanaan_model->level_status_usulan();
 		$data["level_status_usulan"] = $level_status_usulan;
+		$level_status_monitoring = $this->Perencanaan_model->level_status_monitoring();
+		$data["level_status_monitoring"] = $level_status_monitoring;
 
         $data['review_isu'] = $this->Perencanaan_model->get_isu_id($id)->row_array();
 
@@ -42,6 +44,8 @@ class Monitoring extends CI_Controller {
 		$data["level_status_isu"] = $level_status_isu;
 		$level_status_usulan = $this->Perencanaan_model->level_status_usulan();
 		$data["level_status_usulan"] = $level_status_usulan;
+		$level_status_monitoring = $this->Perencanaan_model->level_status_monitoring();
+		$data["level_status_monitoring"] = $level_status_monitoring;
 
         $data['edit_monitoring'] = $this->Perencanaan_model->get_isu_id($id)->row_array();
 
@@ -111,14 +115,14 @@ class Monitoring extends CI_Controller {
         $this->load->library('upload', $config);
 
         // Proses upload gambar
-        if (!$this->upload->do_upload('gambar_isu')) {
-            $error = array('error' => $this->upload->display_errors());
-            // Handle error
-            echo $error['error'];
-            return;
-        } else {
-            $image_data = $this->upload->data();
-        }
+        // if (!$this->upload->do_upload('gambar_isu')) {
+        //     $error = array('error' => $this->upload->display_errors());
+        //     // Handle error
+        //     echo $error['error'];
+        //     return;
+        // } else {
+        //     $image_data = $this->upload->data();
+        // }
 
         // Konfigurasi upload dokumen
         // $config['upload_path'] = './uploads/documents/';

@@ -215,6 +215,13 @@ class Perencanaan_model extends CI_Model{
         return $this->db->get()->result_array();
     }
 
+    public function level_status_monitoring() {
+        $this->db->select('m.*');
+        $this->db->from('tbl_status_monitoring m');
+
+        return $this->db->get()->result_array();
+    }
+
     public function level_kategori() {
         $this->db->select('k.*');
         $this->db->from('tbl_kategori k');
