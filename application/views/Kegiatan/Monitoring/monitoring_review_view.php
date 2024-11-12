@@ -263,23 +263,16 @@
                                                     </div>
                                                     <div class="col-md-6 col-12">
                                                         <div class="form-group">
+                                                            <label for="last-name-column">Aspek</label>
+                                                            <input type="text" id="readonlyInput" readonly="readonly" class="form-control"
+                                                                name="fname" value="<?php echo $review_isu['title_aspek'];?>">
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-6 col-12">
+                                                        <div class="form-group">
                                                             <label for="first-name-column">Isu Lingkungan</label>
                                                             <input type="text" id="readonlyInput" readonly="readonly" class="form-control"
                                                                 name="fname" value="<?php echo $review_isu['title_isu'];?>">
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-md-6 col-12">
-                                                        <div class="form-group">
-                                                            <label for="last-name-column">Kategori</label>
-                                                            <input type="text" id="readonlyInput" readonly="readonly" class="form-control"
-                                                                name="fname" value="<?php echo $review_isu['title_kategori'];?>">
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-md-6 col-12">
-                                                        <div class="form-group">
-                                                            <label for="city-column">Jenis</label>
-                                                            <input type="text" id="readonlyInput" readonly="readonly" class="form-control"
-                                                                name="fname" value="<?php echo $review_isu['title_jenis'];?>">
                                                         </div>
                                                     </div>
                                                     <div class="col-md-6 col-12">
@@ -289,11 +282,40 @@
                                                                 name="fname" value="<?php echo $review_isu['title_pekerjaan'];?>">
                                                         </div>
                                                     </div>
+                                                    <div class="col-md-6 col-12">
+                                                        <div class="form-group">
+                                                            <label for="city-column">Kegiatan</label>
+                                                            <input type="text" id="readonlyInput" readonly="readonly" class="form-control"
+                                                                name="fname" value="<?php echo $review_isu['title_jenis'];?>">
+                                                        </div>
+                                                    </div>
+                                                    
                                                     <div class="col-md-12 col-12">
                                                         <div class="form-group">
                                                             <label for="company-column">Detail Pekerjaan</label>
                                                             <textarea type="text" id="readonlyInput" readonly="readonly" class="form-control"
-                                                                name="fname" value="You can't update me :P"></textarea>
+                                                                name="fname" value="<?php echo $review_isu['program_usulan'];?>"><?php echo $review_isu['program_usulan'];?></textarea>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-12 col-12">
+                                                        <div class="form-group">
+                                                            <label for="company-column">Detail</label>
+                                                            <textarea type="text" id="readonlyInput" readonly="readonly" class="form-control"
+                                                                name="fname" value="<?php echo $review_isu['detail_pekerjaan'];?>"><?php echo $review_isu['detail_pekerjaan'];?></textarea>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-12 col-12">
+                                                        <div class="form-group">
+                                                            <label for="company-column">Volume</label>
+                                                            <textarea type="text" id="readonlyInput" readonly="readonly" class="form-control"
+                                                                name="fname" value="<?php echo $review_isu['volume_pekerjaan'];?>"><?php echo $review_isu['volume_pekerjaan'];?></textarea>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-12 col-12">
+                                                        <div class="form-group">
+                                                            <label for="company-column">Satuan</label>
+                                                            <textarea type="text" id="readonlyInput" readonly="readonly" class="form-control"
+                                                                name="fname" value="<?php echo $review_isu['satuan'];?>"><?php echo $review_isu['satuan'];?></textarea>
                                                         </div>
                                                     </div>
                                                     <!-- <div class="col-md-6 col-12">
@@ -310,13 +332,13 @@
                                                                 name="fname" value="<?php echo $review_isu['title_aset_lahan'];?>">
                                                         </div>
                                                     </div>
-                                                    <div class="col-md-6 col-12">
+                                                    <!-- <div class="col-md-6 col-12">
                                                         <div class="form-group">
                                                             <label for="email-id-column">Kecamatan</label>
                                                             <input type="text" id="readonlyInput" readonly="readonly" class="form-control"
                                                                 name="fname" value="<?php echo $review_isu['title_kecamatan'];?>">
                                                         </div>
-                                                    </div>
+                                                    </div> -->
                                                     <div class="col-md-6 col-12">
                                                         <div class="form-group">
                                                             <label for="email-id-column">Kelurahan</label>
@@ -373,35 +395,35 @@
                                                         <div class="form-group">
                                                             <label for="company-column">Manfaat dan Tujuan</label>
                                                             <textarea type="text" id="readonlyInput" readonly="readonly" class="form-control"
-                                                                name="fname" value="<?php echo $review_isu['manfaat_tujuan_usulan'];?>"></textarea>
+                                                                name="fname" value="<?php echo $review_isu['manfaat_tujuan_usulan'];?>"><?php echo $review_isu['manfaat_tujuan_usulan'];?></textarea>
                                                         </div>
                                                     </div>
                                                     <div class="col-md-12 col-12">
                                                         <div class="form-group">
                                                             <label for="company-column">Indikasi Program</label>
                                                             <textarea type="text" id="readonlyInput" readonly="readonly" class="form-control"
-                                                                name="fname" value="<?php echo $review_isu['indikasi_program_usulan'];?>"></textarea>
+                                                                name="fname" value="<?php echo $review_isu['indikasi_program_usulan'];?>"><?php echo $review_isu['indikasi_program_usulan'];?></textarea>
                                                         </div>
                                                     </div>
                                                     <div class="col-md-12 col-12">
                                                         <div class="form-group">
                                                             <label for="company-column">Program</label>
                                                             <textarea type="text" id="readonlyInput" readonly="readonly" class="form-control"
-                                                                name="fname" value="<?php echo $review_isu['title_jenis'];?>"></textarea>
+                                                                name="fname" value="<?php echo $review_isu['title_jenis'];?>"><?php echo $review_isu['title_jenis'];?></textarea>
                                                         </div>
                                                     </div>
                                                     <div class="col-md-12 col-12">
                                                         <div class="form-group">
                                                             <label for="company-column">Indikasi Tahun Pelaksanaan</label>
                                                             <textarea type="text" id="readonlyInput" readonly="readonly" class="form-control"
-                                                                name="fname" value="<?php echo $review_isu['indikasi_tahun_pelaksana_usulan'];?>"></textarea>
+                                                                name="fname" value="<?php echo $review_isu['indikasi_tahun_pelaksana_usulan'];?>"><?php echo $review_isu['indikasi_tahun_pelaksana_usulan'];?></textarea>
                                                         </div>
                                                     </div>
                                                     <div class="col-md-12 col-12">
                                                         <div class="form-group">
                                                             <label for="company-column">Sumber Pendanaan</label>
                                                             <textarea type="text" id="readonlyInput" readonly="readonly" class="form-control"
-                                                                name="fname" value="<?php echo $review_isu['sumber_pendanaan_usulan'];?>"></textarea>
+                                                                name="fname" value="<?php echo $review_isu['sumber_pendanaan_usulan'];?>"><?php echo $review_isu['sumber_pendanaan_usulan'];?></textarea>
                                                         </div>
                                                     </div>
                                                 </div>
