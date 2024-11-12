@@ -132,10 +132,10 @@
                                                             <label>Upload Gambar</label>
                                                         </div>
                                                         <div class="col-md-8 form-group">
-                                                        <?php if (!empty($edit_monitoring['gambar_monitoring'])): ?>
-                                                                <p>Gambar Lama: <a href="<?= base_url('uploads/images/' . $edit_monitoring['gambar_monitoring']) ?>" target="_blank"><?= $edit_monitoring['gambar_monitoring'] ?></a></p>
+                                                        <?php if (!empty($edit_monitoring['gambar_isu'])): ?>
+                                                                <p>Gambar Lama: <a href="<?= base_url('uploads/images/' . $edit_monitoring['gambar_isu']) ?>" target="_blank"><?= $edit_monitoring['gambar_isu'] ?></a></p>
                                                             <?php endif; ?>
-                                                            <input type="file" class="form-control" name="gambar_monitoring" accept="image/*">
+                                                            <input type="file" class="form-control" name="gambar_isu" accept="image/*">
                                                             <small>Kosongkan jika tidak ingin mengubah gambar</small>
                                                         </div>
 

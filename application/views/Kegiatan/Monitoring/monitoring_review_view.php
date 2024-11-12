@@ -126,7 +126,7 @@
                                                         </div>
                                                         <div class="col-md-8 form-group" >
                                                             <!-- <input type="text" class="form-control" name="keterangan_monitoring" value=""> -->
-                                                            <input type="file" name="gambar_monitoring" id="image" accept="image/*">
+                                                            <input type="file" name="gambar_isu" id="image" accept="image/*">
                                                         </div>
 
                                                         <!-- Tambahkan upload gambar -->
