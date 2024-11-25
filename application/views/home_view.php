@@ -212,6 +212,7 @@
                                 $RW = $row['title_rw'];
                                 $RT = $row['title_rt'];
                                 $gambarIsu = $row['gambar_isu'];
+                                $gambarMonitoring = $row['gambar_monitoring'];
                                 $detailPekerjaan = $row['detail_pekerjaan'];
                             ?>
 
@@ -224,8 +225,13 @@
                                                 <?= $alamatIsu ?> Kelurahan <?= $kelurahan ?> RW <?= $RW ?> RT <?= $RT ?>
                                             </p>
                                         </div>
-                                        <img class="img-fluid w-100" src="<?php echo base_url();?>uploads/images/<?= $gambarIsu ?>"
-                                            alt="Card image cap">
+                                        <?php if ($gambarMonitoring != NULL) : ?>
+                                            <img class="img-fluid w-100" src="<?php echo base_url();?>uploads/images/<?= $gambarMonitoring ?>" alt="Tidak Ada gambar">
+                                            <?php elseif ($gambarIsu != Null) : ?>
+                                                <img class="img-fluid w-100" src="<?php echo base_url();?>uploads/images/<?= $gambarIsu ?>" alt="Tidak Ada gambar">
+                                                <?php else : ?>
+                                                    <img class="img-fluid w-100" src="<?php echo base_url();?>uploads/images/default.jpg" alt="Tidak Ada gambar">
+                                                    <?php endif; ?>
                                     </div>
                                     <div class="card-footer d-flex justify-content-between">
                                     <?php if ($statusUsulan === "Dilaksanakan" || $statusUsulan === "Dilaksanakan bersyarat") : ?>
