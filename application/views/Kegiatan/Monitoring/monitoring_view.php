@@ -136,11 +136,17 @@
                                                                 <a href="<?php echo base_url(); ?>monitoring/edit/<?= $idIsu ?>">
                                                                     <span class="badge bg-secondary" style="cursor: pointer;">Edit</span>
                                                                 </a>
+                                                                <a href="<?php echo base_url(); ?>monitoring/detail/<?= $idIsu ?>">
+                                                                    <span class="badge bg-secondary" style="cursor: pointer;">detail</span>
+                                                                </a>
                                                                 <?php elseif ($statusMonitoring === 'Tidak dapat dilaksanakan') : ?>
+                                                                    <span class="badge bg-warning">Tidak dapat dilaksanakan</span>
                                                                     <a href="<?php echo base_url(); ?>monitoring/edit/<?= $idIsu ?>">
                                                                         <span class="badge bg-secondary" style="cursor: pointer;">Edit</span>
                                                                     </a>
-                                                                    <span class="badge bg-warning">Tidak dapat dilaksanakan</span>
+                                                                    <a href="<?php echo base_url(); ?>monitoring/detail/<?= $idIsu ?>">
+                                                                        <span class="badge bg-secondary" style="cursor: pointer;">detail</span>
+                                                                    </a>
                                                                     <p><?= $komentarMonitoring ?></p>
                                                             <?php else : ?>
                                                                 <span class="badge bg-danger">Sedang Proses</span>

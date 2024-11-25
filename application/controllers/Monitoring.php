@@ -19,6 +19,19 @@ class Monitoring extends CI_Controller {
         $this->load->view('Kegiatan/Monitoring/monitoring_view', $data);
 	}
 
+	public function detail($id)
+	{    
+
+        $data['review_isu'] = $this->Perencanaan_model->get_isu_id($id)->row_array();
+		
+		// Ambil status isu dan usulan dari array review_isu
+		$data['status_isu'] = $data['review_isu']['status_isu']; 
+		$data['status_usulan'] = $data['review_isu']['status_usulan'];
+		$data['title_opd'] = $data['review_isu']['title_opd'];
+
+    	$this->load->view('Kegiatan/Monitoring/monitoring_detail_view', $data);
+	}
+
 	public function monitoring_review($id)
 	{    
     	$level_status_isu = $this->Perencanaan_model->level_status_isu();
