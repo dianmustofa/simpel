@@ -115,7 +115,7 @@ class Laporan extends CI_Controller {
 				$data['document_laporan'] = $document_data['file_name'];
 	
 				// Hapus dokumen lama jika ada (dari database atau path file)
-				$old_document = $this->Laporan_model->get_laporan($id)->document_laporan;
+				$old_document = $this->Laporan_model->get_laporan_id($id)->document_laporan;
 				if (!empty($old_document) && file_exists('./uploads/documents/' . $old_document)) {
 					unlink('./uploads/documents/' . $old_document);
 				}

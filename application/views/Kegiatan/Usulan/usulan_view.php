@@ -131,6 +131,8 @@
                                                         <th>Kelurahan</th>
                                                         <th>RW</th>
                                                         <th>RT</th>
+                                                        <th>Foto</th>
+                                                        <th>Dokumen</th>
                                                         <th>Action</th>
                                                     </tr>
                                                 </thead>
@@ -148,6 +150,8 @@
                                                         $titleRT = $row['title_rt'];
                                                         $titleOPD = $row['title_opd'];
                                                         $statusUsulan = $row['status_usulan'];
+                                                        $gambarIsu = $row['gambar_isu'];
+                                                        $dokumenIsu = $row['document_isu'];
                                                     ?>
                                                         <tr>
                                                             <td><?= $titleIsu ?></td>
@@ -156,6 +160,17 @@
                                                             <td><?= $titleKelurahan ?></td>
                                                             <td><?= $titleRW ?></td>
                                                             <td><?= $titleRT ?></td>
+                                                            <td><a href="<?= base_url('uploads/images/'. $gambarIsu) ?>" target="new_blank">Lihat Foto</a></td>
+                                                            <td>
+                                                                <?php if (!empty($dokumenIsu)): ?>
+                                                                    <a href="<?php echo base_url(); ?>uploads/documents/<?= $dokumentIsu ?>" target="blank">
+                                                                    <span class="badge bg-info" style="cursor: pointer;">Lihat dokumen</span>
+                                                                </a>
+                                                                <?php else: ?>
+                                                                    <a href="javascript:void(0)" onclick="alert('File belum diupload!')">Lihat dokumen</a>
+                                                                <?php endif; ?>
+                                                            </td>
+                                                            <!-- <td><?= pathinfo($dokumenIsu, PATHINFO_FILENAME) // Menampilkan nama file tanpa ekstensi ?></td> -->
                                                             <td>
                                                                 <!-- <span class="badge bg-primary zoom-to" data-lat="<?= $latitude ?>" data-lng="<?= $longitude ?>" data-title="<?= $titleIsu ?>" style="cursor: pointer;">Zoom to</span> -->
                                                                 <!-- <span class="badge bg-secondary" style="cursor: pointer;">Review</span> -->

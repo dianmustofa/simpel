@@ -19,6 +19,19 @@ class Usulan extends CI_Controller {
         $this->load->view('Kegiatan/Usulan/usulan_view', $data);
 	}
 
+	public function download($filename) {
+        $filepath = FCPATH . 'uploads/documents' . $filename; // Folder tempat file berada
+        
+        // Cek apakah file ada
+        if (file_exists($filepath)) {
+            // Unduh file
+            force_download($filepath, NULL);
+        } else {
+            // Tampilkan pesan error jika file tidak ditemukan
+            show_404();
+        }
+    }
+
 	public function verifikasi()
 	{
 		$usulanVerifikasi = $this->Usulan_model->load_verifikasi();

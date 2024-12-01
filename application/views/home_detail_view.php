@@ -179,22 +179,22 @@
                                                         </div>
                                                         <div class="col-md-8 form-group">
                                                             <input type="text" id="readonlyInput" readonly="readonly" class="form-control"
-                                                                name="fname" value="<?php echo $review_isu['detail_pekerjaan'];?>">
+                                                                name="fname" value="<?php echo $review_isu['program_usulan'];?>">
                                                         </div>
-                                                        <div class="col-md-4">
+                                                        <!-- <div class="col-md-4">
                                                             <label>Aset Lahan</label>
                                                         </div>
                                                         <div class="col-md-8 form-group">
                                                             <input type="text" id="readonlyInput" readonly="readonly" class="form-control"
                                                                 name="fname" value="<?php echo $review_isu['title_aset_lahan'];?>">
-                                                        </div>
-                                                        <div class="col-md-4">
+                                                        </div> -->
+                                                        <!-- <div class="col-md-4">
                                                             <label>Kecamatan</label>
                                                         </div>
                                                         <div class="col-md-8 form-group">
                                                             <input type="text" id="readonlyInput" readonly="readonly" class="form-control"
                                                                 name="fname" value="<?php echo $review_isu['title_kecamatan'];?>">
-                                                        </div>
+                                                        </div> -->
                                                         <div class="col-md-4">
                                                             <label>Kelurahan</label>
                                                         </div>
@@ -249,6 +249,42 @@
                                                                 <input type="text" id="readonlyInput" readonly="readonly" class="form-control"
                                                                     name="fname" value="Sedang di Proses">
                                                                 <?php endif; ?>
+                                                        </div>
+
+                                                        <div class="col-md-4">
+                                                            <label>Status</label>
+                                                        </div>
+                                                        <div class="col-md-8 form-group">
+
+                                                        <?php if ($review_isu['status_usulan'] === "Dilaksanakan" || $review_isu['status_usulan'] === "Dilaksanakan bersyarat") : ?>
+                                                            <input type="text" id="readonlyInput" readonly="readonly" class="form-control"
+                                                                    name="fname" value="<?php echo $review_isu['status_usulan'];?>">
+                                                            <?php elseif ($review_isu['status_isu'] === "Dilanjutkan") : ?>
+                                                                <input type="text" id="readonlyInput" readonly="readonly" class="form-control"
+                                                                    name="fname" value="<?php echo $review_isu['status_isu'];?>">
+                                                                <?php elseif ($review_isu['title_opd'] != NULL) : ?>
+                                                                    <input type="text" id="readonlyInput" readonly="readonly" class="form-control"
+                                                                    name="fname" value="Proses Verifikasi SKPD">
+                                                                    <?php else : ?>
+                                                                    <input type="text" id="readonlyInput" readonly="readonly" class="form-control"
+                                                                    name="fname" value="Menunggu Konfirmasi">
+                                                                    <?php endif; ?>
+                                                        </div>
+
+                                                        <div class="col-md-4">
+                                                            <label>Komentar Instansi Pelaksana</label>
+                                                        </div>
+                                                        <div class="col-md-8 form-group">
+                                                            <?php if ( $review_isu['title_opd'] === Null) : ?>
+                                                                <input type="text" id="readonlyInput" readonly="readonly" class="form-control"
+                                                                    name="fname" value="Belum ada komentar">
+                                                            <?php elseif ( $review_isu['komentar_usulan'] === Null) : ?>
+                                                                <input type="text" id="readonlyInput" readonly="readonly" class="form-control"
+                                                                name="fname" value="Tidak ada komentar">
+                                                                <?php else : ?>
+                                                                    <textarea type="text" id="readonlyInput" readonly="readonly" rows="5" class="form-control"
+                                                                        name="fname" value="<?php echo $review_isu['komentar_usulan'];?>"><?php echo $review_isu['komentar_usulan'];?></textarea>
+                                                                    <?php endif; ?>
                                                         </div>
 
                                                         <div class="col-md-4">
