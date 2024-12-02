@@ -255,8 +255,10 @@
                                                             <label>Status</label>
                                                         </div>
                                                         <div class="col-md-8 form-group">
-
-                                                        <?php if ($review_isu['status_usulan'] === "Dilaksanakan" || $review_isu['status_usulan'] === "Dilaksanakan bersyarat") : ?>
+                                                        <?php if ($review_isu['status_monitoring'] === "Dilaksanakan" || $review_isu['status_monitoring'] === "Tidak dapat dilaksanakan") : ?>
+                                                            <input type="text" id="readonlyInput" readonly="readonly" class="form-control"
+                                                                    name="fname" value="<?php echo $review_isu['status_monitoring'];?>">
+                                                        <?php elseif ($review_isu['status_usulan'] === "Dilaksanakan" || $review_isu['status_usulan'] === "Dilaksanakan bersyarat") : ?>
                                                             <input type="text" id="readonlyInput" readonly="readonly" class="form-control"
                                                                     name="fname" value="<?php echo $review_isu['status_usulan'];?>">
                                                             <?php elseif ($review_isu['status_isu'] === "Dilanjutkan") : ?>
@@ -275,15 +277,16 @@
                                                             <label>Komentar Instansi Pelaksana</label>
                                                         </div>
                                                         <div class="col-md-8 form-group">
-                                                            <?php if ( $review_isu['title_opd'] === Null) : ?>
-                                                                <input type="text" id="readonlyInput" readonly="readonly" class="form-control"
-                                                                    name="fname" value="Belum ada komentar">
-                                                            <?php elseif ( $review_isu['komentar_usulan'] === Null) : ?>
-                                                                <input type="text" id="readonlyInput" readonly="readonly" class="form-control"
-                                                                name="fname" value="Tidak ada komentar">
-                                                                <?php else : ?>
-                                                                    <textarea type="text" id="readonlyInput" readonly="readonly" rows="5" class="form-control"
+
+                                                            <?php if ( $review_isu['komentar_monitoring'] != Null) : ?>
+                                                                <textarea type="text" id="readonlyInput" readonly="readonly" rows="5" class="form-control"
+                                                                        name="fname" value="<?php echo $review_isu['komentar_monitoring'];?>"><?php echo $review_isu['komentar_monitoring'];?></textarea>
+                                                            <?php elseif ( $review_isu['komentar_usulan'] != Null) : ?>
+                                                                <textarea type="text" id="readonlyInput" readonly="readonly" rows="5" class="form-control"
                                                                         name="fname" value="<?php echo $review_isu['komentar_usulan'];?>"><?php echo $review_isu['komentar_usulan'];?></textarea>
+                                                                <?php else : ?>
+                                                                    <input type="text" id="readonlyInput" readonly="readonly" class="form-control"
+                                                                    name="fname" value="Tidak ada komentar">
                                                                     <?php endif; ?>
                                                         </div>
 
@@ -297,6 +300,23 @@
                                                                 <?php else : ?>
                                                                     <input type="text" id="readonlyInput" readonly="readonly" class="form-control"
                                                                         name="fname" value="Sedang di Proses">
+                                                                    <?php endif; ?>
+                                                        </div>
+
+                                                        <div class="col-md-4">
+                                                            <label>Realisasi Tahun Pelaksana</label>
+                                                        </div>
+                                                        <div class="col-md-8 form-group">
+                                                            <?php if ( $review_isu['tanggal_realisasi_monitoring'] != Null) : ?>
+                                                                    <input type="text" id="readonlyInput" readonly="readonly" class="form-control"
+                                                                        name="fname" value="<?php
+                                                                            // Pastikan $review_isu['tanggal_realisasi_monitoring'] berformat tanggal yang valid, misalnya: '2024-12-02'
+                                                                            $tanggal = $review_isu['tanggal_realisasi_monitoring'];
+                                                                            echo date('Y', strtotime($tanggal)); // Output: 2024
+                                                                            ?>">
+                                                                <?php else : ?>
+                                                                    <input type="text" id="readonlyInput" readonly="readonly" class="form-control"
+                                                                        name="fname" value="Tidak ada data">
                                                                     <?php endif; ?>
                                                         </div>
 

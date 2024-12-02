@@ -136,6 +136,7 @@
                                                         <th>Indikasi Tahun Pelaksana</th>
                                                         <th>Sumber Pendanaan</th>
                                                         <th>Instansi Pelaksana</th>
+                                                        <th>Dokumen DED</th>
                                                         <th>Action</th>
                                                     </tr>
                                                 </thead>
@@ -174,6 +175,15 @@
                                                             <td><?= $indikasiTahunPelaksanaUsulan ?></td>
                                                             <td><?= $sumberPendanaanUsulan ?></td>
                                                             <td><?= $titleOPD ?></td>
+                                                            <td>
+                                                                <?php if (!empty($documentDED)): ?>
+                                                                    <a href="<?php echo base_url(); ?>uploads/documents/<?= $documentDED ?>" target="blank">
+                                                                        <span class="badge bg-info" style="cursor: pointer;">Lihat dokumen</span>
+                                                                    </a>
+                                                                <?php else: ?>
+                                                                    <a href="javascript:void(0)" onclick="alert('File belum diupload!')"><span class="badge bg-info" style="cursor: pointer;">Lihat dokumen</span></a>
+                                                                <?php endif; ?>
+                                                            </td>
                                                             <td>
                                                                 <!-- <span class="badge bg-primary zoom-to" data-lat="<?= $latitude ?>" data-lng="<?= $longitude ?>" data-title="<?= $titleIsu ?>" style="cursor: pointer;">Zoom to</span> -->
                                                                 <a href="<?php echo base_url(); ?>verifikasi/detail/<?= $idIsu ?>">

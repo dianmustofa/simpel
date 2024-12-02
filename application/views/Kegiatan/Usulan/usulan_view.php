@@ -163,11 +163,11 @@
                                                             <td><a href="<?= base_url('uploads/images/'. $gambarIsu) ?>" target="new_blank">Lihat Foto</a></td>
                                                             <td>
                                                                 <?php if (!empty($dokumenIsu)): ?>
-                                                                    <a href="<?php echo base_url(); ?>uploads/documents/<?= $dokumentIsu ?>" target="blank">
-                                                                    <span class="badge bg-info" style="cursor: pointer;">Lihat dokumen</span>
-                                                                </a>
+                                                                    <a href="<?php echo base_url(); ?>uploads/documents/<?= $dokumenIsu ?>" target="blank">
+                                                                        <span class="badge bg-info" style="cursor: pointer;">Lihat dokumen</span>
+                                                                    </a>
                                                                 <?php else: ?>
-                                                                    <a href="javascript:void(0)" onclick="alert('File belum diupload!')">Lihat dokumen</a>
+                                                                    <a href="javascript:void(0)" onclick="alert('File belum diupload!')"><span class="badge bg-info" style="cursor: pointer;">Lihat dokumen</span></a>
                                                                 <?php endif; ?>
                                                             </td>
                                                             <!-- <td><?= pathinfo($dokumenIsu, PATHINFO_FILENAME) // Menampilkan nama file tanpa ekstensi ?></td> -->

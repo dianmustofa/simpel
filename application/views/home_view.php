@@ -206,6 +206,7 @@
                                 $longitude = $row['longitude'];
                                 $statusIsu = $row['status_isu'];
                                 $statusUsulan = $row['status_usulan'];
+                                $statusMonitoring = $row['status_monitoring'];
                                 $titleOPD = $row['title_opd'];
                                 $alamatIsu = $row['alamat_isu'];
                                 $kelurahan = $row['title_kelurahan'];
@@ -234,7 +235,9 @@
                                                     <?php endif; ?>
                                     </div>
                                     <div class="card-footer d-flex justify-content-between">
-                                    <?php if ($statusUsulan === "Dilaksanakan" || $statusUsulan === "Dilaksanakan bersyarat") : ?>
+                                    <?php if ($statusMonitoring === "Dilaksanakan" || $statusMonitoring === "Tidak dapat dilaksanakan") : ?>
+                                        <span>Status : <?= $statusMonitoring ?></span>
+                                    <?php elseif ($statusUsulan === "Dilaksanakan" || $statusUsulan === "Dilaksanakan bersyarat") : ?>
                                         <span>Status : <?= $statusUsulan ?></span>
                                         <?php elseif ($statusIsu === "Dilanjutkan") : ?>
                                             <span>Status : <?= $statusIsu ?></span>
